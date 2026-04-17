@@ -106,20 +106,47 @@
     </div>
 
     <script type="module">
-        // REPLACE WITH YOUR ACTUAL SUPABASE CREDENTIALS
-        // In this environment, we look for VITE_ prefixed environment variables first.
-        const SUPABASE_URL = import.meta.env?.VITE_SUPABASE_URL || 'YOUR_SUPABASE_URL';
-        const SUPABASE_KEY = import.meta.env?.VITE_SUPABASE_KEY || 'YOUR_SUPABASE_KEY';
+        // Initialization Logic
+        let SUPABASE_URL = 'YOUR_SUPABASE_URL';
+        let SUPABASE_KEY = 'YOUR_SUPABASE_KEY';
+
+        // Check for Vite environment variables (AI Studio Preview)
+        try {
+            if (typeof import.meta !== 'undefined' && import.meta.env) {
+                // If these are blank (not set in AI Studio), we keep the placeholder for GitHub Actions to fill
+                const viteUrl = import.meta.env.VITE_SUPABASE_URL;
+                const viteKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_KEY;
+                
+                if (viteUrl && !viteUrl.includes('YOUR_SUPABASE_URL')) SUPABASE_URL = viteUrl;
+                if (viteKey && !viteKey.includes('YOUR_SUPABASE_KEY')) SUPABASE_KEY = viteKey;
+            }
+        } catch (e) { }
         
+        console.log("Supabase Client Init - URL length:", (SUPABASE_URL || "").length, "Key length:", (SUPABASE_KEY || "").length);
+
         let supabaseClient = null;
         try {
             const lib = window.supabase || (typeof supabase !== 'undefined' ? supabase : null);
-            if (lib && SUPABASE_URL !== 'YOUR_SUPABASE_URL') {
+            // Only initialize if the placeholders have been replaced by real values
+            const isPlaceholder = SUPABASE_URL.includes('YOUR_SUPABASE_URL') || SUPABASE_URL.includes('your-project');
+            if (lib && SUPABASE_URL && SUPABASE_KEY && !isPlaceholder) {
                 supabaseClient = lib.createClient(SUPABASE_URL, SUPABASE_KEY);
             }
         } catch (e) {
             console.error("Supabase initialization failed:", e);
         }
+
+        // Cleanup build version string if it contains commit message
+        document.addEventListener('DOMContentLoaded', () => {
+            const versionEl = document.getElementById('deploy-version');
+            if (versionEl) {
+                const text = versionEl.innerText;
+                if (text.includes(' - ')) {
+                    // Trims everything after the date-time (e.g. "BUILD: 2026-04-17 21:37:38 - feat: ...")
+                    versionEl.innerText = text.split(' - ')[0];
+                }
+            }
+        });
 
         window.showPastEvents = localStorage.getItem('showPastEvents') === 'true';
         window.selectedClasses = JSON.parse(localStorage.getItem('selectedClasses') || '[]');
