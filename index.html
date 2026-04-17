@@ -108,10 +108,19 @@
     <script type="module">
         // Initialization Logic
         // These placeholders are replaced by GitHub Actions during deployment.
-        // NOTE: Use your Supabase 'anon' (public) key here. It is safe for frontend use
-        // because access is controlled via Row Level Security (RLS) in your database.
-        let SUPABASE_URL = '__SUPABASE_URL__'; 
-        let SUPABASE_KEY = '__SUPABASE_KEY__';
+        // NOTE: Use your Supabase 'anon' (public) key here (e.g. starts with 'eyJ' or 'sb_').
+        let SUPABASE_URL = '__INJECT_SUPABASE_URL__'; 
+        let SUPABASE_KEY = '__INJECT_SUPABASE_KEY__';
+
+        // Diagnostics - we log lengths safely
+        const getDisplayLength = (s) => (s && typeof s === 'string') ? s.length : 0;
+        
+        console.log("Supabase Pre-Check:", {
+            urlLength: getDisplayLength(SUPABASE_URL),
+            keyLength: getDisplayLength(SUPABASE_KEY),
+            urlIsPlaceholder: SUPABASE_URL === '__INJECT_SUPABASE_URL__',
+            keyIsPlaceholder: SUPABASE_KEY === '__INJECT_SUPABASE_KEY__'
+        });
 
         // Check for Vite environment variables (AI Studio Preview)
         try {
@@ -120,33 +129,35 @@
                 const viteKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_KEY;
                 
                 // Only override if we actually have values in the Vite environment
-                if (viteUrl && viteUrl.length > 5 && !viteUrl.includes('__SUPABASE_URL__')) {
+                // and avoid overriding if we just have the build-time placeholder injected by Vite
+                if (viteUrl && viteUrl.length > 10 && !viteUrl.includes('INJECT_SUPABASE_URL')) {
                     SUPABASE_URL = viteUrl;
+                    console.log("Using Vite URL override");
                 }
-                if (viteKey && viteKey.length > 5 && !viteKey.includes('__SUPABASE_KEY__')) {
+                if (viteKey && viteKey.length > 10 && !viteKey.includes('INJECT_SUPABASE_KEY')) {
                     SUPABASE_KEY = viteKey;
+                    console.log("Using Vite Key override");
                 }
             }
         } catch (e) {
-            console.log("Vite env check skipped (normal for production)");
+            // Normal in production static environments
         }
         
-        console.log("Supabase Connection Check:", {
-            hasUrl: !!SUPABASE_URL && !SUPABASE_URL.includes('__SUPABASE_URL__'),
-            hasKey: !!SUPABASE_KEY && !SUPABASE_KEY.includes('__SUPABASE_KEY__'),
-            urlPlaceholder: SUPABASE_URL === '__SUPABASE_URL__',
-            keyPlaceholder: SUPABASE_KEY === '__SUPABASE_KEY__',
-            urlEmpty: !SUPABASE_URL,
-            keyEmpty: !SUPABASE_KEY
+        const isUrlMissing = !SUPABASE_URL || SUPABASE_URL === '__INJECT_SUPABASE_URL__' || SUPABASE_URL.includes('your-project');
+        const isKeyMissing = !SUPABASE_KEY || SUPABASE_KEY === '__INJECT_SUPABASE_KEY__';
+
+        console.log("Supabase Final Connection State:", {
+            initialized: !!SUPABASE_URL && !isUrlMissing && !isKeyMissing,
+            urlValid: !isUrlMissing,
+            keyValid: !isKeyMissing,
+            finalUrlLength: getDisplayLength(SUPABASE_URL),
+            finalKeyLength: getDisplayLength(SUPABASE_KEY)
         });
 
         let supabaseClient = null;
         try {
             const lib = window.supabase || (typeof supabase !== 'undefined' ? supabase : null);
             
-            const isUrlMissing = !SUPABASE_URL || SUPABASE_URL.includes('__SUPABASE_URL__') || SUPABASE_URL.includes('your-project');
-            const isKeyMissing = !SUPABASE_KEY || SUPABASE_KEY.includes('__SUPABASE_KEY__');
-
             if (lib && !isUrlMissing && !isKeyMissing) {
                 supabaseClient = lib.createClient(SUPABASE_URL, SUPABASE_KEY);
                 console.log("Supabase initialized successfully.");

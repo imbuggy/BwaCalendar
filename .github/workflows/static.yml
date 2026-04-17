@@ -37,8 +37,15 @@ jobs:
                   content = f.read()
               
               # Literal replacement of placeholders
-              content = content.replace('__SUPABASE_URL__', os.environ.get('S_URL', ''))
-              content = content.replace('__SUPABASE_KEY__', os.environ.get('S_KEY', ''))
+              # We use a unique 'INJECT' prefix to avoid collision with diagnostic strings
+              s_url = os.environ.get('S_URL', '')
+              s_key = os.environ.get('S_KEY', '')
+              
+              url_count = content.count('__INJECT_SUPABASE_URL__')
+              key_count = content.count('__INJECT_SUPABASE_KEY__')
+              
+              content = content.replace('__INJECT_SUPABASE_URL__', s_url)
+              content = content.replace('__INJECT_SUPABASE_KEY__', s_key)
               
               # Handle versioning
               msg = os.environ.get('COMMIT_MSG', '').replace('\n', ' ').replace('|', '').replace('"', '').replace('`', '')
@@ -47,7 +54,10 @@ jobs:
               
               with open('index.html', 'w', encoding='utf-8') as f:
                   f.write(content)
-              print("Injection successful.")
+              
+              print(f"Injection successful. Replaced {url_count} URL placeholders and {key_count} KEY placeholders.")
+              if url_count == 0 or key_count == 0:
+                  print("CRITICAL WARNING: One or more placeholders were NOT found in index.html!")
 
           if __name__ == "__main__":
               inject()
