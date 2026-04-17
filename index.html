@@ -15,7 +15,10 @@
     <div id="calendar-app" class="max-w-6xl mx-auto p-4 md:p-8">
         <!-- Header -->
         <div class="flex items-center justify-between gap-4 mb-6">
-            <h1 class="text-xl font-black tracking-tight text-gray-900 uppercase leading-none">BWA Calendar</h1>
+            <div class="flex flex-col">
+                <h1 class="text-xl font-black tracking-tight text-gray-900 uppercase leading-none">BWA Calendar</h1>
+                <div id="last-updated-display" class="text-[9px] font-bold text-gray-400 mt-1 uppercase tracking-tight">Syncing...</div>
+            </div>
             <button onclick="document.getElementById('about-modal').classList.remove('hidden')" class="shrink-0 flex items-center gap-1.5 px-2 py-1 bg-slate-50 border border-slate-100 rounded-lg group transition-all">
                 <span class="text-[9px] font-bold text-slate-500 uppercase tracking-tighter">Made by parent</span>
                 <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
@@ -36,6 +39,8 @@
                         <p class="italic font-bold text-slate-600">Please always cross-reference with official school announcements.</p>
                     </div>
                 </div>
+                <!-- Build Version -->
+                <div id="deploy-version" class="mb-4 text-center text-[8px] text-gray-300 font-mono uppercase tracking-widest">BUILD: DEPLOY_VERSION_PLACEHOLDER</div>
                 <button onclick="document.getElementById('about-modal').classList.add('hidden')" class="w-full py-3 bg-gray-900 text-white text-xs font-bold rounded-xl hover:bg-black transition-all">Got it</button>
             </div>
         </div>
@@ -124,11 +129,25 @@
         const TODAY = new Date("2026-04-17");
 
         async function fetchEvents() {
+            const display = document.getElementById('last-updated-display');
             if (!supabaseClient) {
-                console.info("Supabase not initialized. Please configure YOUR_SUPABASE_URL and YOUR_SUPABASE_KEY.");
+                console.warn("Supabase not initialized.");
+                display.innerText = "Connection: Setup Required";
+                display.classList.add('text-amber-500');
                 window.allEvents = [];
                 renderEvents();
                 return;
+            }
+
+            // Debug: Check total count in DB
+            const { count, error: countErr } = await supabaseClient
+                .from('events')
+                .select('*', { count: 'exact', head: true });
+            
+            if (countErr) {
+                console.error("Supabase Connection Error:", countErr);
+                display.innerText = "Connection: Error";
+                display.classList.add('text-red-500');
             }
 
             const { data, error } = await supabaseClient
@@ -144,7 +163,35 @@
                 return;
             }
 
-            window.allEvents = data || [];
+            if (data.length === 0 && count > 0) {
+                console.info(`${count} events found in DB but none are 'approved'. Update status to 'approved' in Supabase to see them.`);
+            }
+
+            // Parse classes if they arrive as a string (legacy/text formats)
+            const events = (data || []).filter(e => e.type !== 'SYSTEM_META').map(e => {
+                let classesArray = e.classes;
+                if (typeof e.classes === 'string') {
+                    try {
+                        classesArray = JSON.parse(e.classes);
+                    } catch (err) {
+                        classesArray = [e.classes];
+                    }
+                }
+                return { ...e, classes: Array.isArray(classesArray) ? classesArray : [] };
+            });
+
+            window.allEvents = events;
+            
+            const meta = (data || []).find(e => e.type === 'SYSTEM_META');
+            if (meta && meta.summary) {
+                display.innerText = `Last email sync: ${meta.summary}`;
+                display.classList.remove('text-amber-500', 'text-red-500');
+            } else if (data.length > 0) {
+                display.innerText = `Last email sync: Today`;
+            } else {
+                display.innerText = count > 0 ? "Awaiting Approval..." : "Database Empty";
+            }
+
             renderEvents();
         }
 

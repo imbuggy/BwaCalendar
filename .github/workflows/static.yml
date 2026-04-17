@@ -28,6 +28,8 @@ jobs:
         run: |
           sed -i "s|'YOUR_SUPABASE_URL'|'${{ secrets.SUPABASE_URL }}'|g" index.html
           sed -i "s|'YOUR_SUPABASE_KEY'|'${{ secrets.SUPABASE_ANON_KEY }}'|g" index.html
+          DEPLOY_INFO="$(date +'%Y-%m-%d %H:%M:%S') - ${{ github.event.head_commit.message }}"
+          sed -i "s|DEPLOY_VERSION_PLACEHOLDER|${DEPLOY_INFO}|g" index.html
       
       - name: Setup Pages
         uses: actions/configure-pages@v4

@@ -7,6 +7,8 @@ from datetime import datetime
 from supabase import create_client, Client
 import google.generativeai as genai
 import io
+import requests
+from bs4 import BeautifulSoup
 
 # New dependencies for attachment parsing (User must install pypdf and python-docx)
 try:
@@ -181,6 +183,37 @@ def fetch_emails():
     mail.logout()
     return email_data
 
+def fetch_term_dates():
+    print("Fetching official school term dates...")
+    url = "https://www.bellevillewix.org.uk/parents-carers/term-dates/"
+    try:
+        response = requests.get(url, timeout=15)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        # Target the main article or content area
+        content = soup.find('article') or soup.find('main') or soup.body
+        html_text = content.get_text(separator="\n", strip=True) if content else ""
+        
+        if len(html_text) < 200:
+            print("Term dates page returned very little content. Content might be dynamic.")
+            return []
+
+        model = genai.GenerativeModel('gemini-3-flash-preview', system_instruction=SYSTEM_INSTRUCTIONS)
+        prompt = (
+            f"Extract all school term dates, holidays, and INSET/PD days from the following text for the 2025/2026 academic year.\n\n"
+            f"FORMAT AS 'insert' ACTIONS.\n"
+            f"Set 'classes' to ['All'] for school-wide holidays.\n"
+            f"Set 'type' to 'HOLIDAY' for holidays and 'EVENT' for INSET days.\n"
+            f"Text: {html_text}"
+        )
+        
+        ai_response = model.generate_content(prompt)
+        text = ai_response.text.strip().replace('```json', '').replace('```', '')
+        results = json.loads(text)
+        return results if isinstance(results, list) else [results]
+    except Exception as e:
+        print(f"Failed to fetch term dates: {e}")
+        return []
+
 def get_existing_events():
     response = supabase.table("events").select("*").execute()
     return response.data
@@ -231,10 +264,45 @@ if __name__ == "__main__":
         exit(1)
         
     email_data = fetch_emails()
+    
+    # Update last scan time in DB regardless of whether new emails were found
+    now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    try:
+        # Check if record exists
+        meta_res = supabase.table("events").select("id").eq("type", "SYSTEM_META").execute()
+        if meta_res.data:
+            supabase.table("events").update({"summary": now_str}).eq("type", "SYSTEM_META").execute()
+        else:
+            supabase.table("events").insert({
+               "title": "System Meta", 
+               "type": "SYSTEM_META", 
+               "summary": now_str, 
+               "event_date": "1970-01-01", 
+               "status": "approved"
+            }).execute()
+    except Exception as e:
+        print(f"Metadata update failed: {e}")
+
     if email_data:
         db_state = get_existing_events()
         results = process_data(email_data, db_state)
         sync_database(results)
-        # generate_ics_file() # Disabled for now
+    
+    # Process Term Dates (Weekly or when requested)
+    term_results = fetch_term_dates()
+    if term_results:
+        # Check for existing holidays to avoid duplicates
+        db_state = get_existing_events()
+        # Filter out results that already exist based on title and date
+        unique_terms = []
+        for tr in term_results:
+            if not any(e['title'] == tr['event_data']['title'] and e['event_date'] == tr['event_data']['event_date'] for e in db_state):
+                unique_terms.append(tr)
+        
+        if unique_terms:
+            print(f"Syncing {len(unique_terms)} new term/holiday records.")
+            sync_database(unique_terms)
+
+    # generate_ics_file() # Disabled for now
     else:
         print("No new emails found.")
