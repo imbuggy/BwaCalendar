@@ -7,6 +7,7 @@ from datetime import datetime
 from supabase import create_client, Client
 from google import genai
 from google.genai import types
+import time
 import io
 import requests
 from bs4 import BeautifulSoup
@@ -28,6 +29,33 @@ SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 # Model & Client Setup
 client = genai.Client(api_key=GEMINI_API_KEY)
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+def safe_generate_content(contents, system_instruction=None):
+    """Wrapper for Gemini API with retry logic for 429 rate limits."""
+    max_retries = 3
+    base_wait = 10
+    
+    for attempt in range(max_retries):
+        try:
+            # We add a small proactive sleep to stay under free tier RPM limits
+            if attempt > 0:
+                print(f"Retrying Gemini call (Attempt {attempt + 1}). Wait time: {base_wait * attempt}s")
+                time.sleep(base_wait * attempt)
+            
+            config = types.GenerateContentConfig(system_instruction=system_instruction or SYSTEM_INSTRUCTIONS)
+            return client.models.generate_content(
+                model='gemini-3-flash-preview',
+                contents=contents,
+                config=config
+            )
+        except Exception as e:
+            if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
+                if attempt == max_retries - 1:
+                    print("Gemini Quota Exceeded permanently. Please try again later.")
+                    raise e
+                continue
+            else:
+                raise e
 
 SYSTEM_INSTRUCTIONS = """
 Role: BWA/EdW School Intelligence Engine. 
@@ -225,8 +253,7 @@ def fetch_term_dates():
             print("Term dates page returned very little content. Content might be dynamic.")
             return []
 
-        response = client.models.generate_content(
-            model='gemini-3-flash-preview',
+        response = safe_generate_content(
             contents=(
                 f"Extract all school term dates, holidays, and INSET/PD days from the following text for the 2025/2026 academic year.\n\n"
                 f"FORMAT AS 'insert' ACTIONS.\n"
@@ -237,8 +264,7 @@ def fetch_term_dates():
                 f"- Set 'source_title' to 'Official Term Dates Website'.\n"
                 f"- Include the source in the 'sources' array as well.\n"
                 f"Text: {html_text}"
-            ),
-            config=types.GenerateContentConfig(system_instruction=SYSTEM_INSTRUCTIONS)
+            )
         )
         
         text = response.text.strip().replace('```json', '').replace('```', '')
@@ -257,17 +283,16 @@ def process_data(email_items, existing_db):
     
     for item in email_items:
         print(f"Sending email '{item['subject']}' to Intelligence Engine...")
+        # Proactive throttle to avoid hitting RPM limits in Free Tier
+        time.sleep(2) 
+        
         prompt = (
             f"Existing Database: {json.dumps(existing_db)}\n"
             f"Source Email Title: {item['subject']}\n"
             f"Source Email Date: {item['date']}\n"
             f"Email & Attachment Content: {item['content']}"
         )
-        response = client.models.generate_content(
-            model='gemini-3-flash-preview',
-            contents=prompt,
-            config=types.GenerateContentConfig(system_instruction=SYSTEM_INSTRUCTIONS)
-        )
+        response = safe_generate_content(contents=prompt)
         try:
             text = response.text.strip().replace('```json', '').replace('```', '')
             results = json.loads(text)
