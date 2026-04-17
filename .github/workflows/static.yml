@@ -3,10 +3,6 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: ["main"]
-  workflow_run:
-    workflows: ["School Intelligence Engine"]
-    types:
-      - completed
   workflow_dispatch:
 
 permissions:

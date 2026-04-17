@@ -2,7 +2,7 @@ name: School Intelligence Engine
 
 on:
   schedule:
-    - cron: '0 * * * *' # Every 60 minutes
+    - cron: '0 9,12,15,18,21 * * *' # 9am, 12pm, 3pm, 6pm, 9pm UTC
   workflow_dispatch: # Manual trigger
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install supabase google-generativeai pypdf python-docx
+          pip install supabase google-generativeai pypdf python-docx requests beautifulsoup4
 
       - name: Run Intelligence Engine
         env:
