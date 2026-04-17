@@ -21,10 +21,14 @@ jobs:
         uses: actions/checkout@v4
       
       - name: Inject Secrets into index.html
+        env:
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
           sed -i "s|'YOUR_SUPABASE_URL'|'${{ secrets.SUPABASE_URL }}'|g" index.html
           sed -i "s|'YOUR_SUPABASE_KEY'|'${{ secrets.SUPABASE_ANON_KEY }}'|g" index.html
-          DEPLOY_INFO="$(date +'%Y-%m-%d %H:%M:%S') - ${{ github.event.head_commit.message }}"
+          # Sanitize commit message to be single line and remove shell-sensitive chars
+          CLEAN_MSG=$(echo "$COMMIT_MSG" | tr '\n' ' ' | sed 's/[|"`]//g')
+          DEPLOY_INFO="$(date +'%Y-%m-%d %H:%M:%S') - $CLEAN_MSG"
           sed -i "s|DEPLOY_VERSION_PLACEHOLDER|${DEPLOY_INFO}|g" index.html
       
       - name: Setup Pages

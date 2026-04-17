@@ -126,7 +126,8 @@
         window.searchQuery = "";
         window.showPastEvents = false;
         window.visibleLimit = 10;
-        const TODAY = new Date("2026-04-17");
+        const TODAY = new Date(); 
+        TODAY.setHours(0, 0, 0, 0);
 
         async function fetchEvents() {
             const display = document.getElementById('last-updated-display');
