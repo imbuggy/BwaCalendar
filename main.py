@@ -138,6 +138,7 @@ def extract_docx_text(payload):
         return f"[DOCX Error: {e}]"
 
 def fetch_emails():
+    """Returns a list of email IDs to process."""
     print("Connecting to IMAP (imap.hostinger.com)...")
     try:
         mail = imaplib.IMAP4_SSL("imap.hostinger.com")
@@ -145,7 +146,7 @@ def fetch_emails():
         print(f"Logged in successfully as {EMAIL_USER}")
     except Exception as e:
         print(f"IMAP Login failed: {e}")
-        return []
+        return None, []
 
     mail.select("inbox")
     print("Searching for UNSEEN emails...")
@@ -153,91 +154,89 @@ def fetch_emails():
     status, messages = mail.search(None, 'UNSEEN')
     if status != 'OK':
         print(f"IMAP search failed with status: {status}")
-        return []
+        return mail, []
 
     email_ids = messages[0].split()
     print(f"Found {len(email_ids)} unseen email(s).")
-    
-    email_data = []
-    for e_id in email_ids:
-        print(f"Processing email ID: {e_id.decode()}...")
-        status, msg_data = mail.fetch(e_id, '(RFC822)')
-        if status != 'OK':
-            print(f"Failed to fetch email {e_id.decode()}")
-            continue
+    return mail, email_ids
 
-        for response_part in msg_data:
-            if isinstance(response_part, tuple):
-                msg = email.message_from_bytes(response_part[1])
-                subject = decode_header(msg['Subject'])[0][0]
-                if isinstance(subject, bytes):
-                    subject = subject.decode()
-                
-                print(f"Email Subject: {subject}")
-                date_str = msg['Date']
-                
-                body = ""
-                attachments_text = ""
-                
-                if msg.is_multipart():
-                    for part in msg.walk():
-                        content_type = part.get_content_type()
-                        content_disposition = str(part.get("Content-Disposition"))
-                        
-                        if "attachment" in content_disposition:
-                            filename = part.get_filename()
-                            if filename:
-                                payload = part.get_payload(decode=True)
-                                if filename.lower().endswith(".pdf"):
-                                    attachments_text += f"\n[ATTACHMENT: {filename}]\n" + extract_pdf_text(payload)
-                                elif filename.lower().endswith(".docx"):
-                                    attachments_text += f"\n[ATTACHMENT: {filename}]\n" + extract_docx_text(payload)
-                        elif content_type == "text/plain":
-                            try:
-                                body += part.get_payload(decode=True).decode()
-                            except:
-                                pass
-                        elif content_type == "text/html" and not body:
-                            # If no plain text yet, try HTML
-                            try:
-                                html_content = part.get_payload(decode=True).decode()
-                                # Simple way to strip some tags for searching keywords
-                                body = html_content
-                            except:
-                                pass
-                else:
-                    try:
-                        body = msg.get_payload(decode=True).decode()
-                    except:
-                        pass
-                
-                # Filter: Only keep emails from schoolcomms.com, Belleville Wix Academy, or Wix admin
-                from_header_str = msg.get('From', '').lower()
-                reply_to_str = msg.get('Reply-To', '').lower()
-                content_lower = (subject + " " + body + " " + attachments_text).lower()
-                
-                # Obfuscated trusted emails to prevent scraping
-                admin_id_1 = "".join([chr(x) for x in [97, 100, 109, 105, 110, 64, 119, 105, 120, 46, 119, 97, 110, 100, 115, 119, 111, 114, 116, 104, 46, 115, 99, 104, 46, 117, 107]])
-                admin_id_2 = "".join([chr(x) for x in [97, 100, 109, 105, 110, 64, 98, 101, 108, 108, 101, 118, 105, 108, 108, 101, 119, 105, 120, 46, 117, 107, 46, 113, 49, 101, 46, 111, 114, 103, 46, 117, 107]])
-                trusted_identifiers = ['schoolcomms.com', 'belleville wix academy', admin_id_1, admin_id_2]
-                
-                is_trusted = any(id in from_header_str or id in reply_to_str for id in trusted_identifiers)
-                is_forwarded_from_trusted = any(id in content_lower for id in trusted_identifiers)
-                
-                if not (is_trusted or is_forwarded_from_trusted):
-                    print(f"Skipping irrelevant email: '{subject}' (From: {from_header_str})")
-                    continue
+def parse_single_email(mail, e_id):
+    """Fetches and parses a single email without marking it as seen."""
+    print(f"Processing email ID: {e_id.decode()}...")
+    # Use BODY.PEEK[] to keep the email as UNSEEN until we confirm processing success
+    status, msg_data = mail.fetch(e_id, '(BODY.PEEK[])')
+    if status != 'OK':
+        print(f"Failed to fetch email {e_id.decode()}")
+        return None
 
-                print(f"Confirmed trusted/relevant email: '{subject}'")
-                email_data.append({
-                    "subject": subject,
-                    "from": from_header_str,
-                    "date": date_str,
-                    "content": body + "\n" + attachments_text
-                })
-    print(f"Total relevant emails extracted: {len(email_data)}")
-    mail.logout()
-    return email_data
+    for response_part in msg_data:
+        if isinstance(response_part, tuple):
+            msg = email.message_from_bytes(response_part[1])
+            subject = decode_header(msg['Subject'])[0][0]
+            if isinstance(subject, bytes):
+                subject = subject.decode()
+            
+            print(f"Email Subject: {subject}")
+            date_str = msg['Date']
+            
+            body = ""
+            attachments_text = ""
+            
+            if msg.is_multipart():
+                for part in msg.walk():
+                    content_type = part.get_content_type()
+                    content_disposition = str(part.get("Content-Disposition"))
+                    
+                    if "attachment" in content_disposition:
+                        filename = part.get_filename()
+                        if filename:
+                            payload = part.get_payload(decode=True)
+                            if filename.lower().endswith(".pdf"):
+                                attachments_text += f"\n[ATTACHMENT: {filename}]\n" + extract_pdf_text(payload)
+                            elif filename.lower().endswith(".docx"):
+                                attachments_text += f"\n[ATTACHMENT: {filename}]\n" + extract_docx_text(payload)
+                    elif content_type == "text/plain":
+                        try:
+                            body += part.get_payload(decode=True).decode()
+                        except:
+                            pass
+                    elif content_type == "text/html" and not body:
+                        try:
+                            html_content = part.get_payload(decode=True).decode()
+                            body = html_content
+                        except:
+                            pass
+            else:
+                try:
+                    body = msg.get_payload(decode=True).decode()
+                except:
+                    pass
+            
+            from_header_str = msg.get('From', '').lower()
+            reply_to_str = msg.get('Reply-To', '').lower()
+            content_lower = (subject + " " + body + " " + attachments_text).lower()
+            
+            admin_id_1 = "".join([chr(x) for x in [97, 100, 109, 105, 110, 64, 119, 105, 120, 46, 119, 97, 110, 100, 115, 119, 111, 114, 116, 104, 46, 115, 99, 104, 46, 117, 107]])
+            admin_id_2 = "".join([chr(x) for x in [97, 100, 109, 105, 110, 64, 98, 101, 108, 108, 101, 118, 105, 108, 108, 101, 118, 105, 120, 46, 117, 107, 46, 113, 49, 101, 46, 111, 114, 103, 46, 117, 107]])
+            trusted_identifiers = ['schoolcomms.com', 'belleville wix academy', admin_id_1, admin_id_2]
+            
+            is_trusted = any(id in from_header_str or id in reply_to_str for id in trusted_identifiers)
+            is_forwarded_from_trusted = any(id in content_lower for id in trusted_identifiers)
+            
+            if not (is_trusted or is_forwarded_from_trusted):
+                print(f"Skipping irrelevant email: '{subject}'")
+                # Mark as seen so we don't process irrelevant emails again
+                mail.store(e_id, '+FLAGS', '\\Seen')
+                return None
+
+            print(f"Confirmed trusted/relevant email: '{subject}'")
+            return {
+                "subject": subject,
+                "from": from_header_str,
+                "date": date_str,
+                "content": body + "\n" + attachments_text
+            }
+    return None
 
 def fetch_term_dates():
     print("Fetching official school term dates...")
@@ -278,99 +277,107 @@ def get_existing_events():
     response = supabase.table("events").select("*").execute()
     return response.data
 
-def process_data(email_items, existing_db):
-    processed_results = []
+def process_single_item(item, existing_db):
+    """Processes search and Gemini extraction for a single item."""
+    print(f"Sending item '{item['subject'] if 'subject' in item else item.get('title')}' to Intelligence Engine...")
+    prompt = (
+        f"Existing Database: {json.dumps(existing_db)}\n"
+        f"Source Title: {item.get('subject') or item.get('title')}\n"
+        f"Source Date: {item.get('date')}\n"
+        f"Content: {item.get('content') or item.get('html_text')}"
+    )
     
-    for item in email_items:
-        print(f"Sending email '{item['subject']}' to Intelligence Engine...")
-        # Proactive throttle to avoid hitting RPM limits in Free Tier
-        time.sleep(2) 
-        
-        prompt = (
-            f"Existing Database: {json.dumps(existing_db)}\n"
-            f"Source Email Title: {item['subject']}\n"
-            f"Source Email Date: {item['date']}\n"
-            f"Email & Attachment Content: {item['content']}"
-        )
+    try:
         response = safe_generate_content(contents=prompt)
-        try:
-            text = response.text.strip().replace('```json', '').replace('```', '')
-            results = json.loads(text)
-            count = len(results) if isinstance(results, list) else 1
-            print(f"Intelligence Engine returned {count} record(s) for '{item['subject']}'")
-            if isinstance(results, list):
-                processed_results.extend(results)
-            else:
-                processed_results.append(results)
-        except Exception as e:
-            print(f"Error parsing Gemini response for '{item['subject']}': {e}")
-            print(f"Raw Response: {response.text[:200]}...")
-            
-    return processed_results
+        text = response.text.strip().replace('```json', '').replace('```', '')
+        results = json.loads(text)
+        return results if isinstance(results, list) else [results]
+    except Exception as e:
+        print(f"Gemini processing failed: {e}")
+        return None
 
 def sync_database(results):
+    """Syncs results to Supabase. Returns True if ALL operations succeeded."""
+    if not results: return True
+    
+    success = True
     for item in results:
-        if item.get('status') == 'REJECTED':
-            print("PII Detected. Record rejected.")
-            continue
-            
-        action = item.get('action')
-        data = item.get('event_data')
-        
-        if not data: continue
+        try:
+            if item.get('status') == 'REJECTED':
+                print("PII Detected. Record rejected.")
+                continue
+                
+            action = item.get('action')
+            data = item.get('event_data')
+            if not data: continue
 
-        if action == 'insert':
-            print(f"Inserting new event: {data.get('title')}")
-            supabase.table("events").insert(data).execute()
-        elif action == 'update' and item.get('match_id'):
-            print(f"Updating existing event (ID: {item.get('match_id')}): {data.get('title')}")
-            supabase.table("events").update(data).eq("id", item.get('match_id')).execute()
+            if action == 'insert':
+                print(f"Inserting new event: {data.get('title')}")
+                supabase.table("events").insert(data).execute()
+            elif action == 'update' and item.get('match_id'):
+                print(f"Updating existing event (ID: {item.get('match_id')}): {data.get('title')}")
+                supabase.table("events").update(data).eq("id", item.get('match_id')).execute()
+        except Exception as e:
+            print(f"Database sync failed for record: {e}")
+            success = False
+            
+    return success
 
 if __name__ == "__main__":
     if not all([EMAIL_USER, EMAIL_PASS, GEMINI_API_KEY, SUPABASE_URL, SUPABASE_KEY]):
         print("Missing environment variables.")
         exit(1)
         
-    email_data = fetch_emails()
+    mail, email_ids = fetch_emails()
     
-    # Update last scan time in DB regardless of whether new emails were found
+    # Update last scan time in DB
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     try:
-        # Check if record exists
         meta_res = supabase.table("events").select("id").eq("type", "SYSTEM_META").execute()
         if meta_res.data:
             supabase.table("events").update({"summary": now_str}).eq("type", "SYSTEM_META").execute()
         else:
-            supabase.table("events").insert({
-               "title": "System Meta", 
-               "type": "SYSTEM_META", 
-               "summary": now_str, 
-               "event_date": "1970-01-01", 
-               "status": "approved"
-            }).execute()
+            supabase.table("events").insert({"title": "System Meta", "type": "SYSTEM_META", "summary": now_str, "event_date": "1970-01-01", "status": "approved"}).execute()
     except Exception as e:
         print(f"Metadata update failed: {e}")
 
-    if email_data:
+    # Process emails one by one
+    if email_ids and mail:
         db_state = get_existing_events()
-        results = process_data(email_data, db_state)
-        sync_database(results)
+        for e_id in email_ids:
+            # Parse
+            item = parse_single_email(mail, e_id)
+            if not item:
+                continue # Already handled in parse_single_email (skipped/logged)
+            
+            # Gemini Extraction
+            results = process_single_item(item, db_state)
+            if results:
+                # Sync
+                if sync_database(results):
+                    print(f"Successfully processed and synced '{item['subject']}'. Marking as READ.")
+                    mail.store(e_id, '+FLAGS', '\\Seen')
+                    # Refresh DB state for the next email to avoid duplicates within the same batch
+                    db_state = get_existing_events() 
+                else:
+                    print(f"Sync failed for '{item['subject']}'. Keeping as UNREAD.")
+            else:
+                print(f"Gemini processing failed for '{item['subject']}'. Keeping as UNREAD.")
+            
+            # Proactive sleep to respect Gemini Free Tier limits
+            time.sleep(2)
+
+    if mail:
+        mail.logout()
     
-    # Process Term Dates (Weekly or when requested)
+    # Process Term Dates (Website)
     term_results = fetch_term_dates()
     if term_results:
-        # Check for existing holidays to avoid duplicates
         db_state = get_existing_events()
-        # Filter out results that already exist based on title and date
-        unique_terms = []
-        for tr in term_results:
-            if not any(e['title'] == tr['event_data']['title'] and e['event_date'] == tr['event_data']['event_date'] for e in db_state):
-                unique_terms.append(tr)
-        
+        unique_terms = [tr for tr in term_results if not any(e['title'] == tr['event_data']['title'] and e['event_date'] == tr['event_data']['event_date'] for e in db_state)]
         if unique_terms:
             print(f"Syncing {len(unique_terms)} new term/holiday records.")
             sync_database(unique_terms)
-
-    # generate_ics_file() # Disabled for now
     else:
-        print("No new emails found.")
+        if not email_ids:
+            print("No new emails found.")
