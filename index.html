@@ -107,33 +107,54 @@
 
     <script type="module">
         // Initialization Logic
-        let SUPABASE_URL = 'YOUR_SUPABASE_URL';
+        // These placeholders are replaced by GitHub Actions during deployment
+        let SUPABASE_URL = 'YOUR_SUPABASE_URL'; 
         let SUPABASE_KEY = 'YOUR_SUPABASE_KEY';
 
         // Check for Vite environment variables (AI Studio Preview)
         try {
             if (typeof import.meta !== 'undefined' && import.meta.env) {
-                // If these are blank (not set in AI Studio), we keep the placeholder for GitHub Actions to fill
                 const viteUrl = import.meta.env.VITE_SUPABASE_URL;
                 const viteKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_KEY;
                 
-                if (viteUrl && !viteUrl.includes('YOUR_SUPABASE_URL')) SUPABASE_URL = viteUrl;
-                if (viteKey && !viteKey.includes('YOUR_SUPABASE_KEY')) SUPABASE_KEY = viteKey;
+                // Only override if we actually have values in the Vite environment
+                if (viteUrl && viteUrl.length > 5 && !viteUrl.includes('YOUR_SUPABASE_URL')) {
+                    SUPABASE_URL = viteUrl;
+                }
+                if (viteKey && viteKey.length > 5 && !viteKey.includes('YOUR_SUPABASE_KEY')) {
+                    SUPABASE_KEY = viteKey;
+                }
             }
-        } catch (e) { }
+        } catch (e) {
+            console.log("Vite env check skipped (normal for production)");
+        }
         
-        console.log("Supabase Client Init - URL length:", (SUPABASE_URL || "").length, "Key length:", (SUPABASE_KEY || "").length);
+        console.log("Supabase Connection Check:", {
+            hasUrl: !!SUPABASE_URL && !SUPABASE_URL.includes('YOUR_SUPABASE_URL'),
+            hasKey: !!SUPABASE_KEY && !SUPABASE_KEY.includes('YOUR_SUPABASE_KEY'),
+            urlPlaceholder: SUPABASE_URL === 'YOUR_SUPABASE_URL',
+            keyPlaceholder: SUPABASE_KEY === 'YOUR_SUPABASE_KEY',
+            urlEmpty: !SUPABASE_URL,
+            keyEmpty: !SUPABASE_KEY
+        });
 
         let supabaseClient = null;
         try {
             const lib = window.supabase || (typeof supabase !== 'undefined' ? supabase : null);
-            // Only initialize if the placeholders have been replaced by real values
-            const isPlaceholder = SUPABASE_URL.includes('YOUR_SUPABASE_URL') || SUPABASE_URL.includes('your-project');
-            if (lib && SUPABASE_URL && SUPABASE_KEY && !isPlaceholder) {
+            
+            const isUrlMissing = !SUPABASE_URL || SUPABASE_URL.includes('YOUR_SUPABASE_URL') || SUPABASE_URL.includes('your-project');
+            const isKeyMissing = !SUPABASE_KEY || SUPABASE_KEY.includes('YOUR_SUPABASE_KEY');
+
+            if (lib && !isUrlMissing && !isKeyMissing) {
                 supabaseClient = lib.createClient(SUPABASE_URL, SUPABASE_KEY);
+                console.log("Supabase initialized successfully.");
+            } else {
+                if (isUrlMissing) console.warn("Supabase URL is missing or placeholder. CHECK: GitHub Secret 'SUPABASE_URL'.");
+                if (isKeyMissing) console.warn("Supabase KEY is missing or placeholder. CHECK: GitHub Secret 'SUPABASE_KEY' or 'SUPABASE_ANON_KEY'.");
+                if (!lib) console.error("Supabase library not loaded from CDN.");
             }
         } catch (e) {
-            console.error("Supabase initialization failed:", e);
+            console.error("Supabase initialization error:", e);
         }
 
         // Cleanup build version string if it contains commit message

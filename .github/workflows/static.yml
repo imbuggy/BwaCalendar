@@ -23,9 +23,11 @@ jobs:
       - name: Inject Secrets into index.html
         env:
           COMMIT_MSG: ${{ github.event.head_commit.message }}
+          S_URL: ${{ secrets.SUPABASE_URL }}
+          S_KEY: ${{ secrets.SUPABASE_ANON_KEY || secrets.SUPABASE_KEY }}
         run: |
-          sed -i "s|'YOUR_SUPABASE_URL'|'${{ secrets.SUPABASE_URL }}'|g" index.html
-          sed -i "s|'YOUR_SUPABASE_KEY'|'${{ secrets.SUPABASE_ANON_KEY }}'|g" index.html
+          sed -i "s|'YOUR_SUPABASE_URL'|'${S_URL}'|g" index.html
+          sed -i "s|'YOUR_SUPABASE_KEY'|'${S_KEY}'|g" index.html
           # Sanitize commit message to be single line and remove shell-sensitive chars
           CLEAN_MSG=$(echo "$COMMIT_MSG" | tr '\n' ' ' | sed 's/[|"`]//g')
           DEPLOY_INFO="$(date +'%Y-%m-%d %H:%M:%S') - $CLEAN_MSG"
