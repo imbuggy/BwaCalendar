@@ -123,42 +123,10 @@
         window.visibleLimit = 10;
         const TODAY = new Date("2026-04-17");
 
-        // Mock Data for Previewing
-        const MOCK_DATA = [
-            { id: 0, title: "Old: Easter Break Workshop", event_date: "2026-04-05", formatted_date_display: "Sun 05 Apr", time_type: "all-day", time_value: "All Day", classes: ["Y1", "Y2", "Y3"], summary: "A past workshop about spring gardening.", source_title: "Holiday Update", source_date: "2026-03-25", source_time: "14:00", type: "Workshop" },
-            { id: 110, title: "World Book Day", event_date: "2026-03-05", formatted_date_display: "Thu 05 Mar", time_type: "all-day", time_value: "All Day", classes: ["R", "Y1", "Y2", "Y3", "Y4", "Y5", "Y6"], summary: "Celebrating our favorite stories and characters.", source_title: "School Newsletter", source_date: "2026-02-28", source_time: "09:00", type: "Celebration" },
-            { id: 111, title: "Music Performance (Y1 & Y2)", event_date: "2026-03-16", formatted_date_display: "Mon 16 Mar", time_type: "single", time_value: "14:30", classes: ["Y1", "Y2"], summary: "Pupils perform music led by Mr Edwards. Please arrive 5 mins before.", source_title: "Ellie Wilkes", source_date: "2026-04-17", type: "Music" },
-            { id: 112, title: "Music Performance (Y3 & Y4)", event_date: "2026-03-17", formatted_date_display: "Tue 17 Mar", time_type: "single", time_value: "14:15", classes: ["Y3", "Y4"], summary: "Pupils perform music led by Mr Edwards in the middle hall.", source_title: "Ellie Wilkes", source_date: "2026-04-17", type: "Music" },
-            { id: 113, title: "Music Performance (Y6)", event_date: "2026-03-23", formatted_date_display: "Mon 23 Mar", time_type: "single", time_value: "14:15", classes: ["Y6"], summary: "Year 6 music performance in the middle hall.", source_title: "Ellie Wilkes", source_date: "2026-04-17", type: "Music" },
-            { id: 114, title: "Music Performance (Y5) at Fairfield Halls", event_date: "2026-03-24", formatted_date_display: "Tue 24 Mar", time_type: "all-day", time_value: "All Day", classes: ["Y5"], summary: "Year 5 pupils perform at Fairfield Halls.", source_title: "Ellie Wilkes", source_date: "2026-04-17", type: "Music" },
-            { id: 1, title: "Earth Week: Sustainability Series", event_date: "2026-04-20", event_date_end: "2026-04-24", formatted_date_display: "Mon 20 - Fri 24 Apr", time_type: "all-day", time_value: "All Day", classes: ["N", "R", "Rb", "Y1", "Y1b", "Y2", "Y2b", "Y3", "Y3b", "Y4", "Y4b", "Y5", "Y5b", "Y6", "Y6b"], summary: "A school-wide week dedicated to environmental awareness.", full_details: "Workshops including waste reduction and renewable energy. Ends with assembly.", source_title: "Headteacher Newsletter", source_date: "2026-04-10", source_time: "08:00", type: "Celebration" },
-            { id: 2, title: "Parent-Teacher Meetings: Year 2 Bilingual (CPB)", event_date: "2026-04-21", formatted_date_display: "Tue 21 Apr", time_type: "all-day", time_value: "All Day", classes: ["Y2b"], summary: "Bilingual stream termly progress meetings.", full_details: "Meetings held via Zoom. Signup via specialized link.", source_title: "Parent-teacher bilingual", source_date: "2026-04-14", source_time: "10:30", links: [{title: "Signup", url: "#"}], type: "Meeting" },
-            { id: 3, title: "Football Match vs St. Mary's", event_date: "2026-04-22", formatted_date_display: "Wed 22 Apr", time_type: "range", time_value: "15:30 - 17:00", classes: ["Y5", "Y6"], summary: "Competitive away match for Y5 & Y6.", source_title: "Sports Update", source_date: "2026-04-15", source_time: "09:15", type: "Sports" },
-            { id: 4, title: "Cooking Workshop: Crepes", event_date: "2026-04-23", formatted_date_display: "Thu 23 Apr", time_type: "single", time_value: "14:00", classes: ["Y1b", "Y2b"], summary: "French culinary workshop for bilingual students.", source_title: "Bilingual Stream", source_date: "2026-04-12", source_time: "16:45", type: "Bilingual" },
-            { id: 5, title: "Y5 Trip: Science Museum", event_date: "2026-04-24", formatted_date_display: "Fri 24 Apr", time_type: "all-day", time_value: "All Day", classes: ["Y5", "Y5b"], summary: "Educational visit covering the history of space flight.", source_title: "Year 5 Newsletter", source_date: "2026-04-18", source_time: "08:30", type: "Trip" },
-            { id: 6, title: "Uniform Swap Shop", event_date: "2026-04-27", formatted_date_display: "Mon 27 Apr", time_type: "range", time_value: "08:30 - 09:30", classes: ["All"], summary: "Donate and pick up gently used school uniforms.", source_title: "PTA Announcements", source_date: "2026-04-20", source_time: "10:00", type: "PTA" },
-            { id: 7, title: "Summer Fair Planning", event_date: "2026-04-28", formatted_date_display: "Tue 28 Apr", time_type: "single", time_value: "19:00", classes: ["All"], summary: "Evening meeting for volunteers to organize the July fair.", source_title: "PTA Announcements", source_date: "2026-04-20", source_time: "10:00", type: "PTA" },
-            { id: 8, title: "Class Photos Day", event_date: "2026-04-29", formatted_date_display: "Wed 29 Apr", time_type: "all-day", time_value: "All Day", classes: ["N", "R", "Y1", "Y2", "Y3", "Y4", "Y5", "Y6"], summary: "Individual and class group portraits. Wear full formal uniform.", source_title: "School Office", source_date: "2026-04-22", source_time: "09:00", type: "School" },
-            { id: 9, title: "Coffee Morning for Parents", event_date: "2026-04-30", formatted_date_display: "Thu 30 Apr", time_type: "range", time_value: "09:00 - 10:00", classes: ["All"], summary: "Informal chat with the Headteacher in the staff room.", source_title: "Headteacher Update", source_date: "2026-04-25", source_time: "11:00", type: "School" },
-            { id: 10, title: "Y3 Camp Preparation Meeting", event_date: "2026-05-01", formatted_date_display: "Fri 01 May", time_type: "single", time_value: "15:45", classes: ["Y3", "Y3b"], summary: "Kit list delivery and medical form collection for June camp.", source_title: "Year 3 Team", source_date: "2026-04-24", source_time: "15:00", type: "Meeting" },
-            { id: 11, title: "Bank Holiday (School Closed)", event_date: "2026-05-04", formatted_date_display: "Mon 04 May", time_type: "all-day", time_value: "All Day", classes: ["All"], summary: "UK Public holiday. School will reopen Tuesday.", source_title: "School Calendar", source_date: "2026-01-01", source_time: "00:00", type: "School" },
-            { id: 12, title: "Choir Rehearsal", event_date: "2026-05-05", formatted_date_display: "Tue 05 May", time_type: "single", time_value: "16:00", classes: ["Y4", "Y5", "Y6"], summary: "Weekly rehearsal preparing for the summer concert.", source_title: "Music Dept", source_date: "2026-04-28", source_time: "12:00", type: "Clubs" },
-            { id: 13, title: "Y4 Swimming Starts", event_date: "2026-05-06", formatted_date_display: "Wed 06 May", time_type: "range", time_value: "13:30 - 15:00", classes: ["Y4", "Y4b"], summary: "First session at the local sports center. Remember swim kit.", source_title: "Year 4 Newsletter", source_date: "2026-04-29", source_time: "09:00", type: "Clubs" },
-            { id: 14, title: "Gardening Club", event_date: "2026-05-07", formatted_date_display: "Thu 07 May", time_type: "single", time_value: "15:45", classes: ["All"], summary: "Planting summer vegetables in the school garden.", source_title: "Extracurricular", source_date: "2026-04-30", source_time: "13:00", type: "Clubs" },
-            { id: 15, title: "Nursery Teddy Bear Picnic", event_date: "2026-05-08", formatted_date_display: "Fri 08 May", time_type: "single", time_value: "11:30", classes: ["N"], summary: "Outdoor lunch for all nursery children and their favorite bears.", source_title: "Nursery Team", source_date: "2026-05-01", source_time: "10:00", type: "Celebration" },
-            { id: 16, title: "Y6 SATs Week Begins", event_date: "2026-05-11", event_date_end: "2026-05-14", formatted_date_display: "Mon 11 - Thu 14 May", time_type: "all-day", time_value: "All Day", classes: ["Y6", "Y6b"], summary: "National assessments for Year 6 students.", full_details: "Please ensure students have a good breakfast and arrive on time.", source_title: "Headteacher", source_date: "2026-05-01", source_time: "08:00", type: "School" },
-            { id: 17, title: "Y2 Class Assembly", event_date: "2026-05-13", formatted_date_display: "Wed 13 May", time_type: "single", time_value: "09:05", classes: ["Y2", "Y2b"], summary: "Parents are invited to the Great Hall to watch the performance.", source_title: "Year 2 Team", source_date: "2026-05-06", source_time: "15:30", type: "Celebration" },
-            { id: 18, title: "Bilingual Stream Theatre Trip", event_date: "2026-05-15", formatted_date_display: "Fri 15 May", time_type: "all-day", time_value: "All Day", classes: ["Rb", "Y1b", "Y2b", "Y3b", "Y4b", "Y5b", "Y6b"], summary: "French language performance at the Lyric Theatre.", source_title: "Bilingual Lead", source_date: "2026-05-01", source_time: "10:00", type: "Trip" },
-            { id: 19, title: "Sports Day Rehearsal", event_date: "2026-05-18", formatted_date_display: "Mon 18 May", time_type: "range", time_value: "14:00 - 15:30", classes: ["R", "Y1", "Y2"], summary: "Practice for track and field events on the main pitch.", source_title: "PE Dept", source_date: "2026-05-11", source_time: "09:00", type: "Sports" },
-            { id: 20, title: "Half Term Holiday Begins", event_date: "2026-05-25", event_date_end: "2026-05-29", formatted_date_display: "Mon 25 - Fri 29 May", time_type: "all-day", time_value: "All Day", classes: ["All"], summary: "School closed. Term resumes Monday 1st June.", source_title: "School Calendar", source_date: "2026-01-01", source_time: "00:00", type: "School" },
-            { id: 101, title: "Summer Term Ends (Early Closure)", event_date: "2026-07-22", formatted_date_display: "Wed 22 Jul", time_type: "single", time_value: "13:30", classes: ["All"], summary: "Final day of the academic year. School closes early at 1:30 PM.", source_title: "Official Term Dates", source_date: "2026-01-01", type: "School" },
-            { id: 102, title: "Autumn Term 2026 Begins", event_date: "2026-09-02", formatted_date_display: "Wed 02 Sep", time_type: "all-day", time_value: "All Day", classes: ["All"], summary: "First day of the new academic year for all students.", source_title: "Official Term Dates", source_date: "2026-01-01", type: "School" }
-        ];
-
         async function fetchEvents() {
             if (!supabaseClient) {
-                console.info("Using Mock Data for Preview Mode.");
-                window.allEvents = MOCK_DATA;
+                console.info("Supabase not initialized. Please configure YOUR_SUPABASE_URL and YOUR_SUPABASE_KEY.");
+                window.allEvents = [];
                 renderEvents();
                 return;
             }
@@ -170,13 +138,13 @@
                 .order('event_date', { ascending: true });
 
             if (error) {
-                console.error(error);
-                window.allEvents = MOCK_DATA; // Fallback to mock on error so UI is testable
+                console.error("Database fetch error:", error);
+                window.allEvents = [];
                 renderEvents();
                 return;
             }
 
-            window.allEvents = data || MOCK_DATA;
+            window.allEvents = data || [];
             renderEvents();
         }
 
