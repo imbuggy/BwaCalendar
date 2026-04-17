@@ -105,10 +105,11 @@
         </div>
     </div>
 
-    <script>
+    <script type="module">
         // REPLACE WITH YOUR ACTUAL SUPABASE CREDENTIALS
-        const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-        const SUPABASE_KEY = 'YOUR_SUPABASE_KEY';
+        // In this environment, we look for VITE_ prefixed environment variables first.
+        const SUPABASE_URL = import.meta.env?.VITE_SUPABASE_URL || 'YOUR_SUPABASE_URL';
+        const SUPABASE_KEY = import.meta.env?.VITE_SUPABASE_KEY || 'YOUR_SUPABASE_KEY';
         
         let supabaseClient = null;
         try {
@@ -120,11 +121,12 @@
             console.error("Supabase initialization failed:", e);
         }
 
-        window.showAll = true;
-        window.selectedClasses = [];
+        window.showPastEvents = localStorage.getItem('showPastEvents') === 'true';
+        window.selectedClasses = JSON.parse(localStorage.getItem('selectedClasses') || '[]');
+        window.showAll = localStorage.getItem('showAll') !== 'false' && window.selectedClasses.length === 0;
+        
         window.allEvents = [];
         window.searchQuery = "";
-        window.showPastEvents = false;
         window.visibleLimit = 10;
         const TODAY = new Date(); 
         TODAY.setHours(0, 0, 0, 0);
@@ -303,35 +305,42 @@
                         <div class="mb-4">
                             <div class="text-sm text-gray-600 leading-relaxed">${e.summary || e.description || ''}</div>
                             ${e.full_details ? `
-                                <details class="mt-2 group">
-                                    <summary class="text-[10px] font-bold text-blue-600 cursor-pointer list-none flex items-center group-open:hidden">
-                                        <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                <details class="mt-3 group">
+                                    <summary class="text-[10px] font-bold text-blue-600 cursor-pointer list-none flex items-center group-open:hidden uppercase tracking-widest">
+                                        <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                                         READ MORE
                                     </summary>
-                                    <div class="mt-2 text-sm text-gray-500 italic border-l-2 border-gray-100 pl-4 py-1 leading-relaxed">
-                                        ${e.full_details}
+                                    <div class="mt-3 text-sm text-gray-600 border-l-2 border-gray-100 pl-4 py-1 leading-relaxed">
+                                        <div class="whitespace-pre-wrap">${e.full_details}</div>
+                                        <div class="mt-4 pt-2 border-t border-gray-100">
+                                            ${e.sources && e.sources.length > 0 ? 
+                                                e.sources.map(s => `
+                                                    <div class="text-[9px] font-bold text-gray-400 uppercase tracking-tighter">
+                                                        Source: ${s.title} ${s.date ? `(${s.date})` : ''}
+                                                    </div>
+                                                `).join('') :
+                                                `<div class="text-[9px] font-bold text-gray-400 uppercase tracking-tighter">
+                                                    Source: ${e.source_title || 'Intelligence Engine'} ${e.source_date ? `(${e.source_date})` : ''}
+                                                </div>`
+                                            }
+                                        </div>
                                     </div>
-                                    <summary class="mt-2 text-[10px] font-bold text-gray-400 cursor-pointer list-none hidden group-open:flex items-center">
-                                        <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                                    <summary class="mt-3 text-[10px] font-bold text-gray-400 cursor-pointer list-none hidden group-open:flex items-center uppercase tracking-widest">
+                                        <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
                                         SHOW LESS
                                     </summary>
                                 </details>
-                            ` : ''}
+                            ` : `
+                                <div class="mt-2 text-[9px] font-bold text-gray-400 uppercase tracking-tighter">
+                                    Source: ${e.source_title || 'Intelligence Engine'} ${e.source_date ? `(${e.source_date})` : ''}
+                                </div>
+                            `}
                         </div>
-                        
-                        ${e.links && e.links.length > 0 ? `
-                            <div class="mb-4 flex flex-wrap gap-2">
-                                ${e.links.map(link => `
-                                    <a href="${link.url}" target="_blank" class="inline-flex items-center px-3 py-1 bg-blue-50 text-blue-700 text-[10px] font-bold rounded-md border border-blue-100 hover:bg-blue-100 transition-colors">
-                                        <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.826a4 4 0 015.656 0l4 4a4 4 0 01-5.656 5.656l-1.102-1.101m0 0l2.324 2.324M5 20l4-4m11-11l-4 4m-11 5L10 5"></path></svg>
-                                        ${link.title}
-                                    </a>
-                                `).join('')}
-                            </div>
-                        ` : ''}
 
-                        <div class="flex flex-wrap gap-2">
-                            ${(e.classes || []).map(c => `<span class="px-2 py-0.5 border border-gray-100 bg-gray-50 rounded text-[10px] font-bold text-gray-400">${c}</span>`).join('')}
+                        <div class="mt-4 pt-4 border-t border-gray-50 flex items-center justify-between gap-4">
+                            <div class="flex flex-wrap gap-2">
+                                ${(e.classes || []).map(c => `<span class="px-2 py-0.5 border border-gray-100 bg-gray-50 rounded text-[10px] font-bold text-gray-400">${c}</span>`).join('')}
+                            </div>
                         </div>
                     </div>
                 `;
@@ -355,6 +364,8 @@
                     window.selectedClasses.push(code);
                 }
             }
+            localStorage.setItem('selectedClasses', JSON.stringify(window.selectedClasses));
+            localStorage.setItem('showAll', window.showAll);
             renderEvents();
         }
 
@@ -362,6 +373,8 @@
             window.visibleLimit = 10;
             window.showAll = true;
             window.selectedClasses = [];
+            localStorage.setItem('selectedClasses', JSON.stringify([]));
+            localStorage.setItem('showAll', 'true');
             renderEvents();
         }
 
@@ -447,8 +460,10 @@
             window.renderEvents();
         });
 
+        document.getElementById('show-past-toggle').checked = window.showPastEvents;
         document.getElementById('show-past-toggle').addEventListener('change', (e) => {
             window.showPastEvents = e.target.checked;
+            localStorage.setItem('showPastEvents', window.showPastEvents);
             window.visibleLimit = 10;
             window.renderEvents();
         });

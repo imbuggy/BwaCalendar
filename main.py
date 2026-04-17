@@ -48,22 +48,27 @@ Class & Stream Taxonomy (Strict Codes):
 - Y6 = Year 6 English Stream
 - Y6b = Year 6 Bilingual Stream / CM2B
 
-Privacy: If PII (specific student names, health reports, behavior incidents) is detected, return {"status": "REJECTED"}.
+Stream Logic Rules:
+1. "Year X" (no suffix) = English Stream ONLY (e.g. Y4).
+2. "Xb" or "CE2B" (etc.) = Bilingual Stream ONLY (e.g. Y4b).
+3. INSET/PD days = English Stream ONLY (N, R, Y1, Y2, Y3, Y4, Y5, Y6). Bilingual students attend as normal.
+4. If an event mentions "all students" or "whole school", include all codes.
+
+Source Management:
+- If an event is found in multiple sources (e.g., both a Newsletter and the Term Dates website), consolidate them.
+- Store all sources in a 'sources' JSON array field. Each source object: {"title": "string", "date": "string", "time": "string"}.
+- Do NOT append source information to the 'full_details' text anymore.
+- The 'source_title', 'source_date', and 'source_time' fields should still be populated with the information from the PRIMARY or MOST RECENT source for compatibility.
+- REMOVE the 'links' record from your JSON output entirely.
+
+Privacy: If PII detected, return {"status": "REJECTED"}.
 
 Task: Extract all events from the email and its attachments. 
-Forward Detection Rule:
-- Look inside the raw body for forward headers (e.g., "From:", "Sent:", "Subject:", "Date:"). 
-- Priority: Subject/Date/Time from the forward header.
 
 Event Formatting Rules:
-1. Dates: 
-   - Identify 'single-day' or 'date-range' (e.g., '2026-04-20' to '2026-04-24').
-   - For ranges, provide both 'event_date' (start) and 'event_date_end'.
-   - Include 'formatted_date_display' which includes the day of the week (e.g., "Mon 20 Apr" or "Mon 20 - Fri 24 Apr").
-2. Time: Identify if it is 'all-day', a single time (e.g. '09:00'), or a range.
-3. Summary: Provide a 'summary' that is 1-5 sentences. If the content is complex, provide a longer 'full_details' string.
-4. Sources: Include 'source_title', 'source_date', and 'source_time'.
-5. Links: Extract URLs into a 'links' array.
+1. Dates: YYYY-MM-DD. Include 'formatted_date_display' (e.g. "Mon 20 Apr").
+2. Summary: A concise 1-5 sentence overview for the main list view.
+3. Full Details: Provide an exhaustive, detailed extraction of all relevant context, notes, specific requirements (e.g., "bring a packed lunch", "wear PE kit", "return books by Monday"), or teacher instructions found in the source. Do not truncate useful secondary information.
 
 Output: JSON array of events.
 Each event object: {
@@ -78,11 +83,13 @@ Each event object: {
     "time_value": "string",
     "classes": ["code1", "code2"],
     "summary": "string",
-    "full_details": "string" | null,
+    "full_details": "string",
     "source_title": "string",
     "source_date": "string",
     "source_time": "string",
-    "links": [{"title": "string", "url": "string"}],
+    "sources": [
+       {"title": "string", "date": "string", "time": "string"}
+    ],
     "status": "approved"
   }
 }
@@ -200,7 +207,17 @@ def fetch_term_dates():
 
         response = client.models.generate_content(
             model='gemini-3-flash-preview',
-            contents=f"Extract all school term dates, holidays, and INSET/PD days from the following text for the 2025/2026 academic year.\n\nFORMAT AS 'insert' ACTIONS.\nSet 'classes' to ['All'] for school-wide holidays.\nSet 'type' to 'HOLIDAY' for holidays and 'EVENT' for INSET days.\nText: {html_text}",
+            contents=(
+                f"Extract all school term dates, holidays, and INSET/PD days from the following text for the 2025/2026 academic year.\n\n"
+                f"FORMAT AS 'insert' ACTIONS.\n"
+                f"RULES:\n"
+                f"- Set 'classes' to ['All'] for school-wide holidays (Bank holidays, half terms).\n"
+                f"- IMPORTANT: INSET/PD days are for English Stream ONLY. Assign only English codes (N, R, Y1, Y2, Y3, Y4, Y5, Y6).\n"
+                f"- Set 'type' to 'HOLIDAY' for holidays and 'EVENT' for INSET days.\n"
+                f"- Set 'source_title' to 'Official Term Dates Website'.\n"
+                f"- Include the source in the 'sources' array as well.\n"
+                f"Text: {html_text}"
+            ),
             config=types.GenerateContentConfig(system_instruction=SYSTEM_INSTRUCTIONS)
         )
         
