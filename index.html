@@ -88,6 +88,54 @@
         </div>
 
 
+        <!-- Setup State -->
+        <div id="setup-view" class="hidden min-h-[400px] flex items-center justify-center p-6 font-sans">
+            <div class="max-w-md w-full bg-white rounded-[24px] shadow-[0_2px_8px_rgba(0,0,0,0.04)] p-8 border border-gray-100">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-light tracking-tight text-gray-900">Setup Required</h2>
+                </div>
+                
+                <p class="text-gray-500 font-medium text-sm mb-8 leading-relaxed">
+                    Connect your Supabase project to activate the school calendar.
+                </p>
+
+                <div class="space-y-4">
+                    <a href="https://github.com/${window.location.pathname.split('/')[1]}/${window.location.pathname.split('/')[2]}/settings/secrets/actions" 
+                       target="_blank"
+                       class="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors group">
+                        <span class="text-sm font-semibold text-gray-700">1. Open GitHub Secrets</span>
+                        <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    </a>
+                    
+                    <div class="p-4 bg-blue-50/50 rounded-xl border border-blue-100/50">
+                        <p class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">2. Add these variables</p>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between text-xs font-mono bg-white p-2 rounded border border-blue-100">
+                                <span class="text-blue-700">SUPABASE_URL</span>
+                                <span class="text-gray-400">Project URL</span>
+                            </div>
+                            <div class="flex items-center justify-between text-xs font-mono bg-white p-2 rounded border border-blue-100">
+                                <span class="text-blue-700">SUPABASE_KEY</span>
+                                <span class="text-gray-400">Anon Public Key</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-gray-100 text-center">
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-1">Status</p>
+                    <p id="setup-status" class="text-xs text-blue-500 font-medium">Waiting for configuration...</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Results -->
         <div id="events-list" class="space-y-4">
             <!-- Loading State -->
@@ -115,11 +163,15 @@
         // Diagnostics - we log lengths safely
         const getDisplayLength = (s) => (s && typeof s === 'string') ? s.length : 0;
         
+        // We use join to prevent the build-time 'replace' from hitting these strings
+        const URL_PH = ['__INJECT', 'SUPABASE_URL__'].join('_');
+        const KEY_PH = ['__INJECT', 'SUPABASE_KEY__'].join('_');
+
         console.log("Supabase Pre-Check:", {
             urlLength: getDisplayLength(SUPABASE_URL),
             keyLength: getDisplayLength(SUPABASE_KEY),
-            urlIsPlaceholder: SUPABASE_URL === '__INJECT_SUPABASE_URL__',
-            keyIsPlaceholder: SUPABASE_KEY === '__INJECT_SUPABASE_KEY__'
+            urlIsPlaceholder: SUPABASE_URL === URL_PH,
+            keyIsPlaceholder: SUPABASE_KEY === KEY_PH
         });
 
         // Check for Vite environment variables (AI Studio Preview)
@@ -129,7 +181,6 @@
                 const viteKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_KEY;
                 
                 // Only override if we actually have values in the Vite environment
-                // and avoid overriding if we just have the build-time placeholder injected by Vite
                 if (viteUrl && viteUrl.length > 10 && !viteUrl.includes('INJECT_SUPABASE_URL')) {
                     SUPABASE_URL = viteUrl;
                     console.log("Using Vite URL override");
@@ -139,12 +190,10 @@
                     console.log("Using Vite Key override");
                 }
             }
-        } catch (e) {
-            // Normal in production static environments
-        }
+        } catch (e) {}
         
-        const isUrlMissing = !SUPABASE_URL || SUPABASE_URL === '__INJECT_SUPABASE_URL__' || SUPABASE_URL.includes('your-project');
-        const isKeyMissing = !SUPABASE_KEY || SUPABASE_KEY === '__INJECT_SUPABASE_KEY__';
+        const isUrlMissing = !SUPABASE_URL || SUPABASE_URL === URL_PH || SUPABASE_URL.includes('your-project');
+        const isKeyMissing = !SUPABASE_KEY || SUPABASE_KEY === KEY_PH;
 
         console.log("Supabase Final Connection State:", {
             initialized: !!SUPABASE_URL && !isUrlMissing && !isKeyMissing,
