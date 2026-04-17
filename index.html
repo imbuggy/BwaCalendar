@@ -108,8 +108,8 @@
     <script type="module">
         // Initialization Logic
         // These placeholders are replaced by GitHub Actions during deployment
-        let SUPABASE_URL = 'YOUR_SUPABASE_URL'; 
-        let SUPABASE_KEY = 'YOUR_SUPABASE_KEY';
+        let SUPABASE_URL = '__SUPABASE_URL__'; 
+        let SUPABASE_KEY = '__SUPABASE_KEY__';
 
         // Check for Vite environment variables (AI Studio Preview)
         try {
@@ -118,10 +118,10 @@
                 const viteKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_KEY;
                 
                 // Only override if we actually have values in the Vite environment
-                if (viteUrl && viteUrl.length > 5 && !viteUrl.includes('YOUR_SUPABASE_URL')) {
+                if (viteUrl && viteUrl.length > 5 && !viteUrl.includes('__SUPABASE_URL__')) {
                     SUPABASE_URL = viteUrl;
                 }
-                if (viteKey && viteKey.length > 5 && !viteKey.includes('YOUR_SUPABASE_KEY')) {
+                if (viteKey && viteKey.length > 5 && !viteKey.includes('__SUPABASE_KEY__')) {
                     SUPABASE_KEY = viteKey;
                 }
             }
@@ -130,10 +130,10 @@
         }
         
         console.log("Supabase Connection Check:", {
-            hasUrl: !!SUPABASE_URL && !SUPABASE_URL.includes('YOUR_SUPABASE_URL'),
-            hasKey: !!SUPABASE_KEY && !SUPABASE_KEY.includes('YOUR_SUPABASE_KEY'),
-            urlPlaceholder: SUPABASE_URL === 'YOUR_SUPABASE_URL',
-            keyPlaceholder: SUPABASE_KEY === 'YOUR_SUPABASE_KEY',
+            hasUrl: !!SUPABASE_URL && !SUPABASE_URL.includes('__SUPABASE_URL__'),
+            hasKey: !!SUPABASE_KEY && !SUPABASE_KEY.includes('__SUPABASE_KEY__'),
+            urlPlaceholder: SUPABASE_URL === '__SUPABASE_URL__',
+            keyPlaceholder: SUPABASE_KEY === '__SUPABASE_KEY__',
             urlEmpty: !SUPABASE_URL,
             keyEmpty: !SUPABASE_KEY
         });
@@ -142,8 +142,8 @@
         try {
             const lib = window.supabase || (typeof supabase !== 'undefined' ? supabase : null);
             
-            const isUrlMissing = !SUPABASE_URL || SUPABASE_URL.includes('YOUR_SUPABASE_URL') || SUPABASE_URL.includes('your-project');
-            const isKeyMissing = !SUPABASE_KEY || SUPABASE_KEY.includes('YOUR_SUPABASE_KEY');
+            const isUrlMissing = !SUPABASE_URL || SUPABASE_URL.includes('__SUPABASE_URL__') || SUPABASE_URL.includes('your-project');
+            const isKeyMissing = !SUPABASE_KEY || SUPABASE_KEY.includes('__SUPABASE_KEY__');
 
             if (lib && !isUrlMissing && !isKeyMissing) {
                 supabaseClient = lib.createClient(SUPABASE_URL, SUPABASE_KEY);

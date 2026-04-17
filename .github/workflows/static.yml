@@ -12,9 +12,6 @@ permissions:
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,12 +23,19 @@ jobs:
           S_URL: ${{ secrets.SUPABASE_URL }}
           S_KEY: ${{ secrets.SUPABASE_ANON_KEY || secrets.SUPABASE_KEY }}
         run: |
-          sed -i "s|'YOUR_SUPABASE_URL'|'${S_URL}'|g" index.html
-          sed -i "s|'YOUR_SUPABASE_KEY'|'${S_KEY}'|g" index.html
+          echo "Verifying Secrets (Checking presence only)..."
+          if [ -z "${S_URL}" ]; then echo "WARNING: SUPABASE_URL secret is EMPTY!"; else echo "SUPABASE_URL found."; fi
+          if [ -z "${S_KEY}" ]; then echo "WARNING: SUPABASE_KEY secret is EMPTY!"; else echo "SUPABASE_KEY found."; fi
+          
+          sed -i "s|__SUPABASE_URL__|${S_URL}|g" index.html
+          sed -i "s|__SUPABASE_KEY__|${S_KEY}|g" index.html
+          
           # Sanitize commit message to be single line and remove shell-sensitive chars
           CLEAN_MSG=$(echo "$COMMIT_MSG" | tr '\n' ' ' | sed 's/[|"`]//g')
           DEPLOY_INFO="$(date +'%Y-%m-%d %H:%M:%S') - $CLEAN_MSG"
           sed -i "s|DEPLOY_VERSION_PLACEHOLDER|${DEPLOY_INFO}|g" index.html
+          
+          echo "Injection complete."
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
