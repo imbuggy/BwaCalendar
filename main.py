@@ -110,17 +110,34 @@ def extract_docx_text(payload):
         return f"[DOCX Error: {e}]"
 
 def fetch_emails():
-    print("Connecting to IMAP...")
-    mail = imaplib.IMAP4_SSL("imap.hostinger.com")
-    mail.login(EMAIL_USER, EMAIL_PASS)
+    print("Connecting to IMAP (imap.hostinger.com)...")
+    try:
+        mail = imaplib.IMAP4_SSL("imap.hostinger.com")
+        mail.login(EMAIL_USER, EMAIL_PASS)
+        print(f"Logged in successfully as {EMAIL_USER}")
+    except Exception as e:
+        print(f"IMAP Login failed: {e}")
+        return []
+
     mail.select("inbox")
+    print("Searching for UNSEEN emails...")
     
     status, messages = mail.search(None, 'UNSEEN')
+    if status != 'OK':
+        print(f"IMAP search failed with status: {status}")
+        return []
+
     email_ids = messages[0].split()
+    print(f"Found {len(email_ids)} unseen email(s).")
     
     email_data = []
     for e_id in email_ids:
+        print(f"Processing email ID: {e_id.decode()}...")
         status, msg_data = mail.fetch(e_id, '(RFC822)')
+        if status != 'OK':
+            print(f"Failed to fetch email {e_id.decode()}")
+            continue
+
         for response_part in msg_data:
             if isinstance(response_part, tuple):
                 msg = email.message_from_bytes(response_part[1])
@@ -128,6 +145,7 @@ def fetch_emails():
                 if isinstance(subject, bytes):
                     subject = subject.decode()
                 
+                print(f"Email Subject: {subject}")
                 date_str = msg['Date']
                 
                 body = ""
@@ -179,15 +197,17 @@ def fetch_emails():
                 is_forwarded_from_trusted = any(id in content_lower for id in trusted_identifiers)
                 
                 if not (is_trusted or is_forwarded_from_trusted):
-                    print(f"Skipping irrelevant email: {subject}")
+                    print(f"Skipping irrelevant email: '{subject}' (From: {from_header_str})")
                     continue
 
+                print(f"Confirmed trusted/relevant email: '{subject}'")
                 email_data.append({
                     "subject": subject,
                     "from": from_header_str,
                     "date": date_str,
                     "content": body + "\n" + attachments_text
                 })
+    print(f"Total relevant emails extracted: {len(email_data)}")
     mail.logout()
     return email_data
 
@@ -236,6 +256,7 @@ def process_data(email_items, existing_db):
     processed_results = []
     
     for item in email_items:
+        print(f"Sending email '{item['subject']}' to Intelligence Engine...")
         prompt = (
             f"Existing Database: {json.dumps(existing_db)}\n"
             f"Source Email Title: {item['subject']}\n"
@@ -250,12 +271,15 @@ def process_data(email_items, existing_db):
         try:
             text = response.text.strip().replace('```json', '').replace('```', '')
             results = json.loads(text)
+            count = len(results) if isinstance(results, list) else 1
+            print(f"Intelligence Engine returned {count} record(s) for '{item['subject']}'")
             if isinstance(results, list):
                 processed_results.extend(results)
             else:
                 processed_results.append(results)
         except Exception as e:
-            print(f"Error parsing Gemini response: {e}")
+            print(f"Error parsing Gemini response for '{item['subject']}': {e}")
+            print(f"Raw Response: {response.text[:200]}...")
             
     return processed_results
 
@@ -271,8 +295,10 @@ def sync_database(results):
         if not data: continue
 
         if action == 'insert':
+            print(f"Inserting new event: {data.get('title')}")
             supabase.table("events").insert(data).execute()
         elif action == 'update' and item.get('match_id'):
+            print(f"Updating existing event (ID: {item.get('match_id')}): {data.get('title')}")
             supabase.table("events").update(data).eq("id", item.get('match_id')).execute()
 
 if __name__ == "__main__":
