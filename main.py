@@ -5,7 +5,8 @@ from email.header import decode_header
 import json
 from datetime import datetime
 from supabase import create_client, Client
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 import io
 import requests
 from bs4 import BeautifulSoup
@@ -25,7 +26,7 @@ SUPABASE_URL = os.getenv('SUPABASE_URL')
 SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 
 # Model & Client Setup
-genai.configure(api_key=GEMINI_API_KEY)
+client = genai.Client(api_key=GEMINI_API_KEY)
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 SYSTEM_INSTRUCTIONS = """
@@ -197,17 +198,13 @@ def fetch_term_dates():
             print("Term dates page returned very little content. Content might be dynamic.")
             return []
 
-        model = genai.GenerativeModel('gemini-3-flash-preview', system_instruction=SYSTEM_INSTRUCTIONS)
-        prompt = (
-            f"Extract all school term dates, holidays, and INSET/PD days from the following text for the 2025/2026 academic year.\n\n"
-            f"FORMAT AS 'insert' ACTIONS.\n"
-            f"Set 'classes' to ['All'] for school-wide holidays.\n"
-            f"Set 'type' to 'HOLIDAY' for holidays and 'EVENT' for INSET days.\n"
-            f"Text: {html_text}"
+        response = client.models.generate_content(
+            model='gemini-3-flash-preview',
+            contents=f"Extract all school term dates, holidays, and INSET/PD days from the following text for the 2025/2026 academic year.\n\nFORMAT AS 'insert' ACTIONS.\nSet 'classes' to ['All'] for school-wide holidays.\nSet 'type' to 'HOLIDAY' for holidays and 'EVENT' for INSET days.\nText: {html_text}",
+            config=types.GenerateContentConfig(system_instruction=SYSTEM_INSTRUCTIONS)
         )
         
-        ai_response = model.generate_content(prompt)
-        text = ai_response.text.strip().replace('```json', '').replace('```', '')
+        text = response.text.strip().replace('```json', '').replace('```', '')
         results = json.loads(text)
         return results if isinstance(results, list) else [results]
     except Exception as e:
@@ -219,7 +216,6 @@ def get_existing_events():
     return response.data
 
 def process_data(email_items, existing_db):
-    model = genai.GenerativeModel('gemini-3-flash-preview', system_instruction=SYSTEM_INSTRUCTIONS)
     processed_results = []
     
     for item in email_items:
@@ -229,7 +225,11 @@ def process_data(email_items, existing_db):
             f"Source Email Date: {item['date']}\n"
             f"Email & Attachment Content: {item['content']}"
         )
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model='gemini-3-flash-preview',
+            contents=prompt,
+            config=types.GenerateContentConfig(system_instruction=SYSTEM_INSTRUCTIONS)
+        )
         try:
             text = response.text.strip().replace('```json', '').replace('```', '')
             results = json.loads(text)
