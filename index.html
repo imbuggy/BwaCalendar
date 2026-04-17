@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>BWA School Calendar</title>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900">
+    <div id="calendar-app" class="max-w-6xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <div class="flex items-center justify-between gap-4 mb-6">
+            <h1 class="text-xl font-black tracking-tight text-gray-900 uppercase leading-none">BWA Calendar</h1>
+            <button onclick="document.getElementById('about-modal').classList.remove('hidden')" class="shrink-0 flex items-center gap-1.5 px-2 py-1 bg-slate-50 border border-slate-100 rounded-lg group transition-all">
+                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-tighter">Made by parent</span>
+                <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+            </button>
+        </div>
+
+        <!-- About Modal -->
+        <div id="about-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm">
+            <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+                <button onclick="document.getElementById('about-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+                <div class="mb-6">
+                    <h2 class="text-xl font-black text-gray-900 uppercase mb-4 tracking-tight">About BWA Calendar</h2>
+                    <div class="space-y-4 text-sm text-gray-600 leading-relaxed">
+                        <p><strong>Note:</strong> This calendar is created and maintained by a parent, not the school. It attempts to aggregate all school communications and emails to automatically centralize events here for convenience.</p>
+                        <p>The system uses the <strong>School Intelligence Engine</strong> to parse email forwards and attachments (PDF/Docx), identifying event dates, student streams, and important links.</p>
+                        <p class="italic font-bold text-slate-600">Please always cross-reference with official school announcements.</p>
+                    </div>
+                </div>
+                <button onclick="document.getElementById('about-modal').classList.add('hidden')" class="w-full py-3 bg-gray-900 text-white text-xs font-bold rounded-xl hover:bg-black transition-all">Got it</button>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="mb-8 bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
+            <!-- Search & Toggle Row -->
+            <div class="flex items-center p-2 px-4 gap-4 border-b border-gray-100">
+                <div class="relative flex-1">
+                    <input type="text" id="search-input" placeholder="Search..." class="w-full pl-8 pr-4 py-2 border-none text-sm focus:ring-0 outline-none transition-all" />
+                    <svg class="w-4 h-4 absolute left-1 top-2.5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                <div class="flex items-center gap-2 shrink-0 border-l border-gray-100 pl-4 py-1">
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="show-past-toggle" class="sr-only peer">
+                        <div class="w-7 h-3.5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-2.5 after:w-2.5 after:transition-all peer-checked:bg-blue-600"></div>
+                        <span class="ms-1.5 text-[9px] font-black text-gray-400 uppercase tracking-tighter">Past</span>
+                    </label>
+                </div>
+            </div>
+
+            
+            <!-- Horizontal Class Scroll -->
+            <div class="flex items-center gap-2 p-3 overflow-x-auto no-scrollbar scroll-smooth bg-gray-50/50">
+                <button id="btn-all" onclick="setAllMode()" class="shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-black tracking-widest transition-all bg-gray-900 text-white">ALL</button>
+                <div class="w-px h-4 bg-gray-300 mx-1 shrink-0"></div>
+                <div class="flex gap-2" id="group-filters">
+                    <button data-code="N" onclick="toggleClass('N')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">N</button>
+                    <button data-code="R" onclick="toggleClass('R')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">R</button>
+                    <button data-code="Rb" onclick="toggleClass('Rb')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Rb</button>
+                    <button data-code="Y1" onclick="toggleClass('Y1')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y1</button>
+                    <button data-code="Y1b" onclick="toggleClass('Y1b')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y1b</button>
+                    <button data-code="Y2" onclick="toggleClass('Y2')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y2</button>
+                    <button data-code="Y2b" onclick="toggleClass('Y2b')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y2b</button>
+                    <button data-code="Y3" onclick="toggleClass('Y3')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y3</button>
+                    <button data-code="Y3b" onclick="toggleClass('Y3b')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y3b</button>
+                    <button data-code="Y4" onclick="toggleClass('Y4')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y4</button>
+                    <button data-code="Y4b" onclick="toggleClass('Y4b')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y4b</button>
+                    <button data-code="Y5" onclick="toggleClass('Y5')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y5</button>
+                    <button data-code="Y5b" onclick="toggleClass('Y5b')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y5b</button>
+                    <button data-code="Y6" onclick="toggleClass('Y6')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y6</button>
+                    <button data-code="Y6b" onclick="toggleClass('Y6b')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y6b</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Results -->
+        <div id="events-list" class="space-y-4">
+            <!-- Loading State -->
+            <div class="py-12 text-center text-gray-400 italic">Syncing with Intelligence Engine...</div>
+        </div>
+        
+        <!-- Pagination Sentinel -->
+        <div id="load-more-trigger" class="h-20 flex items-center justify-center">
+            <div id="loading-spinner" class="hidden">
+                <svg class="animate-spin h-5 w-5 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // REPLACE WITH YOUR ACTUAL SUPABASE CREDENTIALS
+        const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+        const SUPABASE_KEY = 'YOUR_SUPABASE_KEY';
+        
+        let supabaseClient = null;
+        try {
+            const lib = window.supabase || (typeof supabase !== 'undefined' ? supabase : null);
+            if (lib && SUPABASE_URL !== 'YOUR_SUPABASE_URL') {
+                supabaseClient = lib.createClient(SUPABASE_URL, SUPABASE_KEY);
+            }
+        } catch (e) {
+            console.error("Supabase initialization failed:", e);
+        }
+
+        window.showAll = true;
+        window.selectedClasses = [];
+        window.allEvents = [];
+        window.searchQuery = "";
+        window.showPastEvents = false;
+        window.visibleLimit = 10;
+        const TODAY = new Date("2026-04-17");
+
+        // Mock Data for Previewing
+        const MOCK_DATA = [
+            { id: 0, title: "Old: Easter Break Workshop", event_date: "2026-04-05", formatted_date_display: "Sun 05 Apr", time_type: "all-day", time_value: "All Day", classes: ["Y1", "Y2", "Y3"], summary: "A past workshop about spring gardening.", source_title: "Holiday Update", source_date: "2026-03-25", source_time: "14:00", type: "Workshop" },
+            { id: 110, title: "World Book Day", event_date: "2026-03-05", formatted_date_display: "Thu 05 Mar", time_type: "all-day", time_value: "All Day", classes: ["R", "Y1", "Y2", "Y3", "Y4", "Y5", "Y6"], summary: "Celebrating our favorite stories and characters.", source_title: "School Newsletter", source_date: "2026-02-28", source_time: "09:00", type: "Celebration" },
+            { id: 111, title: "Music Performance (Y1 & Y2)", event_date: "2026-03-16", formatted_date_display: "Mon 16 Mar", time_type: "single", time_value: "14:30", classes: ["Y1", "Y2"], summary: "Pupils perform music led by Mr Edwards. Please arrive 5 mins before.", source_title: "Ellie Wilkes", source_date: "2026-04-17", type: "Music" },
+            { id: 112, title: "Music Performance (Y3 & Y4)", event_date: "2026-03-17", formatted_date_display: "Tue 17 Mar", time_type: "single", time_value: "14:15", classes: ["Y3", "Y4"], summary: "Pupils perform music led by Mr Edwards in the middle hall.", source_title: "Ellie Wilkes", source_date: "2026-04-17", type: "Music" },
+            { id: 113, title: "Music Performance (Y6)", event_date: "2026-03-23", formatted_date_display: "Mon 23 Mar", time_type: "single", time_value: "14:15", classes: ["Y6"], summary: "Year 6 music performance in the middle hall.", source_title: "Ellie Wilkes", source_date: "2026-04-17", type: "Music" },
+            { id: 114, title: "Music Performance (Y5) at Fairfield Halls", event_date: "2026-03-24", formatted_date_display: "Tue 24 Mar", time_type: "all-day", time_value: "All Day", classes: ["Y5"], summary: "Year 5 pupils perform at Fairfield Halls.", source_title: "Ellie Wilkes", source_date: "2026-04-17", type: "Music" },
+            { id: 1, title: "Earth Week: Sustainability Series", event_date: "2026-04-20", event_date_end: "2026-04-24", formatted_date_display: "Mon 20 - Fri 24 Apr", time_type: "all-day", time_value: "All Day", classes: ["N", "R", "Rb", "Y1", "Y1b", "Y2", "Y2b", "Y3", "Y3b", "Y4", "Y4b", "Y5", "Y5b", "Y6", "Y6b"], summary: "A school-wide week dedicated to environmental awareness.", full_details: "Workshops including waste reduction and renewable energy. Ends with assembly.", source_title: "Headteacher Newsletter", source_date: "2026-04-10", source_time: "08:00", type: "Celebration" },
+            { id: 2, title: "Parent-Teacher Meetings: Year 2 Bilingual (CPB)", event_date: "2026-04-21", formatted_date_display: "Tue 21 Apr", time_type: "all-day", time_value: "All Day", classes: ["Y2b"], summary: "Bilingual stream termly progress meetings.", full_details: "Meetings held via Zoom. Signup via specialized link.", source_title: "Parent-teacher bilingual", source_date: "2026-04-14", source_time: "10:30", links: [{title: "Signup", url: "#"}], type: "Meeting" },
+            { id: 3, title: "Football Match vs St. Mary's", event_date: "2026-04-22", formatted_date_display: "Wed 22 Apr", time_type: "range", time_value: "15:30 - 17:00", classes: ["Y5", "Y6"], summary: "Competitive away match for Y5 & Y6.", source_title: "Sports Update", source_date: "2026-04-15", source_time: "09:15", type: "Sports" },
+            { id: 4, title: "Cooking Workshop: Crepes", event_date: "2026-04-23", formatted_date_display: "Thu 23 Apr", time_type: "single", time_value: "14:00", classes: ["Y1b", "Y2b"], summary: "French culinary workshop for bilingual students.", source_title: "Bilingual Stream", source_date: "2026-04-12", source_time: "16:45", type: "Bilingual" },
+            { id: 5, title: "Y5 Trip: Science Museum", event_date: "2026-04-24", formatted_date_display: "Fri 24 Apr", time_type: "all-day", time_value: "All Day", classes: ["Y5", "Y5b"], summary: "Educational visit covering the history of space flight.", source_title: "Year 5 Newsletter", source_date: "2026-04-18", source_time: "08:30", type: "Trip" },
+            { id: 6, title: "Uniform Swap Shop", event_date: "2026-04-27", formatted_date_display: "Mon 27 Apr", time_type: "range", time_value: "08:30 - 09:30", classes: ["All"], summary: "Donate and pick up gently used school uniforms.", source_title: "PTA Announcements", source_date: "2026-04-20", source_time: "10:00", type: "PTA" },
+            { id: 7, title: "Summer Fair Planning", event_date: "2026-04-28", formatted_date_display: "Tue 28 Apr", time_type: "single", time_value: "19:00", classes: ["All"], summary: "Evening meeting for volunteers to organize the July fair.", source_title: "PTA Announcements", source_date: "2026-04-20", source_time: "10:00", type: "PTA" },
+            { id: 8, title: "Class Photos Day", event_date: "2026-04-29", formatted_date_display: "Wed 29 Apr", time_type: "all-day", time_value: "All Day", classes: ["N", "R", "Y1", "Y2", "Y3", "Y4", "Y5", "Y6"], summary: "Individual and class group portraits. Wear full formal uniform.", source_title: "School Office", source_date: "2026-04-22", source_time: "09:00", type: "School" },
+            { id: 9, title: "Coffee Morning for Parents", event_date: "2026-04-30", formatted_date_display: "Thu 30 Apr", time_type: "range", time_value: "09:00 - 10:00", classes: ["All"], summary: "Informal chat with the Headteacher in the staff room.", source_title: "Headteacher Update", source_date: "2026-04-25", source_time: "11:00", type: "School" },
+            { id: 10, title: "Y3 Camp Preparation Meeting", event_date: "2026-05-01", formatted_date_display: "Fri 01 May", time_type: "single", time_value: "15:45", classes: ["Y3", "Y3b"], summary: "Kit list delivery and medical form collection for June camp.", source_title: "Year 3 Team", source_date: "2026-04-24", source_time: "15:00", type: "Meeting" },
+            { id: 11, title: "Bank Holiday (School Closed)", event_date: "2026-05-04", formatted_date_display: "Mon 04 May", time_type: "all-day", time_value: "All Day", classes: ["All"], summary: "UK Public holiday. School will reopen Tuesday.", source_title: "School Calendar", source_date: "2026-01-01", source_time: "00:00", type: "School" },
+            { id: 12, title: "Choir Rehearsal", event_date: "2026-05-05", formatted_date_display: "Tue 05 May", time_type: "single", time_value: "16:00", classes: ["Y4", "Y5", "Y6"], summary: "Weekly rehearsal preparing for the summer concert.", source_title: "Music Dept", source_date: "2026-04-28", source_time: "12:00", type: "Clubs" },
+            { id: 13, title: "Y4 Swimming Starts", event_date: "2026-05-06", formatted_date_display: "Wed 06 May", time_type: "range", time_value: "13:30 - 15:00", classes: ["Y4", "Y4b"], summary: "First session at the local sports center. Remember swim kit.", source_title: "Year 4 Newsletter", source_date: "2026-04-29", source_time: "09:00", type: "Clubs" },
+            { id: 14, title: "Gardening Club", event_date: "2026-05-07", formatted_date_display: "Thu 07 May", time_type: "single", time_value: "15:45", classes: ["All"], summary: "Planting summer vegetables in the school garden.", source_title: "Extracurricular", source_date: "2026-04-30", source_time: "13:00", type: "Clubs" },
+            { id: 15, title: "Nursery Teddy Bear Picnic", event_date: "2026-05-08", formatted_date_display: "Fri 08 May", time_type: "single", time_value: "11:30", classes: ["N"], summary: "Outdoor lunch for all nursery children and their favorite bears.", source_title: "Nursery Team", source_date: "2026-05-01", source_time: "10:00", type: "Celebration" },
+            { id: 16, title: "Y6 SATs Week Begins", event_date: "2026-05-11", event_date_end: "2026-05-14", formatted_date_display: "Mon 11 - Thu 14 May", time_type: "all-day", time_value: "All Day", classes: ["Y6", "Y6b"], summary: "National assessments for Year 6 students.", full_details: "Please ensure students have a good breakfast and arrive on time.", source_title: "Headteacher", source_date: "2026-05-01", source_time: "08:00", type: "School" },
+            { id: 17, title: "Y2 Class Assembly", event_date: "2026-05-13", formatted_date_display: "Wed 13 May", time_type: "single", time_value: "09:05", classes: ["Y2", "Y2b"], summary: "Parents are invited to the Great Hall to watch the performance.", source_title: "Year 2 Team", source_date: "2026-05-06", source_time: "15:30", type: "Celebration" },
+            { id: 18, title: "Bilingual Stream Theatre Trip", event_date: "2026-05-15", formatted_date_display: "Fri 15 May", time_type: "all-day", time_value: "All Day", classes: ["Rb", "Y1b", "Y2b", "Y3b", "Y4b", "Y5b", "Y6b"], summary: "French language performance at the Lyric Theatre.", source_title: "Bilingual Lead", source_date: "2026-05-01", source_time: "10:00", type: "Trip" },
+            { id: 19, title: "Sports Day Rehearsal", event_date: "2026-05-18", formatted_date_display: "Mon 18 May", time_type: "range", time_value: "14:00 - 15:30", classes: ["R", "Y1", "Y2"], summary: "Practice for track and field events on the main pitch.", source_title: "PE Dept", source_date: "2026-05-11", source_time: "09:00", type: "Sports" },
+            { id: 20, title: "Half Term Holiday Begins", event_date: "2026-05-25", event_date_end: "2026-05-29", formatted_date_display: "Mon 25 - Fri 29 May", time_type: "all-day", time_value: "All Day", classes: ["All"], summary: "School closed. Term resumes Monday 1st June.", source_title: "School Calendar", source_date: "2026-01-01", source_time: "00:00", type: "School" },
+            { id: 101, title: "Summer Term Ends (Early Closure)", event_date: "2026-07-22", formatted_date_display: "Wed 22 Jul", time_type: "single", time_value: "13:30", classes: ["All"], summary: "Final day of the academic year. School closes early at 1:30 PM.", source_title: "Official Term Dates", source_date: "2026-01-01", type: "School" },
+            { id: 102, title: "Autumn Term 2026 Begins", event_date: "2026-09-02", formatted_date_display: "Wed 02 Sep", time_type: "all-day", time_value: "All Day", classes: ["All"], summary: "First day of the new academic year for all students.", source_title: "Official Term Dates", source_date: "2026-01-01", type: "School" }
+        ];
+
+        async function fetchEvents() {
+            if (!supabaseClient) {
+                console.info("Using Mock Data for Preview Mode.");
+                window.allEvents = MOCK_DATA;
+                renderEvents();
+                return;
+            }
+
+            const { data, error } = await supabaseClient
+                .from('events')
+                .select('*')
+                .eq('status', 'approved')
+                .order('event_date', { ascending: true });
+
+            if (error) {
+                console.error(error);
+                window.allEvents = MOCK_DATA; // Fallback to mock on error so UI is testable
+                renderEvents();
+                return;
+            }
+
+            window.allEvents = data || MOCK_DATA;
+            renderEvents();
+        }
+
+        window.renderEvents = function(isLoadingMore = false) {
+            const container = document.getElementById('events-list');
+            const filtered = window.allEvents.filter(e => {
+                const eventDate = new Date(e.event_date);
+                const isPast = eventDate < TODAY;
+
+                // Past event filtering
+                if (!window.showPastEvents && isPast) return false;
+
+                // Class filtering
+                const classMatch = window.showAll || (e.classes && e.classes.some(c => window.selectedClasses.includes(c)));
+                if (!classMatch) return false;
+
+                // Search filtering
+                if (window.searchQuery) {
+                    const q = window.searchQuery.toLowerCase();
+                    const titleMatch = e.title && e.title.toLowerCase().includes(q);
+                    const descMatch = (e.summary || e.description || '').toLowerCase().includes(q);
+                    const classMatchSearch = e.classes && e.classes.some(c => c.toLowerCase().includes(q));
+                    if (!titleMatch && !descMatch && !classMatchSearch) return false;
+                }
+
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="py-12 text-center text-gray-400 font-medium">No records found for specified filters.</div>';
+                document.getElementById('load-more-trigger').classList.add('hidden');
+            } else {
+                const visible = filtered.slice(0, window.visibleLimit);
+                const hasMore = filtered.length > window.visibleLimit;
+                
+                document.getElementById('load-more-trigger').classList.toggle('hidden', !hasMore);
+
+                let html = "";
+                let hasThisWeekHeader = false;
+                let hasNextWeekHeader = false;
+                let hasLaterHeader = false;
+
+                const startOfWeek = new Date(TODAY);
+                startOfWeek.setDate(TODAY.getDate() - TODAY.getDay() + 1); // Monday
+                
+                const nextWeek = new Date(startOfWeek);
+                nextWeek.setDate(startOfWeek.getDate() + 7);
+
+                const weekAfterNext = new Date(nextWeek);
+                weekAfterNext.setDate(nextWeek.getDate() + 7);
+
+                visible.forEach((e, idx) => {
+                    const eventDate = new Date(e.event_date);
+                    const isPast = eventDate < TODAY;
+                    const pastClass = isPast ? 'opacity-60 grayscale-[0.3] filter' : '';
+                    const eventId = `event-${e.id}`;
+                    
+                    if (!isPast) {
+                        if (eventDate < nextWeek && !hasThisWeekHeader) {
+                            html += `<div class="pt-6 pb-2"><div class="flex items-center gap-4"><span class="text-[10px] font-black tracking-[0.2em] text-blue-600 uppercase shrink-0">THIS WEEK</span><div class="h-px bg-blue-100 w-full"></div></div></div>`;
+                            hasThisWeekHeader = true;
+                        } else if (eventDate >= nextWeek && eventDate < weekAfterNext && !hasNextWeekHeader) {
+                            html += `<div class="pt-6 pb-2"><div class="flex items-center gap-4"><span class="text-[10px] font-black tracking-[0.2em] text-gray-400 uppercase shrink-0">NEXT WEEK</span><div class="h-px bg-gray-100 w-full"></div></div></div>`;
+                            hasNextWeekHeader = true;
+                        } else if (eventDate >= weekAfterNext && !hasLaterHeader) {
+                            html += `<div class="pt-6 pb-2"><div class="flex items-center gap-4"><span class="text-[10px] font-black tracking-[0.2em] text-gray-300 uppercase shrink-0">LATER</span><div class="h-px bg-gray-100 w-full"></div></div></div>`;
+                            hasLaterHeader = true;
+                        }
+                    }
+
+                    html += `
+                    <div id="${eventId}" class="bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-all ${pastClass} scroll-mt-24 target:ring-2 target:ring-blue-500 target:ring-offset-2">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex flex-col gap-1">
+                                <div class="flex items-center gap-2">
+                                    <span class="px-2 py-1 bg-gray-100 rounded text-[9px] font-black uppercase text-gray-500 tracking-tighter w-fit">${e.type || 'EVENT'}</span>
+                                    ${isPast ? '<span class="text-[9px] font-black text-amber-600 uppercase tracking-tighter bg-amber-50 px-1.5 py-0.5 rounded">Passed</span>' : ''}
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="text-xs font-mono font-bold text-blue-600 text-right text-gray-400 lg:text-blue-600">
+                                    <div>${e.formatted_date_display || e.event_date}</div>
+                                    <div class="text-[10px] text-gray-500">${e.time_value || e.time || 'All Day'}</div>
+                                </div>
+                                <div class="relative group/menu">
+                                    <button class="p-1 hover:bg-gray-100 rounded-lg transition-colors text-gray-400">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path></svg>
+                                    </button>
+                                    <div class="absolute right-0 top-full mt-1 w-40 bg-white border border-gray-100 rounded-xl shadow-xl z-20 hidden group-hover/menu:block py-1 divide-y divide-gray-50">
+                                        <button onclick="shareEvent('${e.id}')" class="w-full text-left px-4 py-2 text-[10px] font-bold text-gray-600 hover:bg-gray-50 flex items-center gap-2">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                                            Copy Share Link
+                                        </button>
+                                        <a href="${getGCalLink(e)}" target="_blank" class="w-full text-left px-4 py-2 text-[10px] font-bold text-gray-600 hover:bg-gray-50 flex items-center gap-2">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v12a2 2 0 002 2z"></path></svg>
+                                            Add to Google
+                                        </a>
+                                        <button onclick="reportError('${e.id}')" class="w-full text-left px-4 py-2 text-[10px] font-bold text-amber-600 hover:bg-amber-50 flex items-center gap-2">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                            Report Error
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-gray-900 mb-2">${e.title}</h3>
+                        
+                        <div class="mb-4">
+                            <div class="text-sm text-gray-600 leading-relaxed">${e.summary || e.description || ''}</div>
+                            ${e.full_details ? `
+                                <details class="mt-2 group">
+                                    <summary class="text-[10px] font-bold text-blue-600 cursor-pointer list-none flex items-center group-open:hidden">
+                                        <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        READ MORE
+                                    </summary>
+                                    <div class="mt-2 text-sm text-gray-500 italic border-l-2 border-gray-100 pl-4 py-1 leading-relaxed">
+                                        ${e.full_details}
+                                    </div>
+                                    <summary class="mt-2 text-[10px] font-bold text-gray-400 cursor-pointer list-none hidden group-open:flex items-center">
+                                        <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                                        SHOW LESS
+                                    </summary>
+                                </details>
+                            ` : ''}
+                        </div>
+                        
+                        ${e.links && e.links.length > 0 ? `
+                            <div class="mb-4 flex flex-wrap gap-2">
+                                ${e.links.map(link => `
+                                    <a href="${link.url}" target="_blank" class="inline-flex items-center px-3 py-1 bg-blue-50 text-blue-700 text-[10px] font-bold rounded-md border border-blue-100 hover:bg-blue-100 transition-colors">
+                                        <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.826a4 4 0 015.656 0l4 4a4 4 0 01-5.656 5.656l-1.102-1.101m0 0l2.324 2.324M5 20l4-4m11-11l-4 4m-11 5L10 5"></path></svg>
+                                        ${link.title}
+                                    </a>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+
+                        <div class="flex flex-wrap gap-2">
+                            ${(e.classes || []).map(c => `<span class="px-2 py-0.5 border border-gray-100 bg-gray-50 rounded text-[10px] font-bold text-gray-400">${c}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                });
+                container.innerHTML = html;
+            }
+
+            updateUI();
+        }
+
+        window.toggleClass = function(code) {
+            window.visibleLimit = 10;
+            if (window.showAll) {
+                window.showAll = false;
+                window.selectedClasses = [code];
+            } else {
+                if (window.selectedClasses.includes(code)) {
+                    window.selectedClasses = window.selectedClasses.filter(c => c !== code);
+                    if (window.selectedClasses.length === 0) window.showAll = true;
+                } else {
+                    window.selectedClasses.push(code);
+                }
+            }
+            renderEvents();
+        }
+
+        window.setAllMode = function() {
+            window.visibleLimit = 10;
+            window.showAll = true;
+            window.selectedClasses = [];
+            renderEvents();
+        }
+
+        window.updateUI = function() {
+            const allBtn = document.getElementById('btn-all');
+            if (allBtn) {
+                allBtn.className = `shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-black tracking-widest transition-all ${window.showAll ? 'bg-gray-900 text-white' : 'bg-white text-gray-600'}`;
+            }
+
+            document.querySelectorAll('.class-btn').forEach(btn => {
+                const code = btn.getAttribute('data-code');
+                const isActive = !window.showAll && window.selectedClasses.includes(code);
+                btn.className = `class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all ${isActive ? 'bg-gray-900 text-white' : 'bg-white text-gray-600'}`;
+            });
+        }
+
+        // Helper: Generate GCal Link
+        window.getGCalLink = function(e) {
+            const title = encodeURIComponent(e.title);
+            const summary = e.summary || e.description || '';
+            const aiNote = "AI Summary: This event was automatically extracted from school communications. Please verify details.";
+            const user = [98, 119, 97, 46, 112, 116, 97].map(c => String.fromCharCode(c)).join('');
+            const domain = [103, 109, 97, 105, 108, 46, 99, 111, 109].map(c => String.fromCharCode(c)).join('');
+            const sourceInfo = `Source: BWA Parent Aggregator (${user}@${domain})`;
+            const details = encodeURIComponent(`${summary}\n\n---\n${aiNote}\n${sourceInfo}`);
+            
+            // Format: YYYYMMDD/YYYYMMDD (End is exclusive)
+            const start = e.event_date.replace(/-/g, '');
+            let endStr = e.event_date_end || e.event_date;
+            
+            // For all-day events, Google expects the end date to be the day AFTER the last day.
+            const endDateObj = new Date(endStr);
+            endDateObj.setDate(endDateObj.getDate() + 1);
+            const end = endDateObj.toISOString().split('T')[0].replace(/-/g, '');
+            
+            const dates = `${start}/${end}`;
+            return `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&dates=${dates}`;
+        }
+
+        // Helper: Share link
+        window.shareEvent = function(numericId) {
+            const ev = window.allEvents.find(x => x.id == numericId);
+            const title = ev ? ev.title : 'Event';
+            const domId = `event-${numericId}`;
+            const url = `${window.location.origin}${window.location.pathname}#${domId}`;
+            navigator.clipboard.writeText(url).then(() => {
+                alert(`Link to "${title}" copied to clipboard!`);
+            });
+        }
+
+        // Helper: Report Error
+        window.reportError = function(id) {
+            const ev = window.allEvents.find(x => x.id == id);
+            const title = ev ? ev.title : 'Event';
+            const subject = encodeURIComponent(`Issue with BWA Event: ${title} (ID: ${id})`);
+            const body = encodeURIComponent(`Please describe the issue with this event:\n\n---\nEvent ID: ${id}\nEvent Title: ${title}`);
+            
+            // Advanced obfuscation using character codes to hide from bots
+            const b = [98, 119, 97, 46, 112, 116, 97]; // bwa.pta
+            const g = [103, 109, 97, 105, 108, 46, 99, 111, 109]; // gmail.com
+            const email = b.map(c => String.fromCharCode(c)).join('') + '@' + g.map(c => String.fromCharCode(c)).join('');
+            
+            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+        }
+
+        // Deep linking logic
+        window.addEventListener('load', () => {
+            if (window.location.hash) {
+                const id = window.location.hash.slice(1);
+                // Ensure the event exists in allEvents
+                setTimeout(() => {
+                    const el = document.getElementById(id);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 1000); 
+            }
+        });
+
+        // Initialize
+        // Wire up search and toggle
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            window.searchQuery = e.target.value;
+            window.visibleLimit = 10;
+            window.renderEvents();
+        });
+
+        document.getElementById('show-past-toggle').addEventListener('change', (e) => {
+            window.showPastEvents = e.target.checked;
+            window.visibleLimit = 10;
+            window.renderEvents();
+        });
+
+        // Infinite Scroll Observer
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && window.allEvents.length > window.visibleLimit) {
+                document.getElementById('loading-spinner').classList.remove('hidden');
+                setTimeout(() => {
+                    window.visibleLimit += 5;
+                    window.renderEvents(true);
+                    document.getElementById('loading-spinner').classList.add('hidden');
+                }, 400); // Simulate micro-loading feel
+            }
+        }, { threshold: 0.1 });
+
+        observer.observe(document.getElementById('load-more-trigger'));
+
+        fetchEvents();
+    </script>
+</body>
+</html>

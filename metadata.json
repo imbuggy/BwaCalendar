@@ -1,0 +1,6 @@
+{
+  "name": "School Intelligence Engine (Production)",
+  "description": "Production-ready automated school calendar system with Python backend and Supabase integration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
