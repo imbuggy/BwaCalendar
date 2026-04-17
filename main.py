@@ -137,9 +137,23 @@ def fetch_emails():
                                 elif filename.lower().endswith(".docx"):
                                     attachments_text += f"\n[ATTACHMENT: {filename}]\n" + extract_docx_text(payload)
                         elif content_type == "text/plain":
-                            body = part.get_payload(decode=True).decode()
+                            try:
+                                body += part.get_payload(decode=True).decode()
+                            except:
+                                pass
+                        elif content_type == "text/html" and not body:
+                            # If no plain text yet, try HTML
+                            try:
+                                html_content = part.get_payload(decode=True).decode()
+                                # Simple way to strip some tags for searching keywords
+                                body = html_content
+                            except:
+                                pass
                 else:
-                    body = msg.get_payload(decode=True).decode()
+                    try:
+                        body = msg.get_payload(decode=True).decode()
+                    except:
+                        pass
                 
                 # Filter: Only keep emails from schoolcomms.com, Belleville Wix Academy, or Wix admin
                 from_header_str = msg.get('From', '').lower()
