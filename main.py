@@ -172,7 +172,7 @@ def get_existing_events():
     return response.data
 
 def process_data(email_items, existing_db):
-    model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=SYSTEM_INSTRUCTIONS)
+    model = genai.GenerativeModel('gemini-3-flash-preview', system_instruction=SYSTEM_INSTRUCTIONS)
     processed_results = []
     
     for item in email_items:

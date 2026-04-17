@@ -36,7 +36,7 @@ e: admin@bellevillewix.q1e.org.uk
 }
 
 def test_parse():
-    model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=SYSTEM_INSTRUCTIONS)
+    model = genai.GenerativeModel('gemini-3-flash-preview', system_instruction=SYSTEM_INSTRUCTIONS)
     prompt = (
         f"Existing Database: []\n"
         f"Source Email Title: {test_email['subject']}\n"
