@@ -24,18 +24,38 @@ jobs:
           S_KEY: ${{ secrets.SUPABASE_ANON_KEY || secrets.SUPABASE_KEY }}
         run: |
           echo "Verifying Secrets (Checking presence only)..."
-          if [ -z "${S_URL}" ]; then echo "WARNING: SUPABASE_URL secret is EMPTY!"; else echo "SUPABASE_URL found."; fi
-          if [ -z "${S_KEY}" ]; then echo "WARNING: SUPABASE_KEY secret is EMPTY!"; else echo "SUPABASE_KEY found."; fi
+          if [ -z "${S_URL}" ]; then echo "WARNING: SUPABASE_URL secret is EMPTY!"; else echo "SUPABASE_URL found (Length: ${#S_URL})"; fi
+          if [ -z "${S_KEY}" ]; then echo "WARNING: SUPABASE_KEY secret is EMPTY!"; else echo "SUPABASE_KEY found (Length: ${#S_KEY})"; fi
           
-          sed -i "s|__SUPABASE_URL__|${S_URL}|g" index.html
-          sed -i "s|__SUPABASE_KEY__|${S_KEY}|g" index.html
+          # Write a temporary python script to do literal replacement safely
+          cat << 'EOF' > inject_secrets.py
+          import os
+          import datetime
           
-          # Sanitize commit message to be single line and remove shell-sensitive chars
-          CLEAN_MSG=$(echo "$COMMIT_MSG" | tr '\n' ' ' | sed 's/[|"`]//g')
-          DEPLOY_INFO="$(date +'%Y-%m-%d %H:%M:%S') - $CLEAN_MSG"
-          sed -i "s|DEPLOY_VERSION_PLACEHOLDER|${DEPLOY_INFO}|g" index.html
-          
-          echo "Injection complete."
+          def inject():
+              with open('index.html', 'r', encoding='utf-8') as f:
+                  content = f.read()
+              
+              # Literal replacement of placeholders
+              content = content.replace('__SUPABASE_URL__', os.environ.get('S_URL', ''))
+              content = content.replace('__SUPABASE_KEY__', os.environ.get('S_KEY', ''))
+              
+              # Handle versioning
+              msg = os.environ.get('COMMIT_MSG', '').replace('\n', ' ').replace('|', '').replace('"', '').replace('`', '')
+              deploy_info = f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} - {msg}"
+              content = content.replace('DEPLOY_VERSION_PLACEHOLDER', deploy_info)
+              
+              with open('index.html', 'w', encoding='utf-8') as f:
+                  f.write(content)
+              print("Injection successful.")
+
+          if __name__ == "__main__":
+              inject()
+          EOF
+
+          python3 inject_secrets.py
+          rm inject_secrets.py
+          echo "Injection step complete."
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
