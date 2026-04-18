@@ -1,4 +1,4 @@
-name: School Intelligence Engine
+name: School Calendar Aggregator
 
 on:
   schedule:
@@ -23,7 +23,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install supabase google-genai pypdf python-docx requests beautifulsoup4
 
-      - name: Run Intelligence Engine
+      - name: Run Calendar Aggregator
         env:
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_PASS: ${{ secrets.EMAIL_PASS }}

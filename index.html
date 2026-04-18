@@ -35,7 +35,7 @@
                     <h2 class="text-xl font-black text-gray-900 uppercase mb-4 tracking-tight">About BWA Calendar</h2>
                     <div class="space-y-4 text-sm text-gray-600 leading-relaxed">
                         <p><strong>Note:</strong> This calendar is created and maintained by a parent, not the school. It attempts to aggregate all school communications and emails to automatically centralize events here for convenience.</p>
-                        <p>The system uses the <strong>School Intelligence Engine</strong> to parse email forwards and attachments (PDF/Docx), identifying event dates, student streams, and important links.</p>
+                        <p>The system uses the <strong>School Calendar Aggregator</strong> to parse email forwards and attachments (PDF/Docx), identifying event dates, student streams, and important links.</p>
                         <p class="italic font-bold text-slate-600">Please always cross-reference with official school announcements.</p>
                     </div>
                 </div>
@@ -46,44 +46,65 @@
         </div>
 
         <!-- Filters -->
-        <div class="mb-8 bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
-            <!-- Search & Toggle Row -->
-            <div class="flex items-center p-2 px-4 gap-4 border-b border-gray-100">
+        <div class="mb-4 bg-white border border-gray-200 rounded-2xl shadow-sm">
+            <!-- Search & Actions Row -->
+            <div class="flex items-center p-2 px-4 gap-4 border-b border-gray-100 rounded-t-2xl">
                 <div class="relative flex-1">
-                    <input type="text" id="search-input" placeholder="Search..." class="w-full pl-8 pr-4 py-2 border-none text-sm focus:ring-0 outline-none transition-all" />
+                    <input type="text" id="search-input" placeholder="Search events..." class="w-full pl-8 pr-4 py-2 border-none text-sm focus:ring-0 outline-none transition-all" />
                     <svg class="w-4 h-4 absolute left-1 top-2.5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
-                <div class="flex items-center gap-2 shrink-0 border-l border-gray-100 pl-4 py-1">
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" id="show-past-toggle" class="sr-only peer">
-                        <div class="w-7 h-3.5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-2.5 after:w-2.5 after:transition-all peer-checked:bg-blue-600"></div>
-                        <span class="ms-1.5 text-[9px] font-black text-gray-400 uppercase tracking-tighter">Past</span>
-                    </label>
+                
+                <div class="flex items-center gap-3 shrink-0 border-l border-gray-100 pl-4 py-1">
+                    <!-- Global Filter Dropdown -->
+                    <div class="relative group/filter">
+                        <button id="filter-dropdown-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-50 hover:bg-gray-100 border border-gray-100 transition-all text-gray-600">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
+                            <span class="text-[10px] font-black uppercase tracking-widest">Filter</span>
+                            <div id="active-filter-dot" class="hidden w-2 h-2 bg-blue-600 rounded-full border-2 border-white shadow-sm -mt-3 -mr-1"></div>
+                        </button>
+                        
+                        <div id="filter-dropdown-menu" class="absolute right-0 mt-2 w-64 bg-white border border-gray-100 rounded-2xl shadow-2xl z-30 hidden py-3">
+                            <div class="px-4 pb-3 mb-2 border-b border-gray-50 flex items-center justify-between">
+                                <span class="text-[10px] font-black text-gray-900 uppercase tracking-widest">Filters</span>
+                                <button onclick="document.getElementById('filter-dropdown-menu').classList.add('hidden')" class="bg-blue-600 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-tighter hover:bg-blue-700 transition-colors">Apply</button>
+                            </div>
+
+                            <div class="px-4 pb-4">
+                                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Classes</span>
+                                <div class="max-h-48 overflow-y-auto mt-2 grid grid-cols-3 gap-1.5" id="class-filter-grid">
+                                    <!-- Dynamic Classes -->
+                                </div>
+                            </div>
+
+                            <div class="px-4 py-3 border-t border-gray-50">
+                                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Categories</span>
+                                <div id="category-filter-list" class="mt-2 space-y-0.5">
+                                    <!-- Dynamic Categories -->
+                                </div>
+                            </div>
+
+                            <div class="px-4 pt-2 border-t border-gray-50">
+                                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Extra</span>
+                                <div class="mt-2">
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" id="show-past-toggle-dropdown" class="sr-only peer">
+                                        <div class="w-7 h-3.5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-2.5 after:w-2.5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        <span class="ms-1.5 text-[10px] font-bold text-gray-500 uppercase">Show Past</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            
-            <!-- Horizontal Class Scroll -->
-            <div class="flex items-center gap-2 p-3 overflow-x-auto no-scrollbar scroll-smooth bg-gray-50/50">
-                <button id="btn-all" onclick="setAllMode()" class="shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-black tracking-widest transition-all bg-gray-900 text-white">ALL</button>
-                <div class="w-px h-4 bg-gray-300 mx-1 shrink-0"></div>
-                <div class="flex gap-2" id="group-filters">
-                    <button data-code="N" onclick="toggleClass('N')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">N</button>
-                    <button data-code="R" onclick="toggleClass('R')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">R</button>
-                    <button data-code="Rb" onclick="toggleClass('Rb')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Rb</button>
-                    <button data-code="Y1" onclick="toggleClass('Y1')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y1</button>
-                    <button data-code="Y1b" onclick="toggleClass('Y1b')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y1b</button>
-                    <button data-code="Y2" onclick="toggleClass('Y2')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y2</button>
-                    <button data-code="Y2b" onclick="toggleClass('Y2b')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y2b</button>
-                    <button data-code="Y3" onclick="toggleClass('Y3')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y3</button>
-                    <button data-code="Y3b" onclick="toggleClass('Y3b')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y3b</button>
-                    <button data-code="Y4" onclick="toggleClass('Y4')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y4</button>
-                    <button data-code="Y4b" onclick="toggleClass('Y4b')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y4b</button>
-                    <button data-code="Y5" onclick="toggleClass('Y5')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y5</button>
-                    <button data-code="Y5b" onclick="toggleClass('Y5b')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y5b</button>
-                    <button data-code="Y6" onclick="toggleClass('Y6')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y6</button>
-                    <button data-code="Y6b" onclick="toggleClass('Y6b')" class="class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all bg-white text-gray-600">Y6b</button>
+            <!-- Active Filters (Only shows when restricting) -->
+            <div id="active-filters-bar" class="hidden bg-gray-50/50 p-2 px-4 flex flex-wrap items-center gap-2 border-t border-gray-100 rounded-b-2xl">
+                <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest mr-1">Active:</span>
+                <div id="active-filters-pills" class="flex flex-wrap gap-1.5 flex-1">
+                    <!-- Dynamic Pills -->
                 </div>
+                <button onclick="clearAllFilters()" class="text-[9px] font-black text-red-500 hover:text-red-600 uppercase tracking-widest underline decoration-2 underline-offset-2">Clear All</button>
             </div>
         </div>
 
@@ -139,7 +160,7 @@
         <!-- Results -->
         <div id="events-list" class="space-y-4">
             <!-- Loading State -->
-            <div class="py-12 text-center text-gray-400 italic">Syncing with Intelligence Engine...</div>
+            <div class="py-12 text-center text-gray-400 italic">Syncing with Calendar Aggregator...</div>
         </div>
         
         <!-- Pagination Sentinel -->
@@ -235,11 +256,117 @@
         window.selectedClasses = JSON.parse(localStorage.getItem('selectedClasses') || '[]');
         window.showAll = localStorage.getItem('showAll') !== 'false' && window.selectedClasses.length === 0;
         
+        // Smarter Categories setup
+        const ALL_CATEGORIES = ['HOLIDAY', 'ACADEMIC', 'SPORTS', 'WELLBEING', 'COMMUNITY', 'ARTS', 'TRIP', 'ADMIN', 'OTHER'];
+        window.hiddenCategories = JSON.parse(localStorage.getItem('hiddenCategories') || '[]');
+        
+        const ALL_CLASSES = ['N', 'R', 'Rb', 'Y1', 'Y1b', 'Y2', 'Y2b', 'Y3', 'Y3b', 'Y4', 'Y4b', 'Y5', 'Y5b', 'Y6', 'Y6b'];
+
         window.allEvents = [];
         window.searchQuery = "";
         window.visibleLimit = 10;
         const TODAY = new Date(); 
         TODAY.setHours(0, 0, 0, 0);
+
+        function renderCategoryFilters() {
+            const container = document.getElementById('category-filter-list');
+            container.innerHTML = ALL_CATEGORIES.map(cat => {
+                const isHidden = window.hiddenCategories.includes(cat);
+                return `
+                    <button onclick="toggleCategory('${cat}')" class="w-full text-left px-4 py-1.5 text-[10px] font-bold flex items-center justify-between hover:bg-gray-50 transition-colors">
+                        <span class="${isHidden ? 'text-gray-300 line-through font-medium' : 'text-gray-600'}">${cat}</span>
+                        <div class="w-2.5 h-2.5 rounded-sm border ${isHidden ? 'bg-gray-100 border-gray-200' : 'bg-blue-600 border-blue-600'} flex items-center justify-center">
+                            ${isHidden ? '' : '<svg class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>'}
+                        </div>
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function renderClassFilterGrid() {
+            const grid = document.getElementById('class-filter-grid');
+            grid.innerHTML = ALL_CLASSES.map(cls => {
+                const isActive = window.selectedClasses.includes(cls);
+                return `
+                    <button onclick="toggleClass('${cls}')" 
+                            class="px-2 py-1 text-[9px] font-black rounded border transition-all ${isActive ? 'bg-gray-900 border-gray-900 text-white' : 'bg-white border-gray-100 text-gray-400 hover:border-gray-200'}">
+                        ${cls}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function renderActiveFilters() {
+            const bar = document.getElementById('active-filters-bar');
+            const pills = document.getElementById('active-filters-pills');
+            
+            const isRestricted = window.selectedClasses.length > 0 || window.hiddenCategories.length > 0;
+            bar.classList.toggle('hidden', !isRestricted);
+            document.getElementById('active-filter-dot').classList.toggle('hidden', !isRestricted);
+
+            let html = "";
+            window.selectedClasses.forEach(cls => {
+                html += `<span class="bg-blue-50 text-blue-600 border border-blue-100 px-2 py-0.5 rounded-full text-[9px] font-bold flex items-center gap-1">${cls}<button onclick="toggleClass('${cls}')" class="hover:text-blue-800">×</button></span>`;
+            });
+            window.hiddenCategories.forEach(cat => {
+                html += `<span class="bg-gray-100 text-gray-400 border border-gray-200 px-2 py-0.5 rounded-full text-[9px] font-bold flex items-center gap-1 strike-through line-through opacity-60 italic whitespace-nowrap">${cat}<button onclick="toggleCategory('${cat}')" class="hover:text-gray-600">×</button></span>`;
+            });
+
+            pills.innerHTML = html;
+        }
+
+        window.clearAllFilters = function() {
+            window.selectedClasses = [];
+            window.hiddenCategories = [];
+            window.showAll = true;
+            localStorage.setItem('selectedClasses', '[]');
+            localStorage.setItem('hiddenCategories', '[]');
+            localStorage.setItem('showAll', 'true');
+            renderCategoryFilters();
+            renderClassFilterGrid();
+            renderActiveFilters();
+            renderEvents();
+        }
+
+        window.toggleCategory = function(cat) {
+            if (window.hiddenCategories.includes(cat)) {
+                window.hiddenCategories = window.hiddenCategories.filter(c => c !== cat);
+            } else {
+                window.hiddenCategories.push(cat);
+            }
+            localStorage.setItem('hiddenCategories', JSON.stringify(window.hiddenCategories));
+            renderCategoryFilters();
+            renderActiveFilters();
+            renderEvents();
+        }
+
+        window.toggleClass = function(code) {
+            window.visibleLimit = 10;
+            if (window.selectedClasses.includes(code)) {
+                window.selectedClasses = window.selectedClasses.filter(c => c !== code);
+                if (window.selectedClasses.length === 0) window.showAll = true;
+            } else {
+                window.selectedClasses.push(code);
+                window.showAll = false;
+            }
+            localStorage.setItem('selectedClasses', JSON.stringify(window.selectedClasses));
+            localStorage.setItem('showAll', window.showAll);
+            renderClassFilterGrid();
+            renderActiveFilters();
+            renderEvents();
+        }
+
+        renderCategoryFilters();
+        renderClassFilterGrid();
+        renderActiveFilters();
+
+        const pastToggle = document.getElementById('show-past-toggle-dropdown');
+        pastToggle.checked = window.showPastEvents;
+        pastToggle.addEventListener('change', (e) => {
+            window.showPastEvents = e.target.checked;
+            localStorage.setItem('showPastEvents', window.showPastEvents);
+            renderEvents();
+        });
 
         async function fetchEvents() {
             const display = document.getElementById('last-updated-display');
@@ -318,8 +445,11 @@
                 if (!window.showPastEvents && isPast) return false;
 
                 // Class filtering
-                const classMatch = window.showAll || (e.classes && e.classes.some(c => window.selectedClasses.includes(c)));
+                const classMatch = window.showAll || (e.classes && (e.classes.length >= 15 || e.classes.some(c => window.selectedClasses.includes(c) || c === 'All')));
                 if (!classMatch) return false;
+
+                // Category filtering
+                if (window.hiddenCategories.includes(e.type || 'OTHER')) return false;
 
                 // Search filtering
                 if (window.searchQuery) {
@@ -362,6 +492,19 @@
                     const pastClass = isPast ? 'opacity-60 grayscale-[0.3] filter' : '';
                     const eventId = `event-${e.id}`;
                     
+                    const catColors = {
+                        'HOLIDAY': 'bg-amber-100 text-amber-700 border-amber-200',
+                        'SPORTS': 'bg-green-100 text-green-700 border-green-200',
+                        'ACADEMIC': 'bg-blue-100 text-blue-700 border-blue-200',
+                        'WELLBEING': 'bg-cyan-100 text-cyan-700 border-cyan-200',
+                        'COMMUNITY': 'bg-purple-100 text-purple-700 border-purple-200',
+                        'ARTS': 'bg-pink-100 text-pink-700 border-pink-200',
+                        'TRIP': 'bg-orange-100 text-orange-700 border-orange-200',
+                        'ADMIN': 'bg-slate-100 text-slate-700 border-slate-200',
+                        'OTHER': 'bg-gray-100 text-gray-500 border-gray-200'
+                    };
+                    const catClass = catColors[e.type] || catColors['OTHER'];
+
                     if (!isPast) {
                         if (eventDate < nextWeek && !hasThisWeekHeader) {
                             html += `<div class="pt-6 pb-2"><div class="flex items-center gap-4"><span class="text-[10px] font-black tracking-[0.2em] text-blue-600 uppercase shrink-0">THIS WEEK</span><div class="h-px bg-blue-100 w-full"></div></div></div>`;
@@ -380,7 +523,7 @@
                         <div class="flex justify-between items-start mb-4">
                             <div class="flex flex-col gap-1">
                                 <div class="flex items-center gap-2">
-                                    <span class="px-2 py-1 bg-gray-100 rounded text-[9px] font-black uppercase text-gray-500 tracking-tighter w-fit">${e.type || 'EVENT'}</span>
+                                    <span class="px-2 py-0.5 border rounded text-[9px] font-black uppercase tracking-tighter w-fit ${catClass}">${e.type || 'EVENT'}</span>
                                     ${isPast ? '<span class="text-[9px] font-black text-amber-600 uppercase tracking-tighter bg-amber-50 px-1.5 py-0.5 rounded">Passed</span>' : ''}
                                 </div>
                             </div>
@@ -430,7 +573,7 @@
                                                     </div>
                                                 `).join('') :
                                                 `<div class="text-[9px] font-bold text-gray-400 uppercase tracking-tighter">
-                                                    Source: ${e.source_title || 'Intelligence Engine'} ${e.source_date ? `(${e.source_date})` : ''}
+                                                    Source: ${e.source_title || 'Calendar Aggregator'} ${e.source_date ? `(${e.source_date})` : ''}
                                                 </div>`
                                             }
                                         </div>
@@ -442,7 +585,7 @@
                                 </details>
                             ` : `
                                 <div class="mt-2 text-[9px] font-bold text-gray-400 uppercase tracking-tighter">
-                                    Source: ${e.source_title || 'Intelligence Engine'} ${e.source_date ? `(${e.source_date})` : ''}
+                                    Source: ${e.source_title || 'Calendar Aggregator'} ${e.source_date ? `(${e.source_date})` : ''}
                                 </div>
                             `}
                         </div>
@@ -464,47 +607,6 @@
                 container.innerHTML = html;
             }
 
-            updateUI();
-        }
-
-        window.toggleClass = function(code) {
-            window.visibleLimit = 10;
-            if (window.showAll) {
-                window.showAll = false;
-                window.selectedClasses = [code];
-            } else {
-                if (window.selectedClasses.includes(code)) {
-                    window.selectedClasses = window.selectedClasses.filter(c => c !== code);
-                    if (window.selectedClasses.length === 0) window.showAll = true;
-                } else {
-                    window.selectedClasses.push(code);
-                }
-            }
-            localStorage.setItem('selectedClasses', JSON.stringify(window.selectedClasses));
-            localStorage.setItem('showAll', window.showAll);
-            renderEvents();
-        }
-
-        window.setAllMode = function() {
-            window.visibleLimit = 10;
-            window.showAll = true;
-            window.selectedClasses = [];
-            localStorage.setItem('selectedClasses', JSON.stringify([]));
-            localStorage.setItem('showAll', 'true');
-            renderEvents();
-        }
-
-        window.updateUI = function() {
-            const allBtn = document.getElementById('btn-all');
-            if (allBtn) {
-                allBtn.className = `shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-black tracking-widest transition-all ${window.showAll ? 'bg-gray-900 text-white' : 'bg-white text-gray-600'}`;
-            }
-
-            document.querySelectorAll('.class-btn').forEach(btn => {
-                const code = btn.getAttribute('data-code');
-                const isActive = !window.showAll && window.selectedClasses.includes(code);
-                btn.className = `class-btn shrink-0 px-4 py-1 rounded-full border border-gray-200 text-[10px] font-bold transition-all ${isActive ? 'bg-gray-900 text-white' : 'bg-white text-gray-600'}`;
-            });
         }
 
         // Helper: Generate GCal Link
@@ -568,18 +670,24 @@
             }
         });
 
-        // Initialize
-        // Wire up search and toggle
-        document.getElementById('search-input').addEventListener('input', (e) => {
-            window.searchQuery = e.target.value;
-            window.visibleLimit = 10;
-            window.renderEvents();
+        // Dropdown Toggle
+        document.getElementById('filter-dropdown-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.getElementById('filter-dropdown-menu').classList.toggle('hidden');
         });
 
-        document.getElementById('show-past-toggle').checked = window.showPastEvents;
-        document.getElementById('show-past-toggle').addEventListener('change', (e) => {
-            window.showPastEvents = e.target.checked;
-            localStorage.setItem('showPastEvents', window.showPastEvents);
+        document.addEventListener('click', (e) => {
+            const menu = document.getElementById('filter-dropdown-menu');
+            const btn = document.getElementById('filter-dropdown-btn');
+            if (menu && !menu.contains(e.target) && !btn.contains(e.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+
+        // Initialize
+        // Wire up search
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            window.searchQuery = e.target.value;
             window.visibleLimit = 10;
             window.renderEvents();
         });

@@ -58,7 +58,7 @@ def safe_generate_content(contents, system_instruction=None):
                 raise e
 
 SYSTEM_INSTRUCTIONS = """
-Role: BWA/EdW School Intelligence Engine. 
+Role: BWA/EdW School Calendar Aggregator. 
 Class & Stream Taxonomy (Strict Codes):
 - N = Nursery (English)
 - R = Reception English Stream
@@ -82,6 +82,18 @@ Stream Logic Rules:
 3. INSET/PD days = English Stream ONLY (N, R, Y1, Y2, Y3, Y4, Y5, Y6). Bilingual students attend as normal.
 4. If an event mentions "all students" or "whole school", include all codes.
 5. SPLIT EVENTS: If an email mentions different times for different streams (e.g. "English Stream finishes at 1:45pm, Bilingual Stream at 3:15pm"), you MUST create TWO separate event objects, each with its specific time and filtered list of class codes.
+
+Categorization Logic:
+You MUST assign a 'type' from this list:
+- HOLIDAY: Bank holidays, half terms, end of term holidays.
+- ACADEMIC: Parents evenings, mock exams, move-up days, workshops, INSET/PD days.
+- SPORTS: PE days, matches, sports days, swimming.
+- COMMUNITY: Fairs, coffee mornings, PTA meetings, charity events.
+- ARTS: Concerts, school plays, choir, art exhibitions.
+- TRIP: School excursions, forest school, residential trips.
+- WELLBEING: Webinars, ADHD support, parent wellbeing sessions, mental health talks.
+- ADMIN: Deadline for forms, payment reminders, generic school notices.
+- OTHER: Default if none match.
 
 Source Management:
 - If an event is found in multiple sources, consolidate them.
@@ -114,6 +126,7 @@ Each event object: {
     "classes": ["code1", "code2"] | ["All"],
     "summary": "string",
     "full_details": "string",
+    "type": "HOLIDAY" | "ACADEMIC" | "SPORTS" | "COMMUNITY" | "ARTS" | "TRIP" | "WELLBEING" | "ADMIN" | "OTHER",
     "source_title": "string",
     "source_date": "string",
     "source_time": "string",
@@ -281,7 +294,7 @@ def get_existing_events():
 
 def process_single_item(item, existing_db):
     """Processes search and Gemini extraction for a single item."""
-    print(f"Sending item '{item['subject'] if 'subject' in item else item.get('title')}' to Intelligence Engine...")
+    print(f"Sending item '{item['subject'] if 'subject' in item else item.get('title')}' to Calendar Aggregator...")
     prompt = (
         f"Existing Database: {json.dumps(existing_db)}\n"
         f"Source Title: {item.get('subject') or item.get('title')}\n"
@@ -361,7 +374,7 @@ def deduplicate_database():
                 
                 f"Return a JSON object with two keys:\n"
                 f"'deletes': [list of IDs to remove]\n"
-                f"'updates': [list of {id: int, merged_data: {...}}] to modify existing records with better summaries or combined class lists.\n\n"
+                "'updates': [list of {'id': int, 'merged_data': {...}}] to modify existing records with better summaries or combined class lists.\n\n"
                 f"Events: {json.dumps(items)}"
             )
             
@@ -450,4 +463,4 @@ if __name__ == "__main__":
     # Run Deduplication Pass at the very end
     deduplicate_database()
     
-    print("Intelligence Run Complete.")
+    print("Aggregator Run Complete.")
