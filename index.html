@@ -449,7 +449,13 @@
 
                         <div class="mt-4 pt-4 border-t border-gray-50 flex items-center justify-between gap-4">
                             <div class="flex flex-wrap gap-2">
-                                ${(e.classes || []).map(c => `<span class="px-2 py-0.5 border border-gray-100 bg-gray-50 rounded text-[10px] font-bold text-gray-400">${c}</span>`).join('')}
+                                ${(() => {
+                                    const classes = e.classes || [];
+                                    if (classes.length >= 15 || classes.includes('All')) {
+                                        return `<span class="px-2 py-0.5 border border-blue-100 bg-blue-50 rounded text-[10px] font-bold text-blue-600">All Classes</span>`;
+                                    }
+                                    return classes.map(c => `<span class="px-2 py-0.5 border border-gray-100 bg-gray-50 rounded text-[10px] font-bold text-gray-400">${c}</span>`).join('');
+                                })()}
                             </div>
                         </div>
                     </div>

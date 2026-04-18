@@ -81,11 +81,12 @@ Stream Logic Rules:
 2. "Xb" or "CE2B" (etc.) = Bilingual Stream ONLY (e.g. Y4b).
 3. INSET/PD days = English Stream ONLY (N, R, Y1, Y2, Y3, Y4, Y5, Y6). Bilingual students attend as normal.
 4. If an event mentions "all students" or "whole school", include all codes.
+5. SPLIT EVENTS: If an email mentions different times for different streams (e.g. "English Stream finishes at 1:45pm, Bilingual Stream at 3:15pm"), you MUST create TWO separate event objects, each with its specific time and filtered list of class codes.
 
 Source Management:
-- If an event is found in multiple sources (e.g., both a Newsletter and the Term Dates website), consolidate them.
+- If an event is found in multiple sources, consolidate them.
 - Store all sources in a 'sources' JSON array field. Each source object: {"title": "string", "date": "string", "time": "string"}.
-- Do NOT append source information to the 'full_details' text anymore.
+- Do NOT append source information to the 'full_details' text.
 - The 'source_title', 'source_date', and 'source_time' fields should still be populated with the information from the PRIMARY or MOST RECENT source for compatibility.
 - REMOVE the 'links' record from your JSON output entirely.
 
@@ -95,8 +96,9 @@ Task: Extract all events from the email and its attachments.
 
 Event Formatting Rules:
 1. Dates: YYYY-MM-DD. Include 'formatted_date_display' (e.g. "Mon 20 Apr").
-2. Summary: A concise 1-5 sentence overview for the main list view.
-3. Full Details: Provide an exhaustive, detailed extraction of all relevant context, notes, specific requirements (e.g., "bring a packed lunch", "wear PE kit", "return books by Monday"), or teacher instructions found in the source. Do not truncate useful secondary information.
+2. Summary: A concise 1-5 sentence overview.
+3. Full Details: Provide an exhaustive, detailed extraction of all context.
+4. If an event applies to all classes, set 'classes' to ["All"].
 
 Output: JSON array of events.
 Each event object: {
@@ -109,7 +111,7 @@ Each event object: {
     "formatted_date_display": "string",
     "time_type": "all-day" | "single" | "range",
     "time_value": "string",
-    "classes": ["code1", "code2"],
+    "classes": ["code1", "code2"] | ["All"],
     "summary": "string",
     "full_details": "string",
     "source_title": "string",
@@ -323,6 +325,73 @@ def sync_database(results):
             
     return success
 
+def deduplicate_database():
+    """Fetches upcoming events and asks Gemini to identify and merge duplicates."""
+    print("Initiating Global Deduplication Pass...")
+    try:
+        # Fetch events for the next 12 months
+        now = datetime.now()
+        res = supabase.table("events").select("*").gte("event_date", now.strftime("%Y-%m-%d")).order("event_date").execute()
+        events = res.data
+        if not events: return
+
+        # Group by date to keep context manageable
+        grouped = {}
+        for e in events:
+            date = e['event_date']
+            if date not in grouped: grouped[date] = []
+            grouped[date].append({
+                "id": e['id'],
+                "title": e['title'],
+                "time": e['time_value'],
+                "classes": e['classes'],
+                "summary": e['summary']
+            })
+
+        for date, items in grouped.items():
+            if len(items) < 2: continue
+            
+            print(f"Checking for duplicates on {date} ({len(items)} events)...")
+            prompt = (
+                f"Review the following school events for the date {date}. "
+                f"Identify any events that are actually the same event but with different descriptions or titles. "
+                f"Note: Some events might happen at the same time for DIFFERENT classes - those are NOT duplicates. "
+                f"If an event has been split into English and Bilingual stream specific times, those are NOT duplicates either. "
+                f"However, if two events have roughly the same title, same time, and overlapping classes, they should be merged. "
+                
+                f"Return a JSON object with two keys:\n"
+                f"'deletes': [list of IDs to remove]\n"
+                f"'updates': [list of {id: int, merged_data: {...}}] to modify existing records with better summaries or combined class lists.\n\n"
+                f"Events: {json.dumps(items)}"
+            )
+            
+            response = safe_generate_content(
+                contents=prompt,
+                system_instruction="You are a data deduplication expert. Your goal is to keep the school calendar clean and correct."
+            )
+            
+            try:
+                text = response.text.strip().replace('```json', '').replace('```', '')
+                plan = json.loads(text)
+                
+                # Execute Plan
+                for d_id in plan.get('deletes', []):
+                    print(f"Deleting duplicate event ID: {d_id}")
+                    supabase.table("events").delete().eq("id", d_id).execute()
+                
+                for up in plan.get('updates', []):
+                    u_id = up.get('id')
+                    data = up.get('merged_data')
+                    if u_id and data:
+                        print(f"Merging/Updating event ID: {u_id}")
+                        supabase.table("events").update(data).eq("id", u_id).execute()
+                        
+            except Exception as e:
+                print(f"Deduplication parse error for {date}: {e}")
+                
+    except Exception as e:
+        print(f"Deduplication pass failed: {e}")
+
 if __name__ == "__main__":
     if not all([EMAIL_USER, EMAIL_PASS, GEMINI_API_KEY, SUPABASE_URL, SUPABASE_KEY]):
         print("Missing environment variables.")
@@ -378,6 +447,7 @@ if __name__ == "__main__":
         if unique_terms:
             print(f"Syncing {len(unique_terms)} new term/holiday records.")
             sync_database(unique_terms)
-    else:
-        if not email_ids:
-            print("No new emails found.")
+    # Run Deduplication Pass at the very end
+    deduplicate_database()
+    
+    print("Intelligence Run Complete.")
