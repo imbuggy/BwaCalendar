@@ -27,24 +27,27 @@ SUPABASE_URL = os.getenv('SUPABASE_URL')
 SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 
 # Model & Client Setup
+MODEL_NAME = 'gemini-3-flash-preview'
 client = genai.Client(api_key=GEMINI_API_KEY)
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 def safe_generate_content(contents, system_instruction=None):
     """Wrapper for Gemini API with retry logic for 429 rate limits."""
     max_retries = 3
-    base_wait = 10
+    base_wait = 15 # Increased for higher safety
     
     for attempt in range(max_retries):
         try:
-            # We add a small proactive sleep to stay under free tier RPM limits
             if attempt > 0:
-                print(f"Retrying Gemini call (Attempt {attempt + 1}). Wait time: {base_wait * attempt}s")
+                print(f"Retrying Gemini (Attempt {attempt + 1}). Wait: {base_wait * attempt}s")
                 time.sleep(base_wait * attempt)
             
-            config = types.GenerateContentConfig(system_instruction=system_instruction or SYSTEM_INSTRUCTIONS)
+            config = types.GenerateContentConfig(
+                system_instruction=system_instruction or SYSTEM_INSTRUCTIONS,
+                temperature=0.1 # Low temperature for consistent extraction
+            )
             return client.models.generate_content(
-                model='gemini-3-flash-preview',
+                model=MODEL_NAME,
                 contents=contents,
                 config=config
             )
@@ -97,92 +100,22 @@ def update_system_meta(new_data):
         print(f"Error updating system meta: {e}")
 
 SYSTEM_INSTRUCTIONS = """
-Role: BWA/EdW School Calendar Aggregator. 
-Class & Stream Taxonomy (Strict Codes):
-- N = Nursery (English)
-- R = Reception English Stream
-- Rb = Reception Bilingual Stream / MSB
-- Y1 = Year 1 English Stream
-- Y1b = Year 1 Bilingual Stream / GSB
-- Y2 = Year 2 English Stream
-- Y2b = Year 2 Bilingual Stream / CPB
-- Y3 = Year 3 English Stream
-- Y3b = Year 3 Bilingual Stream / CE1B
-- Y4 = Year 4 English Stream
-- Y4b = Year 4 Bilingual Stream / CE2B
-- Y5 = Year 5 English Stream
-- Y5b = Year 5 Bilingual Stream / CM1B
-- Y6 = Year 6 English Stream
-- Y6b = Year 6 Bilingual Stream / CM2B
+Role: School Calendar Aggregator. 
+Extract events from school communications (emails/PDFs/Docs).
 
-Stream Logic Rules:
-1. "Year X" (no suffix) = English Stream ONLY (e.g. Y4).
-2. "Xb" or "CE2B" (etc.) = Bilingual Stream ONLY (e.g. Y4b).
-3. INSET/PD days = English Stream ONLY (N, R, Y1, Y2, Y3, Y4, Y5, Y6). Bilingual students attend as normal.
-4. If an event mentions "all students" or "whole school", include all codes.
-5. SPLIT EVENTS: If an email mentions different times for different streams (e.g. "English Stream finishes at 1:45pm, Bilingual Stream at 3:15pm"), you MUST create TWO separate event objects, each with its specific time and filtered list of class codes.
+Class Codes:
+N (Nursery), R (Reception), Rb (Reception Bil), Y1-Y6 (English), Y1b-Y6b (Bilingual).
+Codes CE1B/CPB/CM1B map to b-suffix (e.g. CPB -> Y2b).
 
-Categorization Logic:
-You MUST assign a 'type' from this list:
-- HOLIDAY: Bank holidays, half terms, end of term holidays.
-- ACADEMIC: Parents evenings, mock exams, move-up days, workshops, INSET/PD days.
-- SPORTS: PE days, matches, sports days, swimming.
-- COMMUNITY: Fairs, coffee mornings, PTA meetings, charity events.
-- ARTS: Concerts, school plays, choir, art exhibitions.
-- TRIP: School excursions, forest school, residential trips.
-- WELLBEING: Webinars, ADHD support, parent wellbeing sessions, mental health talks.
-- ADMIN: Deadline for forms, payment reminders, generic school notices, term dates.
-- OTHER: Default if none match.
-
-Deadline Identification (CRITICAL):
-For EVERY event, determine if it constitutes a firm parent-action deadline (e.g. "RSVP by", "Pay by", "Return form by", "Homework due", "Last day to...").
-- Set "is_deadline" to true if an action is required and has a hard time-limit.
-- Populate "deadline_desc" with a 3-5 word instruction (e.g., "Return consent form", "Complete payment", "Submit Y6 preferences").
-- If not a deadline, set "is_deadline" to false and "deadline_desc" to null.
-
-Source Management:
-- If an event is found in multiple sources, consolidate them.
-- Store all sources in a 'sources' JSON array field. Each source object: {"title": "string", "date": "string", "time": "string"}.
-- Do NOT append source information to the 'full_details' text.
-- The 'source_title', 'source_date', and 'source_time' fields should still be populated with the information from the PRIMARY or MOST RECENT source for compatibility.
-- REMOVE the 'links' record from your JSON output entirely.
-
-Privacy: If PII detected, return {"status": "REJECTED"}.
-
-Task: Extract all events from the email and its attachments. 
-
-Event Formatting Rules:
-1. Dates: YYYY-MM-DD. Include 'formatted_date_display' (e.g. "Mon 20 Apr").
-2. Summary: A concise 1-5 sentence overview.
-3. Full Details: Provide an exhaustive, detailed extraction of all context.
-4. If an event applies to all classes, set 'classes' to ["All"].
-
-Output: JSON array of events.
-Each event object: {
-  "action": "insert" | "update",
-  "match_id": integer | null,
-  "event_data": {
-    "title": "string",
-    "event_date": "YYYY-MM-DD",
-    "event_date_end": "YYYY-MM-DD" | null,
-    "formatted_date_display": "string",
-    "time_type": "all-day" | "single" | "range",
-    "time_value": "string",
-    "classes": ["code1", "code2"] | ["All"],
-    "summary": "string",
-    "full_details": "string",
-    "type": "HOLIDAY" | "ACADEMIC" | "SPORTS" | "COMMUNITY" | "ARTS" | "TRIP" | "WELLBEING" | "ADMIN" | "OTHER",
-    "is_deadline": boolean,
-    "deadline_desc": "string" | null,
-    "source_title": "string",
-    "source_date": "string",
-    "source_time": "string",
-    "sources": [
-       {"title": "string", "date": "string", "time": "string"}
-    ],
-    "status": "approved"
-  }
-}
+Rules:
+1. "Year X" = English ONLY. "Xb" = Bilingual ONLY.
+2. INSET/PD = English ONLY (N-Y6).
+3. "All students" = All codes.
+4. Categorize: HOLIDAY, ACADEMIC, SPORTS, COMMUNITY, ARTS, TRIP, WELLBEING, ADMIN.
+5. Set "is_deadline" (bool) and "deadline_desc" (3-5 words) for action items (forms, payments).
+6. Consolidate sources into 'sources' array.
+7. Output: JSON array of {action: 'insert'|'update', match_id: int|null, event_data: {...}}.
+8. Privacy: If PII detected, status: REJECTED.
 """
 
 def extract_pdf_text(payload):
@@ -339,23 +272,28 @@ def get_existing_events():
     response = supabase.table("events").select("*").execute()
     return response.data
 
-def process_single_item(item, existing_db):
-    """Processes search and Gemini extraction for a single item."""
-    print(f"Sending item '{item['subject'] if 'subject' in item else item.get('title')}' to Calendar Aggregator...")
-    prompt = (
-        f"Existing Database: {json.dumps(existing_db)}\n"
-        f"Source Title: {item.get('subject') or item.get('title')}\n"
-        f"Source Date: {item.get('date')}\n"
-        f"Content: {item.get('content') or item.get('html_text')}"
-    )
+def process_batch(items, existing_db):
+    """Processes multiple items in a single Gemini call to save credits."""
+    if not items: return []
     
+    print(f"Batch processing {len(items)} items to save AI credits...")
+    
+    # Construct a single prompt for all items
+    db_summary = [{"t": e['title'], "d": e['event_date']} for e in existing_db[-60:]]
+    batch_prompt = f"Existing Database Snippet: {json.dumps(db_summary)}\n\n"
+    for i, item in enumerate(items):
+        batch_prompt += f"--- ITEM {i+1} ---\n"
+        batch_prompt += f"Source: {item.get('subject')}\n"
+        batch_prompt += f"Date: {item.get('date')}\n"
+        batch_prompt += f"Content: {item.get('content')[:6000]}\n\n"
+
     try:
-        response = safe_generate_content(contents=prompt)
+        response = safe_generate_content(contents=batch_prompt)
         text = response.text.strip().replace('```json', '').replace('```', '')
         results = json.loads(text)
         return results if isinstance(results, list) else [results]
     except Exception as e:
-        print(f"Gemini processing failed: {e}")
+        print(f"Batch processing failed: {e}")
         return None
 
 def sync_database(results):
@@ -477,27 +415,36 @@ if __name__ == "__main__":
     meta = get_system_meta()
     mail, email_ids = fetch_emails()
     
-    # Update last scan time info
-    update_system_meta({})
-
-    # Process emails one by one
+    # Process emails in batches to save credits
     if email_ids and mail:
         db_state = get_existing_events()
+        batch_items = []
+        processed_ids = []
+        
         for e_id in email_ids:
             item = parse_single_email(mail, e_id)
-            if not item: continue
+            if item:
+                batch_items.append(item)
+                processed_ids.append(e_id)
             
-            results = process_single_item(item, db_state)
-            if results:
-                if sync_database(results):
-                    print(f"Successfully processed and synced '{item['subject']}'. Marking as READ.")
-                    mail.store(e_id, '+FLAGS', '\\Seen')
-                    db_state = get_existing_events() 
-                else:
-                    print(f"Sync failed for '{item['subject']}'. Keeping as UNREAD.")
-            else:
-                print(f"Gemini processing failed for '{item['subject']}'. Keeping as UNREAD.")
-            time.sleep(3)
+            # Use batches of 3 to balance tokens vs credits
+            if len(batch_items) >= 3:
+                results = process_batch(batch_items, db_state)
+                if results and sync_database(results):
+                    for pid in processed_ids:
+                        mail.store(pid, '+FLAGS', '\\Seen')
+                    db_state = get_existing_events()
+                batch_items = []
+                processed_ids = []
+                time.sleep(10) # Safe cooldown
+
+        # Flush remaining
+        if batch_items:
+            results = process_batch(batch_items, db_state)
+            if results and sync_database(results):
+                for pid in processed_ids:
+                    mail.store(pid, '+FLAGS', '\\Seen')
+            time.sleep(5)
 
     if mail:
         mail.logout()

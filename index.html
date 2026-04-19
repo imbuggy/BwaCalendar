@@ -374,14 +374,21 @@
                 if (visible.length < 3) visible = deadlines.slice(0, 3);
                 
                 actionList.innerHTML = visible.map(e => {
-                    const isUrgent = (new Date(e.event_date) - TODAY) <= (48 * 60 * 60 * 1000);
+                    const diffDays = Math.round((new Date(e.event_date) - TODAY) / (1000 * 60 * 60 * 24));
+                    const isUrgent = diffDays <= 2;
+                    let relTime = "";
+                    if (diffDays === 0) relTime = "TODAY";
+                    else if (diffDays === 1) relTime = "TOMORROW";
+                    else if (diffDays > 1) relTime = `IN ${diffDays} DAYS`;
+
                     return `
                         <div onclick="document.getElementById('event-${e.id}').scrollIntoView({behavior:'smooth', block:'start'})" 
                              class="py-1.5 px-3 border-l-2 rounded-r-md flex items-center justify-between gap-3 cursor-pointer hover:bg-white transition-all ${isUrgent ? 'bg-amber-50/50 border-amber-400' : 'bg-slate-50/50 border-slate-300'}">
-                            <div class="flex items-center gap-2 flex-1 min-w-0">
-                                <span class="text-[10px] shrink-0 font-black ${isUrgent ? 'text-amber-900' : 'text-slate-700'} uppercase truncate">${e.deadline_desc || e.title}</span>
+                            <div class="flex items-center gap-3 flex-1 min-w-0">
+                                <span class="text-[9px] font-black shrink-0 ${isUrgent ? 'text-amber-600' : 'text-blue-600'} w-20">${relTime}</span>
+                                <span class="text-[8px] font-bold uppercase opacity-60 whitespace-nowrap">${e.formatted_date_display || e.event_date}</span>
+                                <span class="text-[10px] font-black ${isUrgent ? 'text-amber-900' : 'text-slate-700'} uppercase truncate">${e.deadline_desc || e.title}</span>
                             </div>
-                            <span class="text-[8px] font-bold uppercase opacity-70 whitespace-nowrap">${e.formatted_date_display || e.event_date}</span>
                         </div>
                     `;
                 }).join('');
@@ -395,7 +402,7 @@
         function renderWeekGlance(events) {
             const container = document.getElementById('week-glance-content');
             if (!container) return;
-            const start = new Date(TODAY); start.setDate(TODAY.getDate() - 1);
+            const start = new Date(TODAY);
             let html = "";
 
             const catDots = {
@@ -458,7 +465,10 @@
             
             const filtered = window.allEvents.filter(e => {
                 if (!window.showPastEvents && e.event_date < TODAY_STR) return false;
-                if (!(window.selectedClasses.length === 0 || e.classes.some(c => window.selectedClasses.includes(c)))) return false;
+                const isMatch = window.selectedClasses.length === 0 || 
+                                e.classes.includes('All') || 
+                                e.classes.some(c => window.selectedClasses.includes(c));
+                if (!isMatch) return false;
                 if (window.hiddenCategories.includes(e.type)) return false;
                 if (window.searchQuery && !e.title.toLowerCase().includes(window.searchQuery.toLowerCase())) return false;
                 return true;
@@ -492,10 +502,12 @@
         function setupEventListeners() {
             document.getElementById('search-input').addEventListener('input', (e) => {
                 window.searchQuery = e.target.value;
+                window.visibleLimit = 10; // Reset pagination on search
                 renderEvents();
             });
             document.getElementById('show-past-toggle').addEventListener('change', (e) => {
                 window.showPastEvents = e.target.checked;
+                window.visibleLimit = 10; // Reset pagination
                 saveState();
                 renderEvents();
             });
@@ -505,6 +517,27 @@
             };
             document.addEventListener('click', () => document.getElementById('category-panel').classList.add('hidden'));
             document.getElementById('category-panel').onclick = (e) => e.stopPropagation();
+
+            // Infinite Scroll Implementation
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    const totalFiltered = window.allEvents.filter(e => {
+                        if (!window.showPastEvents && e.event_date < TODAY_STR) return false;
+                        if (!(window.selectedClasses.length === 0 || e.classes.some(c => window.selectedClasses.includes(c)))) return false;
+                        if (window.hiddenCategories.includes(e.type)) return false;
+                        if (window.searchQuery && !e.title.toLowerCase().includes(window.searchQuery.toLowerCase())) return false;
+                        return true;
+                    }).length;
+
+                    if (window.visibleLimit < totalFiltered) {
+                        window.visibleLimit += 10;
+                        renderEvents();
+                    }
+                }
+            }, { threshold: 0.1 });
+
+            const trigger = document.getElementById('load-more-trigger');
+            if (trigger) observer.observe(trigger);
         }
 
         // Initialize
