@@ -57,6 +57,45 @@ def safe_generate_content(contents, system_instruction=None):
             else:
                 raise e
 
+def get_system_meta():
+    """Retrieves metadata stored in the SYSTEM_META record."""
+    try:
+        res = supabase.table("events").select("*").eq("type", "SYSTEM_META").execute()
+        if res.data:
+            meta = res.data[0]
+            try:
+                # Store extra state in the 'full_details' field as JSON
+                return json.loads(meta.get('full_details') or '{}')
+            except:
+                return {}
+    except Exception as e:
+        print(f"Error fetching system meta: {e}")
+    return {}
+
+def update_system_meta(new_data):
+    """Updates metadata in the SYSTEM_META record."""
+    try:
+        current = get_system_meta()
+        current.update(new_data)
+        now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
+        payload = {
+            "title": "System Meta",
+            "type": "SYSTEM_META",
+            "summary": now_str, # Used for UI 'Last Updated' display
+            "full_details": json.dumps(current),
+            "event_date": "1970-01-01",
+            "status": "approved"
+        }
+        
+        res = supabase.table("events").select("id").eq("type", "SYSTEM_META").execute()
+        if res.data:
+            supabase.table("events").update(payload).eq("id", res.data[0]['id']).execute()
+        else:
+            supabase.table("events").insert(payload).execute()
+    except Exception as e:
+        print(f"Error updating system meta: {e}")
+
 SYSTEM_INSTRUCTIONS = """
 Role: BWA/EdW School Calendar Aggregator. 
 Class & Stream Taxonomy (Strict Codes):
@@ -339,21 +378,31 @@ def sync_database(results):
     return success
 
 def deduplicate_database():
-    """Fetches upcoming events and asks Gemini to identify and merge duplicates."""
-    print("Initiating Global Deduplication Pass...")
+    """Fetches upcoming events and asks Gemini to identify and merge duplicates. 
+    Resumes from the last processed date to save credits.
+    """
+    print("Initiating Stateful Deduplication Pass...")
     try:
-        # Fetch events for the next 12 months
-        now = datetime.now()
-        res = supabase.table("events").select("*").gte("event_date", now.strftime("%Y-%m-%d")).order("event_date").execute()
+        meta = get_system_meta()
+        last_date = meta.get('last_dedup_date')
+        
+        # Fetch upcoming events
+        now_date = datetime.now().strftime("%Y-%m-%d")
+        start_date = last_date if last_date and last_date >= now_date else now_date
+        
+        res = supabase.table("events").select("*").gte("event_date", start_date).order("event_date").execute()
         events = res.data
-        if not events: return
+        if not events:
+            # If we reached the end, reset to today so next run starts over
+            update_system_meta({"last_dedup_date": now_date})
+            return
 
-        # Group by date to keep context manageable
+        # Group by date
         grouped = {}
         for e in events:
-            date = e['event_date']
-            if date not in grouped: grouped[date] = []
-            grouped[date].append({
+            d = e['event_date']
+            if d not in grouped: grouped[d] = []
+            grouped[d].append({
                 "id": e['id'],
                 "title": e['title'],
                 "time": e['time_value'],
@@ -361,46 +410,53 @@ def deduplicate_database():
                 "summary": e['summary']
             })
 
-        for date, items in grouped.items():
-            if len(items) < 2: continue
+        # Process a small batch of dates
+        processed_count = 0
+        sorted_dates = sorted(grouped.keys())
+        
+        for date in sorted_dates:
+            items = grouped[date]
+            if len(items) < 2: 
+                update_system_meta({"last_dedup_date": date})
+                continue
             
+            if processed_count >= 5: 
+                print(f"Deduplication batch limit reached (5 dates). Will resume from {date} next time.")
+                break
+                
             print(f"Checking for duplicates on {date} ({len(items)} events)...")
             prompt = (
                 f"Review the following school events for the date {date}. "
-                f"Identify any events that are actually the same event but with different descriptions or titles. "
-                f"Note: Some events might happen at the same time for DIFFERENT classes - those are NOT duplicates. "
-                f"If an event has been split into English and Bilingual stream specific times, those are NOT duplicates either. "
-                f"However, if two events have roughly the same title, same time, and overlapping classes, they should be merged. "
-                
-                f"Return a JSON object with two keys:\n"
-                f"'deletes': [list of IDs to remove]\n"
-                "'updates': [list of {'id': int, 'merged_data': {...}}] to modify existing records with better summaries or combined class lists.\n\n"
+                f"Identify duplicates for merging. \n\n"
                 f"Events: {json.dumps(items)}"
             )
             
             response = safe_generate_content(
                 contents=prompt,
-                system_instruction="You are a data deduplication expert. Your goal is to keep the school calendar clean and correct."
+                system_instruction="You are a data deduplication expert. Return JSON: {'deletes': [ids], 'updates': [{'id': int, 'merged_data': {...}}]}"
             )
             
+            if not response: 
+                print("Gemini failed during deduplication. Stopping batch.")
+                break
+
             try:
                 text = response.text.strip().replace('```json', '').replace('```', '')
                 plan = json.loads(text)
                 
                 # Execute Plan
                 for d_id in plan.get('deletes', []):
-                    print(f"Deleting duplicate event ID: {d_id}")
                     supabase.table("events").delete().eq("id", d_id).execute()
-                
                 for up in plan.get('updates', []):
-                    u_id = up.get('id')
-                    data = up.get('merged_data')
-                    if u_id and data:
-                        print(f"Merging/Updating event ID: {u_id}")
-                        supabase.table("events").update(data).eq("id", u_id).execute()
+                    if up.get('id') and up.get('merged_data'):
+                        supabase.table("events").update(up['merged_data']).eq("id", up['id']).execute()
+                
+                update_system_meta({"last_dedup_date": date})
+                processed_count += 1
+                time.sleep(2)
                         
             except Exception as e:
-                print(f"Deduplication parse error for {date}: {e}")
+                print(f"Deduplication apply error for {date}: {e}")
                 
     except Exception as e:
         print(f"Deduplication pass failed: {e}")
@@ -410,56 +466,56 @@ if __name__ == "__main__":
         print("Missing environment variables.")
         exit(1)
         
+    meta = get_system_meta()
     mail, email_ids = fetch_emails()
     
-    # Update last scan time in DB
-    now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    try:
-        meta_res = supabase.table("events").select("id").eq("type", "SYSTEM_META").execute()
-        if meta_res.data:
-            supabase.table("events").update({"summary": now_str}).eq("type", "SYSTEM_META").execute()
-        else:
-            supabase.table("events").insert({"title": "System Meta", "type": "SYSTEM_META", "summary": now_str, "event_date": "1970-01-01", "status": "approved"}).execute()
-    except Exception as e:
-        print(f"Metadata update failed: {e}")
+    # Update last scan time info
+    update_system_meta({})
 
     # Process emails one by one
     if email_ids and mail:
         db_state = get_existing_events()
         for e_id in email_ids:
-            # Parse
             item = parse_single_email(mail, e_id)
-            if not item:
-                continue # Already handled in parse_single_email (skipped/logged)
+            if not item: continue
             
-            # Gemini Extraction
             results = process_single_item(item, db_state)
             if results:
-                # Sync
                 if sync_database(results):
                     print(f"Successfully processed and synced '{item['subject']}'. Marking as READ.")
                     mail.store(e_id, '+FLAGS', '\\Seen')
-                    # Refresh DB state for the next email to avoid duplicates within the same batch
                     db_state = get_existing_events() 
                 else:
                     print(f"Sync failed for '{item['subject']}'. Keeping as UNREAD.")
             else:
                 print(f"Gemini processing failed for '{item['subject']}'. Keeping as UNREAD.")
-            
-            # Proactive sleep to respect Gemini Free Tier limits
-            time.sleep(2)
+            time.sleep(3)
 
     if mail:
         mail.logout()
     
-    # Process Term Dates (Website)
-    term_results = fetch_term_dates()
-    if term_results:
-        db_state = get_existing_events()
-        unique_terms = [tr for tr in term_results if not any(e['title'] == tr['event_data']['title'] and e['event_date'] == tr['event_data']['event_date'] for e in db_state)]
-        if unique_terms:
-            print(f"Syncing {len(unique_terms)} new term/holiday records.")
-            sync_database(unique_terms)
+    # Process Term Dates (Website) - Throttled to once every 30 days
+    last_term_check = meta.get('last_term_check')
+    days_since_check = 99
+    if last_term_check:
+        try:
+            last_dt = datetime.strptime(last_term_check, "%Y-%m-%d")
+            days_since_check = (datetime.now() - last_dt).days
+        except:
+            days_since_check = 99
+
+    if days_since_check >= 30:
+        term_results = fetch_term_dates()
+        if term_results:
+            db_state = get_existing_events()
+            unique_terms = [tr for tr in term_results if not any(e['title'] == tr['event_data']['title'] and e['event_date'] == tr['event_data']['event_date'] for e in db_state)]
+            if unique_terms:
+                print(f"Syncing {len(unique_terms)} new term/holiday records.")
+                sync_database(unique_terms)
+            update_system_meta({"last_term_check": datetime.now().strftime("%Y-%m-%d")})
+    else:
+        print(f"Skipping term dates check (last check was {days_since_check} days ago).")
+
     # Run Deduplication Pass at the very end
     deduplicate_database()
     
