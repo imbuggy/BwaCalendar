@@ -45,7 +45,8 @@ def safe_generate_content(contents, system_instruction=None):
             config = types.GenerateContentConfig(
                 system_instruction=system_instruction or SYSTEM_INSTRUCTIONS,
                 temperature=0.1, # Low temperature for consistent extraction
-                thinking_config=types.ThinkingConfig(include_thoughts=False) # Minimal reasoning to save costs
+                thinking_config=types.ThinkingConfig(include_thoughts=False), # Minimal reasoning to save costs
+                response_mime_type="application/json"
             )
             return client.models.generate_content(
                 model=MODEL_NAME,
@@ -102,21 +103,42 @@ def update_system_meta(new_data):
 
 SYSTEM_INSTRUCTIONS = """
 Role: School Calendar Aggregator. 
-Extract events from school communications (emails/PDFs/Docs).
+Extract school events with ZERO-TOLERANCE for schema errors.
 
-Class Codes:
-N (Nursery), R (Reception), Rb (Reception Bil), Y1-Y6 (English), Y1b-Y6b (Bilingual).
-Codes CE1B/CPB/CM1B map to b-suffix (e.g. CPB -> Y2b).
+STRICT SCHEMA RULES:
+Required JSON Structure: Array of {
+  "action": "insert"|"update",
+  "match_id": int|null,
+  "status": "approved"|"REJECTED",
+  "event_data": {
+    "title": string,
+    "event_date": "YYYY-MM-DD",
+    "event_date_end": "YYYY-MM-DD"|null,
+    "formatted_date_display": string,
+    "time_type": "all-day"|"single"|"range",
+    "time_value": string,
+    "classes": string[] (e.g. ["Y1", "Y2b", "All"]),
+    "summary": string,
+    "full_details": string,
+    "type": "HOLIDAY"|"ACADEMIC"|"SPORTS"|"COMMUNITY"|"ARTS"|"TRIP"|"WELLBEING"|"ADMIN"|"OTHER",
+    "is_deadline": boolean,
+    "deadline_desc": string|null,
+    "source_title": string,
+    "source_date": string,
+    "source_time": string,
+    "sources": [{"title": string, "date": string, "time": string}]
+  }
+}
 
-Rules:
-1. "Year X" = English ONLY. "Xb" = Bilingual ONLY.
-2. INSET/PD = English ONLY (N-Y6).
-3. "All students" = All codes.
-4. Categorize: HOLIDAY, ACADEMIC, SPORTS, COMMUNITY, ARTS, TRIP, WELLBEING, ADMIN.
-5. Set "is_deadline" (bool) and "deadline_desc" (3-5 words) for action items (forms, payments).
-6. Consolidate sources into 'sources' array.
-7. Output: JSON array of {action: 'insert'|'update', match_id: int|null, event_data: {...}}.
-8. Privacy: If PII detected, status: REJECTED.
+NEGATIVE CONSTRAINTS:
+- NEVER use the key "category". You MUST use "type".
+- NEVER use markdown outside the JSON block.
+- NEVER truncate titles or critical details.
+- PII check: If found, status="REJECTED".
+
+Logic:
+INSET/PD = English Stream ONLY (N, R, Y1, Y2, Y3, Y4, Y5, Y6).
+"X Stream finishes at..." -> Split into separate events per stream.
 """
 
 def extract_pdf_text(payload):
@@ -311,6 +333,10 @@ def sync_database(results):
             action = item.get('action')
             data = item.get('event_data')
             if not data: continue
+
+            # Safety Remap: AI sometimes uses 'category' instead of 'type'
+            if 'category' in data and 'type' not in data:
+                data['type'] = data.pop('category')
 
             if action == 'insert':
                 print(f"Inserting new event: {data.get('title')}")
