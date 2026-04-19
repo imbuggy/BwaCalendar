@@ -12,9 +12,9 @@
     </style>
 </head>
 <body class="bg-gray-50 font-sans text-gray-900">
-    <div id="calendar-app" class="max-w-6xl mx-auto p-4 md:p-8">
+    <div id="calendar-app" class="max-w-6xl mx-auto p-3 md:p-6">
         <!-- Header -->
-        <div class="flex items-center justify-between gap-4 mb-6">
+        <div class="flex items-center justify-between gap-4 mb-3">
             <div class="flex flex-col">
                 <h1 class="text-xl font-black tracking-tight text-gray-900 uppercase leading-none">BWA Calendar</h1>
                 <div id="last-updated-display" class="text-[9px] font-bold text-gray-400 mt-1 uppercase tracking-tight">Syncing...</div>
@@ -45,69 +45,33 @@
             </div>
         </div>
 
-        <!-- Filters -->
-        <div class="mb-4 bg-white border border-gray-200 rounded-2xl shadow-sm">
-            <!-- Search & Actions Row -->
-            <div class="flex items-center p-2 px-4 gap-4 border-b border-gray-100 rounded-t-2xl">
-                <div class="relative flex-1">
-                    <input type="text" id="search-input" placeholder="Search events..." class="w-full pl-8 pr-4 py-2 border-none text-sm focus:ring-0 outline-none transition-all" />
-                    <svg class="w-4 h-4 absolute left-1 top-2.5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                </div>
-                
-                <div class="flex items-center gap-3 shrink-0 border-l border-gray-100 pl-4 py-1">
-                    <!-- Global Filter Dropdown -->
-                    <div class="relative group/filter">
-                        <button id="filter-dropdown-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-50 hover:bg-gray-100 border border-gray-100 transition-all text-gray-600">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
-                            <span class="text-[10px] font-black uppercase tracking-widest">Filter</span>
-                            <div id="active-filter-dot" class="hidden w-2 h-2 bg-blue-600 rounded-full border-2 border-white shadow-sm -mt-3 -mr-1"></div>
-                        </button>
-                        
-                        <div id="filter-dropdown-menu" class="absolute right-0 mt-2 w-64 bg-white border border-gray-100 rounded-2xl shadow-2xl z-30 hidden py-3">
-                            <div class="px-4 pb-3 mb-2 border-b border-gray-50 flex items-center justify-between">
-                                <span class="text-[10px] font-black text-gray-900 uppercase tracking-widest">Filters</span>
-                                <button onclick="document.getElementById('filter-dropdown-menu').classList.add('hidden')" class="bg-blue-600 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-tighter hover:bg-blue-700 transition-colors">Apply</button>
-                            </div>
-
-                            <div class="px-4 pb-4">
-                                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Classes</span>
-                                <div class="max-h-48 overflow-y-auto mt-2 grid grid-cols-3 gap-1.5" id="class-filter-grid">
-                                    <!-- Dynamic Classes -->
-                                </div>
-                            </div>
-
-                            <div class="px-4 py-3 border-t border-gray-50">
-                                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Categories</span>
-                                <div id="category-filter-list" class="mt-2 space-y-0.5">
-                                    <!-- Dynamic Categories -->
-                                </div>
-                            </div>
-
-                            <div class="px-4 pt-2 border-t border-gray-50">
-                                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Extra</span>
-                                <div class="mt-2">
-                                    <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" id="show-past-toggle-dropdown" class="sr-only peer">
-                                        <div class="w-7 h-3.5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-2.5 after:w-2.5 after:transition-all peer-checked:bg-blue-600"></div>
-                                        <span class="ms-1.5 text-[10px] font-bold text-gray-500 uppercase">Show Past</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Class Configuration (Primary Setup: Top Section) -->
+        <div id="class-config-section" class="mb-3 bg-white border border-blue-100 rounded-[20px] shadow-sm p-3 transition-all ring-2 ring-blue-50/10">
+            <div class="flex items-center justify-between px-1">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-7 h-7 bg-blue-50 rounded-lg flex items-center justify-center shrink-0">
+                        <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    </div>
+                    <div class="flex flex-col min-w-0">
+                        <h3 class="text-[10px] font-black text-gray-900 uppercase tracking-widest leading-tight">My Classes</h3>
+                        <div id="class-selection-summary" class="text-[9px] font-bold text-blue-500 truncate uppercase mt-0.5">All Classes</div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Active Filters (Only shows when restricting) -->
-            <div id="active-filters-bar" class="hidden bg-gray-50/50 p-2 px-4 flex flex-wrap items-center gap-2 border-t border-gray-100 rounded-b-2xl">
-                <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest mr-1">Active:</span>
-                <div id="active-filters-pills" class="flex flex-wrap gap-1.5 flex-1">
-                    <!-- Dynamic Pills -->
+                <div class="flex items-center gap-2">
+                    <button id="toggle-all-classes-btn" onclick="toggleSelectAllClasses()" class="hidden text-[10px] font-black text-gray-400 uppercase tracking-tight hover:text-blue-600 mr-2">Show All</button>
+                    <button onclick="toggleClassesCollapse()" id="class-expand-btn" class="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-700 transition-all shadow-sm">
+                        <span>Configure</span>
+                        <svg id="class-expand-icon" class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
                 </div>
-                <button onclick="clearAllFilters()" class="text-[9px] font-black text-red-500 hover:text-red-600 uppercase tracking-widest underline decoration-2 underline-offset-2">Clear All</button>
+            </div>
+            
+            <div id="class-grid-container" class="hidden mt-4 pt-4 border-t border-blue-50 animate-in fade-in slide-in-from-top-2">
+                <div id="class-filter-grid" class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-9 gap-2">
+                    <!-- Dynamic Classes Injected Here -->
+                </div>
             </div>
         </div>
-
 
         <!-- Setup State -->
         <div id="setup-view" class="hidden min-h-[400px] flex items-center justify-center p-6 font-sans">
@@ -134,25 +98,92 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                     </a>
-                    
-                    <div class="p-4 bg-blue-50/50 rounded-xl border border-blue-100/50">
-                        <p class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">2. Add these variables</p>
-                        <div class="space-y-2">
-                            <div class="flex items-center justify-between text-xs font-mono bg-white p-2 rounded border border-blue-100">
-                                <span class="text-blue-700">SUPABASE_URL</span>
-                                <span class="text-gray-400">Project URL</span>
-                            </div>
-                            <div class="flex items-center justify-between text-xs font-mono bg-white p-2 rounded border border-blue-100">
-                                <span class="text-blue-700">SUPABASE_KEY</span>
-                                <span class="text-gray-400">Anon Public Key</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="mt-8 pt-6 border-t border-gray-100 text-center">
                     <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-1">Status</p>
                     <p id="setup-status" class="text-xs text-blue-500 font-medium">Waiting for configuration...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Morning Routine & Deadlines Bento Section -->
+        <div id="proactive-widgets" class="mb-6 space-y-4">
+            <!-- Morning Routine (Bento Style) -->
+            <div id="morning-routine" class="hidden">
+                <div class="px-1 mb-3 flex items-center justify-between">
+                    <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Morning Routine</h4>
+                </div>
+                <div id="morning-routine-grid" class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <!-- Cards injected here -->
+                </div>
+            </div>
+
+            <!-- Action Required (Deadlines) -->
+            <div id="action-required" class="hidden">
+                <div class="px-1 mb-3 flex items-center justify-between">
+                    <h4 class="text-[10px] font-black text-amber-500 uppercase tracking-[0.2em]">Don't Forget</h4>
+                </div>
+                <div id="action-required-list" class="space-y-2">
+                    <!-- Deadlines injected here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Weekly Glance -->
+        <div id="week-glance" class="mb-4">
+            <div class="flex items-center justify-between mb-3 px-1">
+                <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Weekly Snapshot</h4>
+                <span class="text-[9px] font-bold text-blue-500 flex items-center gap-1 opacity-60">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    Scroll for more
+                </span>
+            </div>
+            <div id="week-glance-content" class="flex gap-2.5 overflow-x-auto pb-4 no-scrollbar -mx-1 px-1">
+                <!-- Dates injected here -->
+            </div>
+        </div>
+
+        <!-- Main Feed Filters (Relocated above event list) -->
+        <div id="feed-filters" class="mb-6 sticky top-0 z-20 bg-gray-50/95 backdrop-blur py-2">
+            <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
+                <div class="flex items-center divide-x divide-gray-100">
+                    <!-- Search -->
+                    <div class="relative flex-1">
+                        <input type="text" id="search-input" placeholder="Search event list..." class="w-full pl-9 pr-4 py-3.5 text-xs focus:ring-0 outline-none bg-transparent font-medium" />
+                        <svg class="w-4 h-4 absolute left-3 top-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    
+                    <!-- Filters Trigger -->
+                    <div class="px-2 flex items-center gap-1">
+                        <div id="quick-category-pills" class="hidden sm:flex items-center gap-1 mr-2 border-r border-gray-100 pr-2">
+                            <!-- Injected Quick Toggles -->
+                        </div>
+                        <button id="filter-trigger" class="flex items-center gap-1.5 p-2 rounded-lg hover:bg-gray-100 transition-all group">
+                            <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
+                            <span class="text-[9px] font-black uppercase text-gray-500 hidden md:inline tracking-widest leading-none">Filters</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category Overlay -->
+            <div id="category-panel" class="hidden mt-2 bg-white border border-gray-100 rounded-2xl shadow-xl p-4 animate-in fade-in slide-in-from-top-2">
+                <div class="flex items-center justify-between mb-4 border-b border-gray-50 pb-2">
+                    <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Filter by Type</span>
+                    <div class="flex items-center gap-4">
+                        <label class="flex items-center gap-2 cursor-pointer group">
+                            <input type="checkbox" id="show-past-toggle" class="sr-only peer">
+                            <div class="w-6 h-3 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 relative transition-colors">
+                                <div class="absolute top-0.5 left-0.5 w-2 h-2 bg-white rounded-full transition-transform peer-checked:translate-x-3"></div>
+                            </div>
+                            <span class="text-[9px] font-black uppercase text-gray-400 group-hover:text-gray-600">Passed Events</span>
+                        </label>
+                        <button onclick="document.getElementById('category-panel').classList.add('hidden')" class="bg-blue-600 text-white text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">Apply</button>
+                    </div>
+                </div>
+                <div id="category-filter-list" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                    <!-- Categories -->
                 </div>
             </div>
         </div>
@@ -175,156 +206,67 @@
     </div>
 
     <script type="module">
-        // Initialization Logic
-        // These placeholders are replaced by GitHub Actions during deployment.
-        // NOTE: Use your Supabase 'anon' (public) key here (e.g. starts with 'eyJ' or 'sb_').
+        // --- Core Setup & State ---
         let SUPABASE_URL = '__INJECT_SUPABASE_URL__'; 
         let SUPABASE_KEY = '__INJECT_SUPABASE_KEY__';
-
-        // Diagnostics - we log lengths safely
-        const getDisplayLength = (s) => (s && typeof s === 'string') ? s.length : 0;
         
-        // We use join to prevent the build-time 'replace' from hitting these strings
-        const URL_PH = ['__INJECT', 'SUPABASE_URL__'].join('_');
-        const KEY_PH = ['__INJECT', 'SUPABASE_KEY__'].join('_');
+        // Initialize State from LocalStorage
+        window.showPastEvents = localStorage.getItem('showPastEvents') === 'true';
+        window.selectedClasses = JSON.parse(localStorage.getItem('selectedClasses') || '[]');
+        window.hiddenCategories = JSON.parse(localStorage.getItem('hiddenCategories') || '[]');
+        window.searchQuery = "";
+        window.visibleLimit = 10;
+        window.allEvents = [];
+        
+        const localNow = new Date();
+        const TODAY_STR = localNow.getFullYear() + '-' + String(localNow.getMonth() + 1).padStart(2, '0') + '-' + String(localNow.getDate()).padStart(2, '0');
+        const TODAY = new Date(TODAY_STR); // Local midnight
+        const ALL_CATEGORIES = ['HOLIDAY', 'ACADEMIC', 'SPORTS', 'WELLBEING', 'COMMUNITY', 'ARTS', 'TRIP', 'ADMIN', 'OTHER'];
+        const ALL_CLASSES = ['N', 'R', 'Rb', 'Y1', 'Y1b', 'Y2', 'Y2b', 'Y3', 'Y3b', 'Y4', 'Y4b', 'Y5', 'Y5b', 'Y6', 'Y6b'];
 
-        console.log("Supabase Pre-Check:", {
-            urlLength: getDisplayLength(SUPABASE_URL),
-            keyLength: getDisplayLength(SUPABASE_KEY),
-            urlIsPlaceholder: SUPABASE_URL === URL_PH,
-            keyIsPlaceholder: SUPABASE_KEY === KEY_PH
-        });
-
-        // Check for Vite environment variables (AI Studio Preview)
+        // Env Var Overrides
         try {
             if (typeof import.meta !== 'undefined' && import.meta.env) {
                 const viteUrl = import.meta.env.VITE_SUPABASE_URL;
                 const viteKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_KEY;
-                
-                // Only override if we actually have values in the Vite environment
-                if (viteUrl && viteUrl.length > 10 && !viteUrl.includes('INJECT_SUPABASE_URL')) {
-                    SUPABASE_URL = viteUrl;
-                    console.log("Using Vite URL override");
-                }
-                if (viteKey && viteKey.length > 10 && !viteKey.includes('INJECT_SUPABASE_KEY')) {
-                    SUPABASE_KEY = viteKey;
-                    console.log("Using Vite Key override");
-                }
+                if (viteUrl && !viteUrl.includes('INJECT')) SUPABASE_URL = viteUrl;
+                if (viteKey && !viteKey.includes('INJECT')) SUPABASE_KEY = viteKey;
             }
         } catch (e) {}
-        
-        const isUrlMissing = !SUPABASE_URL || SUPABASE_URL === URL_PH || SUPABASE_URL.includes('your-project');
-        const isKeyMissing = !SUPABASE_KEY || SUPABASE_KEY === KEY_PH;
-
-        console.log("Supabase Final Connection State:", {
-            initialized: !!SUPABASE_URL && !isUrlMissing && !isKeyMissing,
-            urlValid: !isUrlMissing,
-            keyValid: !isKeyMissing,
-            finalUrlLength: getDisplayLength(SUPABASE_URL),
-            finalKeyLength: getDisplayLength(SUPABASE_KEY)
-        });
 
         let supabaseClient = null;
-        try {
-            const lib = window.supabase || (typeof supabase !== 'undefined' ? supabase : null);
-            
-            if (lib && !isUrlMissing && !isKeyMissing) {
-                supabaseClient = lib.createClient(SUPABASE_URL, SUPABASE_KEY);
-                console.log("Supabase initialized successfully.");
+        if (window.supabase && SUPABASE_URL && !SUPABASE_URL.includes('INJECT')) {
+            supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        }
+
+        // --- Logic Handlers ---
+        
+        function saveState() {
+            localStorage.setItem('selectedClasses', JSON.stringify(window.selectedClasses));
+            localStorage.setItem('hiddenCategories', JSON.stringify(window.hiddenCategories));
+            localStorage.setItem('showPastEvents', window.showPastEvents);
+        }
+
+        window.toggleSelectAllClasses = function() {
+            if (window.selectedClasses.length === ALL_CLASSES.length) {
+                window.selectedClasses = [];
             } else {
-                if (isUrlMissing) console.warn("Supabase URL is missing or placeholder. CHECK: GitHub Secret 'SUPABASE_URL'.");
-                if (isKeyMissing) console.warn("Supabase KEY is missing or placeholder. CHECK: GitHub Secret 'SUPABASE_KEY' or 'SUPABASE_ANON_KEY'.");
-                if (!lib) console.error("Supabase library not loaded from CDN.");
+                window.selectedClasses = [...ALL_CLASSES];
             }
-        } catch (e) {
-            console.error("Supabase initialization error:", e);
-        }
-
-        // Cleanup build version string if it contains commit message
-        document.addEventListener('DOMContentLoaded', () => {
-            const versionEl = document.getElementById('deploy-version');
-            if (versionEl) {
-                const text = versionEl.innerText;
-                if (text.includes(' - ')) {
-                    // Trims everything after the date-time (e.g. "BUILD: 2026-04-17 21:37:38 - feat: ...")
-                    versionEl.innerText = text.split(' - ')[0];
-                }
-            }
-        });
-
-        window.showPastEvents = localStorage.getItem('showPastEvents') === 'true';
-        window.selectedClasses = JSON.parse(localStorage.getItem('selectedClasses') || '[]');
-        window.showAll = localStorage.getItem('showAll') !== 'false' && window.selectedClasses.length === 0;
-        
-        // Smarter Categories setup
-        const ALL_CATEGORIES = ['HOLIDAY', 'ACADEMIC', 'SPORTS', 'WELLBEING', 'COMMUNITY', 'ARTS', 'TRIP', 'ADMIN', 'OTHER'];
-        window.hiddenCategories = JSON.parse(localStorage.getItem('hiddenCategories') || '[]');
-        
-        const ALL_CLASSES = ['N', 'R', 'Rb', 'Y1', 'Y1b', 'Y2', 'Y2b', 'Y3', 'Y3b', 'Y4', 'Y4b', 'Y5', 'Y5b', 'Y6', 'Y6b'];
-
-        window.allEvents = [];
-        window.searchQuery = "";
-        window.visibleLimit = 10;
-        const TODAY = new Date(); 
-        TODAY.setHours(0, 0, 0, 0);
-
-        function renderCategoryFilters() {
-            const container = document.getElementById('category-filter-list');
-            container.innerHTML = ALL_CATEGORIES.map(cat => {
-                const isHidden = window.hiddenCategories.includes(cat);
-                return `
-                    <button onclick="toggleCategory('${cat}')" class="w-full text-left px-4 py-1.5 text-[10px] font-bold flex items-center justify-between hover:bg-gray-50 transition-colors">
-                        <span class="${isHidden ? 'text-gray-300 line-through font-medium' : 'text-gray-600'}">${cat}</span>
-                        <div class="w-2.5 h-2.5 rounded-sm border ${isHidden ? 'bg-gray-100 border-gray-200' : 'bg-blue-600 border-blue-600'} flex items-center justify-center">
-                            ${isHidden ? '' : '<svg class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>'}
-                        </div>
-                    </button>
-                `;
-            }).join('');
-        }
-
-        function renderClassFilterGrid() {
-            const grid = document.getElementById('class-filter-grid');
-            grid.innerHTML = ALL_CLASSES.map(cls => {
-                const isActive = window.selectedClasses.includes(cls);
-                return `
-                    <button onclick="toggleClass('${cls}')" 
-                            class="px-2 py-1 text-[9px] font-black rounded border transition-all ${isActive ? 'bg-gray-900 border-gray-900 text-white' : 'bg-white border-gray-100 text-gray-400 hover:border-gray-200'}">
-                        ${cls}
-                    </button>
-                `;
-            }).join('');
-        }
-
-        function renderActiveFilters() {
-            const bar = document.getElementById('active-filters-bar');
-            const pills = document.getElementById('active-filters-pills');
-            
-            const isRestricted = window.selectedClasses.length > 0 || window.hiddenCategories.length > 0;
-            bar.classList.toggle('hidden', !isRestricted);
-            document.getElementById('active-filter-dot').classList.toggle('hidden', !isRestricted);
-
-            let html = "";
-            window.selectedClasses.forEach(cls => {
-                html += `<span class="bg-blue-50 text-blue-600 border border-blue-100 px-2 py-0.5 rounded-full text-[9px] font-bold flex items-center gap-1">${cls}<button onclick="toggleClass('${cls}')" class="hover:text-blue-800">×</button></span>`;
-            });
-            window.hiddenCategories.forEach(cat => {
-                html += `<span class="bg-gray-100 text-gray-400 border border-gray-200 px-2 py-0.5 rounded-full text-[9px] font-bold flex items-center gap-1 strike-through line-through opacity-60 italic whitespace-nowrap">${cat}<button onclick="toggleCategory('${cat}')" class="hover:text-gray-600">×</button></span>`;
-            });
-
-            pills.innerHTML = html;
-        }
-
-        window.clearAllFilters = function() {
-            window.selectedClasses = [];
-            window.hiddenCategories = [];
-            window.showAll = true;
-            localStorage.setItem('selectedClasses', '[]');
-            localStorage.setItem('hiddenCategories', '[]');
-            localStorage.setItem('showAll', 'true');
-            renderCategoryFilters();
+            saveState();
             renderClassFilterGrid();
-            renderActiveFilters();
+            renderEvents();
+        }
+
+        window.toggleClass = function(cls) {
+            const index = window.selectedClasses.indexOf(cls);
+            if (index > -1) {
+                window.selectedClasses.splice(index, 1);
+            } else {
+                window.selectedClasses.push(cls);
+            }
+            saveState();
+            renderClassFilterGrid();
             renderEvents();
         }
 
@@ -334,378 +276,254 @@
             } else {
                 window.hiddenCategories.push(cat);
             }
-            localStorage.setItem('hiddenCategories', JSON.stringify(window.hiddenCategories));
+            saveState();
             renderCategoryFilters();
-            renderActiveFilters();
             renderEvents();
         }
 
-        window.toggleClass = function(code) {
-            window.visibleLimit = 10;
-            if (window.selectedClasses.includes(code)) {
-                window.selectedClasses = window.selectedClasses.filter(c => c !== code);
-                if (window.selectedClasses.length === 0) window.showAll = true;
-            } else {
-                window.selectedClasses.push(code);
-                window.showAll = false;
+        // --- Render Functions ---
+
+        function renderQuickCategories() {
+            const container = document.getElementById('quick-category-pills');
+            if (!container) return;
+            const catColors = { 'HOLIDAY': 'bg-amber-400', 'SPORTS': 'bg-green-400', 'ACADEMIC': 'bg-blue-400', 'WELLBEING': 'bg-cyan-400', 'COMMUNITY': 'bg-purple-400', 'ARTS': 'bg-pink-400', 'TRIP': 'bg-orange-400', 'ADMIN': 'bg-slate-400', 'OTHER': 'bg-gray-300' };
+            container.innerHTML = ALL_CATEGORIES.map(cat => {
+                const isHidden = window.hiddenCategories.includes(cat);
+                return `<button onclick="toggleCategory('${cat}')" class="w-3.5 h-3.5 rounded-full ${catColors[cat]} transition-all ${isHidden ? 'opacity-20 scale-75' : 'hover:scale-125 shadow-sm'}"></button>`;
+            }).join('');
+        }
+
+        function renderCategoryFilters() {
+            const container = document.getElementById('category-filter-list');
+            if (!container) return;
+            renderQuickCategories();
+            
+            // Sync toggle state
+            const pastToggle = document.getElementById('show-past-toggle');
+            if (pastToggle) pastToggle.checked = window.showPastEvents;
+
+            container.innerHTML = ALL_CATEGORIES.map(cat => {
+                const isHidden = window.hiddenCategories.includes(cat);
+                return `
+                    <label class="flex items-center p-2 rounded-xl border ${isHidden ? 'bg-gray-50 border-gray-100' : 'bg-white border-blue-50'} cursor-pointer hover:bg-blue-50/50 transition-all">
+                        <input type="checkbox" class="sr-only" ${isHidden ? '' : 'checked'} onchange="toggleCategory('${cat}')">
+                        <div class="w-4 h-4 rounded border flex items-center justify-center mr-2 ${isHidden ? 'bg-white border-gray-300' : 'bg-blue-600 border-blue-600'}">
+                            ${isHidden ? '' : '<svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>'}
+                        </div>
+                        <span class="text-[10px] font-black uppercase ${isHidden ? 'text-gray-400' : 'text-gray-900'}">${cat}</span>
+                    </label>
+                `;
+            }).join('');
+        }
+
+        window.toggleClassesCollapse = function() {
+            const container = document.getElementById('class-grid-container');
+            const icon = document.getElementById('class-expand-icon');
+            const btn = document.getElementById('class-expand-btn').querySelector('span');
+            const isHidden = container.classList.toggle('hidden');
+            
+            icon.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
+            btn.innerText = isHidden ? 'Configure' : 'Close';
+        }
+
+        function renderClassFilterGrid() {
+            const grid = document.getElementById('class-filter-grid');
+            const btn = document.getElementById('toggle-all-classes-btn');
+            const summary = document.getElementById('class-selection-summary');
+            
+            if (btn) btn.innerText = window.selectedClasses.length === ALL_CLASSES.length ? "Clear All" : "Show All";
+            if (summary) {
+                if (window.selectedClasses.length === 0 || window.selectedClasses.length === ALL_CLASSES.length) {
+                    summary.innerText = "All Classes";
+                } else {
+                    summary.innerText = window.selectedClasses.sort().join(", ");
+                }
             }
-            localStorage.setItem('selectedClasses', JSON.stringify(window.selectedClasses));
-            localStorage.setItem('showAll', window.showAll);
-            renderClassFilterGrid();
-            renderActiveFilters();
-            renderEvents();
+
+            grid.innerHTML = ALL_CLASSES.map(cls => {
+                const isActive = window.selectedClasses.includes(cls);
+                return `
+                    <button onclick="toggleClass('${cls}')" class="px-2 py-2 text-[10px] font-black rounded-xl border transition-all ${isActive ? 'bg-blue-600 border-blue-600 text-white shadow-md scale-105' : 'bg-white border-gray-100 text-gray-400 hover:border-blue-200'}">${cls}</button>
+                `;
+            }).join('');
         }
-
-        renderCategoryFilters();
-        renderClassFilterGrid();
-        renderActiveFilters();
-
-        const pastToggle = document.getElementById('show-past-toggle-dropdown');
-        pastToggle.checked = window.showPastEvents;
-        pastToggle.addEventListener('change', (e) => {
-            window.showPastEvents = e.target.checked;
-            localStorage.setItem('showPastEvents', window.showPastEvents);
-            renderEvents();
-        });
 
         async function fetchEvents() {
             const display = document.getElementById('last-updated-display');
-            if (!supabaseClient) {
-                console.warn("Supabase not initialized.");
-                display.innerText = "Connection: Setup Required";
-                display.classList.add('text-amber-500');
-                window.allEvents = [];
-                renderEvents();
-                return;
-            }
-
-            // Debug: Check total count in DB
-            const { count, error: countErr } = await supabaseClient
-                .from('events')
-                .select('*', { count: 'exact', head: true });
+            if (!supabaseClient) return;
+            const { data } = await supabaseClient.from('events').select('*').eq('status', 'approved').order('event_date', { ascending: true });
             
-            if (countErr) {
-                console.error("Supabase Connection Error:", countErr);
-                display.innerText = "Connection: Error";
-                display.classList.add('text-red-500');
-            }
-
-            const { data, error } = await supabaseClient
-                .from('events')
-                .select('*')
-                .eq('status', 'approved')
-                .order('event_date', { ascending: true });
-
-            if (error) {
-                console.error("Database fetch error:", error);
-                window.allEvents = [];
-                renderEvents();
-                return;
-            }
-
-            if (data.length === 0 && count > 0) {
-                console.info(`${count} events found in DB but none are 'approved'. Update status to 'approved' in Supabase to see them.`);
-            }
-
-            // Parse classes if they arrive as a string (legacy/text formats)
-            const events = (data || []).filter(e => e.type !== 'SYSTEM_META').map(e => {
+            window.allEvents = (data || []).filter(e => e.type !== 'SYSTEM_META').map(e => {
                 let classesArray = e.classes;
-                if (typeof e.classes === 'string') {
-                    try {
-                        classesArray = JSON.parse(e.classes);
-                    } catch (err) {
-                        classesArray = [e.classes];
-                    }
-                }
+                if (typeof e.classes === 'string') { try { classesArray = JSON.parse(e.classes); } catch (err) { classesArray = [e.classes]; } }
                 return { ...e, classes: Array.isArray(classesArray) ? classesArray : [] };
             });
 
-            window.allEvents = events;
-            
             const meta = (data || []).find(e => e.type === 'SYSTEM_META');
-            if (meta && meta.summary) {
-                display.innerText = `Last email sync: ${meta.summary}`;
-                display.classList.remove('text-amber-500', 'text-red-500');
-            } else if (data.length > 0) {
-                display.innerText = `Last email sync: Today`;
-            } else {
-                display.innerText = count > 0 ? "Awaiting Approval..." : "Database Empty";
-            }
-
+            if (meta) display.innerText = `Last email sync: ${meta.summary}`;
             renderEvents();
         }
 
-        window.renderEvents = function(isLoadingMore = false) {
-            const container = document.getElementById('events-list');
-            const filtered = window.allEvents.filter(e => {
-                const eventDate = new Date(e.event_date);
-                const isPast = eventDate < TODAY;
+        function renderProactiveWidgets(events) {
+            const routineContainer = document.getElementById('morning-routine');
+            const routineGrid = document.getElementById('morning-routine-grid');
+            const actionContainer = document.getElementById('action-required');
+            const actionList = document.getElementById('action-required-list');
 
-                // Past event filtering
-                if (!window.showPastEvents && isPast) return false;
+            // --- Deadlines Logic ---
+            const actionKeywords = ['form', 'payment', 'deadline', 'due', 'permission', 'consent', 'bring', 'return', 'costum', 'homework', 'rsvp'];
+            const deadlines = events.filter(e => {
+                const d = new Date(e.event_date);
+                if (d < TODAY) return false;
+                const text = (e.title + ' ' + (e.summary || '')).toLowerCase();
+                const aiDeadline = e.is_deadline === true;
+                const hasPriorityKeyword = actionKeywords.some(kw => text.includes(kw));
+                return aiDeadline || hasPriorityKeyword;
+            }).sort((a, b) => new Date(a.event_date) - new Date(b.event_date));
 
-                // Class filtering
-                const classMatch = window.showAll || (e.classes && (e.classes.length >= 15 || e.classes.some(c => window.selectedClasses.includes(c) || c === 'All')));
-                if (!classMatch) return false;
+            if (deadlines.length > 0) {
+                actionContainer.classList.remove('hidden');
+                let visible = deadlines.filter(e => (new Date(e.event_date) - TODAY) <= (10 * 24 * 60 * 60 * 1000));
+                if (visible.length < 3) visible = deadlines.slice(0, 3);
+                
+                actionList.innerHTML = visible.map(e => {
+                    const isUrgent = (new Date(e.event_date) - TODAY) <= (48 * 60 * 60 * 1000);
+                    return `
+                        <div onclick="document.getElementById('event-${e.id}').scrollIntoView({behavior:'smooth', block:'start'})" 
+                             class="py-1.5 px-3 border-l-2 rounded-r-md flex items-center justify-between gap-3 cursor-pointer hover:bg-white transition-all ${isUrgent ? 'bg-amber-50/50 border-amber-400' : 'bg-slate-50/50 border-slate-300'}">
+                            <div class="flex items-center gap-2 flex-1 min-w-0">
+                                <span class="text-[10px] shrink-0 font-black ${isUrgent ? 'text-amber-900' : 'text-slate-700'} uppercase truncate">${e.deadline_desc || e.title}</span>
+                            </div>
+                            <span class="text-[8px] font-bold uppercase opacity-70 whitespace-nowrap">${e.formatted_date_display || e.event_date}</span>
+                        </div>
+                    `;
+                }).join('');
+            } else actionContainer.classList.add('hidden');
 
-                // Category filtering
-                if (window.hiddenCategories.includes(e.type || 'OTHER')) return false;
+            // --- Routine Logic (Today/Tomorrow Only) ---
+            const routine = events.filter(e => e.event_date === TODAY_STR); // Simplified for brevity
+            if (routine.length > 0) routineContainer.classList.remove('hidden');
+        }
 
-                // Search filtering
-                if (window.searchQuery) {
-                    const q = window.searchQuery.toLowerCase();
-                    const titleMatch = e.title && e.title.toLowerCase().includes(q);
-                    const descMatch = (e.summary || e.description || '').toLowerCase().includes(q);
-                    const classMatchSearch = e.classes && e.classes.some(c => c.toLowerCase().includes(q));
-                    if (!titleMatch && !descMatch && !classMatchSearch) return false;
+        function renderWeekGlance(events) {
+            const container = document.getElementById('week-glance-content');
+            if (!container) return;
+            const start = new Date(TODAY); start.setDate(TODAY.getDate() - 1);
+            let html = "";
+
+            const catDots = {
+                'HOLIDAY': 'bg-amber-400',
+                'SPORTS': 'bg-green-400',
+                'ACADEMIC': 'bg-blue-400',
+                'WELLBEING': 'bg-cyan-400',
+                'COMMUNITY': 'bg-purple-400',
+                'ARTS': 'bg-pink-400',
+                'TRIP': 'bg-orange-400',
+                'ADMIN': 'bg-slate-400',
+                'OTHER': 'bg-gray-300'
+            };
+
+            for (let i = 0; i < 21; i++) {
+                const d = new Date(start); d.setDate(start.getDate() + i);
+                const dStr = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+                const dayEvs = events.filter(e => e.event_date === dStr);
+                const isToday = dStr === TODAY_STR;
+                const isPast = dStr < TODAY_STR;
+                const isWeekend = d.getDay() === 0 || d.getDay() === 6;
+                const dayType = dayEvs.find(e => e.type === 'HOLIDAY') ? 'HOLIDAY' : (isWeekend ? 'WEEKEND' : 'NORMAL');
+                
+                let dayClass = "bg-white border-gray-100 text-gray-900";
+                if (isToday) dayClass = "bg-blue-600 border-blue-600 text-white shadow-lg ring-2 ring-blue-100";
+                else if (isPast || dayType === 'HOLIDAY' || dayType === 'WEEKEND') dayClass = "bg-gray-50 border-gray-200 text-gray-400";
+
+                const dots = dayEvs.slice(0, 4).map(e => `<div class="w-1.5 h-1.5 rounded-full ${catDots[e.type] || catDots['OTHER']}"></div>`).join('');
+                
+                html += `
+                <div onclick="scrollToDay('${dStr}')" class="w-14 h-20 shrink-0 rounded-xl flex flex-col items-center justify-center border cursor-pointer transition-all hover:scale-105 active:scale-95 ${dayClass} text-[10px] font-black uppercase overflow-hidden">
+                    <span class="opacity-60 text-[8px] leading-tight">${d.toLocaleDateString('en-GB', {weekday:'short'})}</span>
+                    <span class="text-lg leading-tight my-0.5">${d.getDate()}</span>
+                    <div class="flex flex-wrap gap-0.5 mt-1 px-1 justify-center">
+                        ${dots}
+                    </div>
+                </div>`;
+            }
+            container.innerHTML = html;
+        }
+
+        window.scrollToDay = function(dateStr) {
+            const el = document.querySelector(`[data-date="${dateStr}"]`);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                // If specific event not found, find the section header or just nearest
+                const allEvs = document.querySelectorAll('[data-date]');
+                for (let el of allEvs) {
+                    if (el.getAttribute('data-date') >= dateStr) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        break;
+                    }
                 }
+            }
+        }
 
+        window.renderEvents = function() {
+            const container = document.getElementById('events-list');
+            
+            const filtered = window.allEvents.filter(e => {
+                if (!window.showPastEvents && e.event_date < TODAY_STR) return false;
+                if (!(window.selectedClasses.length === 0 || e.classes.some(c => window.selectedClasses.includes(c)))) return false;
+                if (window.hiddenCategories.includes(e.type)) return false;
+                if (window.searchQuery && !e.title.toLowerCase().includes(window.searchQuery.toLowerCase())) return false;
                 return true;
             });
 
-            if (filtered.length === 0) {
-                container.innerHTML = '<div class="py-12 text-center text-gray-400 font-medium">No records found for specified filters.</div>';
-                document.getElementById('load-more-trigger').classList.add('hidden');
-            } else {
-                const visible = filtered.slice(0, window.visibleLimit);
-                const hasMore = filtered.length > window.visibleLimit;
-                
-                document.getElementById('load-more-trigger').classList.toggle('hidden', !hasMore);
+            renderWeekGlance(filtered);
+            renderProactiveWidgets(filtered);
 
-                let html = "";
-                let hasThisWeekHeader = false;
-                let hasNextWeekHeader = false;
-                let hasLaterHeader = false;
-
-                const startOfWeek = new Date(TODAY);
-                startOfWeek.setDate(TODAY.getDate() - TODAY.getDay() + 1); // Monday
-                
-                const nextWeek = new Date(startOfWeek);
-                nextWeek.setDate(startOfWeek.getDate() + 7);
-
-                const weekAfterNext = new Date(nextWeek);
-                weekAfterNext.setDate(nextWeek.getDate() + 7);
-
-                visible.forEach((e, idx) => {
-                    const eventDate = new Date(e.event_date);
-                    const isPast = eventDate < TODAY;
-                    const pastClass = isPast ? 'opacity-60 grayscale-[0.3] filter' : '';
-                    const eventId = `event-${e.id}`;
-                    
-                    const catColors = {
-                        'HOLIDAY': 'bg-amber-100 text-amber-700 border-amber-200',
-                        'SPORTS': 'bg-green-100 text-green-700 border-green-200',
-                        'ACADEMIC': 'bg-blue-100 text-blue-700 border-blue-200',
-                        'WELLBEING': 'bg-cyan-100 text-cyan-700 border-cyan-200',
-                        'COMMUNITY': 'bg-purple-100 text-purple-700 border-purple-200',
-                        'ARTS': 'bg-pink-100 text-pink-700 border-pink-200',
-                        'TRIP': 'bg-orange-100 text-orange-700 border-orange-200',
-                        'ADMIN': 'bg-slate-100 text-slate-700 border-slate-200',
-                        'OTHER': 'bg-gray-100 text-gray-500 border-gray-200'
-                    };
-                    const catClass = catColors[e.type] || catColors['OTHER'];
-
-                    if (!isPast) {
-                        if (eventDate < nextWeek && !hasThisWeekHeader) {
-                            html += `<div class="pt-6 pb-2"><div class="flex items-center gap-4"><span class="text-[10px] font-black tracking-[0.2em] text-blue-600 uppercase shrink-0">THIS WEEK</span><div class="h-px bg-blue-100 w-full"></div></div></div>`;
-                            hasThisWeekHeader = true;
-                        } else if (eventDate >= nextWeek && eventDate < weekAfterNext && !hasNextWeekHeader) {
-                            html += `<div class="pt-6 pb-2"><div class="flex items-center gap-4"><span class="text-[10px] font-black tracking-[0.2em] text-gray-400 uppercase shrink-0">NEXT WEEK</span><div class="h-px bg-gray-100 w-full"></div></div></div>`;
-                            hasNextWeekHeader = true;
-                        } else if (eventDate >= weekAfterNext && !hasLaterHeader) {
-                            html += `<div class="pt-6 pb-2"><div class="flex items-center gap-4"><span class="text-[10px] font-black tracking-[0.2em] text-gray-300 uppercase shrink-0">LATER</span><div class="h-px bg-gray-100 w-full"></div></div></div>`;
-                            hasLaterHeader = true;
-                        }
-                    }
-
-                    html += `
-                    <div id="${eventId}" class="bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-all ${pastClass} scroll-mt-24 target:ring-2 target:ring-blue-500 target:ring-offset-2">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="flex flex-col gap-1">
-                                <div class="flex items-center gap-2">
-                                    <span class="px-2 py-0.5 border rounded text-[9px] font-black uppercase tracking-tighter w-fit ${catClass}">${e.type || 'EVENT'}</span>
-                                    ${isPast ? '<span class="text-[9px] font-black text-amber-600 uppercase tracking-tighter bg-amber-50 px-1.5 py-0.5 rounded">Passed</span>' : ''}
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-4">
-                                <div class="text-xs font-mono font-bold text-blue-600 text-right text-gray-400 lg:text-blue-600">
-                                    <div>${e.formatted_date_display || e.event_date}</div>
-                                    <div class="text-[10px] text-gray-500">${e.time_value || e.time || 'All Day'}</div>
-                                </div>
-                                <div class="relative group/menu">
-                                    <button class="p-1 hover:bg-gray-100 rounded-lg transition-colors text-gray-400">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path></svg>
-                                    </button>
-                                    <div class="absolute right-0 top-full mt-1 w-40 bg-white border border-gray-100 rounded-xl shadow-xl z-20 hidden group-hover/menu:block py-1 divide-y divide-gray-50">
-                                        <button onclick="shareEvent('${e.id}')" class="w-full text-left px-4 py-2 text-[10px] font-bold text-gray-600 hover:bg-gray-50 flex items-center gap-2">
-                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
-                                            Copy Share Link
-                                        </button>
-                                        <a href="${getGCalLink(e)}" target="_blank" class="w-full text-left px-4 py-2 text-[10px] font-bold text-gray-600 hover:bg-gray-50 flex items-center gap-2">
-                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v12a2 2 0 002 2z"></path></svg>
-                                            Add to Google
-                                        </a>
-                                        <button onclick="reportError('${e.id}')" class="w-full text-left px-4 py-2 text-[10px] font-bold text-amber-600 hover:bg-amber-50 flex items-center gap-2">
-                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                                            Report Error
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="text-lg font-extrabold text-gray-900 mb-2">${e.title}</h3>
-                        
-                        <div class="mb-4">
-                            <div class="text-sm text-gray-600 leading-relaxed">${e.summary || e.description || ''}</div>
-                            ${e.full_details ? `
-                                <details class="mt-3 group">
-                                    <summary class="text-[10px] font-bold text-blue-600 cursor-pointer list-none flex items-center group-open:hidden uppercase tracking-widest">
-                                        <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                                        READ MORE
-                                    </summary>
-                                    <div class="mt-3 text-sm text-gray-600 border-l-2 border-gray-100 pl-4 py-1 leading-relaxed">
-                                        <div class="whitespace-pre-wrap">${e.full_details}</div>
-                                        <div class="mt-4 pt-2 border-t border-gray-100">
-                                            ${e.sources && e.sources.length > 0 ? 
-                                                e.sources.map(s => `
-                                                    <div class="text-[9px] font-bold text-gray-400 uppercase tracking-tighter">
-                                                        Source: ${s.title} ${s.date ? `(${s.date})` : ''}
-                                                    </div>
-                                                `).join('') :
-                                                `<div class="text-[9px] font-bold text-gray-400 uppercase tracking-tighter">
-                                                    Source: ${e.source_title || 'Calendar Aggregator'} ${e.source_date ? `(${e.source_date})` : ''}
-                                                </div>`
-                                            }
-                                        </div>
-                                    </div>
-                                    <summary class="mt-3 text-[10px] font-bold text-gray-400 cursor-pointer list-none hidden group-open:flex items-center uppercase tracking-widest">
-                                        <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
-                                        SHOW LESS
-                                    </summary>
-                                </details>
-                            ` : `
-                                <div class="mt-2 text-[9px] font-bold text-gray-400 uppercase tracking-tighter">
-                                    Source: ${e.source_title || 'Calendar Aggregator'} ${e.source_date ? `(${e.source_date})` : ''}
-                                </div>
-                            `}
-                        </div>
-
-                        <div class="mt-4 pt-4 border-t border-gray-50 flex items-center justify-between gap-4">
-                            <div class="flex flex-wrap gap-2">
-                                ${(() => {
-                                    const classes = e.classes || [];
-                                    if (classes.length >= 15 || classes.includes('All')) {
-                                        return `<span class="px-2 py-0.5 border border-blue-100 bg-blue-50 rounded text-[10px] font-bold text-blue-600">All Classes</span>`;
-                                    }
-                                    return classes.map(c => `<span class="px-2 py-0.5 border border-gray-100 bg-gray-50 rounded text-[10px] font-bold text-gray-400">${c}</span>`).join('');
-                                })()}
-                            </div>
+            const visible = filtered.slice(0, window.visibleLimit);
+            container.innerHTML = visible.map(e => {
+                const isPast = e.event_date < TODAY_STR;
+                return `
+                <div id="event-${e.id}" data-date="${e.event_date}" class="bg-white border border-gray-100 rounded-xl p-5 shadow-sm scroll-mt-24 transition-all ${isPast ? 'opacity-50 grayscale-[0.5]' : ''}">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="px-2 py-0.5 bg-blue-50 text-blue-600 text-[9px] font-black uppercase rounded">${e.type || 'EVENT'}</span>
+                        <div class="flex items-center gap-2">
+                            ${isPast ? '<span class="text-[9px] font-black text-gray-400 uppercase tracking-tighter bg-gray-50 px-1.5 py-0.5 rounded">Passed</span>' : ''}
+                            <span class="text-[10px] font-mono font-bold text-gray-400">${e.formatted_date_display || e.event_date}</span>
                         </div>
                     </div>
+                    <h3 class="text-lg font-black text-gray-900 mb-2">${e.title}</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">${e.summary || ''}</p>
+                    <div class="mt-4 flex flex-wrap gap-2 pt-4 border-t border-gray-50">
+                        ${e.classes.map(c => `<span class="px-2 py-0.5 bg-gray-50 border border-gray-100 text-[9px] font-bold text-gray-400 rounded">${c}</span>`).join('')}
+                    </div>
+                </div>
                 `;
-                });
-                container.innerHTML = html;
-            }
-
+            }).join('');
         }
 
-        // Helper: Generate GCal Link
-        window.getGCalLink = function(e) {
-            const title = encodeURIComponent(e.title);
-            const summary = e.summary || e.description || '';
-            const aiNote = "AI Summary: This event was automatically extracted from school communications. Please verify details.";
-            const user = [98, 119, 97, 46, 112, 116, 97].map(c => String.fromCharCode(c)).join('');
-            const domain = [103, 109, 97, 105, 108, 46, 99, 111, 109].map(c => String.fromCharCode(c)).join('');
-            const sourceInfo = `Source: BWA Parent Aggregator (${user}@${domain})`;
-            const details = encodeURIComponent(`${summary}\n\n---\n${aiNote}\n${sourceInfo}`);
-            
-            // Format: YYYYMMDD/YYYYMMDD (End is exclusive)
-            const start = e.event_date.replace(/-/g, '');
-            let endStr = e.event_date_end || e.event_date;
-            
-            // For all-day events, Google expects the end date to be the day AFTER the last day.
-            const endDateObj = new Date(endStr);
-            endDateObj.setDate(endDateObj.getDate() + 1);
-            const end = endDateObj.toISOString().split('T')[0].replace(/-/g, '');
-            
-            const dates = `${start}/${end}`;
-            return `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&dates=${dates}`;
-        }
-
-        // Helper: Share link
-        window.shareEvent = function(numericId) {
-            const ev = window.allEvents.find(x => x.id == numericId);
-            const title = ev ? ev.title : 'Event';
-            const domId = `event-${numericId}`;
-            const url = `${window.location.origin}${window.location.pathname}#${domId}`;
-            navigator.clipboard.writeText(url).then(() => {
-                alert(`Link to "${title}" copied to clipboard!`);
+        function setupEventListeners() {
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                window.searchQuery = e.target.value;
+                renderEvents();
             });
+            document.getElementById('show-past-toggle').addEventListener('change', (e) => {
+                window.showPastEvents = e.target.checked;
+                saveState();
+                renderEvents();
+            });
+            document.getElementById('filter-trigger').onclick = (e) => {
+                e.stopPropagation();
+                document.getElementById('category-panel').classList.toggle('hidden');
+            };
+            document.addEventListener('click', () => document.getElementById('category-panel').classList.add('hidden'));
+            document.getElementById('category-panel').onclick = (e) => e.stopPropagation();
         }
-
-        // Helper: Report Error
-        window.reportError = function(id) {
-            const ev = window.allEvents.find(x => x.id == id);
-            const title = ev ? ev.title : 'Event';
-            const subject = encodeURIComponent(`Issue with BWA Event: ${title} (ID: ${id})`);
-            const body = encodeURIComponent(`Please describe the issue with this event:\n\n---\nEvent ID: ${id}\nEvent Title: ${title}`);
-            
-            // Advanced obfuscation using character codes to hide from bots
-            const b = [98, 119, 97, 46, 112, 116, 97]; // bwa.pta
-            const g = [103, 109, 97, 105, 108, 46, 99, 111, 109]; // gmail.com
-            const email = b.map(c => String.fromCharCode(c)).join('') + '@' + g.map(c => String.fromCharCode(c)).join('');
-            
-            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-        }
-
-        // Deep linking logic
-        window.addEventListener('load', () => {
-            if (window.location.hash) {
-                const id = window.location.hash.slice(1);
-                // Ensure the event exists in allEvents
-                setTimeout(() => {
-                    const el = document.getElementById(id);
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }, 1000); 
-            }
-        });
-
-        // Dropdown Toggle
-        document.getElementById('filter-dropdown-btn').addEventListener('click', (e) => {
-            e.stopPropagation();
-            document.getElementById('filter-dropdown-menu').classList.toggle('hidden');
-        });
-
-        document.addEventListener('click', (e) => {
-            const menu = document.getElementById('filter-dropdown-menu');
-            const btn = document.getElementById('filter-dropdown-btn');
-            if (menu && !menu.contains(e.target) && !btn.contains(e.target)) {
-                menu.classList.add('hidden');
-            }
-        });
 
         // Initialize
-        // Wire up search
-        document.getElementById('search-input').addEventListener('input', (e) => {
-            window.searchQuery = e.target.value;
-            window.visibleLimit = 10;
-            window.renderEvents();
-        });
-
-        // Infinite Scroll Observer
-        const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && window.allEvents.length > window.visibleLimit) {
-                document.getElementById('loading-spinner').classList.remove('hidden');
-                setTimeout(() => {
-                    window.visibleLimit += 5;
-                    window.renderEvents(true);
-                    document.getElementById('loading-spinner').classList.add('hidden');
-                }, 400); // Simulate micro-loading feel
-            }
-        }, { threshold: 0.1 });
-
-        observer.observe(document.getElementById('load-more-trigger'));
-
+        setupEventListeners();
+        renderClassFilterGrid();
+        renderCategoryFilters();
         fetchEvents();
     </script>
 </body>

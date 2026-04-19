@@ -131,8 +131,14 @@ You MUST assign a 'type' from this list:
 - ARTS: Concerts, school plays, choir, art exhibitions.
 - TRIP: School excursions, forest school, residential trips.
 - WELLBEING: Webinars, ADHD support, parent wellbeing sessions, mental health talks.
-- ADMIN: Deadline for forms, payment reminders, generic school notices.
+- ADMIN: Deadline for forms, payment reminders, generic school notices, term dates.
 - OTHER: Default if none match.
+
+Deadline Identification (CRITICAL):
+For EVERY event, determine if it constitutes a firm parent-action deadline (e.g. "RSVP by", "Pay by", "Return form by", "Homework due", "Last day to...").
+- Set "is_deadline" to true if an action is required and has a hard time-limit.
+- Populate "deadline_desc" with a 3-5 word instruction (e.g., "Return consent form", "Complete payment", "Submit Y6 preferences").
+- If not a deadline, set "is_deadline" to false and "deadline_desc" to null.
 
 Source Management:
 - If an event is found in multiple sources, consolidate them.
@@ -166,6 +172,8 @@ Each event object: {
     "summary": "string",
     "full_details": "string",
     "type": "HOLIDAY" | "ACADEMIC" | "SPORTS" | "COMMUNITY" | "ARTS" | "TRIP" | "WELLBEING" | "ADMIN" | "OTHER",
+    "is_deadline": boolean,
+    "deadline_desc": "string" | null,
     "source_title": "string",
     "source_date": "string",
     "source_time": "string",
