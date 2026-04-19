@@ -27,7 +27,7 @@ SUPABASE_URL = os.getenv('SUPABASE_URL')
 SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 
 # Model & Client Setup
-MODEL_NAME = 'gemini-3-flash-preview'
+MODEL_NAME = 'gemini-3.1-flash-lite-preview'
 client = genai.Client(api_key=GEMINI_API_KEY)
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
@@ -44,7 +44,8 @@ def safe_generate_content(contents, system_instruction=None):
             
             config = types.GenerateContentConfig(
                 system_instruction=system_instruction or SYSTEM_INSTRUCTIONS,
-                temperature=0.1 # Low temperature for consistent extraction
+                temperature=0.1, # Low temperature for consistent extraction
+                thinking_config=types.ThinkingConfig(include_thoughts=False) # Minimal reasoning to save costs
             )
             return client.models.generate_content(
                 model=MODEL_NAME,
@@ -279,7 +280,7 @@ def process_batch(items, existing_db):
     print(f"Batch processing {len(items)} items to save AI credits...")
     
     # Construct a single prompt for all items
-    db_summary = [{"t": e['title'], "d": e['event_date']} for e in existing_db[-60:]]
+    db_summary = [{"t": e['title'], "d": e['event_date']} for e in existing_db[-20:]]
     batch_prompt = f"Existing Database Snippet: {json.dumps(db_summary)}\n\n"
     for i, item in enumerate(items):
         batch_prompt += f"--- ITEM {i+1} ---\n"
