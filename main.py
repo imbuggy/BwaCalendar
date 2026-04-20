@@ -134,11 +134,29 @@ NEGATIVE CONSTRAINTS:
 - NEVER use the key "category". You MUST use "type".
 - NEVER use markdown outside the JSON block.
 - NEVER truncate titles or critical details.
-- PII check: If found, status="REJECTED".
+- PRIVACY & PII RULES: 
+  * REJECT (status="REJECTED"): Any email that is purely private/individual. This includes medical details for a specific child, disciplinary issues, or any communication addressed to only ONE parent and NOT a group/class/school stream.
+  * ANONYMIZE & APPROVE (status="approved"): School-wide or class-wide announcements (e.g. forward from teacher, newsletters) that happen to contain parent/child names.
+  * SCRUBBING: You MUST anonymize/scrub all FORBIDDEN PII from "title", "summary", and "full_details". 
+  * Replace full student names with initials (e.g. "JS") or generic terms like "the student".
+  * Replace parent names with generic terms like "[Parent]".
+  * REMOVE personal phone numbers or home addresses.
+  * ALLOWED (Do not scrub): Teacher names (e.g. Mr Hennessy), School personnel, School address, School phone, School official emails.
+  * Ignore metadata headers ("To:", "From:", "Subject:") when checking for PII.
 
 Logic:
-INSET/PD = English Stream ONLY (N, R, Y1, Y2, Y3, Y4, Y5, Y6).
-"X Stream finishes at..." -> Split into separate events per stream.
+- INSET/PD = English Stream ONLY (N, R, Y1, Y2, Y3, Y4, Y5, Y6).
+- Bilingual Class Mapping: ALWAYS use UK names. Normalize according to:
+  * MSB -> RB
+  * GSB -> Y1B
+  * CPB -> Y2B
+  * CE1B -> Y3B
+  * CE2B -> Y4B
+  * CM1B -> Y5B
+  * CM2B -> Y6B
+- MULTI-DATE LISTS: If an email lists different dates for different classes (e.g., Parent Teacher Meetings), you MUST create a SEPARATE event object for EACH date/class combination.
+- PRIORITY EVENTS: Always mark Parent-Teacher Meetings, Consultations, and Individual Appointments as "is_deadline": true.
+- "X Stream finishes at..." -> Split into separate events per stream.
 """
 
 def extract_pdf_text(payload):
@@ -235,8 +253,8 @@ def parse_single_email(mail, e_id):
             content_lower = (subject + " " + body + " " + attachments_text).lower()
             
             admin_id_1 = "".join([chr(x) for x in [97, 100, 109, 105, 110, 64, 119, 105, 120, 46, 119, 97, 110, 100, 115, 119, 111, 114, 116, 104, 46, 115, 99, 104, 46, 117, 107]])
-            admin_id_2 = "".join([chr(x) for x in [97, 100, 109, 105, 110, 64, 98, 101, 108, 108, 101, 118, 105, 108, 108, 101, 118, 105, 120, 46, 117, 107, 46, 113, 49, 101, 46, 111, 114, 103, 46, 117, 107]])
-            trusted_identifiers = ['schoolcomms.com', 'belleville wix academy', admin_id_1, admin_id_2]
+            admin_id_2 = "".join([chr(x) for x in [97, 100, 109, 105, 110, 64, 98, 101, 108, 108, 101, 118, 105, 108, 108, 101, 119, 105, 120, 46, 113, 49, 101, 46, 111, 114, 103, 46, 117, 107]])
+            trusted_identifiers = ['schoolcomms.com', 'belleville wix academy', 'lyceefrancais.org.uk', admin_id_1, admin_id_2]
             
             is_trusted = any(id in from_header_str or id in reply_to_str for id in trusted_identifiers)
             is_forwarded_from_trusted = any(id in content_lower for id in trusted_identifiers)
@@ -277,6 +295,7 @@ def fetch_term_dates():
                 f"RULES:\n"
                 f"- Set 'classes' to ['All'] for school-wide holidays (Bank holidays, half terms).\n"
                 f"- IMPORTANT: INSET/PD days are for English Stream ONLY. Assign only English codes (N, R, Y1, Y2, Y3, Y4, Y5, Y6).\n"
+                f"- Bilingual Class Mapping: ALWAYS use UK names for bilingual entries (MSB->RB, GSB->Y1B, CPB->Y2B, CE1B->Y3B, CE2B->Y4B, CM1B->Y5B, CM2B->Y6B).\n"
                 f"- Set 'type' to 'HOLIDAY' for holidays and 'EVENT' for INSET days.\n"
                 f"- Set 'source_title' to 'Official Term Dates Website'.\n"
                 f"- Include the source in the 'sources' array as well.\n"

@@ -1,0 +1,132 @@
+import express from "express";
+import path from "path";
+import { createServer as createViteServer } from "vite";
+import { createClient } from "@supabase/supabase-js";
+import * as ics from "ics";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const SUPABASE_URL = process.env.SUPABASE_URL || "";
+const SUPABASE_KEY = process.env.SUPABASE_KEY || "";
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+async function startServer() {
+  const app = express();
+  const PORT = 3000;
+
+  // --- API Routes ---
+
+  // Health check
+  app.get("/api/health", (req, res) => {
+    res.json({ status: "ok" });
+  });
+
+  // iCal Feed Endpoint
+  // Example: /api/calendar/Y1B,Y4B.ics
+  app.get("/api/calendar/:classes.ics", async (req, res) => {
+    try {
+      const classesParam = req.params.classes.replace(".ics", "");
+      const selectedClasses = classesParam.split(",").map(c => c.trim()).filter(c => c);
+
+      if (selectedClasses.length === 0) {
+        return res.status(400).send("No classes specified");
+      }
+
+      // Fetch events from Supabase
+      const { data: events, error } = await supabase
+        .from("events")
+        .select("*")
+        .neq("type", "SYSTEM_META")
+        .eq("status", "approved");
+
+      if (error) throw error;
+
+      // Filter events
+      const filteredEvents = (events || []).filter(e => {
+        const eventClasses = e.classes || [];
+        if (eventClasses.includes("All")) return true;
+        return eventClasses.some((c: string) => selectedClasses.includes(c));
+      });
+
+      // Map to ics format
+      const icsEvents: ics.EventAttributes[] = filteredEvents.map(e => {
+        const date = new Date(e.event_date);
+        const start: ics.DateArray = [
+            date.getFullYear(),
+            date.getMonth() + 1,
+            date.getDate()
+        ];
+        
+        let prefix = "BWA";
+        const eventClasses = e.classes || [];
+        if (!eventClasses.includes("All")) {
+            // Find which of the user's selected classes this event belongs to
+            const relevantClass = eventClasses.find((c: string) => selectedClasses.includes(c));
+            if (relevantClass) {
+                prefix = `BWA ${relevantClass}`;
+            }
+        }
+
+        const duration: ics.DurationObject = { days: 1 };
+        
+        // Handle end date if it exists
+        if (e.event_date_end) {
+            const endDate = new Date(e.event_date_end);
+            const diffTime = Math.abs(endDate.getTime() - date.getTime());
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+            duration.days = diffDays;
+        }
+
+        return {
+          uid: `${e.id}@bwa-calendar`,
+          start,
+          duration,
+          title: `${prefix}: ${e.title}`,
+          description: e.summary + (e.full_details ? "\n\n" + e.full_details : ""),
+          categories: [e.type],
+          productId: "BWA-Calendar-Sync"
+        };
+      });
+
+      if (icsEvents.length === 0) {
+        // Return an empty but valid calendar if no events
+        const { value } = ics.createEvents([]);
+        res.setHeader("Content-Type", "text/calendar; charset=utf-8");
+        res.setHeader("Content-Disposition", "attachment; filename=\"calendar.ics\"");
+        return res.send(value);
+      }
+
+      const { error: icsError, value } = ics.createEvents(icsEvents);
+      if (icsError) throw icsError;
+
+      res.setHeader("Content-Type", "text/calendar; charset=utf-8");
+      res.setHeader("Content-Disposition", "attachment; filename=\"calendar.ics\"");
+      res.send(value);
+    } catch (err) {
+      console.error("iCal error:", err);
+      res.status(500).send("Error generating calendar");
+    }
+  });
+
+  // --- Vite Middleware ---
+  if (process.env.NODE_ENV !== "production") {
+    const vite = await createViteServer({
+      server: { middlewareMode: true },
+      appType: "spa",
+    });
+    app.use(vite.middlewares);
+  } else {
+    const distPath = path.join(process.cwd(), "dist");
+    app.use(express.static(distPath));
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(distPath, "index.html"));
+    });
+  }
+
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
+
+startServer();

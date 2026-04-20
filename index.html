@@ -57,10 +57,57 @@
                         <div id="class-selection-summary" class="text-[9px] font-bold text-blue-500 truncate uppercase mt-0.5">All Classes</div>
                     </div>
                 </div>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 relative">
                     <button id="toggle-all-classes-btn" onclick="toggleSelectAllClasses()" class="hidden text-[10px] font-black text-gray-400 uppercase tracking-tight hover:text-blue-600 mr-2">Show All</button>
-                    <button onclick="toggleClassesCollapse()" id="class-expand-btn" class="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-700 transition-all shadow-sm">
-                        <span>Configure</span>
+                    
+                    <!-- Sync Dropdown Container -->
+                    <div class="flex items-center">
+                        <button onclick="toggleSyncDropdown(event)" id="sync-menu-btn" class="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 bg-slate-50 border border-slate-200 text-slate-600 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-slate-100 transition-all shadow-sm">
+                            <svg class="w-3.5 h-3.5 sm:w-3 sm:h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <span class="hidden sm:inline">Add to Calendar</span>
+                            <span class="sm:hidden">Sync</span>
+                        </button>
+
+                        <!-- Sync Dropdown Menu - Aligns to right of button group -->
+                        <div id="sync-dropdown-menu" class="hidden absolute right-0 mt-2 top-full w-[calc(100vw-48px)] sm:w-72 bg-white rounded-2xl shadow-2xl border border-gray-100 z-50 p-4 animate-in fade-in slide-in-from-top-2 origin-top-right">
+                            <div class="mb-3">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <h4 class="text-[10px] font-black text-gray-900 uppercase tracking-widest">Magic Sync</h4>
+                                    <span class="text-[8px] font-bold text-green-600 bg-green-50 px-1.5 py-0.5 rounded-full uppercase tracking-tighter">Auto-Updates</span>
+                                </div>
+                                <p class="text-[10px] text-gray-500 leading-relaxed font-medium">
+                                    Subscribe to automatically sync filtered events. Google typically refreshes every few hours.
+                                </p>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <a id="google-cal-btn" href="#" target="_blank" class="flex items-center justify-center gap-2 w-full py-2 bg-slate-50 border border-slate-100 rounded-xl text-[10px] font-black text-slate-600 uppercase tracking-widest hover:bg-slate-100 transition-all">
+                                    <img src="https://www.gstatic.com/calendar/images/dynamiclogo_2020q4/calendar_31_2x.png" class="w-3.5 h-3.5" referrerPolicy="no-referrer">
+                                    Google Calendar
+                                </a>
+                                <a id="apple-cal-btn" href="#" class="flex items-center justify-center gap-2 w-full py-2 bg-slate-50 border border-slate-100 rounded-xl text-[10px] font-black text-slate-600 uppercase tracking-widest hover:bg-slate-100 transition-all">
+                                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path></svg>
+                                    Apple / Other
+                                </a>
+
+                                <div class="relative pt-2 mt-2 border-t border-gray-50">
+                                    <div class="flex items-center gap-1.5 mb-1.5">
+                                        <span class="text-[8px] font-black text-gray-400 uppercase tracking-widest">Manual URL</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <input type="text" id="calendar-url-display" readonly class="flex-1 bg-gray-50 border border-gray-100 rounded-lg px-2 py-1.5 text-[8px] font-mono text-gray-400 outline-none truncate" value="Configuring...">
+                                        <button onclick="copyCalendarUrl()" id="copy-sync-btn" class="p-1.5 text-gray-400 hover:text-blue-600 transition-colors">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="toggleClassesCollapse()" id="class-expand-btn" class="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-700 transition-all shadow-sm">
+                        <span class="hidden sm:inline">Configure</span>
+                        <span class="sm:hidden">Edit</span>
                         <svg id="class-expand-icon" class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                 </div>
@@ -107,18 +154,8 @@
             </div>
         </div>
 
-        <!-- Morning Routine & Deadlines Bento Section -->
+        <!-- Proactive Widgets Bento Section -->
         <div id="proactive-widgets" class="mb-6 space-y-4">
-            <!-- Morning Routine (Bento Style) -->
-            <div id="morning-routine" class="hidden">
-                <div class="px-1 mb-3 flex items-center justify-between">
-                    <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Morning Routine</h4>
-                </div>
-                <div id="morning-routine-grid" class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    <!-- Cards injected here -->
-                </div>
-            </div>
-
             <!-- Action Required (Deadlines) -->
             <div id="action-required" class="hidden">
                 <div class="px-1 mb-3 flex items-center justify-between">
@@ -131,7 +168,7 @@
         </div>
 
         <!-- Weekly Glance -->
-        <div id="week-glance" class="mb-4">
+        <div id="week-glance" class="mb-1">
             <div class="flex items-center justify-between mb-3 px-1">
                 <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Weekly Snapshot</h4>
                 <span class="text-[9px] font-bold text-blue-500 flex items-center gap-1 opacity-60">
@@ -145,7 +182,7 @@
         </div>
 
         <!-- Main Feed Filters (Relocated above event list) -->
-        <div id="feed-filters" class="mb-6 sticky top-0 z-20 bg-gray-50/95 backdrop-blur py-2">
+        <div id="feed-filters" class="mb-2 sticky top-0 z-20 bg-gray-50/95 backdrop-blur py-2">
             <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
                 <div class="flex items-center divide-x divide-gray-100">
                     <!-- Search -->
@@ -184,6 +221,11 @@
                     <!-- Categories -->
                 </div>
             </div>
+
+            <!-- New Result Status Line -->
+            <div id="result-status" class="mt-1 px-1 flex items-center justify-between text-[9px] font-medium text-gray-400 uppercase tracking-widest">
+                <div id="event-count-display">Syncing...</div>
+            </div>
         </div>
 
         <!-- Results -->
@@ -221,6 +263,18 @@
         const TODAY = new Date(TODAY_STR); // Local midnight
         const ALL_CATEGORIES = ['HOLIDAY', 'ACADEMIC', 'SPORTS', 'WELLBEING', 'COMMUNITY', 'ARTS', 'TRIP', 'ADMIN', 'OTHER'];
         const ALL_CLASSES = ['N', 'R', 'Rb', 'Y1', 'Y1b', 'Y2', 'Y2b', 'Y3', 'Y3b', 'Y4', 'Y4b', 'Y5', 'Y5b', 'Y6', 'Y6b'];
+
+        const CATEGORY_STYLES = {
+            'HOLIDAY': { dot: 'bg-amber-400', label: 'bg-amber-50 text-amber-700 border-amber-100', checkbox: 'bg-amber-500 border-amber-500' },
+            'SPORTS': { dot: 'bg-green-400', label: 'bg-green-50 text-green-700 border-green-100', checkbox: 'bg-green-500 border-green-500' },
+            'ACADEMIC': { dot: 'bg-blue-400', label: 'bg-blue-50 text-blue-700 border-blue-100', checkbox: 'bg-blue-500 border-blue-500' },
+            'WELLBEING': { dot: 'bg-cyan-400', label: 'bg-cyan-50 text-cyan-700 border-cyan-100', checkbox: 'bg-cyan-500 border-cyan-500' },
+            'COMMUNITY': { dot: 'bg-purple-400', label: 'bg-purple-50 text-purple-700 border-purple-100', checkbox: 'bg-purple-500 border-purple-500' },
+            'ARTS': { dot: 'bg-pink-400', label: 'bg-pink-50 text-pink-700 border-pink-100', checkbox: 'bg-pink-500 border-pink-500' },
+            'TRIP': { dot: 'bg-orange-400', label: 'bg-orange-50 text-orange-700 border-orange-100', checkbox: 'bg-orange-500 border-orange-500' },
+            'ADMIN': { dot: 'bg-slate-400', label: 'bg-slate-50 text-slate-700 border-slate-100', checkbox: 'bg-slate-500 border-slate-500' },
+            'OTHER': { dot: 'bg-gray-300', label: 'bg-gray-50 text-gray-700 border-gray-100', checkbox: 'bg-gray-400 border-gray-400' }
+        };
 
         // Env Var Overrides
         try {
@@ -291,13 +345,14 @@
 
             container.innerHTML = ALL_CATEGORIES.map(cat => {
                 const isHidden = window.hiddenCategories.includes(cat);
+                const style = CATEGORY_STYLES[cat] || CATEGORY_STYLES['OTHER'];
                 return `
                     <label class="flex items-center p-2 rounded-xl border ${isHidden ? 'bg-gray-50 border-gray-100' : 'bg-white border-blue-50'} cursor-pointer hover:bg-blue-50/50 transition-all">
                         <input type="checkbox" class="sr-only" ${isHidden ? '' : 'checked'} onchange="toggleCategory('${cat}')">
-                        <div class="w-4 h-4 rounded border flex items-center justify-center mr-2 ${isHidden ? 'bg-white border-gray-300' : 'bg-blue-600 border-blue-600'}">
+                        <div class="w-4 h-4 rounded border flex items-center justify-center mr-2 ${isHidden ? 'bg-white border-gray-300' : `${style.checkbox} border-transparent`}">
                             ${isHidden ? '' : '<svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>'}
                         </div>
-                        <span class="text-[10px] font-black uppercase ${isHidden ? 'text-gray-400' : 'text-gray-900'}">${cat}</span>
+                        <span class="text-[10px] font-black uppercase ${isHidden ? 'text-gray-400' : style.label.split(' ')[1]}">${cat}</span>
                     </label>
                 `;
             }).join('');
@@ -333,6 +388,53 @@
                     <button onclick="toggleClass('${cls}')" class="px-2 py-2 text-[10px] font-black rounded-xl border transition-all ${isActive ? 'bg-blue-600 border-blue-600 text-white shadow-md scale-105' : 'bg-white border-gray-100 text-gray-400 hover:border-blue-200'}">${cls}</button>
                 `;
             }).join('');
+
+            // Update Calendar Sync URL
+            updateCalendarSyncUrl();
+        }
+
+        function updateCalendarSyncUrl() {
+            const urlDisplay = document.getElementById('calendar-url-display');
+            const googleBtn = document.getElementById('google-cal-btn');
+            const appleBtn = document.getElementById('apple-cal-btn');
+            if (!urlDisplay) return;
+
+            const classes = window.selectedClasses.sort().length > 0 ? window.selectedClasses : ALL_CLASSES;
+            const baseUrl = window.location.origin;
+            const syncUrl = `${baseUrl}/api/calendar/${classes.join(',')}.ics`;
+            urlDisplay.value = syncUrl;
+
+            if (googleBtn) {
+                const encodedUrl = encodeURIComponent(syncUrl);
+                googleBtn.href = `https://www.google.com/calendar/render?cid=${encodedUrl}`;
+            }
+
+            if (appleBtn) {
+                appleBtn.href = syncUrl.replace('http://', 'webcal://').replace('https://', 'webcal://');
+            }
+        }
+
+        window.copyCalendarUrl = function() {
+            const input = document.getElementById('calendar-url-display');
+            const btn = document.getElementById('copy-sync-btn');
+            if (!input) return;
+
+            input.select();
+            document.execCommand('copy');
+
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<svg class="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+            setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
+        }
+
+        window.toggleSyncDropdown = function(e) {
+            e.stopPropagation();
+            const menu = document.getElementById('sync-dropdown-menu');
+            const isHidden = menu.classList.toggle('hidden');
+            if (!isHidden) {
+                // If opening, ensure category panel is hidden
+                document.getElementById('category-panel')?.classList.add('hidden');
+            }
         }
 
         async function fetchEvents() {
@@ -352,13 +454,11 @@
         }
 
         function renderProactiveWidgets(events) {
-            const routineContainer = document.getElementById('morning-routine');
-            const routineGrid = document.getElementById('morning-routine-grid');
             const actionContainer = document.getElementById('action-required');
             const actionList = document.getElementById('action-required-list');
 
             // --- Deadlines Logic ---
-            const actionKeywords = ['form', 'payment', 'deadline', 'due', 'permission', 'consent', 'bring', 'return', 'costum', 'homework', 'rsvp'];
+            const actionKeywords = ['form', 'payment', 'deadline', 'due', 'permission', 'consent', 'bring', 'return', 'costum', 'homework', 'rsvp', 'meeting', 'consultation', 'appointment', 'zoom'];
             const deadlines = events.filter(e => {
                 const d = new Date(e.event_date);
                 if (d < TODAY) return false;
@@ -371,7 +471,15 @@
             if (deadlines.length > 0) {
                 actionContainer.classList.remove('hidden');
                 let visible = deadlines.filter(e => (new Date(e.event_date) - TODAY) <= (10 * 24 * 60 * 60 * 1000));
-                if (visible.length < 3) visible = deadlines.slice(0, 3);
+                
+                // User requested: limit to max 5 items
+                visible = visible.slice(0, 5);
+                
+                // Fallback ensure at least 3 if available even if > 10 days away
+                if (visible.length < 3 && deadlines.length > 0) visible = deadlines.slice(0, 3);
+                
+                // Final hard cap at 5
+                visible = visible.slice(0, 5);
                 
                 actionList.innerHTML = visible.map(e => {
                     const diffDays = Math.round((new Date(e.event_date) - TODAY) / (1000 * 60 * 60 * 24));
@@ -381,22 +489,37 @@
                     else if (diffDays === 1) relTime = "TOMORROW";
                     else if (diffDays > 1) relTime = `IN ${diffDays} DAYS`;
 
+                    // Filter classes to show only those that match active filters (or show 'All' if applicable)
+                    const relevantClasses = e.classes.filter(c => 
+                        window.selectedClasses.length === 0 || window.selectedClasses.includes(c) || c === 'All'
+                    );
+                    let badges = relevantClasses.slice(0, 2).map(c => 
+                        `<span class="px-1.5 py-0.5 bg-white/60 border border-black/5 text-[7px] font-black text-gray-500 rounded-sm uppercase tracking-tighter">${c}</span>`
+                    ).join('');
+                    
+                    if (relevantClasses.length > 2) {
+                        badges += `<span class="text-[10px] text-gray-400 font-black ml-0.5 leading-none">...</span>`;
+                    }
+
                     return `
                         <div onclick="document.getElementById('event-${e.id}').scrollIntoView({behavior:'smooth', block:'start'})" 
-                             class="py-1.5 px-3 border-l-2 rounded-r-md flex items-center justify-between gap-3 cursor-pointer hover:bg-white transition-all ${isUrgent ? 'bg-amber-50/50 border-amber-400' : 'bg-slate-50/50 border-slate-300'}">
+                             class="py-1.5 px-3 border-l-2 rounded-r-md flex items-center justify-between gap-3 cursor-pointer hover:bg-white transition-all ${isUrgent ? 'bg-amber-50/50 border-amber-400 shadow-sm' : 'bg-slate-50/50 border-slate-300'}">
                             <div class="flex items-center gap-3 flex-1 min-w-0">
-                                <span class="text-[9px] font-black shrink-0 ${isUrgent ? 'text-amber-600' : 'text-blue-600'} w-20">${relTime}</span>
-                                <span class="text-[8px] font-bold uppercase opacity-60 whitespace-nowrap">${e.formatted_date_display || e.event_date}</span>
-                                <span class="text-[10px] font-black ${isUrgent ? 'text-amber-900' : 'text-slate-700'} uppercase truncate">${e.deadline_desc || e.title}</span>
+                                <div class="flex flex-col w-16 shrink-0">
+                                    <span class="text-[9px] font-black ${isUrgent ? 'text-amber-600' : 'text-blue-600'} leading-none whitespace-nowrap">${relTime}</span>
+                                    <span class="text-[7px] font-bold uppercase opacity-40 whitespace-nowrap mt-0.5 leading-none">${e.formatted_date_display || e.event_date}</span>
+                                </div>
+                                <div class="flex items-center gap-2 flex-1 min-w-0">
+                                    <span class="text-[10px] font-black ${isUrgent ? 'text-amber-900' : 'text-slate-700'} uppercase truncate">${e.deadline_desc || e.title}</span>
+                                    <div class="flex gap-1 shrink-0">
+                                        ${badges}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     `;
                 }).join('');
             } else actionContainer.classList.add('hidden');
-
-            // --- Routine Logic (Today/Tomorrow Only) ---
-            const routine = events.filter(e => e.event_date === TODAY_STR); // Simplified for brevity
-            if (routine.length > 0) routineContainer.classList.remove('hidden');
         }
 
         function renderWeekGlance(events) {
@@ -405,19 +528,7 @@
             const start = new Date(TODAY);
             let html = "";
 
-            const catDots = {
-                'HOLIDAY': 'bg-amber-400',
-                'SPORTS': 'bg-green-400',
-                'ACADEMIC': 'bg-blue-400',
-                'WELLBEING': 'bg-cyan-400',
-                'COMMUNITY': 'bg-purple-400',
-                'ARTS': 'bg-pink-400',
-                'TRIP': 'bg-orange-400',
-                'ADMIN': 'bg-slate-400',
-                'OTHER': 'bg-gray-300'
-            };
-
-            for (let i = 0; i < 21; i++) {
+            for (let i = 0; i < 60; i++) {
                 const d = new Date(start); d.setDate(start.getDate() + i);
                 const dStr = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
                 const dayEvs = events.filter(e => e.event_date === dStr);
@@ -430,7 +541,10 @@
                 if (isToday) dayClass = "bg-blue-600 border-blue-600 text-white shadow-lg ring-2 ring-blue-100";
                 else if (isPast || dayType === 'HOLIDAY' || dayType === 'WEEKEND') dayClass = "bg-gray-50 border-gray-200 text-gray-400";
 
-                const dots = dayEvs.slice(0, 4).map(e => `<div class="w-1.5 h-1.5 rounded-full ${catDots[e.type] || catDots['OTHER']}"></div>`).join('');
+                const dots = dayEvs.slice(0, 4).map(e => {
+                    const s = CATEGORY_STYLES[e.type] || CATEGORY_STYLES['OTHER'];
+                    return `<div class="w-1.5 h-1.5 rounded-full ${s.dot}"></div>`;
+                }).join('');
                 
                 html += `
                 <div onclick="scrollToDay('${dStr}')" class="w-14 h-20 shrink-0 rounded-xl flex flex-col items-center justify-center border cursor-pointer transition-all hover:scale-105 active:scale-95 ${dayClass} text-[10px] font-black uppercase overflow-hidden">
@@ -477,13 +591,21 @@
             renderWeekGlance(filtered);
             renderProactiveWidgets(filtered);
 
+            // Update Counter (Showing X of Y)
+            const countDisplay = document.getElementById('event-count-display');
+            if (countDisplay) {
+                const total = window.allEvents.length;
+                countDisplay.innerHTML = `Showing ${filtered.length} of ${total} total items`;
+            }
+
             const visible = filtered.slice(0, window.visibleLimit);
             container.innerHTML = visible.map(e => {
                 const isPast = e.event_date < TODAY_STR;
+                const catStyle = CATEGORY_STYLES[e.type] || CATEGORY_STYLES['OTHER'];
                 return `
                 <div id="event-${e.id}" data-date="${e.event_date}" class="bg-white border border-gray-100 rounded-xl p-5 shadow-sm scroll-mt-24 transition-all ${isPast ? 'opacity-50 grayscale-[0.5]' : ''}">
                     <div class="flex justify-between items-center mb-3">
-                        <span class="px-2 py-0.5 bg-blue-50 text-blue-600 text-[9px] font-black uppercase rounded">${e.type || 'EVENT'}</span>
+                        <span class="px-2 py-0.5 ${catStyle.label} text-[9px] font-black uppercase rounded border">${e.type || 'EVENT'}</span>
                         <div class="flex items-center gap-2">
                             ${isPast ? '<span class="text-[9px] font-black text-gray-400 uppercase tracking-tighter bg-gray-50 px-1.5 py-0.5 rounded">Passed</span>' : ''}
                             <span class="text-[10px] font-mono font-bold text-gray-400">${e.formatted_date_display || e.event_date}</span>
@@ -491,8 +613,27 @@
                     </div>
                     <h3 class="text-lg font-black text-gray-900 mb-2">${e.title}</h3>
                     <p class="text-sm text-gray-500 leading-relaxed">${e.summary || ''}</p>
-                    <div class="mt-4 flex flex-wrap gap-2 pt-4 border-t border-gray-50">
-                        ${e.classes.map(c => `<span class="px-2 py-0.5 bg-gray-50 border border-gray-100 text-[9px] font-bold text-gray-400 rounded">${c}</span>`).join('')}
+                    
+                    ${e.full_details && e.full_details !== e.summary ? `
+                        <div id="details-${e.id}" class="hidden mt-3 pt-3 border-t border-dashed border-gray-100 animate-in fade-in slide-in-from-top-1">
+                            <div class="text-sm text-gray-500 leading-relaxed whitespace-pre-wrap">${e.full_details}</div>
+                        </div>
+                        <button onclick="document.getElementById('details-${e.id}').classList.toggle('hidden'); this.innerText = document.getElementById('details-${e.id}').classList.contains('hidden') ? 'Show More' : 'Show Less'" 
+                                class="mt-2 text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-700 transition-colors">
+                            Show More
+                        </button>
+                    ` : ''}
+
+                    <div class="mt-4 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-gray-50">
+                        <div class="flex flex-wrap gap-1.5">
+                            ${e.classes.map(c => `<span class="px-2 py-0.5 bg-gray-50 border border-gray-100 text-[9px] font-bold text-gray-400 rounded">${c}</span>`).join('')}
+                        </div>
+                        ${e.source_title ? `
+                            <div class="text-[8px] font-bold text-gray-300 uppercase tracking-tight flex items-center gap-1.5">
+                                <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
+                                Source: ${e.source_title} ${e.source_date ? `(${e.source_date})` : ''}
+                            </div>
+                        ` : ''}
                     </div>
                 </div>
                 `;
@@ -515,8 +656,12 @@
                 e.stopPropagation();
                 document.getElementById('category-panel').classList.toggle('hidden');
             };
-            document.addEventListener('click', () => document.getElementById('category-panel').classList.add('hidden'));
+            document.addEventListener('click', () => {
+                document.getElementById('category-panel').classList.add('hidden');
+                document.getElementById('sync-dropdown-menu').classList.add('hidden');
+            });
             document.getElementById('category-panel').onclick = (e) => e.stopPropagation();
+            document.getElementById('sync-dropdown-menu').onclick = (e) => e.stopPropagation();
 
             // Infinite Scroll Implementation
             const observer = new IntersectionObserver((entries) => {
