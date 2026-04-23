@@ -3,6 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Analytics -->
+    <script>
+      (function() {
+        const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+        if (gaId && gaId !== "undefined") {
+          const script = document.createElement('script');
+          script.async = true;
+          script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+          document.head.appendChild(script);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaId);
+          console.log('Google Analytics Initialized');
+        }
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <title>BWA School Calendar</title>
@@ -399,17 +417,27 @@
             const appleBtn = document.getElementById('apple-cal-btn');
             if (!urlDisplay) return;
 
-            const classes = window.selectedClasses.sort().length > 0 ? window.selectedClasses : ALL_CLASSES;
+            // --- Shorten the classes slug to avoid long URLs ---
+            // If all classes or no classes selected, use 'All' keyword
+            let classesSlug;
+            if (window.selectedClasses.length === 0 || window.selectedClasses.length === ALL_CLASSES.length) {
+                classesSlug = "All";
+            } else {
+                classesSlug = window.selectedClasses.sort().join(',');
+            }
+
             const baseUrl = window.location.origin;
-            const syncUrl = `${baseUrl}/api/calendar/${classes.join(',')}.ics`;
+            const syncUrl = `${baseUrl}/api/calendar/${classesSlug}.ics`;
             urlDisplay.value = syncUrl;
 
             if (googleBtn) {
+                // Google Calendar render URL works best with encoded absolute https urls
                 const encodedUrl = encodeURIComponent(syncUrl);
                 googleBtn.href = `https://www.google.com/calendar/render?cid=${encodedUrl}`;
             }
 
             if (appleBtn) {
+                // Apple/Outlook prefer the webcal:// protocol for direct app opening
                 appleBtn.href = syncUrl.replace('http://', 'webcal://').replace('https://', 'webcal://');
             }
         }

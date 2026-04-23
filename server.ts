@@ -44,8 +44,14 @@ async function startServer() {
 
       // Filter events
       const filteredEvents = (events || []).filter(e => {
+        // If the user requested 'All', return everything
+        if (selectedClasses.includes("All")) return true;
+        
         const eventClasses = e.classes || [];
+        // If the event is marked for 'All', it matches any selection
         if (eventClasses.includes("All")) return true;
+        
+        // Otherwise, check for specific class matches
         return eventClasses.some((c: string) => selectedClasses.includes(c));
       });
 
