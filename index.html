@@ -246,8 +246,8 @@
 
     <script type="module">
         // --- Core Setup & State ---
-        let SUPABASE_URL = '__INJECT_SUPABASE_URL__'; 
-        let SUPABASE_KEY = '__INJECT_SUPABASE_KEY__';
+        let SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL; 
+        let SUPABASE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
         let APP_BASE_URL = window.location.origin + window.location.pathname.replace(/\/$/, '').replace(/\/index\.html$/, '');
         if (APP_BASE_URL === 'null') APP_BASE_URL = window.location.origin; // Fallback for some environments
         
@@ -277,23 +277,15 @@
             'OTHER': { dot: 'bg-gray-300', label: 'bg-gray-50 text-gray-700 border-gray-100', checkbox: 'bg-gray-400 border-gray-400' }
         };
 
-        // Env Var Overrides
-        try {
-            if (typeof import.meta !== 'undefined' && import.meta.env) {
-                const viteUrl = import.meta.env.VITE_SUPABASE_URL;
-                const viteKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_KEY;
-                if (viteUrl && !viteUrl.includes('INJECT')) SUPABASE_URL = viteUrl;
-                if (viteKey && !viteKey.includes('INJECT')) SUPABASE_KEY = viteKey;
-                const viteApi = import.meta.env.VITE_API_BASE_URL;
-                if (viteApi && !viteApi.includes('INJECT')) {
-                    APP_BASE_URL = viteApi.replace(/\/$/, '');
-                }
-            }
-        } catch (e) {}
-
+        // Initialize Supabase Client
         let supabaseClient = null;
-        if (window.supabase && SUPABASE_URL && !SUPABASE_URL.includes('INJECT')) {
+        if (window.supabase && SUPABASE_URL && !SUPABASE_URL.toString().includes('import.meta')) {
             supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        }
+
+        // Allow explicit override of APP_BASE_URL
+        if (import.meta.env.VITE_API_BASE_URL && !import.meta.env.VITE_API_BASE_URL.toString().includes('import.meta')) {
+            APP_BASE_URL = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, '');
         }
 
         // --- Logic Handlers ---

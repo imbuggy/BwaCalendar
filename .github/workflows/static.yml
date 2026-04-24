@@ -4,6 +4,8 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * *' # Run at 04:00 UTC daily
 
 permissions:
   contents: read
@@ -11,70 +13,63 @@ permissions:
   id-token: write
 
 jobs:
-  deploy:
+  build_site:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
-      - name: Inject Secrets into index.html
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node_version: 20
+          cache: 'npm'
+
+      - name: Install Node Dependencies
+        run: npm install
+
+      - name: Build with Vite
         env:
-          COMMIT_MSG: ${{ github.event.head_commit.message }}
-          S_URL: ${{ secrets.SUPABASE_URL }}
-          S_KEY: ${{ secrets.SUPABASE_ANON_KEY || secrets.SUPABASE_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY || secrets.SUPABASE_KEY }}
+          VITE_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY || secrets.SUPABASE_KEY }}
+          VITE_GA_MEASUREMENT_ID: ${{ secrets.VITE_GA_MEASUREMENT_ID }}
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL || secrets.APP_URL }}
+        run: npm run build
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generate Calendar Files
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY || secrets.SUPABASE_KEY }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          echo "Verifying Secrets (Checking presence only)..."
-          if [ -z "${S_URL}" ]; then echo "WARNING: SUPABASE_URL secret is EMPTY!"; else echo "SUPABASE_URL found (Length: ${#S_URL})"; fi
-          if [ -z "${S_KEY}" ]; then echo "WARNING: SUPABASE_KEY secret is EMPTY!"; else echo "SUPABASE_KEY found (Length: ${#S_KEY})"; fi
-          
-          # Write a temporary python script to do literal replacement safely
-          cat << 'EOF' > inject_secrets.py
-          import os
-          import datetime
-          
-          def inject():
-              with open('index.html', 'r', encoding='utf-8') as f:
-                  content = f.read()
-              
-              # Literal replacement of placeholders
-              # We use a unique 'INJECT' prefix to avoid collision with diagnostic strings
-              s_url = os.environ.get('S_URL', '')
-              s_key = os.environ.get('S_KEY', '')
-              
-              url_count = content.count('__INJECT_SUPABASE_URL__')
-              key_count = content.count('__INJECT_SUPABASE_KEY__')
-              
-              content = content.replace('__INJECT_SUPABASE_URL__', s_url)
-              content = content.replace('__INJECT_SUPABASE_KEY__', s_key)
-              
-              # Handle versioning
-              msg = os.environ.get('COMMIT_MSG', '').replace('\n', ' ').replace('|', '').replace('"', '').replace('`', '')
-              deploy_info = f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} - {msg}"
-              content = content.replace('DEPLOY_VERSION_PLACEHOLDER', deploy_info)
-              
-              with open('index.html', 'w', encoding='utf-8') as f:
-                  f.write(content)
-              
-              print(f"Injection successful. Replaced {url_count} URL placeholders and {key_count} KEY placeholders.")
-              if url_count == 0 or key_count == 0:
-                  print("CRITICAL WARNING: One or more placeholders were NOT found in index.html!")
+          pip install supabase google-genai requests beautifulsoup4 pypdf python-docx
+          python3 main.py
+          # Ensure the api/calendar files are inside the dist folder for deployment
+          mkdir -p dist/api/calendar
+          cp -r api/calendar/* dist/api/calendar/ || echo "No calendar files found to copy"
+          echo "Calendar generation and copy to dist complete."
 
-          if __name__ == "__main__":
-              inject()
-          EOF
-
-          python3 inject_secrets.py
-          rm inject_secrets.py
-          echo "Injection step complete."
-      
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
-      
+          path: './dist'
+
+  deploy:
+    needs: build_site
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
