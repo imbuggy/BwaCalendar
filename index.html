@@ -21,8 +21,10 @@
                 <h1 class="text-xl font-black tracking-tight text-gray-900 uppercase leading-none">BWA Calendar</h1>
                 <div id="last-updated-display" class="text-[9px] font-bold text-gray-400 mt-1 uppercase tracking-tight">Booting...</div>
             </div>
+            <button onclick="document.getElementById('debug-modal').classList.toggle('hidden')" class="shrink-0 flex items-center gap-1.5 px-2 py-1 bg-slate-50 border border-slate-100 rounded-lg group transition-all">
+                <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+            </button>
             <button onclick="document.getElementById('about-modal').classList.remove('hidden')" class="shrink-0 flex items-center gap-1.5 px-2 py-1 bg-slate-50 border border-slate-100 rounded-lg group transition-all">
-                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-tighter">V1.1.2</span>
                 <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
             </button>
         </div>
@@ -42,8 +44,25 @@
                     </div>
                 </div>
                 <!-- Build Version -->
-                <div id="deploy-version" class="mb-4 text-center text-[8px] text-gray-300 font-mono uppercase tracking-widest">BUILD: V1.1.2 | PRODUCTION</div>
+                <div id="deploy-version" class="mb-4 text-center text-[8px] text-gray-300 font-mono uppercase tracking-widest">BUILD: PRODUCTION</div>
                 <button onclick="document.getElementById('about-modal').classList.add('hidden')" class="w-full py-3 bg-gray-900 text-white text-xs font-bold rounded-xl hover:bg-black transition-all">Got it</button>
+            </div>
+        </div>
+
+        <!-- Debug Modal -->
+        <div id="debug-modal" class="fixed inset-0 z-50 hidden flex flex-col p-4 bg-gray-900/90 backdrop-blur-md">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-sm font-black text-amber-500 uppercase tracking-widest">System Debug Logs</h2>
+                <button onclick="document.getElementById('debug-modal').classList.add('hidden')" class="text-white hover:text-amber-500 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="debug-log-content" class="flex-1 bg-black/40 rounded-xl p-4 font-mono text-[10px] text-green-400 overflow-y-auto space-y-1">
+                <div>[SYSTEM] Debug console initialized.</div>
+            </div>
+            <div class="mt-4 flex gap-2">
+                <button onclick="document.getElementById('debug-log-content').innerHTML = ''" class="flex-1 py-3 bg-gray-800 text-white text-[10px] font-black rounded-xl hover:bg-gray-700 uppercase tracking-widest transition-all">Clear Logs</button>
+                <button onclick="location.reload()" class="flex-1 py-3 bg-amber-600 text-white text-[10px] font-black rounded-xl hover:bg-amber-700 uppercase tracking-widest transition-all">Force Reload</button>
             </div>
         </div>
 
@@ -230,71 +249,43 @@
 
     <script type="module">
         // --- Core Setup & State ---
-        console.log("Script starting (V1.1.2)...");
-        
-        let display = null;
-        try {
-            display = document.getElementById('last-updated-display');
-            if (display) display.innerText = 'Booting...';
-        } catch (e) {}
+        const debugLog = (msg, type = 'info') => {
+            const container = document.getElementById('debug-log-content');
+            if (!container) return;
+            const time = new Date().toLocaleTimeString();
+            const div = document.createElement('div');
+            div.className = type === 'error' ? 'text-red-400' : (type === 'warn' ? 'text-amber-400' : 'text-green-400');
+            div.innerHTML = `<span class="opacity-40">[${time}]</span> ${msg}`;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        };
 
-        function updateBootStatus(msg) {
+        const updateStatus = (msg) => {
+            const el = document.getElementById('last-updated-display');
+            if (el) el.innerText = msg;
+            debugLog(`Status: ${msg}`, 'info');
             console.log("Status:", msg);
-            if (display) display.innerText = msg;
-        }
+        };
 
-        updateBootStatus('Initializing...');
+        const reportError = (tag, err) => {
+            debugLog(`${tag}: ${err.message || err}`, 'error');
+            console.error(tag, err);
+            const el = document.getElementById('events-list');
+            if (el) el.innerHTML = `<div class="p-8 text-center text-red-500 font-bold uppercase text-[10px] tracking-widest">${tag}: ${err.message || err}</div>`;
+        };
 
-        window.addEventListener('error', (event) => {
-            console.error('Global error caught:', event.error || event.message);
-            const list = document.getElementById('events-list');
-            if (list) list.innerHTML = `<div class="p-4 bg-red-50 text-red-600 text-xs font-bold rounded-xl border border-red-100 uppercase tracking-widest text-center">Runtime Error: ${event.message}</div>`;
-        });
-        window.addEventListener('unhandledrejection', (event) => {
-            console.error('Unhandled promise rejection:', event.reason);
-            const list = document.getElementById('events-list');
-            if (list) list.innerHTML = `<div class="p-4 bg-red-50 text-red-600 text-xs font-bold rounded-xl border border-red-100 uppercase tracking-widest text-center">Connection Error: ${event.reason?.message || 'Promise Rejected'}</div>`;
-        });
+        const isPlaceHolder = (val) => {
+            if (!val) return true;
+            const str = val.toString();
+            return str === 'undefined' || str.includes('import.meta') || str.includes('__INJECT_') || str.includes('PLACEHOLDER');
+        };
 
-        let VITE_URL = "";
-        let VITE_KEY = "";
-        try {
-            const meta = import.meta;
-            if (meta && meta.env) {
-                VITE_URL = meta.env.VITE_SUPABASE_URL || "";
-                VITE_KEY = meta.env.VITE_SUPABASE_ANON_KEY || meta.env.VITE_SUPABASE_KEY || "";
-            }
-        } catch (e) {
-            console.warn("import.meta.env not available", e);
-        }
-
-        let SUPABASE_URL = VITE_URL; 
-        let SUPABASE_KEY = VITE_KEY;
-        let APP_BASE_URL = window.location.origin + window.location.pathname.replace(/\/$/, '').replace(/\/index\.html$/, '');
-        if (APP_BASE_URL === 'null' || !APP_BASE_URL) APP_BASE_URL = window.location.origin;
-        
-        // Initialize State from LocalStorage with safety
-        try {
-            updateBootStatus('Loading State...');
-            window.showPastEvents = localStorage.getItem('showPastEvents') === 'true';
-            window.selectedClasses = JSON.parse(localStorage.getItem('selectedClasses') || '[]');
-            window.hiddenCategories = JSON.parse(localStorage.getItem('hiddenCategories') || '[]');
-        } catch (e) {
-            console.warn("LocalStorage access failed", e);
-            window.showPastEvents = false;
-            window.selectedClasses = [];
-            window.hiddenCategories = [];
-        }
-        window.searchQuery = "";
-        window.visibleLimit = 10;
-        window.allEvents = [];
-        
+        // Globals
         const localNow = new Date();
         const TODAY_STR = localNow.getFullYear() + '-' + String(localNow.getMonth() + 1).padStart(2, '0') + '-' + String(localNow.getDate()).padStart(2, '0');
-        const TODAY = new Date(TODAY_STR); // Local midnight
+        const TODAY = new Date(TODAY_STR);
         const ALL_CATEGORIES = ['HOLIDAY', 'ACADEMIC', 'SPORTS', 'WELLBEING', 'COMMUNITY', 'ARTS', 'TRIP', 'ADMIN', 'OTHER'];
         const ALL_CLASSES = ['N', 'R', 'Rb', 'Y1', 'Y1b', 'Y2', 'Y2b', 'Y3', 'Y3b', 'Y4', 'Y4b', 'Y5', 'Y5b', 'Y6', 'Y6b'];
-
         const CATEGORY_STYLES = {
             'HOLIDAY': { dot: 'bg-amber-400', label: 'bg-amber-50 text-amber-700 border-amber-100', checkbox: 'bg-amber-500 border-amber-500' },
             'SPORTS': { dot: 'bg-green-400', label: 'bg-green-50 text-green-700 border-green-100', checkbox: 'bg-green-500 border-green-500' },
@@ -307,91 +298,97 @@
             'OTHER': { dot: 'bg-gray-300', label: 'bg-gray-50 text-gray-700 border-gray-100', checkbox: 'bg-gray-400 border-gray-400' }
         };
 
-        // Initialize Supabase Client
-        let supabaseClient = null;
-        const isPlaceHolder = (val) => {
-            if (!val) return true;
-            const str = val.toString();
-            return str === 'undefined' || str.includes('import.meta') || str.includes('__INJECT_') || str.includes('PLACEHOLDER');
-        };
-        
-        async function initSupabase() {
-            updateBootStatus('Connecting...');
-            
-            // Check for missing secrets specifically
-            if (isPlaceHolder(SUPABASE_URL) || isPlaceHolder(SUPABASE_KEY)) {
-                console.warn("Supabase secrets missing from client environment.");
-                updateBootStatus('Config Missing');
+        window.APP_BASE_URL = window.location.origin + window.location.pathname.replace(/\/$/, '').replace(/\/index\.html$/, '');
+        if (window.APP_BASE_URL === 'null' || !window.APP_BASE_URL) window.APP_BASE_URL = window.location.origin;
+
+        // --- Main Boot Sequence ---
+        async function boot() {
+            try {
+                updateStatus('Starting...');
                 
-                const listContainer = document.getElementById('events-list');
-                if (listContainer) {
-                    listContainer.innerHTML = `
-                        <div class="py-12 px-6 text-center">
-                            <div class="mb-4 text-amber-500 font-black uppercase text-xs">Environment Setup Required</div>
-                            <p class="text-xs text-gray-500 leading-relaxed max-w-sm mx-auto">
-                                The client application cannot find its configuration. Please ensure you have set the following secrets in your environment:
-                                <br><br>
-                                <code class="bg-gray-100 px-1 py-0.5 rounded text-[10px]">VITE_SUPABASE_URL</code><br>
-                                <code class="bg-gray-100 px-1 py-0.5 rounded text-[10px]">VITE_SUPABASE_KEY</code>
-                                <br><br>
-                                Note: These must start with <span class="font-bold">VITE_</span> to be visible to the browser.
-                            </p>
-                        </div>
-                    `;
-                }
-                return;
-            }
-
-            if (window.supabase) {
+                // Env Variables
+                let SUPABASE_URL = "";
+                let SUPABASE_KEY = "";
                 try {
-                    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-                    console.log("Supabase client initialized.");
-                    updateBootStatus('Ready');
-                } catch (e) {
-                    console.error("Failed to create Supabase client:", e);
-                    updateBootStatus('Connection Error');
-                }
-            } else {
-                updateBootStatus('Retrying...');
-                // Library not ready yet? Wait 500ms
-                setTimeout(() => {
-                    if (window.supabase) {
-                        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-                        updateBootStatus('Ready (Delayed)');
-                        fetchEvents();
-                    } else {
-                        updateBootStatus('Library Error');
+                    const env = import.meta.env;
+                    if (env) {
+                        SUPABASE_URL = env.VITE_SUPABASE_URL || "";
+                        SUPABASE_KEY = env.VITE_SUPABASE_ANON_KEY || env.VITE_SUPABASE_KEY || "";
+                        debugLog(`Env: URL=${SUPABASE_URL ? 'OK' : 'MISSING'}, KEY=${SUPABASE_KEY ? 'OK' : 'MISSING'}`);
+                        const apiBase = env.VITE_API_BASE_URL;
+                        if (apiBase && !isPlaceHolder(apiBase)) window.APP_BASE_URL = apiBase.replace(/\/$/, '');
                     }
-                }, 1000);
-            }
-        }
+                } catch(e) { console.warn("Env check skipped", e); }
 
-        // Allow explicit override of APP_BASE_URL
-        try {
-            const apiBase = import.meta.env.VITE_API_BASE_URL;
-            if (apiBase && !isPlaceHolder(apiBase)) {
-                APP_BASE_URL = apiBase.replace(/\/$/, '');
-                console.log("APP_BASE_URL overridden to:", APP_BASE_URL);
-            }
-        } catch (e) {}
+                // LocalStorage
+                updateStatus('Loading State...');
+                try {
+                    window.showPastEvents = localStorage.getItem('showPastEvents') === 'true';
+                    window.selectedClasses = JSON.parse(localStorage.getItem('selectedClasses') || '[]');
+                    window.hiddenCategories = JSON.parse(localStorage.getItem('hiddenCategories') || '[]');
+                } catch (e) {
+                    window.showPastEvents = false;
+                    window.selectedClasses = [];
+                    window.hiddenCategories = [];
+                }
+                window.searchQuery = "";
+                window.visibleLimit = 10;
+                window.allEvents = [];
 
-        // Initialize Google Analytics
-        try {
-            const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID;
-            if (gaId && !isPlaceHolder(gaId)) {
-                const script = document.createElement('script');
-                script.async = true;
-                script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
-                document.head.appendChild(script);
+                // Supabase Init
+                updateStatus('Connecting...');
+                if (isPlaceHolder(SUPABASE_URL) || isPlaceHolder(SUPABASE_KEY)) {
+                    updateStatus('Config Missing');
+                    const list = document.getElementById('events-list');
+                    if (list) list.innerHTML = `<div class="py-12 px-6 text-center"><div class="mb-4 text-amber-500 font-black uppercase text-[10px] tracking-widest">Configuration Required</div><p class="text-[9px] text-gray-400 leading-relaxed max-w-sm mx-auto uppercase italic">Secret configuration missing.</p></div>`;
+                    return;
+                }
 
-                window.dataLayer = window.dataLayer || [];
-                window.gtag = function(){window.dataLayer.push(arguments);}
-                window.gtag('js', new Date());
-                window.gtag('config', gaId);
-                console.log('Google Analytics Initialized');
+                if (!window.supabase) {
+                    updateStatus('Retrying Library...');
+                    debugLog('Supabase library not yet loaded, waiting...', 'warn');
+                    await new Promise(r => setTimeout(r, 1000));
+                }
+
+                if (window.supabase) {
+                    try {
+                        window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                        debugLog('Supabase client initialized');
+                    } catch (e) {
+                        reportError('Supabase Init', e);
+                        return;
+                    }
+                } else {
+                    updateStatus('Dependency Error');
+                    return;
+                }
+
+                // Initialize UI
+                updateStatus('Ready');
+                setupEventListeners();
+                renderClassFilterGrid();
+                renderCategoryFilters();
+
+                // Google Analytics
+                try {
+                    const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+                    if (gaId && !isPlaceHolder(gaId)) {
+                        const script = document.createElement('script');
+                        script.async = true;
+                        script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+                        document.head.appendChild(script);
+                        window.dataLayer = window.dataLayer || [];
+                        window.gtag = function(){window.dataLayer.push(arguments);}
+                        window.gtag('js', new Date());
+                        window.gtag('config', gaId);
+                    }
+                } catch (e) {}
+
+                // Initial Fetch
+                await fetchEvents();
+            } catch (bootErr) {
+                reportError('Boot Failure', bootErr);
             }
-        } catch (e) {
-            console.warn("GA initialization failed", e);
         }
 
         // --- Logic Handlers ---
@@ -576,39 +573,20 @@
         }
 
         async function fetchEvents() {
-            console.log("fetchEvents() triggered");
             const display = document.getElementById('last-updated-display');
-            const countDisplay = document.getElementById('event-count-display');
-            const listContainer = document.getElementById('events-list');
-
             if (display) display.innerText = 'Syncing...';
-            if (countDisplay) countDisplay.innerText = 'Fetching...';
 
-            if (!supabaseClient) {
-                console.warn('Supabase client is null. Cannot fetch.');
-                console.warn('Supabase not configured or initialization failed.');
-                if (display) display.innerText = 'Not Configured';
-                if (countDisplay) countDisplay.innerText = 'Setup Required';
-                
-                // If it looks like we totally missing config, show setup view
-                if (isPlaceHolder(SUPABASE_URL)) {
-                    document.getElementById('setup-view')?.classList.remove('hidden');
-                    document.getElementById('calendar-app')?.classList.add('hidden');
-                }
-                renderEvents();
-                return;
-            }
+            if (!window.supabaseClient) return;
 
-            console.log("Requesting events from Supabase...");
             try {
-                const { data, error } = await supabaseClient
+                const { data, error } = await window.supabaseClient
                     .from('events')
                     .select('*')
                     .eq('status', 'approved')
                     .order('event_date', { ascending: true });
                 
-                console.log("Supabase response received:", { count: data?.length, error });
                 if (error) throw error;
+                debugLog(`Successfully fetched ${data?.length || 0} events from database`);
                 
                 window.allEvents = (data || []).filter(e => e.type !== 'SYSTEM_META').map(e => {
                     let classesArray = e.classes;
@@ -617,14 +595,13 @@
                 });
 
                 const meta = (data || []).find(e => e.type === 'SYSTEM_META');
-                if (meta && display) display.innerText = `Last email sync: ${meta.summary}`;
-                else if (display) display.innerText = 'Sync Active';
+                if (meta && display) display.innerText = `Synced: ${meta.summary}`;
+                else if (display) display.innerText = 'Synced';
                 
                 renderEvents();
             } catch (err) {
                 console.error('Fetch error:', err);
                 if (display) display.innerText = 'Sync Failed';
-                if (countDisplay) countDisplay.innerText = 'Error loading data';
                 renderEvents();
             }
         }
@@ -889,13 +866,7 @@
         }
 
         // Initialize
-        setupEventListeners();
-        renderClassFilterGrid();
-        renderCategoryFilters();
-        
-        initSupabase().then(() => {
-            fetchEvents();
-        });
+        boot();
     </script>
 </body>
 </html>
