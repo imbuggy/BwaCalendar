@@ -98,27 +98,8 @@
                                 </p>
                             </div>
                             
-                            <div class="space-y-2">
-                                <a id="google-cal-btn" href="#" target="_blank" class="flex items-center justify-center gap-2 w-full py-2 bg-slate-50 border border-slate-100 rounded-xl text-[10px] font-black text-slate-600 uppercase tracking-widest hover:bg-slate-100 transition-all">
-                                    <img src="https://www.gstatic.com/calendar/images/dynamiclogo_2020q4/calendar_31_2x.png" class="w-3.5 h-3.5" referrerPolicy="no-referrer">
-                                    Google Calendar
-                                </a>
-                                <a id="apple-cal-btn" href="#" class="flex items-center justify-center gap-2 w-full py-2 bg-slate-50 border border-slate-100 rounded-xl text-[10px] font-black text-slate-600 uppercase tracking-widest hover:bg-slate-100 transition-all">
-                                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path></svg>
-                                    Apple / Other
-                                </a>
-
-                                <div class="relative pt-2 mt-2 border-t border-gray-50">
-                                    <div class="flex items-center gap-1.5 mb-1.5">
-                                        <span class="text-[8px] font-black text-gray-400 uppercase tracking-widest">Manual URL</span>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <input type="text" id="calendar-url-display" readonly class="flex-1 bg-gray-50 border border-gray-100 rounded-lg px-2 py-1.5 text-[8px] font-mono text-gray-400 outline-none truncate" value="Configuring...">
-                                        <button onclick="copyCalendarUrl()" id="copy-sync-btn" class="p-1.5 text-gray-400 hover:text-blue-600 transition-colors">
-                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
-                                        </button>
-                                    </div>
-                                </div>
+                            <div id="sync-options-container" class="space-y-3">
+                                <!-- Dynamic Sync Options Injected Here -->
                             </div>
                         </div>
                     </div>
@@ -267,6 +248,8 @@
         // --- Core Setup & State ---
         let SUPABASE_URL = '__INJECT_SUPABASE_URL__'; 
         let SUPABASE_KEY = '__INJECT_SUPABASE_KEY__';
+        let APP_BASE_URL = window.location.origin + window.location.pathname.replace(/\/$/, '').replace(/\/index\.html$/, '');
+        if (APP_BASE_URL === 'null') APP_BASE_URL = window.location.origin; // Fallback for some environments
         
         // Initialize State from LocalStorage
         window.showPastEvents = localStorage.getItem('showPastEvents') === 'true';
@@ -301,6 +284,10 @@
                 const viteKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_KEY;
                 if (viteUrl && !viteUrl.includes('INJECT')) SUPABASE_URL = viteUrl;
                 if (viteKey && !viteKey.includes('INJECT')) SUPABASE_KEY = viteKey;
+                const viteApi = import.meta.env.VITE_API_BASE_URL;
+                if (viteApi && !viteApi.includes('INJECT')) {
+                    APP_BASE_URL = viteApi.replace(/\/$/, '');
+                }
             }
         } catch (e) {}
 
@@ -407,51 +394,74 @@
                 `;
             }).join('');
 
-            // Update Calendar Sync URL
-            updateCalendarSyncUrl();
+            // Update Calendar Sync Options
+            renderSyncDropdown();
         }
 
-        function updateCalendarSyncUrl() {
-            const urlDisplay = document.getElementById('calendar-url-display');
-            const googleBtn = document.getElementById('google-cal-btn');
-            const appleBtn = document.getElementById('apple-cal-btn');
-            if (!urlDisplay) return;
+        function renderSyncDropdown() {
+            const container = document.getElementById('sync-options-container');
+            if (!container) return;
 
-            // --- Shorten the classes slug to avoid long URLs ---
-            // If all classes or no classes selected, use 'All' keyword
-            let classesSlug;
-            if (window.selectedClasses.length === 0 || window.selectedClasses.length === ALL_CLASSES.length) {
-                classesSlug = "All";
+            const selected = window.selectedClasses.sort();
+            const options = [];
+            let noteHtml = '';
+
+            if (selected.length === 0) {
+                noteHtml = `
+                    <div class="px-3 py-2 bg-amber-50 border border-amber-100 rounded-xl mb-2">
+                        <p class="text-[8px] font-black text-amber-600 uppercase tracking-widest leading-normal">
+                            Note: Select classes above to get dedicated sync feeds for specific years.
+                        </p>
+                    </div>
+                `;
+                options.push({ label: "All Classes", slug: "All" });
             } else {
-                classesSlug = window.selectedClasses.sort().join(',');
+                // List each selected class
+                selected.forEach(cls => {
+                    options.push({ label: `Class ${cls}`, slug: cls });
+                });
             }
 
-            const baseUrl = window.location.origin;
-            const syncUrl = `${baseUrl}/api/calendar/${classesSlug}.ics`;
-            urlDisplay.value = syncUrl;
-
-            if (googleBtn) {
-                // Google Calendar render URL works best with encoded absolute https urls
+            container.innerHTML = noteHtml + options.map((opt, idx) => {
+                const syncUrl = `${APP_BASE_URL}/api/calendar/${opt.slug}.ics`;
                 const encodedUrl = encodeURIComponent(syncUrl);
-                googleBtn.href = `https://www.google.com/calendar/render?cid=${encodedUrl}`;
-            }
+                const googleUrl = `https://www.google.com/calendar/render?cid=${encodedUrl}`;
+                const appleUrl = syncUrl.replace('http://', 'webcal://').replace('https://', 'webcal://');
 
-            if (appleBtn) {
-                // Apple/Outlook prefer the webcal:// protocol for direct app opening
-                appleBtn.href = syncUrl.replace('http://', 'webcal://').replace('https://', 'webcal://');
-            }
+                return `
+                    <div class="p-3 bg-slate-50 border border-slate-100 rounded-2xl">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[9px] font-black text-slate-800 uppercase tracking-widest">${opt.label}</span>
+                            <span class="text-[7px] font-bold text-slate-400 uppercase tracking-tight">Sync Feed</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="${googleUrl}" target="_blank" class="flex-1 flex items-center justify-center gap-1.5 py-1.5 bg-white border border-slate-200 rounded-lg text-[8px] font-black text-slate-600 uppercase tracking-widest hover:bg-slate-50 transition-all">
+                                <img src="https://www.gstatic.com/calendar/images/dynamiclogo_2020q4/calendar_31_2x.png" class="w-3 h-3" referrerPolicy="no-referrer">
+                                Google
+                            </a>
+                            <a href="${appleUrl}" class="flex-1 flex items-center justify-center gap-1.5 py-1.5 bg-white border border-slate-200 rounded-lg text-[8px] font-black text-slate-600 uppercase tracking-widest hover:bg-slate-50 transition-all">
+                                <svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path></svg>
+                                Apple
+                            </a>
+                        </div>
+                        <div class="mt-2 flex items-center gap-2">
+                            <input type="text" readonly id="url-${idx}" class="flex-1 bg-white border border-slate-100 rounded-md px-1.5 py-1 text-[7px] font-mono text-slate-400 outline-none truncate" value="${syncUrl}">
+                            <button onclick="copyToClipboard('url-${idx}', this)" class="p-1 text-slate-300 hover:text-blue-600 transition-colors">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
 
-        window.copyCalendarUrl = function() {
-            const input = document.getElementById('calendar-url-display');
-            const btn = document.getElementById('copy-sync-btn');
+        window.copyToClipboard = function(id, btn) {
+            const input = document.getElementById(id);
             if (!input) return;
-
             input.select();
             document.execCommand('copy');
-
             const originalHTML = btn.innerHTML;
-            btn.innerHTML = '<svg class="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+            btn.innerHTML = '<svg class="w-3 h-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
             setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
         }
 

@@ -1,6 +1,7 @@
 import os
 import imaplib
 import email
+import re
 from email.header import decode_header
 import json
 from datetime import datetime
@@ -453,6 +454,84 @@ def deduplicate_database():
     except Exception as e:
         print(f"Deduplication pass failed: {e}")
 
+def generate_static_ical_files():
+    """Generates static .ics files from Supabase for GitHub Pages hosting."""
+    try:
+        print("Generating static iCal files for GitHub Pages...")
+        res = supabase.table("events").select("*").eq("status", "approved").neq("type", "SYSTEM_META").execute()
+        all_events = res.data or []
+        
+        # Ensure output directory exists
+        os.makedirs("api/calendar", exist_ok=True)
+        
+        def format_ical_event(e, selected_classes):
+            title = e.get('title') or 'Event'
+            
+            # Determine prefix
+            prefix = "BWA"
+            e_classes = e.get('classes') or []
+            if isinstance(e_classes, str):
+                try: e_classes = json.loads(e_classes)
+                except: e_classes = [e_classes]
+            
+            if "All" not in e_classes:
+                matching = [c for c in e_classes if c in selected_classes]
+                if matching: prefix = f"BWA {matching[0]}"
+
+            # Clean raw title of any existing BWA prefixes to avoid duplication
+            # We check for various forms: "BWA: ", "BWA ", "BWA-" etc.
+            title_clean = title.strip()
+            # Regex to match "BWA" followed by optional class/char, and optional colon/space
+            # Example: "BWA: ", "BWA Y1: ", "BWA "
+            match = re.match(r'^BWA(\s+[\w\d]+)?[:\s\-]*', title_clean, re.IGNORECASE)
+            if match:
+                title_clean = title_clean[match.end():].strip()
+            
+            safe_title = title_clean.replace(':', ' - ')
+
+            dt_start = (e.get('event_date') or '1970-01-01').replace('-', '')
+            # iCal end dates are exclusive (non-inclusive)
+            dt_end = dt_start
+            if e.get('event_date_end'):
+                try:
+                    from datetime import timedelta
+                    end_dt = datetime.strptime(e.get('event_date_end'), "%Y-%m-%d") + timedelta(days=1)
+                    dt_end = end_dt.strftime("%Y%m%d")
+                except: pass
+            else:
+                # Single day event: end is next day
+                try:
+                    from datetime import timedelta
+                    end_dt = datetime.strptime(e.get('event_date'), "%Y-%m-%d") + timedelta(days=1)
+                    dt_end = end_dt.strftime("%Y%m%d")
+                except: pass
+
+            summary = e.get('summary') or ''
+            full = e.get('full_details') or ''
+            desc = (summary + "\\n\\n" + full).replace('\n', '\\n').replace('\r', '')
+            
+            return f"BEGIN:VEVENT\nUID:{e['id']}@bwa-calendar\nDTSTART;VALUE=DATE:{dt_start}\nDTEND;VALUE=DATE:{dt_end}\nSUMMARY:{prefix}: {safe_title}\nDESCRIPTION:{desc}\nCATEGORIES:{e.get('type','OTHER')}\nEND:VEVENT"
+
+        def create_ics_content(events, class_list):
+            body = "\n".join([format_ical_event(e, class_list) for e in events])
+            return f"BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//BWA-Calendar-Sync//EN\nCALSCALE:GREGORIAN\n{body}\nEND:VCALENDAR"
+
+        class_names = ['N', 'R', 'Rb', 'Y1', 'Y1b', 'Y2', 'Y2b', 'Y3', 'Y3b', 'Y4', 'Y4b', 'Y5', 'Y5b', 'Y6', 'Y6b']
+        
+        # 1. Generate 'All.ics'
+        with open("api/calendar/All.ics", "w", encoding="utf-8") as f:
+            f.write(create_ics_content(all_events, class_names))
+        
+        # 2. Generate individual class files
+        for cls in class_names:
+            cls_events = [e for e in all_events if "All" in (e.get('classes') or []) or cls in (e.get('classes') or [])]
+            with open(f"api/calendar/{cls}.ics", "w", encoding="utf-8") as f:
+                f.write(create_ics_content(cls_events, [cls]))
+        
+        print("Static iCal generation successful.")
+    except Exception as e:
+        print(f"Error generating static iCal files: {e}")
+
 if __name__ == "__main__":
     if not all([EMAIL_USER, EMAIL_PASS, GEMINI_API_KEY, SUPABASE_URL, SUPABASE_KEY]):
         print("Missing environment variables.")
@@ -519,5 +598,8 @@ if __name__ == "__main__":
 
     # Run Deduplication Pass at the very end
     deduplicate_database()
+    
+    # Generate static files for GitHub Pages
+    generate_static_ical_files()
     
     print("Aggregator Run Complete.")

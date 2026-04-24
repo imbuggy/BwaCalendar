@@ -2,12 +2,14 @@ name: School Calendar Aggregator
 
 on:
   schedule:
-    - cron: '0 9,12,15,18,21 * * *' # 9am, 12pm, 3pm, 6pm, 9pm UTC
+    - cron: '0 * * * *' # Every hour
   workflow_dispatch: # Manual trigger
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to push changes back
 
     steps:
       - name: Checkout repository
@@ -31,3 +33,11 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         run: python main.py
+
+      - name: Commit and Push iCal changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add api/calendar/*.ics
+          git commit -m "Update calendar feeds [skip ci]" || echo "No changes to commit"
+          git push
