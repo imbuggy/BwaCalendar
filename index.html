@@ -288,14 +288,21 @@
 
         // Initialize Supabase Client
         let supabaseClient = null;
-        const isPlaceHolder = (val) => !val || val === 'undefined' || val.toString().includes('import.meta');
+        const isPlaceHolder = (val) => {
+            if (!val) return true;
+            const str = val.toString();
+            return str === 'undefined' || str.includes('import.meta') || str.includes('__INJECT_') || str.includes('PLACEHOLDER');
+        };
         
         if (window.supabase && !isPlaceHolder(SUPABASE_URL) && !isPlaceHolder(SUPABASE_KEY)) {
             try {
                 supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                console.log("Supabase client initialized.");
             } catch (e) {
                 console.error("Failed to create Supabase client:", e);
             }
+        } else {
+            console.warn("Supabase configuration missing or placeholder detected:", SUPABASE_URL);
         }
 
         // Allow explicit override of APP_BASE_URL
@@ -303,15 +310,18 @@
             const apiBase = import.meta.env.VITE_API_BASE_URL;
             if (apiBase && !isPlaceHolder(apiBase)) {
                 APP_BASE_URL = apiBase.replace(/\/$/, '');
+                console.log("APP_BASE_URL overridden to:", APP_BASE_URL);
             }
         } catch (e) {}
 
         // --- Logic Handlers ---
         
         function saveState() {
-            localStorage.setItem('selectedClasses', JSON.stringify(window.selectedClasses));
-            localStorage.setItem('hiddenCategories', JSON.stringify(window.hiddenCategories));
-            localStorage.setItem('showPastEvents', window.showPastEvents);
+            try {
+                localStorage.setItem('selectedClasses', JSON.stringify(window.selectedClasses));
+                localStorage.setItem('hiddenCategories', JSON.stringify(window.hiddenCategories));
+                localStorage.setItem('showPastEvents', window.showPastEvents);
+            } catch (e) { console.error("Save state failed", e); }
         }
 
         window.toggleSelectAllClasses = function() {
@@ -654,81 +664,95 @@
 
         window.renderEvents = function() {
             const container = document.getElementById('events-list');
-            
-            const filtered = window.allEvents.filter(e => {
-                if (!window.showPastEvents && e.event_date < TODAY_STR) return false;
-                const isMatch = window.selectedClasses.length === 0 || 
-                                e.classes.includes('All') || 
-                                e.classes.some(c => window.selectedClasses.includes(c));
-                if (!isMatch) return false;
-                if (window.hiddenCategories.includes(e.type)) return false;
-                if (window.searchQuery && !e.title.toLowerCase().includes(window.searchQuery.toLowerCase())) return false;
-                return true;
-            });
+            if (!container) return;
 
-            renderWeekGlance(filtered);
-            renderProactiveWidgets(filtered);
+            try {
+                const filtered = window.allEvents.filter(e => {
+                    if (!window.showPastEvents && e.event_date < TODAY_STR) return false;
+                    const isMatch = window.selectedClasses.length === 0 || 
+                                    e.classes.includes('All') || 
+                                    e.classes.some(c => window.selectedClasses.includes(c));
+                    if (!isMatch) return false;
+                    if (window.hiddenCategories.includes(e.type)) return false;
+                    if (window.searchQuery && !e.title.toLowerCase().includes(window.searchQuery.toLowerCase())) return false;
+                    return true;
+                });
 
-            // Update Counter (Showing X of Y)
-            const countDisplay = document.getElementById('event-count-display');
-            if (countDisplay) {
-                const total = window.allEvents.length;
-                countDisplay.innerHTML = `Showing ${filtered.length} of ${total} total items`;
-            }
+                renderWeekGlance(filtered);
+                renderProactiveWidgets(filtered);
 
-            const visible = filtered.slice(0, window.visibleLimit);
-            if (visible.length === 0) {
+                // Update Counter (Showing X of Y)
+                const countDisplay = document.getElementById('event-count-display');
+                if (countDisplay) {
+                    const total = window.allEvents.length;
+                    countDisplay.innerHTML = `Showing ${filtered.length} of ${total} total items`;
+                }
+
+                const visible = filtered.slice(0, window.visibleLimit);
+                if (visible.length === 0) {
+                    container.innerHTML = `
+                        <div class="py-20 text-center">
+                            <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-gray-100">
+                                <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <h3 class="text-sm font-black text-gray-900 uppercase tracking-widest mb-1 italic">No events found</h3>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Try adjusting your filters or class selection</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = visible.map(e => {
+                    const isPast = e.event_date < TODAY_STR;
+                    const catStyle = CATEGORY_STYLES[e.type] || CATEGORY_STYLES['OTHER'];
+                    return `
+                    <div id="event-${e.id}" data-date="${e.event_date}" class="bg-white border border-gray-100 rounded-xl p-5 shadow-sm scroll-mt-24 transition-all ${isPast ? 'opacity-50 grayscale-[0.5]' : ''}">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="px-2 py-0.5 ${catStyle.label} text-[9px] font-black uppercase rounded border">${e.type || 'EVENT'}</span>
+                            <div class="flex items-center gap-2">
+                                ${isPast ? '<span class="text-[9px] font-black text-gray-400 uppercase tracking-tighter bg-gray-50 px-1.5 py-0.5 rounded">Passed</span>' : ''}
+                                <span class="text-[10px] font-mono font-bold text-gray-400">${e.formatted_date_display || e.event_date}</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-black text-gray-900 mb-2">${e.title}</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">${e.summary || ''}</p>
+                        
+                        ${e.full_details && e.full_details !== e.summary ? `
+                            <div id="details-${e.id}" class="hidden mt-3 pt-3 border-t border-dashed border-gray-100 animate-in fade-in slide-in-from-top-1">
+                                <div class="text-sm text-gray-500 leading-relaxed whitespace-pre-wrap">${e.full_details}</div>
+                            </div>
+                            <button onclick="document.getElementById('details-${e.id}').classList.toggle('hidden'); this.innerText = document.getElementById('details-${e.id}').classList.contains('hidden') ? 'Show More' : 'Show Less'" 
+                                    class="mt-2 text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-700 transition-colors">
+                                Show More
+                            </button>
+                        ` : ''}
+    
+                        <div class="mt-4 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-gray-50">
+                            <div class="flex flex-wrap gap-1.5">
+                                ${e.classes.map(c => `<span class="px-2 py-0.5 bg-gray-50 border border-gray-100 text-[9px] font-bold text-gray-400 rounded">${c}</span>`).join('')}
+                            </div>
+                            ${e.source_title ? `
+                                <div class="text-[8px] font-bold text-gray-300 uppercase tracking-tight flex items-center gap-1.5">
+                                    <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
+                                    Source: ${e.source_title} ${e.source_date ? `(${e.source_date})` : ''}
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                    `;
+                }).join('');
+            } catch (err) {
+                console.error("Render error:", err);
                 container.innerHTML = `
                     <div class="py-20 text-center">
-                        <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-gray-100">
-                            <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-red-100">
+                            <svg class="w-8 h-8 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.268 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                         </div>
-                        <h3 class="text-sm font-black text-gray-900 uppercase tracking-widest mb-1 italic">No events found</h3>
-                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Try adjusting your filters or class selection</p>
+                        <h3 class="text-sm font-black text-gray-900 uppercase tracking-widest mb-1 italic">Render Error</h3>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Something went wrong while displaying events.</p>
                     </div>
                 `;
-                return;
             }
-
-            container.innerHTML = visible.map(e => {
-                const isPast = e.event_date < TODAY_STR;
-                const catStyle = CATEGORY_STYLES[e.type] || CATEGORY_STYLES['OTHER'];
-                return `
-                <div id="event-${e.id}" data-date="${e.event_date}" class="bg-white border border-gray-100 rounded-xl p-5 shadow-sm scroll-mt-24 transition-all ${isPast ? 'opacity-50 grayscale-[0.5]' : ''}">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="px-2 py-0.5 ${catStyle.label} text-[9px] font-black uppercase rounded border">${e.type || 'EVENT'}</span>
-                        <div class="flex items-center gap-2">
-                            ${isPast ? '<span class="text-[9px] font-black text-gray-400 uppercase tracking-tighter bg-gray-50 px-1.5 py-0.5 rounded">Passed</span>' : ''}
-                            <span class="text-[10px] font-mono font-bold text-gray-400">${e.formatted_date_display || e.event_date}</span>
-                        </div>
-                    </div>
-                    <h3 class="text-lg font-black text-gray-900 mb-2">${e.title}</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">${e.summary || ''}</p>
-                    
-                    ${e.full_details && e.full_details !== e.summary ? `
-                        <div id="details-${e.id}" class="hidden mt-3 pt-3 border-t border-dashed border-gray-100 animate-in fade-in slide-in-from-top-1">
-                            <div class="text-sm text-gray-500 leading-relaxed whitespace-pre-wrap">${e.full_details}</div>
-                        </div>
-                        <button onclick="document.getElementById('details-${e.id}').classList.toggle('hidden'); this.innerText = document.getElementById('details-${e.id}').classList.contains('hidden') ? 'Show More' : 'Show Less'" 
-                                class="mt-2 text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-700 transition-colors">
-                            Show More
-                        </button>
-                    ` : ''}
-
-                    <div class="mt-4 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-gray-50">
-                        <div class="flex flex-wrap gap-1.5">
-                            ${e.classes.map(c => `<span class="px-2 py-0.5 bg-gray-50 border border-gray-100 text-[9px] font-bold text-gray-400 rounded">${c}</span>`).join('')}
-                        </div>
-                        ${e.source_title ? `
-                            <div class="text-[8px] font-bold text-gray-300 uppercase tracking-tight flex items-center gap-1.5">
-                                <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
-                                Source: ${e.source_title} ${e.source_date ? `(${e.source_date})` : ''}
-                            </div>
-                        ` : ''}
-                    </div>
-                </div>
-                `;
-            }).join('');
         }
 
         function setupEventListeners() {
