@@ -19,10 +19,10 @@
         <div class="flex items-center justify-between gap-4 mb-3">
             <div class="flex flex-col">
                 <h1 class="text-xl font-black tracking-tight text-gray-900 uppercase leading-none">BWA Calendar</h1>
-                <div id="last-updated-display" class="text-[9px] font-bold text-gray-400 mt-1 uppercase tracking-tight">Init...</div>
+                <div id="last-updated-display" class="text-[9px] font-bold text-gray-400 mt-1 uppercase tracking-tight">Booting...</div>
             </div>
             <button onclick="document.getElementById('about-modal').classList.remove('hidden')" class="shrink-0 flex items-center gap-1.5 px-2 py-1 bg-slate-50 border border-slate-100 rounded-lg group transition-all">
-                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-tighter">V1.0.7</span>
+                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-tighter">V1.1.2</span>
                 <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
             </button>
         </div>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <!-- Build Version -->
-                <div id="deploy-version" class="mb-4 text-center text-[8px] text-gray-300 font-mono uppercase tracking-widest">BUILD: V1.0.7 | AIS-READY</div>
+                <div id="deploy-version" class="mb-4 text-center text-[8px] text-gray-300 font-mono uppercase tracking-widest">BUILD: V1.1.2 | PRODUCTION</div>
                 <button onclick="document.getElementById('about-modal').classList.add('hidden')" class="w-full py-3 bg-gray-900 text-white text-xs font-bold rounded-xl hover:bg-black transition-all">Got it</button>
             </div>
         </div>
@@ -230,11 +230,40 @@
 
     <script type="module">
         // --- Core Setup & State ---
+        console.log("Script starting (V1.1.2)...");
+        
+        let display = null;
+        try {
+            display = document.getElementById('last-updated-display');
+            if (display) display.innerText = 'Booting...';
+        } catch (e) {}
+
+        function updateBootStatus(msg) {
+            console.log("Status:", msg);
+            if (display) display.innerText = msg;
+        }
+
+        updateBootStatus('Initializing...');
+
+        window.addEventListener('error', (event) => {
+            console.error('Global error caught:', event.error || event.message);
+            const list = document.getElementById('events-list');
+            if (list) list.innerHTML = `<div class="p-4 bg-red-50 text-red-600 text-xs font-bold rounded-xl border border-red-100 uppercase tracking-widest text-center">Runtime Error: ${event.message}</div>`;
+        });
+        window.addEventListener('unhandledrejection', (event) => {
+            console.error('Unhandled promise rejection:', event.reason);
+            const list = document.getElementById('events-list');
+            if (list) list.innerHTML = `<div class="p-4 bg-red-50 text-red-600 text-xs font-bold rounded-xl border border-red-100 uppercase tracking-widest text-center">Connection Error: ${event.reason?.message || 'Promise Rejected'}</div>`;
+        });
+
         let VITE_URL = "";
         let VITE_KEY = "";
         try {
-            VITE_URL = import.meta.env.VITE_SUPABASE_URL || "";
-            VITE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_KEY || "";
+            const meta = import.meta;
+            if (meta && meta.env) {
+                VITE_URL = meta.env.VITE_SUPABASE_URL || "";
+                VITE_KEY = meta.env.VITE_SUPABASE_ANON_KEY || meta.env.VITE_SUPABASE_KEY || "";
+            }
         } catch (e) {
             console.warn("import.meta.env not available", e);
         }
@@ -244,26 +273,21 @@
         let APP_BASE_URL = window.location.origin + window.location.pathname.replace(/\/$/, '').replace(/\/index\.html$/, '');
         if (APP_BASE_URL === 'null' || !APP_BASE_URL) APP_BASE_URL = window.location.origin;
         
-        // Initialize State from LocalStorage
-        window.showPastEvents = localStorage.getItem('showPastEvents') === 'true';
-        window.selectedClasses = JSON.parse(localStorage.getItem('selectedClasses') || '[]');
-        window.hiddenCategories = JSON.parse(localStorage.getItem('hiddenCategories') || '[]');
+        // Initialize State from LocalStorage with safety
+        try {
+            updateBootStatus('Loading State...');
+            window.showPastEvents = localStorage.getItem('showPastEvents') === 'true';
+            window.selectedClasses = JSON.parse(localStorage.getItem('selectedClasses') || '[]');
+            window.hiddenCategories = JSON.parse(localStorage.getItem('hiddenCategories') || '[]');
+        } catch (e) {
+            console.warn("LocalStorage access failed", e);
+            window.showPastEvents = false;
+            window.selectedClasses = [];
+            window.hiddenCategories = [];
+        }
         window.searchQuery = "";
         window.visibleLimit = 10;
-        console.log("Starting BWA Calendar logic...");
         window.allEvents = [];
-        
-        // Add global error handler
-        window.addEventListener('error', (event) => {
-            console.error('Global error caught:', event.error);
-            const list = document.getElementById('events-list');
-            if (list) list.innerHTML = `<div class="p-4 bg-red-50 text-red-600 text-xs font-bold rounded-xl border border-red-100 uppercase tracking-widest text-center">Runtime Error: ${event.message}</div>`;
-        });
-        window.addEventListener('unhandledrejection', (event) => {
-            console.error('Unhandled promise rejection:', event.reason);
-            const list = document.getElementById('events-list');
-            if (list) list.innerHTML = `<div class="p-4 bg-red-50 text-red-600 text-xs font-bold rounded-xl border border-red-100 uppercase tracking-widest text-center">Connection Error: ${event.reason?.message || 'Promise Rejected'}</div>`;
-        });
         
         const localNow = new Date();
         const TODAY_STR = localNow.getFullYear() + '-' + String(localNow.getMonth() + 1).padStart(2, '0') + '-' + String(localNow.getDate()).padStart(2, '0');
@@ -291,15 +315,55 @@
             return str === 'undefined' || str.includes('import.meta') || str.includes('__INJECT_') || str.includes('PLACEHOLDER');
         };
         
-        if (window.supabase && !isPlaceHolder(SUPABASE_URL) && !isPlaceHolder(SUPABASE_KEY)) {
-            try {
-                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-                console.log("Supabase client initialized.");
-            } catch (e) {
-                console.error("Failed to create Supabase client:", e);
+        async function initSupabase() {
+            updateBootStatus('Connecting...');
+            
+            // Check for missing secrets specifically
+            if (isPlaceHolder(SUPABASE_URL) || isPlaceHolder(SUPABASE_KEY)) {
+                console.warn("Supabase secrets missing from client environment.");
+                updateBootStatus('Config Missing');
+                
+                const listContainer = document.getElementById('events-list');
+                if (listContainer) {
+                    listContainer.innerHTML = `
+                        <div class="py-12 px-6 text-center">
+                            <div class="mb-4 text-amber-500 font-black uppercase text-xs">Environment Setup Required</div>
+                            <p class="text-xs text-gray-500 leading-relaxed max-w-sm mx-auto">
+                                The client application cannot find its configuration. Please ensure you have set the following secrets in your environment:
+                                <br><br>
+                                <code class="bg-gray-100 px-1 py-0.5 rounded text-[10px]">VITE_SUPABASE_URL</code><br>
+                                <code class="bg-gray-100 px-1 py-0.5 rounded text-[10px]">VITE_SUPABASE_KEY</code>
+                                <br><br>
+                                Note: These must start with <span class="font-bold">VITE_</span> to be visible to the browser.
+                            </p>
+                        </div>
+                    `;
+                }
+                return;
             }
-        } else {
-            console.warn("Supabase configuration missing or placeholder detected:", SUPABASE_URL);
+
+            if (window.supabase) {
+                try {
+                    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                    console.log("Supabase client initialized.");
+                    updateBootStatus('Ready');
+                } catch (e) {
+                    console.error("Failed to create Supabase client:", e);
+                    updateBootStatus('Connection Error');
+                }
+            } else {
+                updateBootStatus('Retrying...');
+                // Library not ready yet? Wait 500ms
+                setTimeout(() => {
+                    if (window.supabase) {
+                        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                        updateBootStatus('Ready (Delayed)');
+                        fetchEvents();
+                    } else {
+                        updateBootStatus('Library Error');
+                    }
+                }, 1000);
+            }
         }
 
         // Allow explicit override of APP_BASE_URL
@@ -829,22 +893,9 @@
         renderClassFilterGrid();
         renderCategoryFilters();
         
-        // Add a safety timeout to fetchEvents
-        setTimeout(() => {
-            if (window.allEvents.length === 0 && !supabaseClient) {
-                console.error("Supabase client not ready after 5s");
-                const listContainer = document.getElementById('events-list');
-                if (listContainer && listContainer.innerHTML.includes('Connecting')) {
-                    listContainer.innerHTML = `
-                        <div class="py-12 text-center text-red-400 italic">
-                            Connection timeout. Is Supabase configured?
-                        </div>
-                    `;
-                }
-            }
-        }, 5000);
-
-        fetchEvents();
+        initSupabase().then(() => {
+            fetchEvents();
+        });
     </script>
 </body>
 </html>
