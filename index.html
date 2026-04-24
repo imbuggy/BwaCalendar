@@ -246,10 +246,19 @@
 
     <script type="module">
         // --- Core Setup & State ---
-        let SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL; 
-        let SUPABASE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
+        let VITE_URL = "";
+        let VITE_KEY = "";
+        try {
+            VITE_URL = import.meta.env.VITE_SUPABASE_URL || "";
+            VITE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_KEY || "";
+        } catch (e) {
+            console.warn("import.meta.env not available", e);
+        }
+
+        let SUPABASE_URL = VITE_URL; 
+        let SUPABASE_KEY = VITE_KEY;
         let APP_BASE_URL = window.location.origin + window.location.pathname.replace(/\/$/, '').replace(/\/index\.html$/, '');
-        if (APP_BASE_URL === 'null') APP_BASE_URL = window.location.origin; // Fallback for some environments
+        if (APP_BASE_URL === 'null' || !APP_BASE_URL) APP_BASE_URL = window.location.origin;
         
         // Initialize State from LocalStorage
         window.showPastEvents = localStorage.getItem('showPastEvents') === 'true';
@@ -279,14 +288,23 @@
 
         // Initialize Supabase Client
         let supabaseClient = null;
-        if (window.supabase && SUPABASE_URL && !SUPABASE_URL.toString().includes('import.meta')) {
-            supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const isPlaceHolder = (val) => !val || val === 'undefined' || val.toString().includes('import.meta');
+        
+        if (window.supabase && !isPlaceHolder(SUPABASE_URL) && !isPlaceHolder(SUPABASE_KEY)) {
+            try {
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            } catch (e) {
+                console.error("Failed to create Supabase client:", e);
+            }
         }
 
         // Allow explicit override of APP_BASE_URL
-        if (import.meta.env.VITE_API_BASE_URL && !import.meta.env.VITE_API_BASE_URL.toString().includes('import.meta')) {
-            APP_BASE_URL = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, '');
-        }
+        try {
+            const apiBase = import.meta.env.VITE_API_BASE_URL;
+            if (apiBase && !isPlaceHolder(apiBase)) {
+                APP_BASE_URL = apiBase.replace(/\/$/, '');
+            }
+        } catch (e) {}
 
         // --- Logic Handlers ---
         
@@ -469,18 +487,48 @@
 
         async function fetchEvents() {
             const display = document.getElementById('last-updated-display');
-            if (!supabaseClient) return;
-            const { data } = await supabaseClient.from('events').select('*').eq('status', 'approved').order('event_date', { ascending: true });
-            
-            window.allEvents = (data || []).filter(e => e.type !== 'SYSTEM_META').map(e => {
-                let classesArray = e.classes;
-                if (typeof e.classes === 'string') { try { classesArray = JSON.parse(e.classes); } catch (err) { classesArray = [e.classes]; } }
-                return { ...e, classes: Array.isArray(classesArray) ? classesArray : [] };
-            });
+            const countDisplay = document.getElementById('event-count-display');
 
-            const meta = (data || []).find(e => e.type === 'SYSTEM_META');
-            if (meta) display.innerText = `Last email sync: ${meta.summary}`;
-            renderEvents();
+            if (!supabaseClient) {
+                console.warn('Supabase not configured or initialization failed.');
+                if (display) display.innerText = 'Not Configured';
+                if (countDisplay) countDisplay.innerText = 'Setup Required';
+                
+                // If it looks like we totally missing config, show setup view
+                if (isPlaceHolder(SUPABASE_URL)) {
+                    document.getElementById('setup-view')?.classList.remove('hidden');
+                    document.getElementById('calendar-app')?.classList.add('hidden');
+                }
+                renderEvents();
+                return;
+            }
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('events')
+                    .select('*')
+                    .eq('status', 'approved')
+                    .order('event_date', { ascending: true });
+                
+                if (error) throw error;
+                
+                window.allEvents = (data || []).filter(e => e.type !== 'SYSTEM_META').map(e => {
+                    let classesArray = e.classes;
+                    if (typeof e.classes === 'string') { try { classesArray = JSON.parse(e.classes); } catch (err) { classesArray = [e.classes]; } }
+                    return { ...e, classes: Array.isArray(classesArray) ? classesArray : [] };
+                });
+
+                const meta = (data || []).find(e => e.type === 'SYSTEM_META');
+                if (meta && display) display.innerText = `Last email sync: ${meta.summary}`;
+                else if (display) display.innerText = 'Sync Active';
+                
+                renderEvents();
+            } catch (err) {
+                console.error('Fetch error:', err);
+                if (display) display.innerText = 'Sync Failed';
+                if (countDisplay) countDisplay.innerText = 'Error loading data';
+                renderEvents();
+            }
         }
 
         function renderProactiveWidgets(events) {
@@ -629,6 +677,19 @@
             }
 
             const visible = filtered.slice(0, window.visibleLimit);
+            if (visible.length === 0) {
+                container.innerHTML = `
+                    <div class="py-20 text-center">
+                        <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-gray-100">
+                            <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-sm font-black text-gray-900 uppercase tracking-widest mb-1 italic">No events found</h3>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Try adjusting your filters or class selection</p>
+                    </div>
+                `;
+                return;
+            }
+
             container.innerHTML = visible.map(e => {
                 const isPast = e.event_date < TODAY_STR;
                 const catStyle = CATEGORY_STYLES[e.type] || CATEGORY_STYLES['OTHER'];
