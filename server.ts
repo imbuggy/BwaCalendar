@@ -106,14 +106,39 @@ async function startServer() {
         return res.send(value);
       }
 
+      if (icsEvents.length === 0) {
+        // Google often rejects empty calendars. Add a placeholder event.
+        icsEvents.push({
+          uid: 'placeholder@bwa-calendar.io',
+          start: [new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate(), 9, 0],
+          duration: { hours: 0, minutes: 1 },
+          title: 'BWA Calendar Active',
+          description: 'Your subscription to the BWA School Calendar is active.',
+          status: 'CONFIRMED',
+          busyStatus: 'FREE'
+        });
+      }
+
       const { error: icsError, value } = ics.createEvents(icsEvents);
       if (icsError) throw icsError;
 
-      // Add standard headers for subscription refresh and name
-      let finalValue = value.replace("BEGIN:VCALENDAR", "BEGIN:VCALENDAR\nMETHOD:PUBLISH\nX-WR-CALNAME:BWA School Calendar\nX-WR-TIMEZONE:Europe/London\nX-PUBLISHED-TTL:PT1H");
+      // Add standard headers for subscription refresh and name with CRLF line endings
+      // PRODID and X-WR-CALNAME at the calendar level
+      const headers = [
+        'METHOD:PUBLISH',
+        `X-WR-CALNAME:BWA Calendar - ${classesParam}`,
+        'X-WR-TIMEZONE:Europe/London',
+        'X-PUBLISHED-TTL:PT1H',
+        'REFRESH-INTERVAL;VALUE=DURATION:PT1H'
+      ].join('\r\n');
+
+      let finalValue = value.replace('BEGIN:VCALENDAR', `BEGIN:VCALENDAR\r\n${headers}`);
+      
+      // Ensure all line endings are CRLF (\r\n) which is required by the iCal spec
+      finalValue = finalValue.replace(/\r?\n/g, '\r\n');
 
       res.setHeader("Content-Type", "text/calendar; charset=utf-8");
-      res.setHeader("Cache-Control", "public, max-age=3600"); // Allow some caching for performance, but not too much
+      res.setHeader("Cache-Control", "public, max-age=3600"); 
       res.send(finalValue);
     } catch (err) {
       console.error("iCal error:", err);

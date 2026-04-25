@@ -306,17 +306,22 @@
         };
 
         window.APP_BASE_URL = (function() {
-            let baseUrl = window.location.origin || '';
-            let path = window.location.pathname || '';
-            // Strip index.html and trailing slashes
-            path = path.replace(/\/index\.html$/, '').replace(/\/$/, '');
-            let finalUrl = baseUrl + path;
-            // Force absolute if it's missing the origin (fallback)
-            if (finalUrl.startsWith('/')) {
-                finalUrl = window.location.protocol + '//' + window.location.host + finalUrl;
+            let baseUrl = "";
+            try {
+                baseUrl = window.location.origin && window.location.origin !== "null" ? window.location.origin : (window.location.protocol + "//" + window.location.host);
+            } catch (e) {
+                baseUrl = window.location.protocol + "//" + window.location.host;
             }
+            
+            let path = window.location.pathname || "";
+            // Strip index.html and trailing slashes
+            path = path.replace(/\/index\.html$/, "").replace(/\/$/, "");
+            let finalUrl = baseUrl + path;
             return finalUrl;
         })();
+
+        // Check if we are in a dev environment (restricted access)
+        window.IS_DEV_ENV = window.location.hostname.includes("-dev-") || window.location.hostname.includes("localhost");
         if (window.APP_BASE_URL === 'null' || !window.APP_BASE_URL) window.APP_BASE_URL = '';
 
         // --- Main Boot Sequence ---
@@ -549,6 +554,12 @@
                 const encodedUrl = encodeURIComponent(syncUrl);
                 const googleUrl = `https://calendar.google.com/calendar/render?cid=${encodedUrl}`;
                 const appleUrl = syncUrl.replace('http://', 'webcal://').replace('https://', 'webcal://');
+                
+                const devWarning = window.IS_DEV_ENV ? `
+                    <div class="mt-2 p-2 bg-amber-50 border border-amber-100 rounded-lg text-[7px] text-amber-700 font-medium leading-relaxed">
+                        ⚠️ <b>Technical Note:</b> Google Calendar requires a public URL to sync. If you are in the <i>Preview</i> mode, this link might not work. Please use the <b>Shared App URL</b> to subscribe successfully.
+                    </div>
+                ` : '';
 
                 return `
                     <div class="p-3 bg-slate-50 border border-slate-100 rounded-2xl">
@@ -566,6 +577,7 @@
                                 iOS/Mac
                             </a>
                         </div>
+                        ${devWarning}
                         <div class="mt-2 flex items-center gap-2">
                             <input type="text" readonly id="url-${idx}" class="flex-1 bg-white border border-slate-100 rounded-md px-1.5 py-1 text-[7px] font-mono text-slate-400 outline-none truncate" value="${syncUrl}">
                             <button onclick="copyToClipboard('url-${idx}', this)" class="p-1 text-slate-300 hover:text-blue-600 transition-colors">
