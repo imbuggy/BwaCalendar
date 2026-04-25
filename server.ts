@@ -99,14 +99,6 @@ async function startServer() {
       });
 
       if (icsEvents.length === 0) {
-        // Return an empty but valid calendar if no events
-        const { value } = ics.createEvents([]);
-        res.setHeader("Content-Type", "text/calendar; charset=utf-8");
-        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-        return res.send(value);
-      }
-
-      if (icsEvents.length === 0) {
         // Google often rejects empty calendars. Add a placeholder event.
         icsEvents.push({
           uid: 'placeholder@bwa-calendar.io',
@@ -123,10 +115,12 @@ async function startServer() {
       if (icsError) throw icsError;
 
       // Add standard headers for subscription refresh and name with CRLF line endings
-      // PRODID and X-WR-CALNAME at the calendar level
+      const calName = `BWA Calendar - ${classesParam}`;
       const headers = [
         'METHOD:PUBLISH',
-        `X-WR-CALNAME:BWA Calendar - ${classesParam}`,
+        `NAME:${calName}`,
+        `X-WR-CALNAME:${calName}`,
+        `X-WR-CALDESC:BWA School Calendar for classes: ${classesParam}`,
         'X-WR-TIMEZONE:Europe/London',
         'X-PUBLISHED-TTL:PT1H',
         'REFRESH-INTERVAL;VALUE=DURATION:PT1H'
