@@ -551,9 +551,10 @@
 
             container.innerHTML = noteHtml + options.map((opt, idx) => {
                 const syncUrl = `${window.APP_BASE_URL}/api/calendar/${opt.slug}.ics`;
-                const encodedUrl = encodeURIComponent(syncUrl);
+                const webcalUrl = syncUrl.replace('https://', 'webcal://').replace('http://', 'webcal://');
+                const encodedUrl = encodeURIComponent(webcalUrl);
                 const googleUrl = `https://calendar.google.com/calendar/render?cid=${encodedUrl}`;
-                const appleUrl = syncUrl.replace('http://', 'webcal://').replace('https://', 'webcal://');
+                const appleUrl = webcalUrl;
                 
                 const devWarning = window.IS_DEV_ENV ? `
                     <div class="mt-2 p-2 bg-amber-50 border border-amber-100 rounded-lg text-[7px] text-amber-700 font-medium leading-relaxed">
