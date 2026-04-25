@@ -251,7 +251,10 @@
         // --- Core Setup & State ---
         const debugLog = (msg, type = 'info') => {
             const container = document.getElementById('debug-log-content');
-            if (!container) return;
+            if (!container) {
+                console.error("Debug container not found for:", msg);
+                return;
+            }
             const time = new Date().toLocaleTimeString();
             const div = document.createElement('div');
             div.className = type === 'error' ? 'text-red-400' : (type === 'warn' ? 'text-amber-400' : 'text-green-400');
@@ -259,6 +262,16 @@
             container.appendChild(div);
             container.scrollTop = container.scrollHeight;
         };
+
+        window.addEventListener('error', (e) => {
+            debugLog(`Runtime Error: ${e.message} at ${e.filename}:${e.lineno}`, 'error');
+        });
+        window.addEventListener('unhandledrejection', (e) => {
+            const reason = e.reason && e.reason.message ? e.reason.message : e.reason;
+            debugLog(`Promise Rejected: ${reason}`, 'error');
+        });
+
+        debugLog('Script module loaded. Starting boot...');
 
         const updateStatus = (msg) => {
             const el = document.getElementById('last-updated-display');
@@ -520,7 +533,7 @@
             }
 
             container.innerHTML = noteHtml + options.map((opt, idx) => {
-                const syncUrl = `${APP_BASE_URL}/api/calendar/${opt.slug}.ics`;
+                const syncUrl = `${window.APP_BASE_URL}/api/calendar/${opt.slug}.ics`;
                 const encodedUrl = encodeURIComponent(syncUrl);
                 const googleUrl = `https://www.google.com/calendar/render?cid=${encodedUrl}`;
                 const appleUrl = syncUrl.replace('http://', 'webcal://').replace('https://', 'webcal://');
@@ -568,7 +581,8 @@
             const isHidden = menu.classList.toggle('hidden');
             if (!isHidden) {
                 // If opening, ensure category panel is hidden
-                document.getElementById('category-panel')?.classList.add('hidden');
+                const panel = document.getElementById('category-panel');
+                if (panel) panel.classList.add('hidden');
             }
         }
 
@@ -586,7 +600,8 @@
                     .order('event_date', { ascending: true });
                 
                 if (error) throw error;
-                debugLog(`Successfully fetched ${data?.length || 0} events from database`);
+                const fetchedCount = (data && data.length) ? data.length : 0;
+                debugLog(`Successfully fetched ${fetchedCount} events from database`);
                 
                 window.allEvents = (data || []).filter(e => e.type !== 'SYSTEM_META').map(e => {
                     let classesArray = e.classes;
@@ -866,6 +881,7 @@
         }
 
         // Initialize
+        debugLog('Calling boot()...');
         boot();
     </script>
 </body>
