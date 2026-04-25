@@ -109,11 +109,11 @@ async function startServer() {
       const { error: icsError, value } = ics.createEvents(icsEvents);
       if (icsError) throw icsError;
 
-      // Add METHOD:PUBLISH for subscriptions
-      const finalValue = value.replace("BEGIN:VCALENDAR", "BEGIN:VCALENDAR\nMETHOD:PUBLISH\nX-WR-CALNAME:BWA School Calendar");
+      // Add standard headers for subscription refresh and name
+      let finalValue = value.replace("BEGIN:VCALENDAR", "BEGIN:VCALENDAR\nMETHOD:PUBLISH\nX-WR-CALNAME:BWA School Calendar\nX-WR-TIMEZONE:Europe/London\nX-PUBLISHED-TTL:PT1H");
 
       res.setHeader("Content-Type", "text/calendar; charset=utf-8");
-      res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+      res.setHeader("Cache-Control", "public, max-age=3600"); // Allow some caching for performance, but not too much
       res.send(finalValue);
     } catch (err) {
       console.error("iCal error:", err);

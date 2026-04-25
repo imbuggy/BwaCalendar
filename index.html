@@ -310,7 +310,12 @@
             let path = window.location.pathname || '';
             // Strip index.html and trailing slashes
             path = path.replace(/\/index\.html$/, '').replace(/\/$/, '');
-            return baseUrl + path;
+            let finalUrl = baseUrl + path;
+            // Force absolute if it's missing the origin (fallback)
+            if (finalUrl.startsWith('/')) {
+                finalUrl = window.location.protocol + '//' + window.location.host + finalUrl;
+            }
+            return finalUrl;
         })();
         if (window.APP_BASE_URL === 'null' || !window.APP_BASE_URL) window.APP_BASE_URL = '';
 
@@ -542,7 +547,7 @@
             container.innerHTML = noteHtml + options.map((opt, idx) => {
                 const syncUrl = `${window.APP_BASE_URL}/api/calendar/${opt.slug}.ics`;
                 const encodedUrl = encodeURIComponent(syncUrl);
-                const googleUrl = `https://www.google.com/calendar/render?cid=${encodedUrl}`;
+                const googleUrl = `https://calendar.google.com/calendar/render?cid=${encodedUrl}`;
                 const appleUrl = syncUrl.replace('http://', 'webcal://').replace('https://', 'webcal://');
 
                 return `
