@@ -117,16 +117,17 @@ async function startServer() {
       // Add standard headers for subscription refresh and name with CRLF line endings
       const calName = `BWA Calendar - ${classesParam}`;
       const headers = [
-        'METHOD:PUBLISH',
-        `NAME:${calName}`,
         `X-WR-CALNAME:${calName}`,
-        `X-WR-CALDESC:BWA School Calendar for classes: ${classesParam}`,
+        `NAME:${calName}`,
+        `X-WR-CALDESC:BWA School Calendar - ${classesParam}`,
         'X-WR-TIMEZONE:Europe/London',
         'X-PUBLISHED-TTL:PT1H',
         'REFRESH-INTERVAL;VALUE=DURATION:PT1H'
       ].join('\r\n');
 
-      let finalValue = value.replace('BEGIN:VCALENDAR', `BEGIN:VCALENDAR\r\n${headers}`);
+      // Use a more descriptive PRODID and place headers after VERSION:2.0
+      let finalValue = value.replace('PRODID:-//adamgibbons//ics//EN', 'PRODID:-//BWA//Calendar//EN');
+      finalValue = finalValue.replace('VERSION:2.0', `VERSION:2.0\r\n${headers}`);
       
       // Ensure all line endings are CRLF (\r\n) which is required by the iCal spec
       finalValue = finalValue.replace(/\r?\n/g, '\r\n');

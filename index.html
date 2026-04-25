@@ -553,7 +553,9 @@
                 const syncUrl = `${window.APP_BASE_URL}/api/calendar/${opt.slug}.ics`;
                 const calName = `BWA Calendar - ${opt.slug}`;
                 const webcalUrl = syncUrl.replace('https://', 'webcal://').replace('http://', 'webcal://');
-                const encodedUrl = encodeURIComponent(webcalUrl);
+                // Add a timestamp to the URL to force Google to re-crawl and see the new name headers
+                const cacheBuster = `?t=${Date.now()}`;
+                const encodedUrl = encodeURIComponent(webcalUrl + cacheBuster);
                 const googleUrl = `https://calendar.google.com/calendar/render?cid=${encodedUrl}`;
                 const appleUrl = webcalUrl;
                 
