@@ -1,0 +1,381 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//BWA-Calendar-Sync//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:287@bwa-calendar
+DTSTART;VALUE=DATE:20260430
+DTEND;VALUE=DATE:20260501
+SUMMARY:BWA: Parent Gym -  Taster Session
+DESCRIPTION:An introductory 45-minute taster session for the Parent Gym programme.\n\nParent Gym is coming to Belleville Wix Academy. This 45-minute taster session introduces a six-week programme that shares practical tips and strategies to make family life easier and help children thrive. All parents are welcome to apply, and places will be filled on a first-come, first-served basis. The programme is free for parents. Please contact the school or Ellie Wilkes (KS1 lead) to confirm your place.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:288@bwa-calendar
+DTSTART;VALUE=DATE:20260507
+DTEND;VALUE=DATE:20260508
+SUMMARY:BWA: Parent Gym Week 1 -  Chat
+DESCRIPTION:The first session of the Parent Gym programme focusing on communication ('Chat').\n\nParent Gym is a well-established, six-week programme exploring practical tips and strategies for parenting. This first weekly session, titled 'Chat', lasts two hours. The programme is free and open to all parents, but registration is required on a first-come, first-served basis.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:289@bwa-calendar
+DTSTART;VALUE=DATE:20260521
+DTEND;VALUE=DATE:20260522
+SUMMARY:BWA: Parent Gym Week 2 -  Love
+DESCRIPTION:The second session of Parent Gym focusing on building relationships ('Love').\n\nThe second weekly two-hour session of the Parent Gym programme. Note there is no session on 14th May. This session focuses on 'Love'. Registration via the school or Ellie Wilkes is required.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:290@bwa-calendar
+DTSTART;VALUE=DATE:20260604
+DTEND;VALUE=DATE:20260605
+SUMMARY:BWA: Parent Gym Week 3 -  Behave
+DESCRIPTION:The third session of Parent Gym focusing on boundaries and behavior ('Behave').\n\nFollowing the half-term break (no session on 28th May), the Parent Gym programme resumes with Week 3: 'Behave'. A two-hour session from 9am to 11am for registered participants.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:291@bwa-calendar
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:BWA: Parent Gym Week 4 -  Care
+DESCRIPTION:The fourth session of Parent Gym focusing on health and wellbeing ('Care').\n\nThe fourth weekly two-hour session of the Parent Gym programme focusing on 'Care'. Held in school from 9am to 11am.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:292@bwa-calendar
+DTSTART;VALUE=DATE:20260618
+DTEND;VALUE=DATE:20260619
+SUMMARY:BWA: Parent Gym Week 5 -  Discover
+DESCRIPTION:The fifth session of Parent Gym focusing on learning and play ('Discover').\n\nThe fifth weekly two-hour session of the Parent Gym programme focusing on 'Discover'. Held in school from 9am to 11am.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:293@bwa-calendar
+DTSTART;VALUE=DATE:20260625
+DTEND;VALUE=DATE:20260626
+SUMMARY:BWA: Parent Gym Week 6 -  Together
+DESCRIPTION:The final session of Parent Gym focusing on family harmony ('Together').\n\nThe concluding weekly two-hour session of the Parent Gym programme. This session is titled 'Together'. Held in school from 9am to 11am.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:325@bwa-calendar
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+SUMMARY:BWA: Summer Music Performance -  Y1B, Y2B, Y3B, Y6B
+DESCRIPTION:Summer music performance for Bilingual stream classes.\n\nSummer music performance for 1B, 2B, 3B and 6B at 2:00pm.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:326@bwa-calendar
+DTSTART;VALUE=DATE:20260706
+DTEND;VALUE=DATE:20260707
+SUMMARY:BWA Y5: Summer Music Performance -  Y5, Y6
+DESCRIPTION:Summer music performance for Year 5 and Year 6.\n\nSummer music performance for Year 5 and 6 at 2:15pm.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:327@bwa-calendar
+DTSTART;VALUE=DATE:20260707
+DTEND;VALUE=DATE:20260708
+SUMMARY:BWA: Summer Music Performance -  Y4B, Y5B
+DESCRIPTION:Summer music performance for Bilingual stream classes.\n\nSummer music performance for 4B and 5B at 2:00pm.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:328@bwa-calendar
+DTSTART;VALUE=DATE:20260713
+DTEND;VALUE=DATE:20260714
+SUMMARY:BWA Y3: Summer Music Performance -  Y3, Y4
+DESCRIPTION:Summer music performance for Year 3 and Year 4.\n\nSummer music performance for Year 3 and 4 at 2:15pm.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:294@bwa-calendar
+DTSTART;VALUE=DATE:20260508
+DTEND;VALUE=DATE:20260509
+SUMMARY:BWA: Deadline -  International Families Day Participation Form
+DESCRIPTION:Deadline to complete the online form for parent volunteers and food donations for International Families Day.\n\nParents and carers must complete the online Google Form by today if they wish to volunteer to visit school and share their culture (skills, stories, or activities) or if they intend to donate food or money for the international buffet. The form is used to coordinate volunteers and manage dietary requirements for the event on May 15th.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:295@bwa-calendar
+DTSTART;VALUE=DATE:20260511
+DTEND;VALUE=DATE:20260512
+SUMMARY:BWA: Deadline -  International Families Day Homework Project
+DESCRIPTION:Pupils should submit their creative projects celebrating their heritage to their class teacher.\n\nAll pupils are invited to complete a project of their choice celebrating their heritage. Ideas include family trees, sculptures of landmarks, show and tell preparations, books, or poems. Projects should be handed in to class teachers today. Some pupils will share these projects in an assembly during this week.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:296@bwa-calendar
+DTSTART;VALUE=DATE:20260515
+DTEND;VALUE=DATE:20260516
+SUMMARY:BWA: International Families Day -  Dress Up
+DESCRIPTION:Pupils are invited to dress in national clothing or flag colours to celebrate the school's international community.\n\nTo celebrate International Families Day, pupils should come dressed in national dress or the colours of the flag that represents their country or heritage. Note: If your child has a PE lesson on this day, please ensure the outfit is suitable for physical activity.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:297@bwa-calendar
+DTSTART;VALUE=DATE:20260515
+DTEND;VALUE=DATE:20260516
+SUMMARY:BWA: International Families Day -  Buffet
+DESCRIPTION:An after-school international buffet for all families in the lower hall, canteen, and playground.\n\nFamilies are invited to join an international buffet starting at 3:30pm in the lower hall. Food can be enjoyed in the canteen and playground. \n\nFood Donations: Donated dishes should be brought to the school office from 2:30pm today. All food MUST be nut-free and labeled with the provided ingredient slip (specifying if it is spicy, vegetarian, vegan, or halal).
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:329@bwa-calendar
+DTSTART;VALUE=DATE:20260714
+DTEND;VALUE=DATE:20260715
+SUMMARY:BWA Y1: Summer Music Performance -  Y1, Y2
+DESCRIPTION:Summer music performance for Year 1 and Year 2.\n\nSummer music performance for Year 1 and 2 at 2:30pm.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:330@bwa-calendar
+DTSTART;VALUE=DATE:20260525
+DTEND;VALUE=DATE:20260530
+SUMMARY:BWA: Summer Half Term
+DESCRIPTION:School closed for Summer half term.\n\nSummer half term - Monday 25 to Friday 29 May.
+CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:331@bwa-calendar
+DTSTART;VALUE=DATE:20260601
+DTEND;VALUE=DATE:20260602
+SUMMARY:BWA: First day of Summer Term 2
+DESCRIPTION:First day of Summer Term 2.\n\nFirst day of Summer Term 2 - Monday 1 June.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:332@bwa-calendar
+DTSTART;VALUE=DATE:20260715
+DTEND;VALUE=DATE:20260716
+SUMMARY:BWA: Last day of Summer Term 2 (Bilingual Stream)
+DESCRIPTION:Last day of Summer Term 2 for Bilingual Stream.\n\nLast day of Summer Term 2 for Bilingual Stream - Wednesday 15 July.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:333@bwa-calendar
+DTSTART;VALUE=DATE:20260717
+DTEND;VALUE=DATE:20260718
+SUMMARY:BWA N: Last day of Summer Term 2 (English Stream)
+DESCRIPTION:Last day of Summer Term 2 for English Stream.\n\nLast day of Summer Term 2 for English Stream - Friday 17 July.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:298@bwa-calendar
+DTSTART;VALUE=DATE:20260417
+DTEND;VALUE=DATE:20260418
+SUMMARY:BWA Y2b: Bilingual Books Sent Home (2B & 6B)
+DESCRIPTION:School books for pupils in classes 2B and 6B are sent home for parents to review before upcoming Parent Teacher meetings.\n\nIn preparation for the upcoming Parent Teacher meetings, teachers are sending home student books for parents and carers to see. For classes 2B (Y2b) and 6B (Y6b), books are sent home on Friday 17th April.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:299@bwa-calendar
+DTSTART;VALUE=DATE:20260420
+DTEND;VALUE=DATE:20260421
+SUMMARY:BWA Y2b: Deadline -  Return Books (2B & 6B)
+DESCRIPTION:Deadline for pupils in classes 2B and 6B to return their school books for the English focus week.\n\nAll books sent home on April 17th for classes 2B (Y2b) and 6B (Y6b) must be returned to school today, Monday 20th April, for the English focus week.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:300@bwa-calendar
+DTSTART;VALUE=DATE:20260424
+DTEND;VALUE=DATE:20260425
+SUMMARY:BWA Rb: Bilingual Books Sent Home (RB, 1B & 3B)
+DESCRIPTION:School books for pupils in classes RB, 1B, and 3B are sent home for parents to review before Parent Teacher meetings.\n\nIn preparation for upcoming Parent Teacher meetings, teachers are sending student books home for review. For classes RB (Rb), 1B (Y1b), and 3B (Y3b), books are sent home on Friday 24th April.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:301@bwa-calendar
+DTSTART;VALUE=DATE:20260427
+DTEND;VALUE=DATE:20260428
+SUMMARY:BWA Rb: Deadline -  Return Books (RB, 1B & 3B)
+DESCRIPTION:Deadline for pupils in classes RB, 1B, and 3B to return their school books for the English focus week.\n\nAll books sent home on April 24th for classes RB (Rb), 1B (Y1b), and 3B (Y3b) must be returned to school today, Monday 27th April, for the English focus week.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:302@bwa-calendar
+DTSTART;VALUE=DATE:20260501
+DTEND;VALUE=DATE:20260502
+SUMMARY:BWA Y4b: Bilingual Books Sent Home (4B & 5B)
+DESCRIPTION:School books for pupils in classes 4B and 5B are sent home for parents to review before Parent Teacher meetings.\n\nIn preparation for upcoming Parent Teacher meetings, teachers are sending student books home for review. For classes 4B (Y4b) and 5B (Y5b), books are sent home on Friday 1st May.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:303@bwa-calendar
+DTSTART;VALUE=DATE:20260505
+DTEND;VALUE=DATE:20260506
+SUMMARY:BWA Y4b: Deadline -  Return Books (4B & 5B)
+DESCRIPTION:Deadline for pupils in classes 4B and 5B to return their school books for the English focus week.\n\nAll books sent home on May 1st for classes 4B (Y4b) and 5B (Y5b) must be returned to school today, Tuesday 5th May, for the English focus week.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:304@bwa-calendar
+DTSTART;VALUE=DATE:20260420
+DTEND;VALUE=DATE:20260421
+SUMMARY:BWA Rb: Deadline -  Sign up for Bilingual Parent-Teacher Meetings
+DESCRIPTION:Deadline to complete the Ecole de Wix sign-up link for the upcoming bilingual stream parent-teacher meetings.\n\nParents and carers of pupils in the bilingual stream (RB, Y1B, Y2B, Y3B, Y4B, Y5B, and Y6B) must complete the sign-up link provided by Ecole de Wix by today to secure a time slot for the summer term parent-teacher meetings. BWA will subsequently send out Zoom link details ahead of the allotted meeting times.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:305@bwa-calendar
+DTSTART;VALUE=DATE:20260421
+DTEND;VALUE=DATE:20260422
+SUMMARY:BWA Y2b: Bilingual Parent-Teacher Meetings (Y2b/CPB)
+DESCRIPTION:Video conference parent-teacher meetings for class Y2B/CPB.\n\nParent-teacher meetings for the bilingual Year 2 class (CPB) will be held via video conference (Zoom). Meetings will run throughout the school day. Parents should have received a sign-up link from Ecole de Wix. Pupils are still expected to attend school as normal on this day.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:306@bwa-calendar
+DTSTART;VALUE=DATE:20260423
+DTEND;VALUE=DATE:20260424
+SUMMARY:BWA Y6b: Bilingual Parent-Teacher Meetings (Y6b/CM2B)
+DESCRIPTION:Video conference parent-teacher meetings for class Y6B/CM2B.\n\nParent-teacher meetings for the bilingual Year 6 class (CM2B) will be held via video conference (Zoom). Meetings will run throughout the school day. Parents should have received a sign-up link from Ecole de Wix. Pupils are still expected to attend school as normal on this day.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:307@bwa-calendar
+DTSTART;VALUE=DATE:20260428
+DTEND;VALUE=DATE:20260429
+SUMMARY:BWA Y3b: Bilingual Parent-Teacher Meetings (Y3b/CE1B)
+DESCRIPTION:Video conference parent-teacher meetings for class Y3B/CE1B.\n\nParent-teacher meetings for the bilingual Year 3 class (CE1B) will be held via video conference (Zoom). Meetings will run throughout the school day. Parents should have received a sign-up link from Ecole de Wix. Pupils are still expected to attend school as normal on this day.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:308@bwa-calendar
+DTSTART;VALUE=DATE:20260430
+DTEND;VALUE=DATE:20260501
+SUMMARY:BWA Y1b: Bilingual Parent-Teacher Meetings (Y1b/GSB)
+DESCRIPTION:Video conference parent-teacher meetings for class Y1B/GSB.\n\nParent-teacher meetings for the bilingual Year 1 class (GSB) will be held via video conference (Zoom). Meetings will run throughout the school day. Parents should have received a sign-up link from Ecole de Wix. Pupils are still expected to attend school as normal on this day.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:309@bwa-calendar
+DTSTART;VALUE=DATE:20260501
+DTEND;VALUE=DATE:20260502
+SUMMARY:BWA Rb: Bilingual Parent-Teacher Meetings (Rb/MSB)
+DESCRIPTION:Video conference parent-teacher meetings for class RB/MSB.\n\nParent-teacher meetings for the bilingual Reception class (MSB) will be held via video conference (Zoom). Meetings will run throughout the school day. Parents should have received a sign-up link from Ecole de Wix. Pupils are still expected to attend school as normal on this day.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:310@bwa-calendar
+DTSTART;VALUE=DATE:20260505
+DTEND;VALUE=DATE:20260506
+SUMMARY:BWA Y4b: Bilingual Parent-Teacher Meetings (Y4b/CE2B)
+DESCRIPTION:Video conference parent-teacher meetings for class Y4B/CE2B.\n\nParent-teacher meetings for the bilingual Year 4 class (CE2B) will be held via video conference (Zoom). Meetings will run throughout the school day. Parents should have received a sign-up link from Ecole de Wix. Pupils are still expected to attend school as normal on this day.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:311@bwa-calendar
+DTSTART;VALUE=DATE:20260507
+DTEND;VALUE=DATE:20260508
+SUMMARY:BWA Y5b: Bilingual Parent-Teacher Meetings (Y5b/CM1B)
+DESCRIPTION:Video conference parent-teacher meetings for class Y5B/CM1B.\n\nParent-teacher meetings for the bilingual Year 5 class (CM1B) will be held via video conference (Zoom). Meetings will run throughout the school day. Parents should have received a sign-up link from Ecole de Wix. Pupils are still expected to attend school as normal on this day.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:312@bwa-calendar
+DTSTART;VALUE=DATE:20260413
+DTEND;VALUE=DATE:20260414
+SUMMARY:BWA N: English Stream Inset Day
+DESCRIPTION:English Stream Inset Day. School closed for English stream pupils.\n\nEnglish Stream Inset Day. School closed for English stream pupils.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:313@bwa-calendar
+DTSTART;VALUE=DATE:20260504
+DTEND;VALUE=DATE:20260505
+SUMMARY:BWA: Bank Holiday
+DESCRIPTION:Bank Holiday. School closed.\n\nBank Holiday. School closed.
+CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:314@bwa-calendar
+DTSTART;VALUE=DATE:20260420
+DTEND;VALUE=DATE:20260421
+SUMMARY:BWA N: Webinar -  Managing big feelings in small people
+DESCRIPTION:Early Years webinar by SWLSTG Education Wellbeing Service.\n\nEarly Years webinar by SWLSTG Education Wellbeing Service on Managing big feelings in small people.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:315@bwa-calendar
+DTSTART;VALUE=DATE:20260424
+DTEND;VALUE=DATE:20260425
+SUMMARY:BWA N: Webinar -  Managing big feelings in small people
+DESCRIPTION:Early Years webinar by SWLSTG Education Wellbeing Service.\n\nEarly Years webinar by SWLSTG Education Wellbeing Service on Managing big feelings in small people.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:316@bwa-calendar
+DTSTART;VALUE=DATE:20260429
+DTEND;VALUE=DATE:20260430
+SUMMARY:BWA Y1: Webinar -  Encouraging Healthy Habits in Children with Autism
+DESCRIPTION:Primary webinar by SWLSTG Education Wellbeing Service.\n\nPrimary webinar by SWLSTG Education Wellbeing Service on Encouraging Healthy Habits in Children with Autism.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:317@bwa-calendar
+DTSTART;VALUE=DATE:20260511
+DTEND;VALUE=DATE:20260512
+SUMMARY:BWA Y1: Webinar -  Supporting Primary Children with Toileting Problems
+DESCRIPTION:Primary webinar by SWLSTG Education Wellbeing Service.\n\nPrimary webinar by SWLSTG Education Wellbeing Service on Supporting Primary Children with Toileting Problems.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:318@bwa-calendar
+DTSTART;VALUE=DATE:20260512
+DTEND;VALUE=DATE:20260513
+SUMMARY:BWA Y1: Webinar -  Supporting Primary Children with Toileting Problems
+DESCRIPTION:Primary webinar by SWLSTG Education Wellbeing Service.\n\nPrimary webinar by SWLSTG Education Wellbeing Service on Supporting Primary Children with Toileting Problems.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:319@bwa-calendar
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+SUMMARY:BWA Y1: Webinar -  Understanding and Managing Screen Time for Primary Children
+DESCRIPTION:Primary webinar by SWLSTG Education Wellbeing Service.\n\nPrimary webinar by SWLSTG Education Wellbeing Service on Understanding and Managing Screen Time for Primary Children.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:320@bwa-calendar
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:BWA Y1: Webinar -  Understanding and Managing Screen Time for Primary Children
+DESCRIPTION:Primary webinar by SWLSTG Education Wellbeing Service.\n\nPrimary webinar by SWLSTG Education Wellbeing Service on Understanding and Managing Screen Time for Primary Children.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:321@bwa-calendar
+DTSTART;VALUE=DATE:20260429
+DTEND;VALUE=DATE:20260430
+SUMMARY:BWA Y3: Mini London Marathon in Schools Event
+DESCRIPTION:Mini marathon event for pupils in Years 3, 4, and 5.\n\nPupils from Year 3 (including 3B), Year 4 and Year 5 will be participating in the TCS Mini London Marathon. Children may choose between a competitive run of 7 laps or a 4-lap fun run. Parents and carers are invited to attend and watch the competitive run, and are welcome to join the fun run. Please ensure children wear PE kits, bring a water bottle, and have sun cream/hats if needed. Parents will be collected from the gate at 8:50am.
+CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
+UID:322@bwa-calendar
+DTSTART;VALUE=DATE:20260421
+DTEND;VALUE=DATE:20260422
+SUMMARY:BWA: Chelsea Physic Garden Outing (Y1B)
+DESCRIPTION:School trip for Y1B class to Chelsea Physic Garden for a 'Plant Hunters' workshop.\n\nThe GSB (Y1B) class will visit Chelsea Physic Garden to conclude their plant project. Pupils will attend a 'Plant Hunters' workshop and explore the garden. Lunch will be eaten on-site. For pupils enrolled at BWA, the cost is £5.18. Five parent volunteers are requested to accompany the class.
+CATEGORIES:TRIP
+END:VEVENT
+BEGIN:VEVENT
+UID:323@bwa-calendar
+DTSTART;VALUE=DATE:20260424
+DTEND;VALUE=DATE:20260425
+SUMMARY:BWA: Professional Bike Health Checks
+DESCRIPTION:Professional bike health checks available at school as part of Earth Week 2026.\n\nAs part of Earth Week 2026 celebrations, the PTA is joining the APL to host a professional Bike Health Check service at the school. Pricing: 10 GBP for a small bike, 14 GBP for a big bike (24 inches and above). Advance booking is required via the school events portal. Drop off bikes between 8:00 AM and 9:00 AM in front of the school; pick up at the end of the school day from inside the school grounds.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:324@bwa-calendar
+DTSTART;VALUE=DATE:20260423
+DTEND;VALUE=DATE:20260424
+SUMMARY:BWA: Deadline -  Notification of student departure for September
+DESCRIPTION:Request for parents to inform the school office if their child will not be returning to BWA in September.\n\nMiss Henry, Headteacher, requests that parents inform the school office in writing if their child will not be returning to Belleville Wix Academy in September to assist with planning and class organization. If no notification is received, the school will assume the child is returning.
+CATEGORIES:ADMIN
+END:VEVENT
+END:VCALENDAR
