@@ -85,13 +85,16 @@ async function startServer() {
         }
 
         return {
-          uid: `${e.id}@bwa-calendar`,
+          uid: `${e.id}@bwa-calendar.io`,
           start,
           duration,
           title: `${prefix}: ${e.title}`,
-          description: e.summary + (e.full_details ? "\n\n" + e.full_details : ""),
-          categories: [e.type],
-          productId: "BWA-Calendar-Sync"
+          description: (e.summary || "") + (e.full_details ? "\n\n" + e.full_details : ""),
+          categories: [e.type || "Event"],
+          status: "CONFIRMED",
+          busyStatus: "BUSY",
+          productId: "BWA School Calendar",
+          calName: `BWA Calendar - ${classesParam}`
         };
       });
 
@@ -99,16 +102,19 @@ async function startServer() {
         // Return an empty but valid calendar if no events
         const { value } = ics.createEvents([]);
         res.setHeader("Content-Type", "text/calendar; charset=utf-8");
-        res.setHeader("Content-Disposition", "attachment; filename=\"calendar.ics\"");
+        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         return res.send(value);
       }
 
       const { error: icsError, value } = ics.createEvents(icsEvents);
       if (icsError) throw icsError;
 
+      // Add METHOD:PUBLISH for subscriptions
+      const finalValue = value.replace("BEGIN:VCALENDAR", "BEGIN:VCALENDAR\nMETHOD:PUBLISH\nX-WR-CALNAME:BWA School Calendar");
+
       res.setHeader("Content-Type", "text/calendar; charset=utf-8");
-      res.setHeader("Content-Disposition", "attachment; filename=\"calendar.ics\"");
-      res.send(value);
+      res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+      res.send(finalValue);
     } catch (err) {
       console.error("iCal error:", err);
       res.status(500).send("Error generating calendar");
