@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Analytics -->
     <!-- External Scripts -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./index.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <title>BWA School Calendar</title>
     <style>
@@ -248,86 +248,68 @@
     </div>
 
     <script type="module">
-        // --- Core Error Handling ---
-        window.onerror = function(msg, url, lineNo, columnNo, error) {
-            const el = document.getElementById('last-updated-display');
-            if (el) el.innerText = "Fatal Error";
-            
-            const log = document.getElementById('debug-log-content');
-            if (log) {
-                log.innerHTML += `<div class="text-red-400">[ERR] ${msg} at ${lineNo}:${columnNo}</div>`;
-            }
-            return false;
-        };
-        
-        window.onunhandledrejection = function(e) {
-            const el = document.getElementById('last-updated-display');
-            if (el) el.innerText = "Promise Error";
+        // --- Core Setup & State ---
+        const debugLog = (msg, type = 'info') => {
+            const container = document.getElementById('debug-log-content');
+            if (!container) return;
+            const time = new Date().toLocaleTimeString();
+            const div = document.createElement('div');
+            div.className = type === 'error' ? 'text-red-400' : (type === 'warn' ? 'text-amber-400' : 'text-green-400');
+            div.innerHTML = `<span class="opacity-40">[${time}]</span> ${msg}`;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
         };
 
-        // Delay to let browser paint
-        setTimeout(async () => {
-            try {
-                // Constants & Helpers
-                const debugLog = (msg, type = 'info') => {
-                    const container = document.getElementById('debug-log-content');
-                    if (!container) return;
-                    const time = new Date().toLocaleTimeString();
-                    const div = document.createElement('div');
-                    div.className = type === 'error' ? 'text-red-400' : (type === 'warn' ? 'text-amber-400' : 'text-green-400');
-                    div.innerHTML = `<span class="opacity-40">[${time}]</span> ${msg}`;
-                    container.appendChild(div);
-                    container.scrollTop = container.scrollHeight;
-                };
+        window.addEventListener('error', (e) => {
+            debugLog(`Runtime Error: ${e.message} at ${e.filename}:${e.lineno}`, 'error');
+        });
+        window.addEventListener('unhandledrejection', (e) => {
+            const reason = e.reason && e.reason.message ? e.reason.message : e.reason;
+            debugLog(`Promise Rejected: ${reason}`, 'error');
+        });
 
-                const updateStatus = (msg) => {
-                    const el = document.getElementById('last-updated-display');
-                    if (el) el.innerText = msg;
-                    debugLog(`Status: ${msg}`, 'info');
-                };
+        debugLog('Script module loaded. Starting boot...');
 
-                const reportError = (tag, err) => {
-                    debugLog(`${tag}: ${err && err.message ? err.message : err}`, 'error');
-                    const el = document.getElementById('events-list');
-                    if (el) el.innerHTML = `<div class="p-8 text-center text-red-500 font-bold uppercase text-[10px] tracking-widest">${tag}: ${err && err.message ? err.message : err}</div>`;
-                };
+        const updateStatus = (msg) => {
+            const el = document.getElementById('last-updated-display');
+            if (el) el.innerText = msg;
+            debugLog(`Status: ${msg}`, 'info');
+        };
 
-                const isPlaceHolder = (val) => {
-                    if (!val) return true;
-                    const str = val.toString();
-                    return str === 'undefined' || str.includes('import.meta') || str.includes('__INJECT_') || str.includes('PLACEHOLDER');
-                };
+        const reportError = (tag, err) => {
+            debugLog(`${tag}: ${err && err.message ? err.message : err}`, 'error');
+            const el = document.getElementById('events-list');
+            if (el) el.innerHTML = `<div class="p-8 text-center text-red-500 font-bold uppercase text-[10px] tracking-widest">${tag}: ${err && err.message ? err.message : err}</div>`;
+        };
 
-                window.localNow = new Date();
-                window.TODAY_STR = window.localNow.getFullYear() + '-' + String(window.localNow.getMonth() + 1).padStart(2, '0') + '-' + String(window.localNow.getDate()).padStart(2, '0');
-                window.TODAY = new Date(window.TODAY_STR);
-                window.ALL_CATEGORIES = ['HOLIDAY', 'ACADEMIC', 'SPORTS', 'WELLBEING', 'COMMUNITY', 'ARTS', 'TRIP', 'ADMIN', 'OTHER'];
-                window.ALL_CLASSES = ['N', 'R', 'Rb', 'Y1', 'Y1b', 'Y2', 'Y2b', 'Y3', 'Y3b', 'Y4', 'Y4b', 'Y5', 'Y5b', 'Y6', 'Y6b'];
-                window.CATEGORY_STYLES = {
-                    'HOLIDAY': { dot: 'bg-amber-400', label: 'bg-amber-50 text-amber-700 border-amber-100', checkbox: 'bg-amber-500 border-amber-500' },
-                    'SPORTS': { dot: 'bg-green-400', label: 'bg-green-50 text-green-700 border-green-100', checkbox: 'bg-green-500 border-green-500' },
-                    'ACADEMIC': { dot: 'bg-blue-400', label: 'bg-blue-50 text-blue-700 border-blue-100', checkbox: 'bg-blue-500 border-blue-500' },
-                    'WELLBEING': { dot: 'bg-cyan-400', label: 'bg-cyan-50 text-cyan-700 border-cyan-100', checkbox: 'bg-cyan-500 border-cyan-500' },
-                    'COMMUNITY': { dot: 'bg-purple-400', label: 'bg-purple-50 text-purple-700 border-purple-100', checkbox: 'bg-purple-500 border-purple-500' },
-                    'ARTS': { dot: 'bg-pink-400', label: 'bg-pink-50 text-pink-700 border-pink-100', checkbox: 'bg-pink-500 border-pink-500' },
-                    'TRIP': { dot: 'bg-orange-400', label: 'bg-orange-50 text-orange-700 border-orange-100', checkbox: 'bg-orange-500 border-orange-500' },
-                    'ADMIN': { dot: 'bg-slate-400', label: 'bg-slate-50 text-slate-700 border-slate-100', checkbox: 'bg-slate-500 border-slate-500' },
-                    'OTHER': { dot: 'bg-gray-300', label: 'bg-gray-50 text-gray-700 border-gray-100', checkbox: 'bg-gray-400 border-gray-400' }
-                };
+        const isPlaceHolder = (val) => {
+            if (!val) return true;
+            const str = val.toString();
+            return str === 'undefined' || str.includes('import.meta') || str.includes('__INJECT_') || str.includes('PLACEHOLDER');
+        };
 
-                window.APP_BASE_URL = window.location.origin ? window.location.origin : '';
-                if (window.location.pathname) {
-                    window.APP_BASE_URL += window.location.pathname.replace(/\/$/, '').replace(/\/index\.html$/, '');
-                }
-                if (window.APP_BASE_URL === 'null' || !window.APP_BASE_URL) window.APP_BASE_URL = '';
+        const localNow = new Date();
+        const TODAY_STR = localNow.getFullYear() + '-' + String(localNow.getMonth() + 1).padStart(2, '0') + '-' + String(localNow.getDate()).padStart(2, '0');
+        const TODAY = new Date(TODAY_STR);
+        const ALL_CATEGORIES = ['HOLIDAY', 'ACADEMIC', 'SPORTS', 'WELLBEING', 'COMMUNITY', 'ARTS', 'TRIP', 'ADMIN', 'OTHER'];
+        const ALL_CLASSES = ['N', 'R', 'Rb', 'Y1', 'Y1b', 'Y2', 'Y2b', 'Y3', 'Y3b', 'Y4', 'Y4b', 'Y5', 'Y5b', 'Y6', 'Y6b'];
+        const CATEGORY_STYLES = {
+            'HOLIDAY': { dot: 'bg-amber-400', label: 'bg-amber-50 text-amber-700 border-amber-100', checkbox: 'bg-amber-500 border-amber-500' },
+            'SPORTS': { dot: 'bg-green-400', label: 'bg-green-50 text-green-700 border-green-100', checkbox: 'bg-green-500 border-green-500' },
+            'ACADEMIC': { dot: 'bg-blue-400', label: 'bg-blue-50 text-blue-700 border-blue-100', checkbox: 'bg-blue-500 border-blue-500' },
+            'WELLBEING': { dot: 'bg-cyan-400', label: 'bg-cyan-50 text-cyan-700 border-cyan-100', checkbox: 'bg-cyan-500 border-cyan-500' },
+            'COMMUNITY': { dot: 'bg-purple-400', label: 'bg-purple-50 text-purple-700 border-purple-100', checkbox: 'bg-purple-500 border-purple-500' },
+            'ARTS': { dot: 'bg-pink-400', label: 'bg-pink-50 text-pink-700 border-pink-100', checkbox: 'bg-pink-500 border-pink-500' },
+            'TRIP': { dot: 'bg-orange-400', label: 'bg-orange-50 text-orange-700 border-orange-100', checkbox: 'bg-orange-500 border-orange-500' },
+            'ADMIN': { dot: 'bg-slate-400', label: 'bg-slate-50 text-slate-700 border-slate-100', checkbox: 'bg-slate-500 border-slate-500' },
+            'OTHER': { dot: 'bg-gray-300', label: 'bg-gray-50 text-gray-700 border-gray-100', checkbox: 'bg-gray-400 border-gray-400' }
+        };
 
-                // Add globals back to global context so that the rest of the file can read them easily
-                const localNow = window.localNow;
-                const TODAY_STR = window.TODAY_STR;
-                const TODAY = window.TODAY;
-                const ALL_CATEGORIES = window.ALL_CATEGORIES;
-                const ALL_CLASSES = window.ALL_CLASSES;
-                const CATEGORY_STYLES = window.CATEGORY_STYLES;
+        window.APP_BASE_URL = window.location.origin ? window.location.origin : '';
+        if (window.location.pathname) {
+            window.APP_BASE_URL += window.location.pathname.replace(/\/$/, '').replace(/\/index\.html$/, '');
+        }
+        if (window.APP_BASE_URL === 'null' || !window.APP_BASE_URL) window.APP_BASE_URL = '';
 
         // --- Main Boot Sequence ---
         async function boot() {
@@ -901,15 +883,6 @@
         // Initialize
         debugLog('Calling boot()...');
         boot();
-            } catch (fatalError) {
-                const el = document.getElementById('last-updated-display');
-                if (el) el.innerText = "Script Error";
-                const log = document.getElementById('debug-log-content');
-                if (log) {
-                    log.innerHTML += `<div class="text-red-400">[ERR] Global context failed: ${fatalError}</div>`;
-                }
-            }
-        }, 100);
     </script>
 </body>
 </html>
