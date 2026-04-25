@@ -305,10 +305,13 @@
             'OTHER': { dot: 'bg-gray-300', label: 'bg-gray-50 text-gray-700 border-gray-100', checkbox: 'bg-gray-400 border-gray-400' }
         };
 
-        window.APP_BASE_URL = window.location.origin ? window.location.origin : '';
-        if (window.location.pathname) {
-            window.APP_BASE_URL += window.location.pathname.replace(/\/$/, '').replace(/\/index\.html$/, '');
-        }
+        window.APP_BASE_URL = (function() {
+            let baseUrl = window.location.origin || '';
+            let path = window.location.pathname || '';
+            // Strip index.html and trailing slashes
+            path = path.replace(/\/index\.html$/, '').replace(/\/$/, '');
+            return baseUrl + path;
+        })();
         if (window.APP_BASE_URL === 'null' || !window.APP_BASE_URL) window.APP_BASE_URL = '';
 
         // --- Main Boot Sequence ---
@@ -326,8 +329,6 @@
                         SUPABASE_URL = env.VITE_SUPABASE_URL || "";
                         SUPABASE_KEY = env.VITE_SUPABASE_ANON_KEY || env.VITE_SUPABASE_KEY || "";
                         debugLog(`Env: URL=${SUPABASE_URL ? 'OK' : 'MISSING'}, KEY=${SUPABASE_KEY ? 'OK' : 'MISSING'}`);
-                        const apiBase = env.VITE_API_BASE_URL;
-                        if (apiBase && !isPlaceHolder(apiBase)) window.APP_BASE_URL = apiBase.replace(/\/$/, '');
                     }
                 } catch(e) { console.warn("Env check skipped", e); }
 
