@@ -115,6 +115,70 @@ DESCRIPTION:Last day of Summer Term 2 for English Stream.\n\nLast day of Summer 
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
+UID:334@bwa-calendar
+DTSTART;VALUE=DATE:20260515
+DTEND;VALUE=DATE:20260516
+SUMMARY:BWA: International Families Day
+DESCRIPTION:School-wide celebration of diverse heritage including a homework project, national dress day, and an after-school international buffet.\n\nInternational Families Day at BWA. Pupils are invited to complete a heritage homework project (due 11th May). On 15th May, pupils may wear national dress or flag colours. Parents are invited to volunteer to share culture/skills (form due 8th May). An international buffet will be held in the lower hall from 3:30pm; food donations requested (bring to office from 2:30pm). All food must be nut-free.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:335@bwa-calendar
+DTSTART;VALUE=DATE:20260430
+DTEND;VALUE=DATE:20260501
+SUMMARY:BWA: Parent Gym Taster Session
+DESCRIPTION:Taster session for the six-week Parent Gym programme.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. This is the 45-minute taster session. Led by Ellie Wilkes.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:336@bwa-calendar
+DTSTART;VALUE=DATE:20260507
+DTEND;VALUE=DATE:20260508
+SUMMARY:BWA: Parent Gym -  Week 1
+DESCRIPTION:Parent Gym session: Chat.\n\nWeek 1 of the Parent Gym programme. Topic: Chat. Led by Ellie Wilkes.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:337@bwa-calendar
+DTSTART;VALUE=DATE:20260521
+DTEND;VALUE=DATE:20260522
+SUMMARY:BWA: Parent Gym -  Week 2
+DESCRIPTION:Parent Gym session: Love.\n\nWeek 2 of the Parent Gym programme. Topic: Love. Led by Ellie Wilkes.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:338@bwa-calendar
+DTSTART;VALUE=DATE:20260604
+DTEND;VALUE=DATE:20260605
+SUMMARY:BWA: Parent Gym -  Week 3
+DESCRIPTION:Parent Gym session: Behave.\n\nWeek 3 of the Parent Gym programme. Topic: Behave. Led by Ellie Wilkes.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:339@bwa-calendar
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:BWA: Parent Gym -  Week 4
+DESCRIPTION:Parent Gym session: Care.\n\nWeek 4 of the Parent Gym programme. Topic: Care. Led by Ellie Wilkes.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:340@bwa-calendar
+DTSTART;VALUE=DATE:20260618
+DTEND;VALUE=DATE:20260619
+SUMMARY:BWA: Parent Gym -  Week 5
+DESCRIPTION:Parent Gym session: Discover.\n\nWeek 5 of the Parent Gym programme. Topic: Discover. Led by Ellie Wilkes.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:341@bwa-calendar
+DTSTART;VALUE=DATE:20260625
+DTEND;VALUE=DATE:20260626
+SUMMARY:BWA: Parent Gym -  Week 6
+DESCRIPTION:Parent Gym session: Together.\n\nWeek 6 of the Parent Gym programme. Topic: Together. Led by Ellie Wilkes.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
 UID:312@bwa-calendar
 DTSTART;VALUE=DATE:20260413
 DTEND;VALUE=DATE:20260414
