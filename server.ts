@@ -47,12 +47,24 @@ async function startServer() {
         // If the user requested 'All', return everything
         if (selectedClasses.includes("All")) return true;
         
-        const eventClasses = e.classes || [];
+        let eventClasses: string[] = [];
+        if (Array.isArray(e.classes)) {
+          eventClasses = e.classes;
+        } else if (typeof e.classes === "string") {
+          try {
+            eventClasses = JSON.parse(e.classes);
+          } catch (err) {
+            eventClasses = [e.classes];
+          }
+        }
+
         // If the event is marked for 'All', it matches any selection
-        if (eventClasses.includes("All")) return true;
+        if (eventClasses.some(c => c.toLowerCase() === "all")) return true;
         
-        // Otherwise, check for specific class matches
-        return eventClasses.some((c: string) => selectedClasses.includes(c));
+        // Otherwise, check for specific class matches (case-insensitive)
+        return eventClasses.some((c: string) => 
+          selectedClasses.some(sc => sc.toLowerCase() === c.toLowerCase())
+        );
       });
 
       // Map to ics format
@@ -65,10 +77,24 @@ async function startServer() {
         ];
         
         let prefix = "BWA";
-        const eventClasses = e.classes || [];
-        if (!eventClasses.includes("All")) {
+        
+        // Re-parse classes for prefix logic
+        let eventClasses: string[] = [];
+        if (Array.isArray(e.classes)) {
+          eventClasses = e.classes;
+        } else if (typeof e.classes === "string") {
+          try {
+            eventClasses = JSON.parse(e.classes);
+          } catch (err) {
+            eventClasses = [e.classes];
+          }
+        }
+
+        if (!eventClasses.some(c => c.toLowerCase() === "all")) {
             // Find which of the user's selected classes this event belongs to
-            const relevantClass = eventClasses.find((c: string) => selectedClasses.includes(c));
+            const relevantClass = eventClasses.find((c: string) => 
+               selectedClasses.some(sc => sc.toLowerCase() === c.toLowerCase())
+            );
             if (relevantClass) {
                 prefix = `BWA ${relevantClass}`;
             }

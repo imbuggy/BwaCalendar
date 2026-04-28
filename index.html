@@ -689,7 +689,9 @@
 
                     // Filter classes to show only those that match active filters (or show 'All' if applicable)
                     const relevantClasses = e.classes.filter(c => 
-                        window.selectedClasses.length === 0 || window.selectedClasses.includes(c) || c === 'All'
+                        window.selectedClasses.length === 0 || 
+                        window.selectedClasses.some(sc => sc.toLowerCase() === c.toLowerCase()) || 
+                        c.toLowerCase() === 'all'
                     );
                     let badges = relevantClasses.slice(0, 2).map(c => 
                         `<span class="px-1.5 py-0.5 bg-white/60 border border-black/5 text-[7px] font-black text-gray-500 rounded-sm uppercase tracking-tighter">${c}</span>`
@@ -780,8 +782,8 @@
                 const filtered = window.allEvents.filter(e => {
                     if (!window.showPastEvents && e.event_date < TODAY_STR) return false;
                     const isMatch = window.selectedClasses.length === 0 || 
-                                    e.classes.includes('All') || 
-                                    e.classes.some(c => window.selectedClasses.includes(c));
+                                    e.classes.some(c => c.toLowerCase() === 'all') || 
+                                    e.classes.some(c => window.selectedClasses.some(sc => sc.toLowerCase() === c.toLowerCase()));
                     if (!isMatch) return false;
                     if (window.hiddenCategories.includes(e.type)) return false;
                     if (window.searchQuery && !e.title.toLowerCase().includes(window.searchQuery.toLowerCase())) return false;
@@ -893,7 +895,10 @@
                 if (entries[0].isIntersecting) {
                     const totalFiltered = window.allEvents.filter(e => {
                         if (!window.showPastEvents && e.event_date < TODAY_STR) return false;
-                        if (!(window.selectedClasses.length === 0 || e.classes.some(c => window.selectedClasses.includes(c)))) return false;
+                        const isMatch = window.selectedClasses.length === 0 || 
+                                        e.classes.some(c => c.toLowerCase() === 'all') || 
+                                        e.classes.some(c => window.selectedClasses.some(sc => sc.toLowerCase() === c.toLowerCase()));
+                        if (!isMatch) return false;
                         if (window.hiddenCategories.includes(e.type)) return false;
                         if (window.searchQuery && !e.title.toLowerCase().includes(window.searchQuery.toLowerCase())) return false;
                         return true;
