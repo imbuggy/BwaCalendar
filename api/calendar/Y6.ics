@@ -243,6 +243,14 @@ DESCRIPTION:Primary webinar by SWLSTG Education Wellbeing Service.\n\nPrimary we
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
+UID:342@bwa-calendar
+DTSTART;VALUE=DATE:20260428
+DTEND;VALUE=DATE:20260429
+SUMMARY:BWA: Cancellation -  Basketball Club
+DESCRIPTION:Basketball club is cancelled today due to staff sickness.\n\nBasketball club is cancelled today (Tuesday 28th April) due to staff sickness. We apologize for the inconvenience.
+CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
 UID:323@bwa-calendar
 DTSTART;VALUE=DATE:20260424
 DTEND;VALUE=DATE:20260425
