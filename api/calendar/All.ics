@@ -427,6 +427,14 @@ DESCRIPTION:Mini marathon event for pupils in Years 3, 4, and 5.\n\nPupils from 
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
+UID:343@bwa-calendar
+DTSTART;VALUE=DATE:20260430
+DTEND;VALUE=DATE:20260501
+SUMMARY:BWA: Gymnastics Lesson Reminder (Y1B)
+DESCRIPTION:Reminder for Y1B parents regarding gymnastics lesson attire.\n\nAs you may be aware, the 1B gymnastic lesson has been moved to a Thursday during English week. This is just a reminder that on Thursdays your child needs to be wearing their P.E kit with either shorts, leggings or trousers. We ask for no tights as they will need to be taken off during the lesson.
+CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
 UID:322@bwa-calendar
 DTSTART;VALUE=DATE:20260421
 DTEND;VALUE=DATE:20260422
