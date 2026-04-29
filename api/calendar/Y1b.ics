@@ -219,6 +219,30 @@ DESCRIPTION:Basketball club is cancelled today due to staff sickness.\n\nBasketb
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
+UID:344@bwa-calendar
+DTSTART;VALUE=DATE:20260517
+DTEND;VALUE=DATE:20260518
+SUMMARY:BWA: APL Wixbledon
+DESCRIPTION:APL Wixbledon\n\n🎾 Dust Off Your Rackets: Wixbledon is Back! 🎾\nCalling all aces, net-rushers, and “just here for the atmosphere” players! Our annual Wixbledon Tennis Tournament returns on Sunday, May 17th, and it’s time to find your doubles partner!\nWhether you have a pro serve or you’re just in it for the laughs, come join us for a fun family day out in Clapham South to support our latest school projects. \n📅 THE DETAILS:\n* When: Sunday, May 17th @ 2:30 PM\n* Where: Clapham South\n* Format: Teams of 2 players\n* ⁠\n🏆 CHOOSE YOUR CATEGORY:\nWe have three levels of play depending on your skill (and confidence!):\n🟠 Orange Ball: Beginners/Younger pairs\n🟢 Green Ball: Intermediate/Casual players\n🟡 Yellow Ball: Competitive/Experienced players \nReady to play? Grab a partner and sign up here:\nhttps://ecoledewixevents.bigcartel.com/\nSee you on the courts! 🍓🎾✨\nYour APL Team
+CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
+UID:345@bwa-calendar
+DTSTART;VALUE=DATE:20260521
+DTEND;VALUE=DATE:20260522
+SUMMARY:BWA: French & British Wine Tasting Evening
+DESCRIPTION:BWA PTA French & British Wine Tasting Evening\n\n🍷✨ Save the Date – An Evening Not to Miss!\nJoin us for a French & British Wine Tasting Evening hosted by your PTA, a perfect chance to unwind, connect, and enjoy a touch of European charm.\nWe’re excited to partner with Spy Wines, an independent London-based merchant known for unique, well-crafted bottles. With 20+ years of experience, they’ll be bringing a fantastic selection for us to enjoy 🍇🥂\n📅 Thursday 21 May\n⏰ From 7:00 PM\n📍 At school\nExpect a relaxed and sociable evening, great company, and plenty of wines to discover.\nMore details to follow soon… mark your calendars! We’d love to see you there!
+CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
+UID:346@bwa-calendar
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260622
+SUMMARY:BWA: APL Summer Kermesse
+DESCRIPTION:APL Summer Kermesse\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. \nMore details to come!
+CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
 UID:323@bwa-calendar
 DTSTART;VALUE=DATE:20260424
 DTEND;VALUE=DATE:20260425
