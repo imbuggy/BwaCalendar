@@ -315,14 +315,6 @@ DESCRIPTION:First day of Summer Term 2.\n\nFirst day of Summer Term 2.
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
-UID:350@bwa-calendar
-DTSTART;VALUE=DATE:20260717
-DTEND;VALUE=DATE:20260718
-SUMMARY:BWA Y2: Last day of Summer Term 2 (English Stream)
-DESCRIPTION:Last day of Summer Term 2 for English Stream.\n\nLast day of Summer Term 2 for English Stream.
-CATEGORIES:ACADEMIC
-END:VEVENT
-BEGIN:VEVENT
 UID:324@bwa-calendar
 DTSTART;VALUE=DATE:20260423
 DTEND;VALUE=DATE:20260424
