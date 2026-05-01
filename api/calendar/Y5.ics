@@ -291,6 +291,30 @@ DESCRIPTION:Professional bike health checks available at school as part of Earth
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
+UID:347@bwa-calendar
+DTSTART;VALUE=DATE:20260525
+DTEND;VALUE=DATE:20260530
+SUMMARY:BWA: Summer half term
+DESCRIPTION:School closed for summer half term.\n\nSchool closed for summer half term.
+CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:348@bwa-calendar
+DTSTART;VALUE=DATE:20260601
+DTEND;VALUE=DATE:20260602
+SUMMARY:BWA: First day of Summer Term 2
+DESCRIPTION:First day of Summer Term 2.\n\nFirst day of Summer Term 2.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:350@bwa-calendar
+DTSTART;VALUE=DATE:20260717
+DTEND;VALUE=DATE:20260718
+SUMMARY:BWA Y5: Last day of Summer Term 2 (English Stream)
+DESCRIPTION:Last day of Summer Term 2 for English Stream.\n\nLast day of Summer Term 2 for English Stream.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
 UID:324@bwa-calendar
 DTSTART;VALUE=DATE:20260423
 DTEND;VALUE=DATE:20260424
