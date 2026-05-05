@@ -306,4 +306,12 @@ SUMMARY:BWA: Deadline -  Notification of student departure for September
 DESCRIPTION:Request for parents to inform the school office if their child will not be returning to BWA in September.\n\nMiss Henry, Headteacher, requests that parents inform the school office in writing if their child will not be returning to Belleville Wix Academy in September to assist with planning and class organization. If no notification is received, the school will assume the child is returning.
 CATEGORIES:ADMIN
 END:VEVENT
+BEGIN:VEVENT
+UID:351@bwa-calendar
+DTSTART;VALUE=DATE:20260505
+DTEND;VALUE=DATE:20260506
+SUMMARY:BWA: International Families Day Volunteer Sign-up
+DESCRIPTION:Call for volunteers for International Families Day and buffet attendance.\n\nPlease see the link provided to sign up to volunteer for International Families Day. Please indicate if you are able to attend the buffet after school using the link.
+CATEGORIES:COMMUNITY
+END:VEVENT
 END:VCALENDAR
