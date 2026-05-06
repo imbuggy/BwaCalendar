@@ -115,6 +115,22 @@ DESCRIPTION:Last day of Summer Term 2 for English Stream.\n\nLast day of Summer 
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
+UID:352@bwa-calendar
+DTSTART;VALUE=DATE:20260617
+DTEND;VALUE=DATE:20260618
+SUMMARY:BWA R: Father’s Day Celebration
+DESCRIPTION:Father's Day celebration with tea, coffee, pastries, and classroom craft activities.\n\nWe invite you to join us for tea, coffee and pastries in the canteen at 8:30am. At 9am, you will join your child in their classroom to enjoy a craft activity. The event will end around 9:30am.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:354@bwa-calendar
+DTSTART;VALUE=DATE:20260515
+DTEND;VALUE=DATE:20260516
+SUMMARY:BWA: International Families Day
+DESCRIPTION:International Families Day celebration with an international buffet.\n\nInternational Families Day celebration. Please bring a dish for our international buffet. Please come to the front office from 2:30pm to be shown to the hall and complete a slip with your dish details.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
 UID:334@bwa-calendar
 DTSTART;VALUE=DATE:20260515
 DTEND;VALUE=DATE:20260516

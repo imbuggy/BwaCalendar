@@ -107,6 +107,14 @@ DESCRIPTION:First day of Summer Term 2.\n\nFirst day of Summer Term 2 - Monday 1
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
+UID:354@bwa-calendar
+DTSTART;VALUE=DATE:20260515
+DTEND;VALUE=DATE:20260516
+SUMMARY:BWA: International Families Day
+DESCRIPTION:International Families Day celebration with an international buffet.\n\nInternational Families Day celebration. Please bring a dish for our international buffet. Please come to the front office from 2:30pm to be shown to the hall and complete a slip with your dish details.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
 UID:302@bwa-calendar
 DTSTART;VALUE=DATE:20260501
 DTEND;VALUE=DATE:20260502
