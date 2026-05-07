@@ -227,6 +227,14 @@ DESCRIPTION:Basketball club is cancelled today due to staff sickness.\n\nBasketb
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
+UID:357@bwa-calendar
+DTSTART;VALUE=DATE:20260617
+DTEND;VALUE=DATE:20260618
+SUMMARY:BWA Y3b: Father's Day Celebration
+DESCRIPTION:Father's Day celebration with tea, coffee, pastries, and classroom craft activities.\n\nIn celebration of the important role that fathers and father figures play in our lives, we have arranged a special event for Father's Day. We invite you to join us for tea, coffee and pastries in the canteen at 8:30am. At 9am, you will join your child in their classroom to enjoy a craft activity. The event will end around 9:30am. Please complete the google form to attend.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
 UID:344@bwa-calendar
 DTSTART;VALUE=DATE:20260517
 DTEND;VALUE=DATE:20260518
