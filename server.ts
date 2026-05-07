@@ -4,6 +4,7 @@ import { createServer as createViteServer } from "vite";
 import { createClient } from "@supabase/supabase-js";
 import * as ics from "ics";
 import dotenv from "dotenv";
+import { exec } from "child_process";
 
 dotenv.config();
 
@@ -11,7 +12,41 @@ const SUPABASE_URL = process.env.SUPABASE_URL || "";
 const SUPABASE_KEY = process.env.SUPABASE_KEY || "";
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
+// --- Aggregator Sync Logic ---
+function runAggregator() {
+  // Respect night-time quiet hours (9pm - 7am)
+  // Using Europe/London as the school is UK-based
+  const now = new Date();
+  const options = { timeZone: 'Europe/London', hour: 'numeric', hour12: false } as const;
+  const hour = parseInt(new Intl.DateTimeFormat('en-GB', options).format(now));
+
+  if (hour >= 21 || hour < 7) {
+    console.log(`Aggregator: Skipping sync during quiet hours (Current hour: ${hour})`);
+    return;
+  }
+
+  console.log(`Triggering Python aggregator task (Current hour: ${hour})...`);
+  exec("python3 main.py", (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Aggregator error: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.error(`Aggregator stderr: ${stderr}`);
+    }
+    console.log(`Aggregator output: ${stdout}`);
+  });
+}
+
+// Run aggregator every 2 hours
+// This covers "multiple times a day" for emails.
+// main.py handles its own once-a-day/once-a-month throttling for PTA and term dates.
+setInterval(runAggregator, 2 * 60 * 60 * 1000);
+
 async function startServer() {
+  // Run initial sync on startup
+  runAggregator();
+
   const app = express();
   const PORT = 3000;
 

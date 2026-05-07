@@ -1,0 +1,11 @@
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260501
+SUMMARY:PTA Summer Fair Planning Meeting
+DESCRIPTION:Meeting to discuss the upcoming summer fair.\nLocation: School Hall.
+URL:https://bwapta.co.uk/event/summer-fair-planning/
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260515
+SUMMARY:Second PTA Event
+DESCRIPTION:Another event description.
+END:VEVENT

@@ -148,14 +148,29 @@ NEGATIVE CONSTRAINTS:
 Logic:
 - INSET/PD = English Stream ONLY (N, R, Y1, Y2, Y3, Y4, Y5, Y6).
 - Bilingual Class Mapping: ALWAYS use UK names. Normalize according to:
-  * MSB -> RB
-  * GSB -> Y1B
-  * CPB -> Y2B
-  * CE1B -> Y3B
-  * CE2B -> Y4B
-  * CM1B -> Y5B
-  * CM2B -> Y6B
-- MULTI-DATE LISTS: If an email lists different dates for different classes (e.g., Parent Teacher Meetings), you MUST create a SEPARATE event object for EACH date/class combination.
+  * MSB -> Rb
+  * GSB -> Y1b
+  * CPB -> Y2b
+  * CE1B -> Y3b
+  * CE2B -> Y4b
+  * CM1B -> Y5b
+  * CM2B -> Y6b
+  * 1B -> Y1b
+  * 2B -> Y2b
+  * 3B -> Y3b
+  * 4B -> Y4b
+  * 5B -> Y5b
+  * 6B -> Y6b
+  * Nursery -> N
+  * Reception -> R
+  * Yr1/Year1/Year 1 -> Y1
+  * Yr2/Year2/Year 2 -> Y2
+  * Yr3/Year3/Year 3 -> Y3
+  * Yr4/Year4/Year 4 -> Y4
+  * Yr5/Year5/Year 5 -> Y5
+  * Yr6/Year6/Year 6 -> Y6
+- MULTI-DATE LISTS: If an email lists multiple dates for an event (e.g., Father's Day on Wed 17th and Friday 26th for different classes), you MUST create a SEPARATE event object for EACH date/class combination. Do NOT lump them into a single event.
+- SOURCES: Events can have multiple sources in the 'sources' array. When updating an event, retain all existing sources and append the new source.
 - PRIORITY EVENTS: Always mark Parent-Teacher Meetings, Consultations, and Individual Appointments as "is_deadline": true.
 - "X Stream finishes at..." -> Split into separate events per stream.
 """
@@ -296,7 +311,7 @@ def fetch_term_dates():
                 f"RULES:\n"
                 f"- Set 'classes' to ['All'] for school-wide holidays (Bank holidays, half terms).\n"
                 f"- IMPORTANT: INSET/PD days are for English Stream ONLY. Assign only English codes (N, R, Y1, Y2, Y3, Y4, Y5, Y6).\n"
-                f"- Bilingual Class Mapping: ALWAYS use UK names for bilingual entries (MSB->RB, GSB->Y1B, CPB->Y2B, CE1B->Y3B, CE2B->Y4B, CM1B->Y5B, CM2B->Y6B).\n"
+                f"- Bilingual Class Mapping: ALWAYS use UK names for bilingual entries (MSB->Rb, GSB->Y1b, CPB->Y2b, CE1B->Y3b, CE2B->Y4b, CM1B->Y5b, CM2B->Y6b, 1B->Y1b, 2B->Y2b).\n"
                 f"- Set 'type' to 'HOLIDAY' for holidays and 'EVENT' for INSET days.\n"
                 f"- Set 'source_title' to 'Official Term Dates Website'.\n"
                 f"- Include the source in the 'sources' array as well.\n"
@@ -310,6 +325,68 @@ def fetch_term_dates():
     except Exception as e:
         print(f"Failed to fetch term dates: {e}")
         return []
+
+def sync_pta_calendar():
+    """Syncs PTA events from their ical feed."""
+    print("Starting PTA Calendar sync (Python)...")
+    try:
+        url = "https://bwapta.co.uk/events/list/?ical=1"
+        response = requests.get(url, timeout=15)
+        content = response.text
+        
+        # Simple regex-based ICS parser for VEVENTs
+        # This extracts SUMMARY, DTSTART, and DESCRIPTION
+        events_raw = re.findall(r"BEGIN:VEVENT.*?END:VEVENT", content, re.DOTALL)
+        
+        added_count = 0
+        for ev_str in events_raw:
+            summary_match = re.search(r"SUMMARY:(.*?)\r?\n", ev_str)
+            start_match = re.search(r"DTSTART;VALUE=DATE:(.*?)\r?\n", ev_str)
+            if not start_match:
+                start_match = re.search(r"DTSTART:(.*?)\r?\n", ev_str)
+            
+            desc_match = re.search(r"DESCRIPTION:(.*?)\r?\n", ev_str)
+            url_match = re.search(r"URL:(.*?)\r?\n", ev_str)
+
+            if not summary_match or not start_match:
+                continue
+
+            title = summary_match.group(1).strip().replace('\\', '')
+            raw_date = start_match.group(1).strip()
+            
+            # Format date YYYYMMDD or YYYYMMDDTHHMMSS
+            if 'T' in raw_date:
+                event_date = f"{raw_date[0:4]}-{raw_date[4:6]}-{raw_date[6:8]}"
+            else:
+                event_date = f"{raw_date[0:4]}-{raw_date[4:6]}-{raw_date[6:8]}"
+            
+            description = desc_match.group(1).strip().replace('\\n', '\n').replace('\\', '') if desc_match else ""
+            ev_url = url_match.group(1).strip() if url_match else url
+
+            # Check for duplicates
+            res = supabase.table("events").select("id").eq("title", title).eq("event_date", event_date).execute()
+            if not res.data:
+                print(f"Adding PTA event: {title}")
+                data = {
+                    "title": title,
+                    "event_date": event_date,
+                    "summary": title,
+                    "full_details": description,
+                    "type": "PTA",
+                    "status": "approved",
+                    "classes": ["All"], # Default for PTA
+                    "source_title": "PTA Website",
+                    "source_date": datetime.now().strftime("%Y-%m-%d"),
+                    "links": json.dumps([{"title": "PTA Event Link", "url": ev_url}])
+                }
+                supabase.table("events").insert(data).execute()
+                added_count += 1
+        
+        print(f"PTA sync complete. Added {added_count} new events.")
+        return True
+    except Exception as e:
+        print(f"Failed PTA sync: {e}")
+        return False
 
 def get_existing_events():
     response = supabase.table("events").select("*").execute()
@@ -362,8 +439,35 @@ def sync_database(results):
                 print(f"Inserting new event: {data.get('title')}")
                 supabase.table("events").insert(data).execute()
             elif action == 'update' and item.get('match_id'):
-                print(f"Updating existing event (ID: {item.get('match_id')}): {data.get('title')}")
-                supabase.table("events").update(data).eq("id", item.get('match_id')).execute()
+                match_id = item.get('match_id')
+                print(f"Merging new data into existing event (ID: {match_id}): {data.get('title')}")
+                
+                # Fetch existing to merge
+                res = supabase.table("events").select("*").eq("id", match_id).execute()
+                if res.data:
+                    existing = res.data[0]
+                    # Merge logic:
+                    # 1. Links: Combine unique ones
+                    # 2. Sources: Combine unique ones
+                    # 3. Details: if new is shorter, keep old or append? 
+                    # We'll trust Gemini to provide 'data' as the NEW desired state, 
+                    # but we'll manually merge critical arrays here if AI missed them.
+                    
+                    try:
+                        old_links = json.loads(existing.get('links') or '[]')
+                        new_links = json.loads(data.get('links') or '[]')
+                        combined_links = {json.dumps(l, sort_keys=True): l for l in old_links + new_links}.values()
+                        data['links'] = json.dumps(list(combined_links))
+                    except: pass
+
+                    try:
+                        old_sources = json.loads(existing.get('sources') or '[]')
+                        new_sources = json.loads(data.get('sources') or '[]')
+                        combined_sources = {json.dumps(s, sort_keys=True): s for s in old_sources + new_sources}.values()
+                        data['sources'] = json.dumps(list(combined_sources))
+                    except: pass
+                
+                supabase.table("events").update(data).eq("id", match_id).execute()
         except Exception as e:
             print(f"Database sync failed for record: {e}")
             success = False
@@ -400,7 +504,10 @@ def deduplicate_database():
                 "title": e['title'],
                 "time": e['time_value'],
                 "classes": e['classes'],
-                "summary": e['summary']
+                "summary": e['summary'],
+                "full_details": e.get('full_details', ''),
+                "links": e.get('links', '[]'),
+                "sources": e.get('sources', '[]')
             })
 
         # Process a small batch of dates
@@ -426,7 +533,15 @@ def deduplicate_database():
             
             response = safe_generate_content(
                 contents=prompt,
-                system_instruction="You are a data deduplication expert. Return JSON: {'deletes': [ids], 'updates': [{'id': int, 'merged_data': {...}}]}"
+                system_instruction=(
+                    "You are a data deduplication expert. Identify duplicates for the same day. "
+                    "Instead of just deleting, you MUST MERGE the information. "
+                    "1. Keep the most descriptive title. "
+                    "2. Combine summaries into the most coherent one. "
+                    "3. Append unique information from all full_details. "
+                    "4. Combine and deduplicate ALL entries in the 'links' and 'sources' arrays into a single combined array for each so the merged event retains all sources. "
+                    "Return JSON: {'deletes': [ids_to_remove], 'updates': [{'id': primary_id, 'merged_data': {full_event_object}}]}"
+                )
             )
             
             if not response: 
@@ -538,9 +653,11 @@ if __name__ == "__main__":
         exit(1)
         
     meta = get_system_meta()
-    mail, email_ids = fetch_emails()
+    now = datetime.now()
     
-    # Process emails in batches to save credits
+    # 1. PROCESS EMAILS (Multiple times a day)
+    # This always runs when the script is called.
+    mail, email_ids = fetch_emails()
     if email_ids and mail:
         db_state = get_existing_events()
         batch_items = []
@@ -552,7 +669,6 @@ if __name__ == "__main__":
                 batch_items.append(item)
                 processed_ids.append(e_id)
             
-            # Use batches of 3 to balance tokens vs credits
             if len(batch_items) >= 3:
                 results = process_batch(batch_items, db_state)
                 if results and sync_database(results):
@@ -561,9 +677,8 @@ if __name__ == "__main__":
                     db_state = get_existing_events()
                 batch_items = []
                 processed_ids = []
-                time.sleep(10) # Safe cooldown
+                time.sleep(10)
 
-        # Flush remaining
         if batch_items:
             results = process_batch(batch_items, db_state)
             if results and sync_database(results):
@@ -574,17 +689,33 @@ if __name__ == "__main__":
     if mail:
         mail.logout()
     
-    # Process Term Dates (Website) - Throttled to once every 30 days
+    # 2. PTA CALENDAR SYNC (Once a day)
+    last_pta_check = meta.get('last_pta_check')
+    pta_due = True
+    if last_pta_check:
+        try:
+            last_pta_dt = datetime.strptime(last_pta_check, "%Y-%m-%d")
+            if (now - last_pta_dt).days < 1:
+                pta_due = False
+        except: pass
+    
+    if pta_due:
+        if sync_pta_calendar():
+            update_system_meta({"last_pta_check": now.strftime("%Y-%m-%d")})
+    else:
+        print("Skipping PTA sync (already done today).")
+
+    # 3. TERM DATES CHECK (Once a month)
     last_term_check = meta.get('last_term_check')
-    days_since_check = 99
+    term_due = True
     if last_term_check:
         try:
             last_dt = datetime.strptime(last_term_check, "%Y-%m-%d")
-            days_since_check = (datetime.now() - last_dt).days
-        except:
-            days_since_check = 99
+            if (now - last_dt).days < 30:
+                term_due = False
+        except: pass
 
-    if days_since_check >= 30:
+    if term_due:
         term_results = fetch_term_dates()
         if term_results:
             db_state = get_existing_events()
@@ -592,14 +723,14 @@ if __name__ == "__main__":
             if unique_terms:
                 print(f"Syncing {len(unique_terms)} new term/holiday records.")
                 sync_database(unique_terms)
-            update_system_meta({"last_term_check": datetime.now().strftime("%Y-%m-%d")})
+            update_system_meta({"last_term_check": now.strftime("%Y-%m-%d")})
     else:
-        print(f"Skipping term dates check (last check was {days_since_check} days ago).")
+        print("Skipping term dates check (already done this month).")
 
-    # Run Deduplication Pass at the very end
+    # Run Deduplication Pass
     deduplicate_database()
     
     # Generate static files for GitHub Pages
     generate_static_ical_files()
     
-    print("Aggregator Run Complete.")
+    print(f"Aggregator Run Complete at {now.strftime('%Y-%m-%d %H:%M:%S')}")
