@@ -227,14 +227,6 @@ DESCRIPTION:Basketball club is cancelled today due to staff sickness.\n\nBasketb
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
-UID:521@bwa-calendar
-DTSTART;VALUE=DATE:20260521
-DTEND;VALUE=DATE:20260522
-SUMMARY:BWA: French & British Wine Tasting Evening
-DESCRIPTION:PTA's French & British Wine Tasting at school with Spy Wines.\n\nPTA's French & British Wine Tasting at school with Spy Wines, a perfect evening to unwind and socialise. Details at bwapta.co.uk/wine
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:522@bwa-calendar
 DTSTART;VALUE=DATE:20260617
 DTEND;VALUE=DATE:20260618
@@ -287,15 +279,15 @@ UID:540@bwa-calendar
 DTSTART;VALUE=DATE:20260517
 DTEND;VALUE=DATE:20260518
 SUMMARY:BWA: APL's Wixbledon Tennis Tournament
-DESCRIPTION:APL's annual Wixbledon Tennis Tournament for the whole family.\n\nJoin us at APL's Wixbledon Tennis Tournament, fun for the whole family! Details at bwapta.co.uk/wixbledon
-CATEGORIES:COMMUNITY
+DESCRIPTION:Join us for our very own take on the world's most famous tournament. It’ll be an afternoon filled with sports, family fun.\n\nJoin us at APL's Wixbledon Tennis Tournament, fun for the whole family! Details at bwapta.co.uk/wixbledon
+CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
 UID:541@bwa-calendar
 DTSTART;VALUE=DATE:20260621
 DTEND;VALUE=DATE:20260622
 SUMMARY:BWA: The Summer Kermesse
-DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations.\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together.
+DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations.\n\nLet’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together.
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
@@ -303,7 +295,7 @@ UID:542@bwa-calendar
 DTSTART;VALUE=DATE:20260703
 DTEND;VALUE=DATE:20260704
 SUMMARY:BWA: Crazy Hair Day
-DESCRIPTION:PTA/APL's Crazy Hair Day for both schools.\n\nPTA/APL's Crazy Hair Day for both schools, time to get creative!
+DESCRIPTION:PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nPTA/APL's Crazy Hair Day for both schools, time to get creative!
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
@@ -311,7 +303,15 @@ UID:543@bwa-calendar
 DTSTART;VALUE=DATE:20260709
 DTEND;VALUE=DATE:20260710
 SUMMARY:BWA: Summer Art Exhibition
-DESCRIPTION:PTA's Summer Art Exhibition and drinks.\n\nPTA's Summer Art Exhibition and drinks, celebrate our children’s creativity while raising vital funds.
+DESCRIPTION:PTA's Summer Art Exhibition and drinks, celebrate our children’s creativity while raising vital funds.\n\nPTA's Summer Art Exhibition and drinks, celebrate our children’s creativity while raising vital funds.
 CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:521@bwa-calendar
+DTSTART;VALUE=DATE:20260521
+DTEND;VALUE=DATE:20260522
+SUMMARY:BWA: French & British Wine Tasting Evening
+DESCRIPTION:PTA's French & British Wine Tasting at school with Spy Wines, a perfect evening to unwind and socialise.\n\nPTA's French & British Wine Tasting at school with Spy Wines, a perfect evening to unwind and socialise. Details at bwapta.co.uk/wine
+CATEGORIES:COMMUNITY
 END:VEVENT
 END:VCALENDAR
