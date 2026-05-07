@@ -32,6 +32,62 @@ MODEL_NAME = 'gemini-3.1-flash-lite-preview'
 client = genai.Client(api_key=GEMINI_API_KEY)
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
+def normalize_date(date_str):
+    """Attempt to normalize various date formats to YYYY-MM-DD.
+    Handles formats like 'Thu 07 May', '7th May 2026', '07/05/2026', etc.
+    """
+    if not date_str: return None
+    date_str = date_str.strip()
+    
+    # 1. Already standard ISO?
+    if re.match(r"^\d{4}-\d{2}-\d{2}$", date_str):
+        return date_str
+        
+    # 2. Remove common suffixes and prefixes
+    # Remove day of week (e.g., "Thursday ", "Thu ")
+    clean = re.sub(r"^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-z]*,?\s*", "", date_str, flags=re.I)
+    # Remove ordinal suffixes (e.g., "7th" -> "7")
+    clean = re.sub(r"(\d+)(st|nd|rd|th)", r"\1", clean)
+    
+    # 3. Try parsing with common patterns
+    now = datetime.now()
+    formats = [
+        ("%d %B %Y", True),  # 7 May 2026
+        ("%d %b %Y", True),  # 7 May 2026 (short month)
+        ("%d %B", False),    # 7 May
+        ("%d %b", False),    # 7 May (short)
+        ("%Y-%m-%d", True),
+        ("%d/%m/%Y", True),
+        ("%d/%m/%y", True),
+        ("%d-%m-%Y", True),
+    ]
+    
+    for fmt, has_year in formats:
+        try:
+            dt = datetime.strptime(clean, fmt)
+            if not has_year:
+                # If no year is provided, assume it's the current or next academic year.
+                # If we are in May and the event is in Sept, it might be the upcoming year.
+                # For simplicity, we default to the current year.
+                dt = dt.replace(year=now.year)
+            return dt.strftime("%Y-%m-%d")
+        except:
+            continue
+            
+    return date_str
+
+def generate_formatted_date(iso_date):
+    """Generates a consistent display date like 'Thu 8 May' from an ISO date."""
+    if not iso_date: return None
+    try:
+        dt_obj = datetime.strptime(iso_date, "%Y-%m-%d")
+        # %a is short weekday, %d is day, %b is short month
+        # We strip leading zero for a cleaner look
+        day = dt_obj.strftime("%d").lstrip('0')
+        return dt_obj.strftime(f"%a {day} %b")
+    except:
+        return iso_date
+
 def safe_generate_content(contents, system_instruction=None):
     """Wrapper for Gemini API with retry logic for 429 rate limits."""
     max_retries = 3
@@ -113,9 +169,9 @@ Required JSON Structure: Array of {
   "status": "approved"|"REJECTED",
   "event_data": {
     "title": string,
-    "event_date": "YYYY-MM-DD",
+    "event_date": "YYYY-MM-DD (STRICT: No 'Thu', no '7th', just ISO format)",
     "event_date_end": "YYYY-MM-DD"|null,
-    "formatted_date_display": string,
+    "formatted_date_display": "string (Human readable, MUST include day of week e.g. 'Thu 7 May')",
     "time_type": "all-day"|"single"|"range",
     "time_value": string,
     "classes": string[] (e.g. ["Y1", "Y2b", "All"]),
@@ -355,11 +411,9 @@ def sync_pta_calendar():
             raw_date = start_match.group(1).strip()
             
             # Format date YYYYMMDD or YYYYMMDDTHHMMSS
-            if 'T' in raw_date:
-                event_date = f"{raw_date[0:4]}-{raw_date[4:6]}-{raw_date[6:8]}"
-            else:
-                event_date = f"{raw_date[0:4]}-{raw_date[4:6]}-{raw_date[6:8]}"
-            
+            event_date = normalize_date(raw_date)
+            formatted_date = generate_formatted_date(event_date)
+
             description = desc_match.group(1).strip().replace('\\n', '\n').replace('\\', '') if desc_match else ""
             ev_url = url_match.group(1).strip() if url_match else url
 
@@ -370,6 +424,7 @@ def sync_pta_calendar():
                 data = {
                     "title": title,
                     "event_date": event_date,
+                    "formatted_date_display": formatted_date,
                     "summary": title,
                     "full_details": description,
                     "type": "PTA",
@@ -399,8 +454,13 @@ def process_batch(items, existing_db):
     print(f"Batch processing {len(items)} items to save AI credits...")
     
     # Construct a single prompt for all items
-    db_summary = [{"t": e['title'], "d": e['event_date']} for e in existing_db[-20:]]
-    batch_prompt = f"Existing Database Snippet: {json.dumps(db_summary)}\n\n"
+    # Provide upcoming events for context (up to 200) to help AI identify matches
+    now_str = datetime.now().strftime("%Y-%m-%d")
+    upcoming = [e for e in existing_db if e.get('event_date', '') >= now_str]
+    db_summary = [{"t": e['title'], "d": e['event_date'], "id": e['id']} for e in upcoming[:200]]
+    
+    batch_prompt = f"Existing Database Snippet (Upcoming Events): {json.dumps(db_summary)}\n\n"
+    batch_prompt += "INSTRUCTIONS: If a new item matches an existing entry (same date and same/similar title), use action='update' and provide the match_id. Otherwise use action='insert'.\n\n"
     for i, item in enumerate(items):
         batch_prompt += f"--- ITEM {i+1} ---\n"
         batch_prompt += f"Source: {item.get('subject')}\n"
@@ -430,6 +490,16 @@ def sync_database(results):
             action = item.get('action')
             data = item.get('event_data')
             if not data: continue
+
+            # Normalize event_date to YYYY-MM-DD
+            if 'event_date' in data:
+                data['event_date'] = normalize_date(data['event_date'])
+                # Always ensure a clean formatted_date_display
+                if not data.get('formatted_date_display') or len(data['formatted_date_display']) > 15:
+                    data['formatted_date_display'] = generate_formatted_date(data['event_date'])
+
+            if data.get('event_date_end'):
+                data['event_date_end'] = normalize_date(data['event_date_end'])
 
             # Safety Remap: AI sometimes uses 'category' instead of 'type'
             if 'category' in data and 'type' not in data:
@@ -476,28 +546,31 @@ def sync_database(results):
 
 def deduplicate_database():
     """Fetches upcoming events and asks Gemini to identify and merge duplicates. 
-    Resumes from the last processed date to save credits.
+    Always looks back at least 7 days from today to ensure recent duplicates are caught.
     """
     print("Initiating Stateful Deduplication Pass...")
     try:
-        meta = get_system_meta()
-        last_date = meta.get('last_dedup_date')
+        now_date_obj = datetime.now()
+        now_date = now_date_obj.strftime("%Y-%m-%d")
         
-        # Fetch upcoming events
-        now_date = datetime.now().strftime("%Y-%m-%d")
-        start_date = last_date if last_date and last_date >= now_date else now_date
+        # Look back 7 days to catch duplicates arriving late
+        from datetime import timedelta
+        lookback_date = (now_date_obj - timedelta(days=7)).strftime("%Y-%m-%d")
         
-        res = supabase.table("events").select("*").gte("event_date", start_date).order("event_date").execute()
+        res = supabase.table("events").select("*").gte("event_date", lookback_date).order("event_date").execute()
         events = res.data
         if not events:
-            # If we reached the end, reset to today so next run starts over
-            update_system_meta({"last_dedup_date": now_date})
             return
 
-        # Group by date
+        # Group by date (normalized)
         grouped = {}
         for e in events:
-            d = e['event_date']
+            # Skip system meta during dedup
+            if e.get('type') == 'SYSTEM_META': continue
+            
+            d = normalize_date(e['event_date'])
+            if not d: continue
+            
             if d not in grouped: grouped[d] = []
             grouped[d].append({
                 "id": e['id'],
@@ -510,35 +583,36 @@ def deduplicate_database():
                 "sources": e.get('sources', '[]')
             })
 
-        # Process a small batch of dates
+        # Process a batch of dates
         processed_count = 0
         sorted_dates = sorted(grouped.keys())
         
         for date in sorted_dates:
             items = grouped[date]
             if len(items) < 2: 
-                update_system_meta({"last_dedup_date": date})
                 continue
             
-            if processed_count >= 5: 
-                print(f"Deduplication batch limit reached (5 dates). Will resume from {date} next time.")
+            if processed_count >= 15: # Increased batch size
+                print(f"Deduplication batch limit reached (15 dates). Will continue next run.")
                 break
                 
             print(f"Checking for duplicates on {date} ({len(items)} events)...")
             prompt = (
                 f"Review the following school events for the date {date}. "
-                f"Identify duplicates for merging. \n\n"
+                f"Identify entries that refer to the SAME event even if titles are slightly different (e.g. 'Parent Gym: Week 1' and 'Parent Gym Week 1: Chat'). \n\n"
                 f"Events: {json.dumps(items)}"
             )
             
             response = safe_generate_content(
                 contents=prompt,
                 system_instruction=(
-                    "You are a data deduplication expert. Identify duplicates for the same day. "
+                    "You are a school calendar deduplication expert. Identify duplicates for the same day. "
+                    "FUZZY MATCHING: Treat events as identical if they share the same date and have highly similar core titles (e.g. same topic, same workshop name). "
+                    "Ignore minor differences in punctuation, prefixes like 'Fwd:', or appended details like ': Topic Name'. "
                     "Instead of just deleting, you MUST MERGE the information. "
-                    "1. Keep the most descriptive title. "
-                    "2. Combine summaries into the most coherent one. "
-                    "3. Append unique information from all full_details. "
+                    "1. Keep the most descriptive, complete title. "
+                    "2. Combine summaries into the most coherent and detailed one. "
+                    "3. Append unique information from all full_details fields. "
                     "4. Combine and deduplicate ALL entries in the 'links' and 'sources' arrays into a single combined array for each so the merged event retains all sources. "
                     "Return JSON: {'deletes': [ids_to_remove], 'updates': [{'id': primary_id, 'merged_data': {full_event_object}}]}"
                 )
@@ -557,11 +631,21 @@ def deduplicate_database():
                     supabase.table("events").delete().eq("id", d_id).execute()
                 for up in plan.get('updates', []):
                     if up.get('id') and up.get('merged_data'):
-                        supabase.table("events").update(up['merged_data']).eq("id", up['id']).execute()
+                        # Ensure ID is not in merged_data to avoid DB errors
+                        m_data = up['merged_data']
+                        if 'id' in m_data: del m_data['id']
+                        
+                        # Normalize merged dates
+                        if 'event_date' in m_data:
+                            m_data['event_date'] = normalize_date(m_data['event_date'])
+                            m_data['formatted_date_display'] = generate_formatted_date(m_data['event_date'])
+                        if m_data.get('event_date_end'):
+                            m_data['event_date_end'] = normalize_date(m_data['event_date_end'])
+                            
+                        supabase.table("events").update(m_data).eq("id", up['id']).execute()
                 
-                update_system_meta({"last_dedup_date": date})
                 processed_count += 1
-                time.sleep(2)
+                time.sleep(1) # Small throttle
                         
             except Exception as e:
                 print(f"Deduplication apply error for {date}: {e}")

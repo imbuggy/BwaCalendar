@@ -525,6 +525,25 @@
             renderSyncDropdown();
         }
 
+        const formatDisplayDate = (dateStr, displayStr) => {
+            // If displayStr is already in a short consolidated format, use it
+            if (displayStr && displayStr.length <= 12 && displayStr.includes(' ') && !displayStr.includes('-')) {
+                return displayStr;
+            }
+            // Otherwise, try to format the dateStr consistently
+            try {
+                const d = new Date(dateStr);
+                if (isNaN(d.getTime())) return displayStr || dateStr;
+                // 'Thu 8 May' format
+                const day = d.getDate();
+                const mon = d.toLocaleDateString('en-GB', { month: 'short' });
+                const wk = d.toLocaleDateString('en-GB', { weekday: 'short' });
+                return `${wk} ${day} ${mon}`;
+            } catch (e) {
+                return displayStr || dateStr;
+            }
+        };
+
         function renderSyncDropdown() {
             const container = document.getElementById('sync-options-container');
             if (!container) return;
@@ -707,7 +726,7 @@
                             <div class="flex items-center gap-3 flex-1 min-w-0">
                                 <div class="flex flex-col w-16 shrink-0">
                                     <span class="text-[9px] font-black ${isUrgent ? 'text-amber-600' : 'text-blue-600'} leading-none whitespace-nowrap">${relTime}</span>
-                                    <span class="text-[7px] font-bold uppercase opacity-40 whitespace-nowrap mt-0.5 leading-none">${e.formatted_date_display || e.event_date}</span>
+                                    <span class="text-[7px] font-bold uppercase opacity-40 whitespace-nowrap mt-0.5 leading-none">${formatDisplayDate(e.event_date, e.formatted_date_display)}</span>
                                 </div>
                                 <div class="flex items-center gap-2 flex-1 min-w-0">
                                     <span class="text-[10px] font-black ${isUrgent ? 'text-amber-900' : 'text-slate-700'} uppercase truncate">${e.deadline_desc || e.title}</span>
@@ -823,7 +842,7 @@
                             <span class="px-2 py-0.5 ${catStyle.label} text-[9px] font-black uppercase rounded border">${e.type || 'EVENT'}</span>
                             <div class="flex items-center gap-2">
                                 ${isPast ? '<span class="text-[9px] font-black text-gray-400 uppercase tracking-tighter bg-gray-50 px-1.5 py-0.5 rounded">Passed</span>' : ''}
-                                <span class="text-[10px] font-mono font-bold text-gray-400">${e.formatted_date_display || e.event_date}</span>
+                                <span class="text-[10px] font-mono font-bold text-gray-400">${formatDisplayDate(e.event_date, e.formatted_date_display)}</span>
                             </div>
                         </div>
                         <h3 class="text-lg font-black text-gray-900 mb-2">${e.title}</h3>
