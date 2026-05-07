@@ -131,20 +131,20 @@ DESCRIPTION:Professional bike health checks available for BWA families as part o
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:493@bwa-calendar
-DTSTART;VALUE=DATE:20260515
-DTEND;VALUE=DATE:20260516
-SUMMARY:BWA: International Families Day
-DESCRIPTION:International Families Day celebration.\n\nInternational Families Day celebration at Belleville Wix Academy.
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:448@bwa-calendar
 DTSTART;VALUE=DATE:20260504
 DTEND;VALUE=DATE:20260505
 SUMMARY:BWA: Bank Holiday
 DESCRIPTION:School closed for Bank Holiday.\n\nSchool closed for Bank Holiday.
 CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:493@bwa-calendar
+DTSTART;VALUE=DATE:20260515
+DTEND;VALUE=DATE:20260516
+SUMMARY:BWA: International Families Day Buffet
+DESCRIPTION:International Families Day buffet in the lower hall.\n\nInternational Families Day buffet starting at 3:30pm. Food donations to be brought to the office from 2:30pm.
+CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:486@bwa-calendar
@@ -289,5 +289,21 @@ DTEND;VALUE=DATE:20260414
 SUMMARY:BWA Y5: INSET Day
 DESCRIPTION:School closed to children for staff training.\n\nSchool closed to children for staff training.
 CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:535@bwa-calendar
+DTSTART;VALUE=DATE:20260706
+DTEND;VALUE=DATE:20260707
+SUMMARY:BWA Y5: Music Performance -  Year 5 & 6
+DESCRIPTION:Summer music performance for Year 5 and Year 6.\n\nSummer music performance for Year 5 and Year 6 starting at 2:15pm.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:539@bwa-calendar
+DTSTART;VALUE=DATE:20260508
+DTEND;VALUE=DATE:20260509
+SUMMARY:BWA: Volunteer Deadline -  International Families Day
+DESCRIPTION:Deadline to volunteer for International Families Day activities or buffet.\n\nDeadline to volunteer to visit school or contribute to the International Families Day buffet.
+CATEGORIES:COMMUNITY
 END:VEVENT
 END:VCALENDAR

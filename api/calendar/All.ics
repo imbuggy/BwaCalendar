@@ -219,20 +219,20 @@ DESCRIPTION:Professional bike health checks available for BWA families as part o
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:493@bwa-calendar
-DTSTART;VALUE=DATE:20260515
-DTEND;VALUE=DATE:20260516
-SUMMARY:BWA: International Families Day
-DESCRIPTION:International Families Day celebration.\n\nInternational Families Day celebration at Belleville Wix Academy.
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:448@bwa-calendar
 DTSTART;VALUE=DATE:20260504
 DTEND;VALUE=DATE:20260505
 SUMMARY:BWA: Bank Holiday
 DESCRIPTION:School closed for Bank Holiday.\n\nSchool closed for Bank Holiday.
 CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:493@bwa-calendar
+DTSTART;VALUE=DATE:20260515
+DTEND;VALUE=DATE:20260516
+SUMMARY:BWA: International Families Day Buffet
+DESCRIPTION:International Families Day buffet in the lower hall.\n\nInternational Families Day buffet starting at 3:30pm. Food donations to be brought to the office from 2:30pm.
+CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:482@bwa-calendar
@@ -425,5 +425,53 @@ DTEND;VALUE=DATE:20260414
 SUMMARY:BWA N: INSET Day
 DESCRIPTION:School closed to children for staff training.\n\nSchool closed to children for staff training.
 CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:534@bwa-calendar
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+SUMMARY:BWA Y1b: Music Performance -  1B, 2B, 3B, 6B
+DESCRIPTION:Summer music performance for bilingual classes 1B, 2B, 3B, and 6B.\n\nSummer music performance for bilingual classes 1B, 2B, 3B, and 6B starting at 2:00pm.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:535@bwa-calendar
+DTSTART;VALUE=DATE:20260706
+DTEND;VALUE=DATE:20260707
+SUMMARY:BWA Y5: Music Performance -  Year 5 & 6
+DESCRIPTION:Summer music performance for Year 5 and Year 6.\n\nSummer music performance for Year 5 and Year 6 starting at 2:15pm.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:536@bwa-calendar
+DTSTART;VALUE=DATE:20260707
+DTEND;VALUE=DATE:20260708
+SUMMARY:BWA Y4b: Music Performance -  4B, 5B
+DESCRIPTION:Summer music performance for bilingual classes 4B and 5B.\n\nSummer music performance for bilingual classes 4B and 5B starting at 2:00pm.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:537@bwa-calendar
+DTSTART;VALUE=DATE:20260713
+DTEND;VALUE=DATE:20260714
+SUMMARY:BWA Y3: Music Performance -  Year 3 & 4
+DESCRIPTION:Summer music performance for Year 3 and Year 4.\n\nSummer music performance for Year 3 and Year 4 starting at 2:15pm.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:538@bwa-calendar
+DTSTART;VALUE=DATE:20260714
+DTEND;VALUE=DATE:20260715
+SUMMARY:BWA Y1: Music Performance -  Year 1 & 2
+DESCRIPTION:Summer music performance for Year 1 and Year 2.\n\nSummer music performance for Year 1 and Year 2 starting at 2:30pm.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:539@bwa-calendar
+DTSTART;VALUE=DATE:20260508
+DTEND;VALUE=DATE:20260509
+SUMMARY:BWA: Volunteer Deadline -  International Families Day
+DESCRIPTION:Deadline to volunteer for International Families Day activities or buffet.\n\nDeadline to volunteer to visit school or contribute to the International Families Day buffet.
+CATEGORIES:COMMUNITY
 END:VEVENT
 END:VCALENDAR
