@@ -1,0 +1,293 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//BWA-Calendar-Sync//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:450@bwa-calendar
+DTSTART;VALUE=DATE:20260601
+DTEND;VALUE=DATE:20260602
+SUMMARY:BWA: First day of Summer Term 2
+DESCRIPTION:First day of Summer Term 2.\n\nFirst day of Summer Term 2 - Monday 1 June.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:452@bwa-calendar
+DTSTART;VALUE=DATE:20260717
+DTEND;VALUE=DATE:20260718
+SUMMARY:BWA Y4: Last day of Summer Term 2 (English Stream)
+DESCRIPTION:Last day of Summer Term 2 for English Stream.\n\nLast day of Summer Term 2 for English Stream - Friday 17 July.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:453@bwa-calendar
+DTSTART;VALUE=DATE:20260430
+DTEND;VALUE=DATE:20260501
+SUMMARY:BWA: Parent Gym Taster Session
+DESCRIPTION:A 45-minute taster session for the Parent Gym programme.\n\nA 45-minute taster session for the Parent Gym programme, a six-week course sharing practical tips and strategies for family life.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:454@bwa-calendar
+DTSTART;VALUE=DATE:20260507
+DTEND;VALUE=DATE:20260508
+SUMMARY:BWA: Parent Gym Week 1 -  Chat
+DESCRIPTION:Week 1 of the Parent Gym programme: Chat.\n\nWeekly session of the Parent Gym programme focusing on practical tips and strategies for family life.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:455@bwa-calendar
+DTSTART;VALUE=DATE:20260521
+DTEND;VALUE=DATE:20260522
+SUMMARY:BWA: Parent Gym Week 2 -  Love
+DESCRIPTION:Week 2 of the Parent Gym programme: Love.\n\nWeekly session of the Parent Gym programme focusing on practical tips and strategies for family life.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:456@bwa-calendar
+DTSTART;VALUE=DATE:20260604
+DTEND;VALUE=DATE:20260605
+SUMMARY:BWA: Parent Gym Week 3 -  Behave
+DESCRIPTION:Week 3 of the Parent Gym programme: Behave.\n\nWeekly session of the Parent Gym programme focusing on practical tips and strategies for family life.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:457@bwa-calendar
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:BWA: Parent Gym Week 4 -  Care
+DESCRIPTION:Week 4 of the Parent Gym programme: Care.\n\nWeekly session of the Parent Gym programme focusing on practical tips and strategies for family life.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:458@bwa-calendar
+DTSTART;VALUE=DATE:20260618
+DTEND;VALUE=DATE:20260619
+SUMMARY:BWA: Parent Gym Week 5 -  Discover
+DESCRIPTION:Week 5 of the Parent Gym programme: Discover.\n\nWeekly session of the Parent Gym programme focusing on practical tips and strategies for family life.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:459@bwa-calendar
+DTSTART;VALUE=DATE:20260625
+DTEND;VALUE=DATE:20260626
+SUMMARY:BWA: Parent Gym Week 6 -  Together
+DESCRIPTION:Week 6 of the Parent Gym programme: Together.\n\nWeekly session of the Parent Gym programme focusing on practical tips and strategies for family life.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:449@bwa-calendar
+DTSTART;VALUE=DATE:20260525
+DTEND;VALUE=DATE:20260530
+SUMMARY:BWA: Summer Half Term
+DESCRIPTION:School closed for half term holiday.\n\nSchool closed for half term holiday.
+CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:487@bwa-calendar
+DTSTART;VALUE=DATE:20260511
+DTEND;VALUE=DATE:20260512
+SUMMARY:BWA: Webinar -  Supporting Primary Children with Toileting Problems
+DESCRIPTION:Primary webinar by SWLSTG Education Wellbeing Service.\n\nSWLSTG Education Wellbeing Service offers free webinars. Supporting Primary Children with Toileting Problems.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:489@bwa-calendar
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+SUMMARY:BWA: Webinar -  Understanding and Managing Screen Time for Primary Children
+DESCRIPTION:Primary webinar by SWLSTG Education Wellbeing Service.\n\nSWLSTG Education Wellbeing Service offers free webinars. Understanding and Managing Screen Time for Primary Children.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:495@bwa-calendar
+DTSTART;VALUE=DATE:20260326
+DTEND;VALUE=DATE:20260327
+SUMMARY:BWA: Easter Bake Sale
+DESCRIPTION:Easter Bake Sale to fund the Year 6 school trip to France.\n\nEaster Bake Sale taking place from 3:00pm to 4:00pm. Donations of baked goods can be dropped off at the main school gate between 8:15am and 9:00am. Nut-free items only.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:497@bwa-calendar
+DTSTART;VALUE=DATE:20260420
+DTEND;VALUE=DATE:20260711
+SUMMARY:BWA: Summer Term Extra-Curricular Clubs Start
+DESCRIPTION:Summer term extra-curricular clubs begin for all pupils.\n\nAll clubs will start on the week commencing Monday 20th April and end on Friday 10th July (11 School weeks in total).
+CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
+UID:502@bwa-calendar
+DTSTART;VALUE=DATE:20260421
+DTEND;VALUE=DATE:20260422
+SUMMARY:BWA: Booster Sessions Resume
+DESCRIPTION:Booster sessions resume after the break.\n\nBooster sessions will resume as normal from Tuesday 21st April.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:505@bwa-calendar
+DTSTART;VALUE=DATE:20260424
+DTEND;VALUE=DATE:20260425
+SUMMARY:BWA: Professional Bike Health Checks
+DESCRIPTION:Professional bike health checks available for BWA families as part of Earth Week 2026.\n\nThe PTA and APL are hosting a professional bike health check service. Drop off bikes between 8:00 AM and 9:00 AM in front of the school. Collection is at the end of the school day. Advance booking is required via the school events portal. Pricing: 10 GBP for small bikes, 14 GBP for big bikes (24 inches and above).
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:493@bwa-calendar
+DTSTART;VALUE=DATE:20260515
+DTEND;VALUE=DATE:20260516
+SUMMARY:BWA: International Families Day
+DESCRIPTION:International Families Day celebration.\n\nInternational Families Day celebration at Belleville Wix Academy.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:448@bwa-calendar
+DTSTART;VALUE=DATE:20260504
+DTEND;VALUE=DATE:20260505
+SUMMARY:BWA: Bank Holiday
+DESCRIPTION:School closed for Bank Holiday.\n\nSchool closed for Bank Holiday.
+CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:486@bwa-calendar
+DTSTART;VALUE=DATE:20260429
+DTEND;VALUE=DATE:20260430
+SUMMARY:BWA: Webinar -  Encouraging Healthy Habits in Children with Autism
+DESCRIPTION:Primary webinar by SWLSTG Education Wellbeing Service.\n\nSWLSTG Education Wellbeing Service offers free webinars. Encouraging Healthy Habits in Children with Autism.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:488@bwa-calendar
+DTSTART;VALUE=DATE:20260512
+DTEND;VALUE=DATE:20260513
+SUMMARY:BWA: Webinar -  Supporting Primary Children with Toileting Problems
+DESCRIPTION:Primary webinar by SWLSTG Education Wellbeing Service.\n\nSWLSTG Education Wellbeing Service offers free webinars. Supporting Primary Children with Toileting Problems.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:490@bwa-calendar
+DTSTART;VALUE=DATE:20260611
+DTEND;VALUE=DATE:20260612
+SUMMARY:BWA: Webinar -  Understanding and Managing Screen Time for Primary Children
+DESCRIPTION:Primary webinar by SWLSTG Education Wellbeing Service.\n\nSWLSTG Education Wellbeing Service offers free webinars. Understanding and Managing Screen Time for Primary Children.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:494@bwa-calendar
+DTSTART;VALUE=DATE:20260511
+DTEND;VALUE=DATE:20260512
+SUMMARY:BWA: Homework Project Deadline -  International Families Day
+DESCRIPTION:Deadline for pupils to submit heritage-themed homework projects.\n\nPupils should bring their heritage-themed homework projects to their class teacher by Monday 11th May.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:496@bwa-calendar
+DTSTART;VALUE=DATE:20260323
+DTEND;VALUE=DATE:20260324
+SUMMARY:BWA: No After School Boosters
+DESCRIPTION:Reminder that there are no after school boosters for the week of March 23rd.\n\nJust a reminder for those who have children attend after school boosters, there will be no boosters this week.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:501@bwa-calendar
+DTSTART;VALUE=DATE:20260429
+DTEND;VALUE=DATE:20260430
+SUMMARY:BWA Y4: Mini London Marathon Event
+DESCRIPTION:Mini marathon event for Y3, Y4, and Y5 pupils.\n\nMini marathon event. Pupils may choose a 7-lap competitive run or 4-lap fun run. Parents are invited to watch the competitive run and join the fun run. Please ensure children wear PE kit, sun cream, and a hat.
+CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
+UID:506@bwa-calendar
+DTSTART;VALUE=DATE:20260423
+DTEND;VALUE=DATE:20260424
+SUMMARY:BWA: Deadline -  Notification of Student Departure for September
+DESCRIPTION:Request for parents to inform the school office if their child will not be returning to BWA in September.\n\nMiss Henry requests that parents inform the school office in writing as soon as possible if their child will not be returning to BWA in September. This assists with class organization and staffing for the next academic year. Please include details of the new school if known.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:513@bwa-calendar
+DTSTART;VALUE=DATE:20260428
+DTEND;VALUE=DATE:20260429
+SUMMARY:BWA: Basketball Club Cancellation
+DESCRIPTION:Basketball club is cancelled today due to staff sickness.\n\nBasketball club is cancelled today, Tuesday 28th April, due to staff sickness.
+CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
+UID:521@bwa-calendar
+DTSTART;VALUE=DATE:20260521
+DTEND;VALUE=DATE:20260522
+SUMMARY:BWA: French & British Wine Tasting Evening
+DESCRIPTION:PTA hosted wine tasting evening with Spy Wines.\n\nJoin us for a French & British Wine Tasting Evening hosted by your PTA. Partnering with Spy Wines, an independent London-based merchant. Expect a relaxed and sociable evening.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:522@bwa-calendar
+DTSTART;VALUE=DATE:20260617
+DTEND;VALUE=DATE:20260618
+SUMMARY:BWA Y4: Father's Day Celebration
+DESCRIPTION:Father's Day celebration with tea, coffee, pastries and classroom craft activities.\n\nFather's Day celebration. Tea, coffee and pastries in the canteen at 8:30am. Classroom craft activity at 9:00am, ending at 9:30am.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:528@bwa-calendar
+DTSTART;VALUE=DATE:20250902
+DTEND;VALUE=DATE:20250903
+SUMMARY:BWA Y4: INSET Day
+DESCRIPTION:School closed to children for staff training.\n\nSchool closed to children for staff training.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:530@bwa-calendar
+DTSTART;VALUE=DATE:20251103
+DTEND;VALUE=DATE:20251104
+SUMMARY:BWA Y4: INSET Day
+DESCRIPTION:School closed to children for staff training.\n\nSchool closed to children for staff training.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:532@bwa-calendar
+DTSTART;VALUE=DATE:20260216
+DTEND;VALUE=DATE:20260221
+SUMMARY:BWA: Spring Half Term
+DESCRIPTION:School closed for half term holiday.\n\nSchool closed for half term holiday.
+CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:524@bwa-calendar
+DTSTART;VALUE=DATE:20260522
+DTEND;VALUE=DATE:20260523
+SUMMARY:BWA: International Families Day Buffet
+DESCRIPTION:International buffet for families.\n\nInternational buffet for families. Please come to the front office from 2:30pm to be shown to the hall and complete a slip with your dish details.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:527@bwa-calendar
+DTSTART;VALUE=DATE:20250901
+DTEND;VALUE=DATE:20250902
+SUMMARY:BWA Y4: INSET Day
+DESCRIPTION:School closed to children for staff training.\n\nSchool closed to children for staff training.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:529@bwa-calendar
+DTSTART;VALUE=DATE:20251027
+DTEND;VALUE=DATE:20251101
+SUMMARY:BWA: Autumn Half Term
+DESCRIPTION:School closed for half term holiday.\n\nSchool closed for half term holiday.
+CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:531@bwa-calendar
+DTSTART;VALUE=DATE:20260105
+DTEND;VALUE=DATE:20260106
+SUMMARY:BWA Y4: INSET Day
+DESCRIPTION:School closed to children for staff training.\n\nSchool closed to children for staff training.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:533@bwa-calendar
+DTSTART;VALUE=DATE:20260413
+DTEND;VALUE=DATE:20260414
+SUMMARY:BWA Y4: INSET Day
+DESCRIPTION:School closed to children for staff training.\n\nSchool closed to children for staff training.
+CATEGORIES:ADMIN
+END:VEVENT
+END:VCALENDAR
