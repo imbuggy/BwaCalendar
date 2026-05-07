@@ -527,7 +527,7 @@
 
         const formatDisplayDate = (dateStr, displayStr) => {
             // If displayStr is already in a short consolidated format, use it
-            if (displayStr && displayStr.length <= 12 && displayStr.includes(' ') && !displayStr.includes('-')) {
+            if (displayStr && displayStr.length <= 15 && displayStr.includes(' ') && !displayStr.includes('-')) {
                 return displayStr;
             }
             // Otherwise, try to format the dateStr consistently
@@ -542,6 +542,22 @@
             } catch (e) {
                 return displayStr || dateStr;
             }
+        };
+
+        const displayDateRange = (e) => {
+            const start = formatDisplayDate(e.event_date, e.formatted_date_display);
+            if (e.event_date_end && e.event_date_end !== e.event_date) {
+                // If it's a range, combine them
+                const end = formatDisplayDate(e.event_date_end, null);
+                // Try to simplify if same month
+                const startParts = start.split(' ');
+                const endParts = end.split(' ');
+                if (startParts.length === 3 && endParts.length === 3 && startParts[2] === endParts[2]) {
+                    return `${startParts[0]} ${startParts[1]} - ${end} `;
+                }
+                return `${start} - ${end}`;
+            }
+            return start;
         };
 
         function renderSyncDropdown() {
@@ -645,17 +661,40 @@
                 const { data, error } = await window.supabaseClient
                     .from('events')
                     .select('*')
-                    .eq('status', 'approved')
+                    .ilike('status', 'approved')
                     .order('event_date', { ascending: true });
                 
                 if (error) throw error;
                 const fetchedCount = (data && data.length) ? data.length : 0;
-                debugLog(`Successfully fetched ${fetchedCount} events from database`);
+                debugLog(`Fetch Result: ${fetchedCount} items from Supabase`);
                 
                 window.allEvents = (data || []).filter(e => e.type !== 'SYSTEM_META').map(e => {
                     let classesArray = e.classes;
-                    if (typeof e.classes === 'string') { try { classesArray = JSON.parse(e.classes); } catch (err) { classesArray = [e.classes]; } }
-                    return { ...e, classes: Array.isArray(classesArray) ? classesArray : [] };
+                    if (typeof e.classes === 'string') { 
+                        try { classesArray = JSON.parse(e.classes); } 
+                        catch (err) { classesArray = [e.classes]; } 
+                    }
+                    // Filter out null/undefined and ensure they are strings
+                    classesArray = (Array.isArray(classesArray) ? classesArray : []).filter(c => c != null).map(c => String(c));
+                    if (classesArray.length === 0) classesArray = ["All"]; // Default fallback
+                    
+                    let sourcesArray = [];
+                    if (e.sources) {
+                        try { sourcesArray = typeof e.sources === 'string' ? JSON.parse(e.sources) : e.sources; }
+                        catch (err) { console.warn("Failed to parse sources for", e.id); }
+                    }
+                    // Add legacy source fields if they exist and are not in the array
+                    if (e.source_title && !sourcesArray.find(s => s.title === e.source_title)) {
+                        sourcesArray.unshift({ title: e.source_title, date: e.source_date });
+                    }
+
+                    let linksArray = [];
+                    if (e.links) {
+                        try { linksArray = typeof e.links === 'string' ? JSON.parse(e.links) : e.links; }
+                        catch (err) { console.warn("Failed to parse links for", e.id); }
+                    }
+                    
+                    return { ...e, classes: classesArray, parsedSources: sourcesArray, parsedLinks: linksArray };
                 });
 
                 const meta = (data || []).find(e => e.type === 'SYSTEM_META');
@@ -799,6 +838,7 @@
 
             try {
                 const filtered = window.allEvents.filter(e => {
+                    // Debug skip count tracking
                     if (!window.showPastEvents && e.event_date < TODAY_STR) return false;
                     const isMatch = window.selectedClasses.length === 0 || 
                                     e.classes.some(c => c.toLowerCase() === 'all') || 
@@ -816,7 +856,9 @@
                 const countDisplay = document.getElementById('event-count-display');
                 if (countDisplay) {
                     const total = window.allEvents.length;
-                    countDisplay.innerHTML = `Showing ${filtered.length} of ${total} total items`;
+                    const pastCount = window.allEvents.filter(e => e.event_date < TODAY_STR).length;
+                    let filterNote = window.showPastEvents ? "" : ` (${pastCount} past hidden)`;
+                    countDisplay.innerHTML = `Showing ${filtered.length} of ${total} total items${filterNote}`;
                 }
 
                 const visible = filtered.slice(0, window.visibleLimit);
@@ -842,7 +884,10 @@
                             <span class="px-2 py-0.5 ${catStyle.label} text-[9px] font-black uppercase rounded border">${e.type || 'EVENT'}</span>
                             <div class="flex items-center gap-2">
                                 ${isPast ? '<span class="text-[9px] font-black text-gray-400 uppercase tracking-tighter bg-gray-50 px-1.5 py-0.5 rounded">Passed</span>' : ''}
-                                <span class="text-[10px] font-mono font-bold text-gray-400">${formatDisplayDate(e.event_date, e.formatted_date_display)}</span>
+                                <span class="text-[10px] font-mono font-bold text-gray-400">
+                                    ${displayDateRange(e)}
+                                    ${e.time_value && e.time_type !== 'all-day' ? `<span class="ml-1 text-blue-500">@ ${e.time_value}</span>` : ''}
+                                </span>
                             </div>
                         </div>
                         <h3 class="text-lg font-black text-gray-900 mb-2">${e.title}</h3>
@@ -858,16 +903,29 @@
                             </button>
                         ` : ''}
     
+                        ${e.parsedLinks && e.parsedLinks.length > 0 ? `
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                ${e.parsedLinks.map(l => `
+                                    <a href="${l.url}" target="_blank" class="text-[10px] font-black text-blue-600 hover:text-blue-800 flex items-center gap-1 bg-blue-50 px-2 py-1 rounded border border-blue-100 transition-colors">
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                        ${l.title || 'Link'}
+                                    </a>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+
                         <div class="mt-4 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-gray-50">
                             <div class="flex flex-wrap gap-1.5">
                                 ${e.classes.map(c => `<span class="px-2 py-0.5 bg-gray-50 border border-gray-100 text-[9px] font-bold text-gray-400 rounded">${c}</span>`).join('')}
                             </div>
-                            ${e.source_title ? `
-                                <div class="text-[8px] font-bold text-gray-300 uppercase tracking-tight flex items-center gap-1.5">
-                                    <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
-                                    Source: ${e.source_title} ${e.source_date ? `(${e.source_date})` : ''}
-                                </div>
-                            ` : ''}
+                            <div class="flex flex-col items-end gap-1">
+                                ${e.parsedSources && e.parsedSources.length > 0 ? e.parsedSources.map(s => `
+                                    <div class="text-[8px] font-bold text-gray-300 uppercase tracking-tight flex items-center gap-1.5">
+                                        <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
+                                        Source: ${s.title} ${s.date ? `(${s.date})` : ''}
+                                    </div>
+                                `).join('') : ''}
+                            </div>
                         </div>
                     </div>
                     `;

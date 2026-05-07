@@ -88,6 +88,35 @@ def generate_formatted_date(iso_date):
     except:
         return iso_date
 
+def find_match(title, date, existing_db):
+    """Programmatic check for existing matches to supplement AI matching."""
+    if not title or not date: return None
+    
+    # Simple normalization: lowercase and alphanumeric only
+    def clean(s): return re.sub(r'[^a-z0-9]', '', s.lower())
+    
+    target_clean = clean(title)
+    
+    for e in existing_db:
+        if e.get('type') == 'SYSTEM_META': continue
+        
+        e_date = e.get('event_date')
+        if e_date != date: continue
+        
+        e_title = e.get('title', '')
+        e_title_clean = clean(e_title)
+        
+        # 1. Exact match
+        if e_title == title: return e['id']
+        
+        # 2. Fuzzy match: One title is contained within the other
+        # This catches "Summer Half Term" vs "Mon 25 May Summer Half Term"
+        if len(target_clean) > 5 and len(e_title_clean) > 5:
+            if target_clean in e_title_clean or e_title_clean in target_clean:
+                return e['id']
+            
+    return None
+
 def safe_generate_content(contents, system_instruction=None):
     """Wrapper for Gemini API with retry logic for 429 rate limits."""
     max_retries = 3
@@ -161,6 +190,7 @@ def update_system_meta(new_data):
 SYSTEM_INSTRUCTIONS = """
 Role: School Calendar Aggregator. 
 Extract school events with ZERO-TOLERANCE for schema errors.
+STRICTLY RETAIN TIMES: If an event mentions a specific time (e.g. "9:00am", "3:30pm", "after school"), you MUST extract it into 'time_value'. DO NOT strip times.
 
 STRICT SCHEMA RULES:
 Required JSON Structure: Array of {
@@ -413,18 +443,33 @@ def sync_pta_calendar():
             # Format date YYYYMMDD or YYYYMMDDTHHMMSS
             event_date = normalize_date(raw_date)
             formatted_date = generate_formatted_date(event_date)
+            
+            # Extract time from ICS DTSTART if present
+            time_val = ""
+            time_type = "all-day"
+            if 'T' in raw_date:
+                try:
+                    # e.g. 20260507T100000Z
+                    time_part = raw_date.split('T')[1].replace('Z','')
+                    hh = time_part[:2]
+                    mm = time_part[2:4]
+                    time_val = f"{hh}:{mm}"
+                    time_type = "single"
+                except: pass
 
             description = desc_match.group(1).strip().replace('\\n', '\n').replace('\\', '') if desc_match else ""
             ev_url = url_match.group(1).strip() if url_match else url
 
-            # Check for duplicates
-            res = supabase.table("events").select("id").eq("title", title).eq("event_date", event_date).execute()
-            if not res.data:
+            # Check for duplicates by title and date
+            match_id = find_match(title, event_date, get_existing_events())
+            if not match_id:
                 print(f"Adding PTA event: {title}")
                 data = {
                     "title": title,
                     "event_date": event_date,
                     "formatted_date_display": formatted_date,
+                    "time_value": time_val,
+                    "time_type": time_type,
                     "summary": title,
                     "full_details": description,
                     "type": "PTA",
@@ -436,6 +481,9 @@ def sync_pta_calendar():
                 }
                 supabase.table("events").insert(data).execute()
                 added_count += 1
+            else:
+                # Update existing PTA event to ensure formatted_date_display is set
+                supabase.table("events").update({"formatted_date_display": formatted_date}).eq("id", match_id).execute()
         
         print(f"PTA sync complete. Added {added_count} new events.")
         return True
@@ -460,7 +508,8 @@ def process_batch(items, existing_db):
     db_summary = [{"t": e['title'], "d": e['event_date'], "id": e['id']} for e in upcoming[:200]]
     
     batch_prompt = f"Existing Database Snippet (Upcoming Events): {json.dumps(db_summary)}\n\n"
-    batch_prompt += "INSTRUCTIONS: If a new item matches an existing entry (same date and same/similar title), use action='update' and provide the match_id. Otherwise use action='insert'.\n\n"
+    batch_prompt += "INSTRUCTIONS: If a new item matches an existing entry (same date and same/similar title), use action='update' and provide the match_id.\n"
+    batch_prompt += "Note: Holidays like 'Summer Half Term' are often week-long; if you find a match starting on the same date, MERGE them.\n\n"
     for i, item in enumerate(items):
         batch_prompt += f"--- ITEM {i+1} ---\n"
         batch_prompt += f"Source: {item.get('subject')}\n"
@@ -481,6 +530,8 @@ def sync_database(results):
     if not results: return True
     
     success = True
+    db_state = get_existing_events()
+    
     for item in results:
         try:
             if item.get('status') == 'REJECTED':
@@ -505,17 +556,41 @@ def sync_database(results):
             if 'category' in data and 'type' not in data:
                 data['type'] = data.pop('category')
 
+            match_id = item.get('match_id')
+            
+            # Programmatic double-check for matches before inserting
+            if action == 'insert':
+                possible_match = find_match(data.get('title'), data.get('event_date'), db_state)
+                if possible_match:
+                    print(f"Insertion double-check found match (ID: {possible_match}). Switching to update.")
+                    action = 'update'
+                    match_id = possible_match
+
             if action == 'insert':
                 print(f"Inserting new event: {data.get('title')}")
+                data['status'] = data.get('status', 'approved').strip()
                 supabase.table("events").insert(data).execute()
-            elif action == 'update' and item.get('match_id'):
-                match_id = item.get('match_id')
+                # Update local state to prevent duplicates in same batch
+                db_state.append({"id": 0, "title": data['title'], "event_date": data['event_date']}) 
+            elif action == 'update' and match_id:
                 print(f"Merging new data into existing event (ID: {match_id}): {data.get('title')}")
                 
                 # Fetch existing to merge
                 res = supabase.table("events").select("*").eq("id", match_id).execute()
                 if res.data:
                     existing = res.data[0]
+                    # Ensure status is approved in updates
+                    data['status'] = 'approved'
+
+                    # MERGE RANGE: If existing has end date and new doesn't, keep existing
+                    if existing.get('event_date_end') and not data.get('event_date_end'):
+                        data['event_date_end'] = existing.get('event_date_end')
+                    
+                    # MERGE TIME: If existing has time and new doesn't, keep existing
+                    if existing.get('time_value') and not data.get('time_value'):
+                        data['time_value'] = existing.get('time_value')
+                        data['time_type'] = existing.get('time_type', 'all-day')
+                    
                     # Merge logic:
                     # 1. Links: Combine unique ones
                     # 2. Sources: Combine unique ones
@@ -575,7 +650,8 @@ def deduplicate_database():
             grouped[d].append({
                 "id": e['id'],
                 "title": e['title'],
-                "time": e['time_value'],
+                "time": e.get('time_value', ''),
+                "time_type": e.get('time_type', 'all-day'),
                 "classes": e['classes'],
                 "summary": e['summary'],
                 "full_details": e.get('full_details', ''),
@@ -592,14 +668,19 @@ def deduplicate_database():
             if len(items) < 2: 
                 continue
             
-            if processed_count >= 15: # Increased batch size
-                print(f"Deduplication batch limit reached (15 dates). Will continue next run.")
+            if processed_count >= 30: # Increased batch size
+                print(f"Deduplication batch limit reached (30 dates). Will continue next run.")
                 break
                 
             print(f"Checking for duplicates on {date} ({len(items)} events)...")
             prompt = (
                 f"Review the following school events for the date {date}. "
-                f"Identify entries that refer to the SAME event even if titles are slightly different (e.g. 'Parent Gym: Week 1' and 'Parent Gym Week 1: Chat'). \n\n"
+                f"Identify entries that refer to the SAME event even if titles are slightly different. \n\n"
+                f"DUPLICATE EXAMPLES: \n"
+                f"- 'Parent Gym: Week 1' and 'Parent Gym Week 1: Chat' ARE THE SAME.\n"
+                f"- 'Summer Half Term' and 'Monday 25 May Summer Half Term' ARE THE SAME.\n"
+                f"- 'Inset Day' and 'PD Day' on same date ARE THE SAME.\n\n"
+                f"Note on Times: If one entry has a specific time (e.g. 9:00am) and the other doesn't, ensure the merged entry RETAINS the most specific time.\n\n"
                 f"Events: {json.dumps(items)}"
             )
             
@@ -608,12 +689,14 @@ def deduplicate_database():
                 system_instruction=(
                     "You are a school calendar deduplication expert. Identify duplicates for the same day. "
                     "FUZZY MATCHING: Treat events as identical if they share the same date and have highly similar core titles (e.g. same topic, same workshop name). "
-                    "Ignore minor differences in punctuation, prefixes like 'Fwd:', or appended details like ': Topic Name'. "
+                    "Ignore minor differences in punctuation, prefixes like 'Fwd:' or 'Newsletter', or appended details like ': Topic Name'. "
                     "Instead of just deleting, you MUST MERGE the information. "
                     "1. Keep the most descriptive, complete title. "
                     "2. Combine summaries into the most coherent and detailed one. "
                     "3. Append unique information from all full_details fields. "
-                    "4. Combine and deduplicate ALL entries in the 'links' and 'sources' arrays into a single combined array for each so the merged event retains all sources. "
+                    "4. Combine and deduplicate ALL entries in the 'links' and 'sources' arrays into a single combined array. "
+                    "5. Retain the most specific 'time_value' and 'time_type'. "
+                    "6. Ensure 'event_date' remains {date}. "
                     "Return JSON: {'deletes': [ids_to_remove], 'updates': [{'id': primary_id, 'merged_data': {full_event_object}}]}"
                 )
             )
@@ -802,11 +885,9 @@ if __name__ == "__main__":
     if term_due:
         term_results = fetch_term_dates()
         if term_results:
-            db_state = get_existing_events()
-            unique_terms = [tr for tr in term_results if not any(e['title'] == tr['event_data']['title'] and e['event_date'] == tr['event_data']['event_date'] for e in db_state)]
-            if unique_terms:
-                print(f"Syncing {len(unique_terms)} new term/holiday records.")
-                sync_database(unique_terms)
+            # use sync_database to handle merges/matches correctly
+            print(f"Syncing {len(term_results)} term/holiday records...")
+            sync_database(term_results)
             update_system_meta({"last_term_check": now.strftime("%Y-%m-%d")})
     else:
         print("Skipping term dates check (already done this month).")
