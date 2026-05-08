@@ -283,22 +283,6 @@ DESCRIPTION:Join us for our very own take on the world's most famous tournament.
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
-UID:541@bwa-calendar
-DTSTART;VALUE=DATE:20260621
-DTEND;VALUE=DATE:20260622
-SUMMARY:BWA: The Summer Kermesse
-DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations.\n\nLet’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together.
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
-UID:542@bwa-calendar
-DTSTART;VALUE=DATE:20260703
-DTEND;VALUE=DATE:20260704
-SUMMARY:BWA: Crazy Hair Day
-DESCRIPTION:PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nPTA/APL's Crazy Hair Day for both schools, time to get creative!
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:543@bwa-calendar
 DTSTART;VALUE=DATE:20260709
 DTEND;VALUE=DATE:20260710
@@ -307,11 +291,27 @@ DESCRIPTION:PTA's Summer Art Exhibition and drinks, celebrate our children’s c
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
+UID:541@bwa-calendar
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260622
+SUMMARY:BWA: The Summer Kermesse
+DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nLet’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. More details to come!
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
 UID:521@bwa-calendar
 DTSTART;VALUE=DATE:20260521
 DTEND;VALUE=DATE:20260522
 SUMMARY:BWA: French & British Wine Tasting Evening
 DESCRIPTION:PTA's French & British Wine Tasting at school with Spy Wines, a perfect evening to unwind and socialise.\n\nPTA's French & British Wine Tasting at school with Spy Wines, a perfect evening to unwind and socialise. Details at bwapta.co.uk/wine
 CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:545@bwa-calendar
+DTSTART;VALUE=DATE:20260703
+DTEND;VALUE=DATE:20260704
+SUMMARY:BWA: Hair Day
+DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
+CATEGORIES:PTA
 END:VEVENT
 END:VCALENDAR
