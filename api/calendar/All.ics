@@ -506,4 +506,68 @@ SUMMARY:BWA: French & British Wine Tasting Evening
 DESCRIPTION:PTA hosted wine tasting evening featuring 8 premium wines, a welcome drink, and a wine quiz.\n\nThe Tickets sale is now open for the French & British Wine Tasting Evening on Thursday, 21 May 7pm at the school! We’ve partnered with the experts at Spy Wines (on Lavender Hill) for a fantastic night of tasting 8 premium wines, a welcome drink, and a wine quiz with prizes! EARLY BIRD SPECIAL: Save £5 if you book before midnight this Friday (15 May)! Book your tickets here: bwapta.co.uk/winetickets. What's included: 8 wine tastings + a welcome glass, 10% discount for the Spy Wines online shop, A chance to win our wine quiz prize! Pre-buy your Cheese Plate voucher now to save money and guarantee your pairing. Choose a 'Contributor Ticket' if you’d like to help us raise extra funds and subsidise tickets for our amazing school staff to join the fun.
 CATEGORIES:COMMUNITY
 END:VEVENT
+BEGIN:VEVENT
+UID:546@bwa-calendar
+DTSTART;VALUE=DATE:20260601
+DTEND;VALUE=DATE:20260606
+SUMMARY:BWA Y6b: 6B Bilingual Stream Residential
+DESCRIPTION:Residential trip for the 6B Bilingual Stream.\n\nResidential trip for the 6B Bilingual Stream.
+CATEGORIES:TRIP
+END:VEVENT
+BEGIN:VEVENT
+UID:547@bwa-calendar
+DTSTART;VALUE=DATE:20260606
+DTEND;VALUE=DATE:20260609
+SUMMARY:BWA Y6: Y6 English Stream Residential
+DESCRIPTION:Residential trip for the Y6 English Stream.\n\nResidential trip for the Y6 English Stream.
+CATEGORIES:TRIP
+END:VEVENT
+BEGIN:VEVENT
+UID:548@bwa-calendar
+DTSTART;VALUE=DATE:20260608
+DTEND;VALUE=DATE:20260609
+SUMMARY:BWA Y5: Year 5 Secondary Transfer Event
+DESCRIPTION:Secondary transfer information event for Year 5 pupils and parents.\n\nSecondary transfer information event for Year 5 pupils and parents.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:549@bwa-calendar
+DTSTART;VALUE=DATE:20260619
+DTEND;VALUE=DATE:20260620
+SUMMARY:BWA R: Sports Day -  Reception & Year 1
+DESCRIPTION:Sports Day for Reception and Year 1 pupils.\n\nSports Day for Reception and Year 1 pupils.
+CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
+UID:550@bwa-calendar
+DTSTART;VALUE=DATE:20260619
+DTEND;VALUE=DATE:20260620
+SUMMARY:BWA Y2: Sports Day -  Year 2 & 3
+DESCRIPTION:Sports Day for Year 2 and Year 3 pupils.\n\nSports Day for Year 2 and Year 3 pupils.
+CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
+UID:551@bwa-calendar
+DTSTART;VALUE=DATE:20260625
+DTEND;VALUE=DATE:20260626
+SUMMARY:BWA Y4: Sports Day -  Years 4, 5 and 6
+DESCRIPTION:Sports Day for Years 4, 5 and 6.\n\nSports Day for Years 4, 5 and 6.
+CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
+UID:552@bwa-calendar
+DTSTART;VALUE=DATE:20260710
+DTEND;VALUE=DATE:20260711
+SUMMARY:BWA N: Summer reports due (English Stream)
+DESCRIPTION:Summer reports for English stream are due.\n\nSummer reports for English stream are due.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:553@bwa-calendar
+DTSTART;VALUE=DATE:20260713
+DTEND;VALUE=DATE:20260715
+SUMMARY:BWA N: English Stream Parent Teacher meetings
+DESCRIPTION:Parent Teacher meetings for the English Stream.\n\nParent Teacher meetings for the English Stream.
+CATEGORIES:ADMIN
+END:VEVENT
 END:VCALENDAR
