@@ -251,14 +251,6 @@ DESCRIPTION:School closed for half term holiday.\n\nSchool closed for half term 
 CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
-UID:524@bwa-calendar
-DTSTART;VALUE=DATE:20260522
-DTEND;VALUE=DATE:20260523
-SUMMARY:BWA: International Families Day Buffet
-DESCRIPTION:International buffet for families.\n\nInternational buffet for families. Please come to the front office from 2:30pm to be shown to the hall and complete a slip with your dish details.
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:527@bwa-calendar
 DTSTART;VALUE=DATE:20250901
 DTEND;VALUE=DATE:20250902
