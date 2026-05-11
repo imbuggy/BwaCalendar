@@ -307,7 +307,7 @@ DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and ce
 CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
-UID:555@bwa-calendar
+UID:559@bwa-calendar
 DTSTART;VALUE=DATE:20260703
 DTEND;VALUE=DATE:20260704
 SUMMARY:BWA: Hair Day
