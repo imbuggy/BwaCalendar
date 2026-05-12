@@ -299,6 +299,14 @@ DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and ce
 CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
+UID:560@bwa-calendar
+DTSTART;VALUE=DATE:20260514
+DTEND;VALUE=DATE:20260515
+SUMMARY:BWA: Parent Gym Cancellation
+DESCRIPTION:Parent Gym will not take place this Thursday due to SATs exams.\n\nParent Gym will not be on this Thursday (14th May) due to the SAT's exams, but will resume as normal from next week (Thursday 21st May).
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
 UID:559@bwa-calendar
 DTSTART;VALUE=DATE:20260703
 DTEND;VALUE=DATE:20260704
