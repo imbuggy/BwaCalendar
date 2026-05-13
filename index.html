@@ -714,24 +714,26 @@
             const actionList = document.getElementById('action-required-list');
 
             // --- Deadlines Logic ---
-            const actionKeywords = ['form', 'payment', 'deadline', 'due', 'permission', 'consent', 'bring', 'return', 'costum', 'homework', 'rsvp', 'meeting', 'consultation', 'appointment', 'zoom'];
+            const actionKeywords = ['form', 'payment', 'deadline', 'due', 'permission', 'consent', 'bring', 'return', 'costum', 'homework', 'rsvp', 'meeting', 'consultation', 'appointment', 'zoom', 'dress up', 'international families day'];
             const deadlines = events.filter(e => {
                 const d = new Date(e.event_date);
                 if (d < TODAY) return false;
                 const text = (e.title + ' ' + (e.summary || '')).toLowerCase();
                 const aiDeadline = e.is_deadline === true;
                 const hasPriorityKeyword = actionKeywords.some(kw => text.includes(kw));
-                return aiDeadline || hasPriorityKeyword;
+                const isSpecialEvent = text.includes('international families day');
+                return aiDeadline || hasPriorityKeyword || isSpecialEvent;
             }).sort((a, b) => new Date(a.event_date) - new Date(b.event_date));
 
             if (deadlines.length > 0) {
                 actionContainer.classList.remove('hidden');
-                let visible = deadlines.filter(e => (new Date(e.event_date) - TODAY) <= (10 * 24 * 60 * 60 * 1000));
+                // User requested: focus on upcoming 14 days
+                let visible = deadlines.filter(e => (new Date(e.event_date) - TODAY) <= (14 * 24 * 60 * 60 * 1000));
                 
                 // User requested: limit to max 5 items
                 visible = visible.slice(0, 5);
                 
-                // Fallback ensure at least 3 if available even if > 10 days away
+                // Fallback ensure at least 3 if available even if > 14 days away (to keep UI occupied)
                 if (visible.length < 3 && deadlines.length > 0) visible = deadlines.slice(0, 3);
                 
                 // Final hard cap at 5
@@ -744,6 +746,11 @@
                     if (diffDays === 0) relTime = "TODAY";
                     else if (diffDays === 1) relTime = "TOMORROW";
                     else if (diffDays > 1) relTime = `IN ${diffDays} DAYS`;
+
+                    let title = e.deadline_desc || e.title;
+                    if (title.toLowerCase().includes('international families day') && !title.toLowerCase().includes('dress up')) {
+                        title += ' (Dress Up!)';
+                    }
 
                     // Filter classes to show only those that match active filters (or show 'All' if applicable)
                     const relevantClasses = e.classes.filter(c => 
@@ -768,7 +775,7 @@
                                     <span class="text-[7px] font-bold uppercase opacity-40 whitespace-nowrap mt-0.5 leading-none">${formatDisplayDate(e.event_date, e.formatted_date_display)}</span>
                                 </div>
                                 <div class="flex items-center gap-2 flex-1 min-w-0">
-                                    <span class="text-[10px] font-black ${isUrgent ? 'text-amber-900' : 'text-slate-700'} uppercase truncate">${e.deadline_desc || e.title}</span>
+                                    <span class="text-[10px] font-black ${isUrgent ? 'text-amber-900' : 'text-slate-700'} uppercase truncate">${title}</span>
                                     <div class="flex gap-1 shrink-0">
                                         ${badges}
                                     </div>
@@ -920,8 +927,8 @@
                             </div>
                             <div class="flex flex-col items-end gap-1">
                                 ${e.parsedSources && e.parsedSources.length > 0 ? e.parsedSources.map(s => `
-                                    <div class="text-[8px] font-bold text-gray-300 uppercase tracking-tight flex items-center gap-1.5">
-                                        <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
+                                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-tight flex items-center gap-1.5">
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
                                         Source: ${s.title} ${s.date ? `(${s.date})` : ''}
                                     </div>
                                 `).join('') : ''}

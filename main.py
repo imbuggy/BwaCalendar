@@ -76,6 +76,23 @@ def normalize_date(date_str):
             
     return date_str
 
+def apply_date_constraints(data):
+    """Enforces the 1-week duration limit."""
+    if not data or not data.get('event_date'):
+        return data
+    
+    if data.get('event_date_end'):
+        try:
+            start_dt = datetime.strptime(data['event_date'], "%Y-%m-%d")
+            end_dt = datetime.strptime(data['event_date_end'], "%Y-%m-%d")
+            diff = (end_dt - start_dt).days
+            if diff > 7:
+                print(f"DEBUG: Restricting event '{data.get('title')}' duration. It spanned {diff} days (Limit: 7). Set end_date to Null.")
+                data['event_date_end'] = None
+        except:
+            pass
+    return data
+
 def generate_formatted_date(iso_date):
     """Generates a consistent display date like 'Thu 8 May' from an ISO date."""
     if not iso_date: return None
@@ -259,6 +276,11 @@ Logic:
 - SOURCES: Events can have multiple sources in the 'sources' array. When updating an event, retain all existing sources and append the new source.
 - PRIORITY EVENTS: Always mark Parent-Teacher Meetings, Consultations, and Individual Appointments as "is_deadline": true.
 - "X Stream finishes at..." -> Split into separate events per stream.
+- MAX DURATION: Events MUST NOT stretch more than 7 days. If an event in the source material covers a longer period (e.g. 'Summer Term', 'Extra-curricular clubs start April-July'), you MUST only extract the START DATE and set 'event_date_end' to null.
+- SPECIAL EVENT: 'International families day' is a special event. You MUST:
+  * Append ' (Dress up required)' to the title if not already present.
+  * Mention 'Dress up is required' in the summary and full_details.
+  * Set 'is_deadline' to true.
 """
 
 def extract_pdf_text(payload):
@@ -444,6 +466,19 @@ def sync_pta_calendar():
             event_date = normalize_date(raw_date)
             formatted_date = generate_formatted_date(event_date)
             
+            # Extract end date if present (ICS format)
+            end_date = None
+            end_match = re.search(r"DTEND;VALUE=DATE:(.*?)\r?\n", ev_str)
+            if not end_match:
+                end_match = re.search(r"DTEND:(.*?)\r?\n", ev_str)
+            
+            if end_match:
+                # iCal end dates are exclusive, so we don't necessarily need to subtract 1 day 
+                # but if it stretches > 7 days we'll clip it in the constraints.
+                end_date_val = end_match.group(1).strip()
+                # If it's a date-only field like 20260710, normalize_date will handle it
+                end_date = normalize_date(end_date_val)
+
             # Extract time from ICS DTSTART if present
             time_val = ""
             time_type = "all-day"
@@ -467,6 +502,7 @@ def sync_pta_calendar():
                 data = {
                     "title": title,
                     "event_date": event_date,
+                    "event_date_end": end_date,
                     "formatted_date_display": formatted_date,
                     "time_value": time_val,
                     "time_type": time_type,
@@ -479,6 +515,10 @@ def sync_pta_calendar():
                     "source_date": datetime.now().strftime("%Y-%m-%d"),
                     "links": json.dumps([{"title": "PTA Event Link", "url": ev_url}])
                 }
+                
+                # Apply 1-week restriction
+                data = apply_date_constraints(data)
+                
                 supabase.table("events").insert(data).execute()
                 added_count += 1
             else:
@@ -551,6 +591,9 @@ def sync_database(results):
 
             if data.get('event_date_end'):
                 data['event_date_end'] = normalize_date(data['event_date_end'])
+
+            # Apply 1-week restriction
+            data = apply_date_constraints(data)
 
             # Safety Remap: AI sometimes uses 'category' instead of 'type'
             if 'category' in data and 'type' not in data:
