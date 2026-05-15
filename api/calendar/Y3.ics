@@ -354,4 +354,12 @@ SUMMARY:BWA: Hair Day
 DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
 CATEGORIES:PTA
 END:VEVENT
+BEGIN:VEVENT
+UID:563@bwa-calendar
+DTSTART;VALUE=DATE:20260618
+DTEND;VALUE=DATE:20260619
+SUMMARY:BWA Y3: Careers Fair (KS2)
+DESCRIPTION:BWA is hosting an annual careers fair for KS2 students and is seeking parent volunteers to talk about their professions.\n\nBWA is hosting an annual careers fair for KS2 students on Thursday 18th June. Volunteers are requested to man a stall from 12:30pm to 3:00pm to discuss their roles and career pathways with pupils. Interested parents should email admin@bellevillewix.q1e.org.uk by Friday 22nd May with their name, job, and availability.
+CATEGORIES:COMMUNITY
+END:VEVENT
 END:VCALENDAR
