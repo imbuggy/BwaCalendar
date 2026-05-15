@@ -362,4 +362,12 @@ SUMMARY:BWA Y6: Careers Fair (KS2)
 DESCRIPTION:BWA is hosting an annual careers fair for KS2 students and is seeking parent volunteers to talk about their professions.\n\nBWA is hosting an annual careers fair for KS2 students on Thursday 18th June. Volunteers are requested to man a stall from 12:30pm to 3:00pm to discuss their roles and career pathways with pupils. Interested parents should email admin@bellevillewix.q1e.org.uk by Friday 22nd May with their name, job, and availability.
 CATEGORIES:COMMUNITY
 END:VEVENT
+BEGIN:VEVENT
+UID:565@bwa-calendar
+DTSTART;VALUE=DATE:20260521
+DTEND;VALUE=DATE:20260522
+SUMMARY:BWA: PTA Wine Tasting
+DESCRIPTION:PTA Wine Tasting event.\n\nPTA Wine Tasting event for the school community.
+CATEGORIES:COMMUNITY
+END:VEVENT
 END:VCALENDAR

@@ -330,4 +330,12 @@ SUMMARY:BWA Y1b: Mai des Langues - French Week 2
 DESCRIPTION:Parents are invited to visit classrooms to share languages other than French or English during French Week.\n\nAs part of the 6th edition of 'Mai des Langues', parents who speak a language other than French or English at home are invited to come into class to introduce their language through a story, nursery rhyme, or everyday objects. This session takes place during the French Week from 08 June to 12 June.
 CATEGORIES:COMMUNITY
 END:VEVENT
+BEGIN:VEVENT
+UID:565@bwa-calendar
+DTSTART;VALUE=DATE:20260521
+DTEND;VALUE=DATE:20260522
+SUMMARY:BWA: PTA Wine Tasting
+DESCRIPTION:PTA Wine Tasting event.\n\nPTA Wine Tasting event for the school community.
+CATEGORIES:COMMUNITY
+END:VEVENT
 END:VCALENDAR
