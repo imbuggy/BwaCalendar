@@ -602,4 +602,12 @@ SUMMARY:BWA: PTA Wine Tasting
 DESCRIPTION:PTA Wine Tasting event.\n\nPTA Wine Tasting event for the school community.
 CATEGORIES:COMMUNITY
 END:VEVENT
+BEGIN:VEVENT
+UID:566@bwa-calendar
+DTSTART;VALUE=DATE:20260520
+DTEND;VALUE=DATE:20260521
+SUMMARY:BWA Y1b: Change to morning drop-off arrangements for Y1b
+DESCRIPTION:Change to morning drop-off arrangements for Y1b students starting Wednesday 20 May.\n\nFrom Wednesday 20 May, there will be a change to how we welcome the Y1b children. When you arrive, please take them straight to the stairs so they can go up to their classroom with Sylvie, who will be waiting for them. Sarah Mériguet will be downstairs to welcome them. This routine will remain the same during English Week.
+CATEGORIES:ADMIN
+END:VEVENT
 END:VCALENDAR
