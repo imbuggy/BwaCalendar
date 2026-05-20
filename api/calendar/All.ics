@@ -610,4 +610,28 @@ SUMMARY:BWA Y1b: Change to morning drop-off arrangements for Y1b
 DESCRIPTION:Change to morning drop-off arrangements for Y1b students starting Wednesday 20 May.\n\nFrom Wednesday 20 May, there will be a change to how we welcome the Y1b children. When you arrive, please take them straight to the stairs so they can go up to their classroom with Sylvie, who will be waiting for them. Sarah Mériguet will be downstairs to welcome them. This routine will remain the same during English Week.
 CATEGORIES:ADMIN
 END:VEVENT
+BEGIN:VEVENT
+UID:567@bwa-calendar
+DTSTART;VALUE=DATE:20260521
+DTEND;VALUE=DATE:20260522
+SUMMARY:BWA: Collection of Tupperware and plates
+DESCRIPTION:Final opportunity to collect Tupperware containers and plates from the Easter Bake Sale and International Families Day.\n\nIf you left a tupperware container or plate for the Easter Bake Sale or International Families Day, please collect them near Lost Property. Any containers not collected after tomorrow's pick-up will be disposed of.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:568@bwa-calendar
+DTSTART;VALUE=DATE:20260605
+DTEND;VALUE=DATE:20260606
+SUMMARY:BWA: Parent/Carer Coffee Morning -  Supporting Your Child with BIG Emotions
+DESCRIPTION:The Education Wellbeing Service hosts a coffee morning at BWA to discuss managing big emotions in children.\n\nThe Education Wellbeing Service will be hosting a coffee morning at BWA. The main focus will be supporting your child to manage big emotions, understanding emotion regulation, and learning practical strategies. Provided by Battersea Education Wellbeing Service.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:569@bwa-calendar
+DTSTART;VALUE=DATE:20260629
+DTEND;VALUE=DATE:20260630
+SUMMARY:BWA Y1b: 1B Trip to Natural History Museum
+DESCRIPTION:1B class trip to the Natural History Museum to explore the Dinosaur Exhibitions.\n\nAs part of the 'Dinosaurs' topic, 1B will visit the Natural History Museum to see real fossils. The class will leave school at 9am and return around 14:30pm. Children should dress appropriately for the weather and bring a small rucksack. Packed lunches will be provided for those on school dinners; others should bring their own.
+CATEGORIES:TRIP
+END:VEVENT
 END:VCALENDAR
