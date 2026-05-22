@@ -78,8 +78,8 @@ BEGIN:VEVENT
 UID:449@bwa-calendar
 DTSTART;VALUE=DATE:20260525
 DTEND;VALUE=DATE:20260530
-SUMMARY:BWA: Summer Half Term
-DESCRIPTION:School closed for half term holiday.\n\nSchool closed for half term holiday.
+SUMMARY:BWA: Summer half term
+DESCRIPTION:School closed for Summer half term.\n\nSchool closed for Summer half term.
 CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
@@ -393,5 +393,13 @@ DTEND;VALUE=DATE:20260606
 SUMMARY:BWA: Parent/Carer Coffee Morning -  Supporting Your Child with BIG Emotions
 DESCRIPTION:The Education Wellbeing Service hosts a coffee morning at BWA to discuss managing big emotions in children.\n\nThe Education Wellbeing Service will be hosting a coffee morning at BWA. The main focus will be supporting your child to manage big emotions, understanding emotion regulation, and learning practical strategies. Provided by Battersea Education Wellbeing Service.
 CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:570@bwa-calendar
+DTSTART;VALUE=DATE:20260601
+DTEND;VALUE=DATE:20260602
+SUMMARY:BWA: Parents Morning
+DESCRIPTION:Parents are invited to a welcome reception and classroom activities.\n\nParents are invited to a welcome reception from 8:50am to 9:10am, followed by classroom activities from 9:15am to 10:00am. Only one parent per child is permitted. Note: CM2B/Y6B session is postponed to the final French focus week.
+CATEGORIES:COMMUNITY
 END:VEVENT
 END:VCALENDAR

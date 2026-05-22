@@ -86,8 +86,8 @@ BEGIN:VEVENT
 UID:449@bwa-calendar
 DTSTART;VALUE=DATE:20260525
 DTEND;VALUE=DATE:20260530
-SUMMARY:BWA: Summer Half Term
-DESCRIPTION:School closed for half term holiday.\n\nSchool closed for half term holiday.
+SUMMARY:BWA: Summer half term
+DESCRIPTION:School closed for Summer half term.\n\nSchool closed for Summer half term.
 CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
@@ -369,5 +369,13 @@ DTEND;VALUE=DATE:20260630
 SUMMARY:BWA Y1b: 1B Trip to Natural History Museum
 DESCRIPTION:1B class trip to the Natural History Museum to explore the Dinosaur Exhibitions.\n\nAs part of the 'Dinosaurs' topic, 1B will visit the Natural History Museum to see real fossils. The class will leave school at 9am and return around 14:30pm. Children should dress appropriately for the weather and bring a small rucksack. Packed lunches will be provided for those on school dinners; others should bring their own.
 CATEGORIES:TRIP
+END:VEVENT
+BEGIN:VEVENT
+UID:570@bwa-calendar
+DTSTART;VALUE=DATE:20260601
+DTEND;VALUE=DATE:20260602
+SUMMARY:BWA: Parents Morning
+DESCRIPTION:Parents are invited to a welcome reception and classroom activities.\n\nParents are invited to a welcome reception from 8:50am to 9:10am, followed by classroom activities from 9:15am to 10:00am. Only one parent per child is permitted. Note: CM2B/Y6B session is postponed to the final French focus week.
+CATEGORIES:COMMUNITY
 END:VEVENT
 END:VCALENDAR
