@@ -339,11 +339,11 @@ DESCRIPTION:Parent Teacher meetings for the English Stream.\n\nParent Teacher me
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:556@bwa-calendar
-DTSTART;VALUE=DATE:20260621
-DTEND;VALUE=DATE:20260622
-SUMMARY:BWA: APL Summer Kermesse
-DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. More details to come!
+UID:559@bwa-calendar
+DTSTART;VALUE=DATE:20260703
+DTEND;VALUE=DATE:20260704
+SUMMARY:BWA: Hair Day
+DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
 CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
@@ -353,14 +353,6 @@ DTEND;VALUE=DATE:20260515
 SUMMARY:BWA: Parent Gym Cancellation
 DESCRIPTION:Parent Gym will not take place this Thursday due to SATs exams.\n\nParent Gym will not be on this Thursday (14th May) due to the SAT's exams, but will resume as normal from next week (Thursday 21st May).
 CATEGORIES:WELLBEING
-END:VEVENT
-BEGIN:VEVENT
-UID:559@bwa-calendar
-DTSTART;VALUE=DATE:20260703
-DTEND;VALUE=DATE:20260704
-SUMMARY:BWA: Hair Day
-DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
-CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
 UID:565@bwa-calendar
@@ -395,35 +387,11 @@ DESCRIPTION:Parents are invited to a welcome reception and classroom activities.
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:571@bwa-calendar
+UID:556@bwa-calendar
 DTSTART;VALUE=DATE:20260621
-DTEND;VALUE=DATE:20260623
+DTEND;VALUE=DATE:20260622
 SUMMARY:BWA: APL Summer Kermesse
-DESCRIPTION:APL Summer Kermesse\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. \nMore details to come!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
-UID:572@bwa-calendar
-DTSTART;VALUE=DATE:20260703
-DTEND;VALUE=DATE:20260705
-SUMMARY:BWA: Hair Day
-DESCRIPTION:BWA Crazy Hair Day\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
-UID:573@bwa-calendar
-DTSTART;VALUE=DATE:20260621
-DTEND;VALUE=DATE:20260623
-SUMMARY:BWA: APL Summer Kermesse
-DESCRIPTION:APL Summer Kermesse\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. \nMore details to come!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
-UID:574@bwa-calendar
-DTSTART;VALUE=DATE:20260703
-DTEND;VALUE=DATE:20260705
-SUMMARY:BWA: Hair Day
-DESCRIPTION:BWA Crazy Hair Day\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone!
+DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. More details to come!
 CATEGORIES:PTA
 END:VEVENT
 END:VCALENDAR
