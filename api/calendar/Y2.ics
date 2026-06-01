@@ -387,14 +387,6 @@ DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time 
 CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
-UID:585@bwa-calendar
-DTSTART;VALUE=DATE:20260612
-DTEND;VALUE=DATE:20260613
-SUMMARY:BWA: Parents Morning
-DESCRIPTION:Parents are invited to a friendly get-together at the school canteen.\n\nThe LFCG, with the active support of the APL, invites one parent per child to a friendly get-together in the canteen from 8.45 am to 9.10 am, followed by the main event until 10.00 am. Please confirm attendance via the school-provided link by Tuesday 9 June at midday.
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:581@bwa-calendar
 DTSTART;VALUE=DATE:20260621
 DTEND;VALUE=DATE:20260623

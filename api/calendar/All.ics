@@ -555,6 +555,14 @@ DESCRIPTION:Parents are invited to visit classrooms to share languages other tha
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
+UID:587@bwa-calendar
+DTSTART;VALUE=DATE:20260609
+DTEND;VALUE=DATE:20260610
+SUMMARY:BWA Y1b: Joint art activity with GSA
+DESCRIPTION:Joint art activity between GSB (Y1b) and GSA.\n\nThe pupils will take part in a joint art activity with the GSA.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
 UID:562@bwa-calendar
 DTSTART;VALUE=DATE:20260608
 DTEND;VALUE=DATE:20260613
@@ -635,19 +643,27 @@ DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time 
 CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
-UID:585@bwa-calendar
-DTSTART;VALUE=DATE:20260612
-DTEND;VALUE=DATE:20260613
-SUMMARY:BWA: Parents Morning
-DESCRIPTION:Parents are invited to a friendly get-together at the school canteen.\n\nThe LFCG, with the active support of the APL, invites one parent per child to a friendly get-together in the canteen from 8.45 am to 9.10 am, followed by the main event until 10.00 am. Please confirm attendance via the school-provided link by Tuesday 9 June at midday.
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:581@bwa-calendar
 DTSTART;VALUE=DATE:20260621
 DTEND;VALUE=DATE:20260623
 SUMMARY:BWA: APL Summer Kermesse
 DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. More details to come!
 CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
+UID:585@bwa-calendar
+DTSTART;VALUE=DATE:20260612
+DTEND;VALUE=DATE:20260613
+SUMMARY:BWA Y1b: Parents' Day
+DESCRIPTION:Parents' Day event for GSB (Y1b) class.\n\nParents' Day event for GSB (Y1b) class. Time: 8:45am - 10:00am.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:586@bwa-calendar
+DTSTART;VALUE=DATE:20260625
+DTEND;VALUE=DATE:20260626
+SUMMARY:BWA Y1b: End-of-year show
+DESCRIPTION:End-of-year show featuring circus workshop skills, folk dances, and songs.\n\nEnd-of-year show: the pupils will show you what they’ve learnt to do this year in the circus workshop with Geneviève and will perform some folk dances and songs.
+CATEGORIES:ARTS
 END:VEVENT
 END:VCALENDAR
