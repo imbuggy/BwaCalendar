@@ -283,6 +283,14 @@ DESCRIPTION:PTA's Summer Art Exhibition and drinks, celebrate our children’s c
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
+UID:578@bwa-calendar
+DTSTART;VALUE=DATE:20260703
+DTEND;VALUE=DATE:20260705
+SUMMARY:BWA: Hair Day
+DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
+CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
 UID:560@bwa-calendar
 DTSTART;VALUE=DATE:20260514
 DTEND;VALUE=DATE:20260515
@@ -329,14 +337,6 @@ DTEND;VALUE=DATE:20260602
 SUMMARY:BWA: Parents Morning
 DESCRIPTION:Parents are invited to a welcome reception and classroom activities.\n\nParents are invited to a welcome reception from 8:50am to 9:10am, followed by classroom activities from 9:15am to 10:00am. Only one parent per child is permitted. Note: CM2B/Y6B session is postponed to the final French focus week.
 CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
-UID:578@bwa-calendar
-DTSTART;VALUE=DATE:20260703
-DTEND;VALUE=DATE:20260705
-SUMMARY:BWA: Hair Day
-DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
-CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
 UID:581@bwa-calendar
