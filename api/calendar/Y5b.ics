@@ -283,14 +283,6 @@ DESCRIPTION:Secondary transfer information event for Year 5 pupils and parents.\
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:551@bwa-calendar
-DTSTART;VALUE=DATE:20260625
-DTEND;VALUE=DATE:20260626
-SUMMARY:BWA Y5b: Sports Day -  Years 4, 5 and 6
-DESCRIPTION:Sports Day for Years 4, 5 and 6.\n\nSports Day for Years 4, 5 and 6.
-CATEGORIES:SPORTS
-END:VEVENT
-BEGIN:VEVENT
 UID:560@bwa-calendar
 DTSTART;VALUE=DATE:20260514
 DTEND;VALUE=DATE:20260515
