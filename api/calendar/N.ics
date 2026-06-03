@@ -323,20 +323,20 @@ DESCRIPTION:Parent Teacher meetings for the English Stream.\n\nParent Teacher me
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:578@bwa-calendar
-DTSTART;VALUE=DATE:20260703
-DTEND;VALUE=DATE:20260705
-SUMMARY:BWA: Hair Day
-DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
 UID:560@bwa-calendar
 DTSTART;VALUE=DATE:20260514
 DTEND;VALUE=DATE:20260515
 SUMMARY:BWA: Parent Gym Cancellation
 DESCRIPTION:Parent Gym will not take place this Thursday due to SATs exams.\n\nParent Gym will not be on this Thursday (14th May) due to the SAT's exams, but will resume as normal from next week (Thursday 21st May).
 CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:578@bwa-calendar
+DTSTART;VALUE=DATE:20260703
+DTEND;VALUE=DATE:20260705
+SUMMARY:BWA: Hair Day
+DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
+CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
 UID:565@bwa-calendar

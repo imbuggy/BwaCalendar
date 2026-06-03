@@ -291,14 +291,6 @@ DESCRIPTION:PTA's Summer Art Exhibition and drinks, celebrate our children’s c
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
-UID:578@bwa-calendar
-DTSTART;VALUE=DATE:20260703
-DTEND;VALUE=DATE:20260705
-SUMMARY:BWA: Hair Day
-DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
 UID:560@bwa-calendar
 DTSTART;VALUE=DATE:20260514
 DTEND;VALUE=DATE:20260515
@@ -329,6 +321,14 @@ DTEND;VALUE=DATE:20260613
 SUMMARY:BWA Y1b: Mai des Langues - French Week 2
 DESCRIPTION:Parents are invited to visit classrooms to share languages other than French or English during French Week.\n\nAs part of the 6th edition of 'Mai des Langues', parents who speak a language other than French or English at home are invited to come into class to introduce their language through a story, nursery rhyme, or everyday objects. This session takes place during the French Week from 08 June to 12 June.
 CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:578@bwa-calendar
+DTSTART;VALUE=DATE:20260703
+DTEND;VALUE=DATE:20260705
+SUMMARY:BWA: Hair Day
+DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
+CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
 UID:565@bwa-calendar
