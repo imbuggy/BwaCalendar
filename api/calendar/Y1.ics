@@ -394,4 +394,20 @@ SUMMARY:BWA: APL Summer Kermesse
 DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. More details to come!
 CATEGORIES:PTA
 END:VEVENT
+BEGIN:VEVENT
+UID:592@bwa-calendar
+DTSTART;VALUE=DATE:20260901
+DTEND;VALUE=DATE:20260902
+SUMMARY:BWA: Wandsworth Music -  Instrumental Lessons Sign-up
+DESCRIPTION:Information regarding instrumental and vocal music lessons for the upcoming Autumn 2026 term.\n\nWandsworth Music is offering small group and individual lessons for the next school year. Parents can sign up via the Wandsworth Music website. The Music Academy also offers various ensembles on Saturdays, Wednesdays, and Tuesdays at Burntwood School and West Hill Primary School.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:593@bwa-calendar
+DTSTART;VALUE=DATE:20260608
+DTEND;VALUE=DATE:20260609
+SUMMARY:BWA Y1: Year 1 RSE Lessons
+DESCRIPTION:Information regarding the upcoming PSHCE and RSE lessons focusing on 'Changes'.\n\nNext half term, Year 1 will be exploring the theme 'Changes' in PSCHE lessons, covering relationships, friendships, and online safety. Please contact the class teacher via the school admin email for questions.
+CATEGORIES:ACADEMIC
+END:VEVENT
 END:VCALENDAR
