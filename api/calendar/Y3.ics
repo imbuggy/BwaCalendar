@@ -395,14 +395,6 @@ DESCRIPTION:Sports Day for Year 2 and Year 3 classes on Clapham Common.\n\nSport
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
-UID:581@bwa-calendar
-DTSTART;VALUE=DATE:20260621
-DTEND;VALUE=DATE:20260623
-SUMMARY:BWA: APL Summer Kermesse
-DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. More details to come!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
 UID:592@bwa-calendar
 DTSTART;VALUE=DATE:20260901
 DTEND;VALUE=DATE:20260902
@@ -417,5 +409,13 @@ DTEND;VALUE=DATE:20260609
 SUMMARY:BWA Y3: Year 3 RSE Lessons
 DESCRIPTION:Information regarding the upcoming PSHCE and RSE lessons focusing on 'Changes'.\n\nNext half term, Year 3 will be exploring the theme 'Changes' in PSCHE lessons, covering relationships, friendships, and online safety. Please contact the class teacher via the school admin email for questions.
 CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:595@bwa-calendar
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260623
+SUMMARY:BWA: APL Summer Kermesse
+DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. More details to come!
+CATEGORIES:PTA
 END:VEVENT
 END:VCALENDAR

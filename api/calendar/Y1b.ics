@@ -395,19 +395,19 @@ DESCRIPTION:End-of-year show featuring circus workshop skills, folk dances, and 
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
-UID:581@bwa-calendar
-DTSTART;VALUE=DATE:20260621
-DTEND;VALUE=DATE:20260623
-SUMMARY:BWA: APL Summer Kermesse
-DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. More details to come!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
 UID:592@bwa-calendar
 DTSTART;VALUE=DATE:20260901
 DTEND;VALUE=DATE:20260902
 SUMMARY:BWA: Wandsworth Music -  Instrumental Lessons Sign-up
 DESCRIPTION:Information regarding instrumental and vocal music lessons for the upcoming Autumn 2026 term.\n\nWandsworth Music is offering small group and individual lessons for the next school year. Parents can sign up via the Wandsworth Music website. The Music Academy also offers various ensembles on Saturdays, Wednesdays, and Tuesdays at Burntwood School and West Hill Primary School.
 CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:595@bwa-calendar
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260623
+SUMMARY:BWA: APL Summer Kermesse
+DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. More details to come!
+CATEGORIES:PTA
 END:VEVENT
 END:VCALENDAR

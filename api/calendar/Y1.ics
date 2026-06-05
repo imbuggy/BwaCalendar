@@ -339,20 +339,20 @@ DESCRIPTION:Parent Gym will not take place this Thursday due to SATs exams.\n\nP
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
-UID:578@bwa-calendar
-DTSTART;VALUE=DATE:20260703
-DTEND;VALUE=DATE:20260705
-SUMMARY:BWA: Hair Day
-DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
 UID:549@bwa-calendar
 DTSTART;VALUE=DATE:20260619
 DTEND;VALUE=DATE:20260620
 SUMMARY:BWA Y1: Sports Day -  Reception & Year 1
 DESCRIPTION:Sports Day for Reception and Year 1 classes on Clapham Common.\n\nSports Day 2026 for all classes in the English and Bilingual streams. Event takes place on Clapham Common North-Side. Pupils should arrive at school at their usual time. Parents wishing to attend should wait outside the school at 9:00am to walk with the classes to the common. Pupils should wear trainers, navy shorts/jogging bottoms/leggings, and house colour T-shirts. Please ensure children have hats and sun cream.
 CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
+UID:578@bwa-calendar
+DTSTART;VALUE=DATE:20260703
+DTEND;VALUE=DATE:20260705
+SUMMARY:BWA: Hair Day
+DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
+CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
 UID:565@bwa-calendar
@@ -387,14 +387,6 @@ DESCRIPTION:Parents are invited to a welcome reception and classroom activities.
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:581@bwa-calendar
-DTSTART;VALUE=DATE:20260621
-DTEND;VALUE=DATE:20260623
-SUMMARY:BWA: APL Summer Kermesse
-DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. More details to come!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
 UID:592@bwa-calendar
 DTSTART;VALUE=DATE:20260901
 DTEND;VALUE=DATE:20260902
@@ -409,5 +401,13 @@ DTEND;VALUE=DATE:20260609
 SUMMARY:BWA Y1: Year 1 RSE Lessons
 DESCRIPTION:Information regarding the upcoming PSHCE and RSE lessons focusing on 'Changes'.\n\nNext half term, Year 1 will be exploring the theme 'Changes' in PSCHE lessons, covering relationships, friendships, and online safety. Please contact the class teacher via the school admin email for questions.
 CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:595@bwa-calendar
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260623
+SUMMARY:BWA: APL Summer Kermesse
+DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. More details to come!
+CATEGORIES:PTA
 END:VEVENT
 END:VCALENDAR
