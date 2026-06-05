@@ -379,14 +379,6 @@ DESCRIPTION:Parents are invited to a welcome reception and classroom activities.
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:551@bwa-calendar
-DTSTART;VALUE=DATE:20260625
-DTEND;VALUE=DATE:20260626
-SUMMARY:BWA Y4: Sports Day -  Years 4, 5 and 6
-DESCRIPTION:Sports Day for Years 4, 5 and 6 on Clapham Common.\n\nSports Day 2026 for all classes in the English and Bilingual streams. Event takes place on Clapham Common North-Side. Pupils should arrive at school at their usual time. Parents wishing to attend should wait outside the school at 9:00am to walk with the classes to the common. Pupils should wear trainers, navy shorts/jogging bottoms/leggings, and house colour T-shirts. Please ensure children have hats and sun cream.
-CATEGORIES:SPORTS
-END:VEVENT
-BEGIN:VEVENT
 UID:592@bwa-calendar
 DTSTART;VALUE=DATE:20260901
 DTEND;VALUE=DATE:20260902
