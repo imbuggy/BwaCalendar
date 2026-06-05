@@ -11,14 +11,6 @@ DESCRIPTION:First day of Summer Term 2.\n\nFirst day of Summer Term 2 - Monday 1
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
-UID:452@bwa-calendar
-DTSTART;VALUE=DATE:20260717
-DTEND;VALUE=DATE:20260718
-SUMMARY:BWA Y3: Last day of Summer Term 2 (English Stream)
-DESCRIPTION:Last day of Summer Term 2 for English Stream.\n\nLast day of Summer Term 2 for English Stream - Friday 17 July.
-CATEGORIES:ACADEMIC
-END:VEVENT
-BEGIN:VEVENT
 UID:453@bwa-calendar
 DTSTART;VALUE=DATE:20260430
 DTEND;VALUE=DATE:20260501
@@ -81,6 +73,14 @@ DTEND;VALUE=DATE:20260530
 SUMMARY:BWA: Summer half term
 DESCRIPTION:School closed for Summer half term.\n\nSchool closed for Summer half term.
 CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:452@bwa-calendar
+DTSTART;VALUE=DATE:20260717
+DTEND;VALUE=DATE:20260718
+SUMMARY:BWA Y3: Last day of Summer Term 2 for English Stream
+DESCRIPTION:Last day of term for English Stream.\n\nLast day of Summer Term 2 for English Stream.
+CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
 UID:487@bwa-calendar
@@ -211,14 +211,6 @@ DESCRIPTION:Basketball club is cancelled today due to staff sickness.\n\nBasketb
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
-UID:522@bwa-calendar
-DTSTART;VALUE=DATE:20260617
-DTEND;VALUE=DATE:20260618
-SUMMARY:BWA Y3: Father's Day Celebration
-DESCRIPTION:Father's Day celebration with tea, coffee, pastries and classroom craft activities.\n\nFather's Day celebration. Tea, coffee and pastries in the canteen at 8:30am. Classroom craft activity at 9:00am, ending at 9:30am.
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:528@bwa-calendar
 DTSTART;VALUE=DATE:20250902
 DTEND;VALUE=DATE:20250903
@@ -241,6 +233,14 @@ DTEND;VALUE=DATE:20260221
 SUMMARY:BWA: Spring Half Term
 DESCRIPTION:School closed for half term holiday.\n\nSchool closed for half term holiday.
 CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:522@bwa-calendar
+DTSTART;VALUE=DATE:20260617
+DTEND;VALUE=DATE:20260618
+SUMMARY:BWA Y3: Father's Day Celebration
+DESCRIPTION:Father's Day event for specified classes.\n\nFather’s Day Event for N, R, Yrs 1-4, 1B, 2B, 3B & 6B.
+CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:527@bwa-calendar
@@ -302,25 +302,9 @@ BEGIN:VEVENT
 UID:543@bwa-calendar
 DTSTART;VALUE=DATE:20260709
 DTEND;VALUE=DATE:20260710
-SUMMARY:BWA: Summer Art Exhibition
-DESCRIPTION:PTA's Summer Art Exhibition and drinks, celebrate our children’s creativity while raising vital funds.\n\nPTA's Summer Art Exhibition and drinks, celebrate our children’s creativity while raising vital funds.
+SUMMARY:BWA: PTA Art Exhibition
+DESCRIPTION:School-wide PTA Art Exhibition.\n\nPTA Art Exhibition.
 CATEGORIES:ARTS
-END:VEVENT
-BEGIN:VEVENT
-UID:552@bwa-calendar
-DTSTART;VALUE=DATE:20260710
-DTEND;VALUE=DATE:20260711
-SUMMARY:BWA Y3: Summer reports due (English Stream)
-DESCRIPTION:Summer reports for English stream are due.\n\nSummer reports for English stream are due.
-CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
-UID:553@bwa-calendar
-DTSTART;VALUE=DATE:20260713
-DTEND;VALUE=DATE:20260715
-SUMMARY:BWA Y3: English Stream Parent Teacher meetings
-DESCRIPTION:Parent Teacher meetings for the English Stream.\n\nParent Teacher meetings for the English Stream.
-CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:560@bwa-calendar
@@ -339,12 +323,28 @@ DESCRIPTION:BWA is hosting an annual careers fair for KS2 students and is seekin
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
+UID:552@bwa-calendar
+DTSTART;VALUE=DATE:20260710
+DTEND;VALUE=DATE:20260711
+SUMMARY:BWA Y3: Summer reports due (English Stream)
+DESCRIPTION:Summer reports for English stream.\n\nSummer reports for English stream.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
 UID:578@bwa-calendar
 DTSTART;VALUE=DATE:20260703
 DTEND;VALUE=DATE:20260705
 SUMMARY:BWA: Hair Day
 DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
 CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
+UID:553@bwa-calendar
+DTSTART;VALUE=DATE:20260713
+DTEND;VALUE=DATE:20260715
+SUMMARY:BWA Y3: English Stream Parent Teacher meetings
+DESCRIPTION:Parent Teacher meetings for English stream.\n\nEnglish Stream Parent Teacher meetings.
+CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:564@bwa-calendar
@@ -391,7 +391,7 @@ UID:550@bwa-calendar
 DTSTART;VALUE=DATE:20260619
 DTEND;VALUE=DATE:20260620
 SUMMARY:BWA Y3: Sports Day -  Year 2 & 3
-DESCRIPTION:Sports Day for Year 2 and Year 3 classes on Clapham Common.\n\nSports Day 2026 for all classes in the English and Bilingual streams. Event takes place on Clapham Common North-Side. Pupils should arrive at school at their usual time. Parents wishing to attend should wait outside the school at 12:30pm to walk with the classes to the common. Pupils should wear trainers, navy shorts/jogging bottoms/leggings, and house colour T-shirts. Please ensure children have hats and sun cream.
+DESCRIPTION:Sports Day for Year 2 and Year 3 students.\n\nSports Day for Years 2/3 (pm).
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT

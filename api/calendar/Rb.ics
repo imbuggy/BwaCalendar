@@ -11,14 +11,6 @@ DESCRIPTION:First day of Summer Term 2.\n\nFirst day of Summer Term 2 - Monday 1
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
-UID:451@bwa-calendar
-DTSTART;VALUE=DATE:20260715
-DTEND;VALUE=DATE:20260716
-SUMMARY:BWA Rb: Last day of Summer Term 2 (Bilingual Stream)
-DESCRIPTION:Last day of Summer Term 2 for Bilingual Stream.\n\nLast day of Summer Term 2 for Bilingual Stream - Wednesday 15 July.
-CATEGORIES:ACADEMIC
-END:VEVENT
-BEGIN:VEVENT
 UID:461@bwa-calendar
 DTSTART;VALUE=DATE:20260427
 DTEND;VALUE=DATE:20260428
@@ -81,6 +73,14 @@ DTEND;VALUE=DATE:20260626
 SUMMARY:BWA: Parent Gym Week 6 -  Together
 DESCRIPTION:Week 6 of the Parent Gym programme: Together.\n\nWeekly session of the Parent Gym programme focusing on practical tips and strategies for family life.
 CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:451@bwa-calendar
+DTSTART;VALUE=DATE:20260715
+DTEND;VALUE=DATE:20260716
+SUMMARY:BWA Rb: Last day of Summer Term 2 for Bilingual Stream
+DESCRIPTION:Last day of term for Bilingual Stream.\n\nLast day of Summer Term 2 for Bilingual Stream.
+CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
 UID:449@bwa-calendar
@@ -227,20 +227,20 @@ DESCRIPTION:Basketball club is cancelled today due to staff sickness.\n\nBasketb
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
-UID:523@bwa-calendar
-DTSTART;VALUE=DATE:20260626
-DTEND;VALUE=DATE:20260627
-SUMMARY:BWA Rb: Father's Day Celebration
-DESCRIPTION:Father's Day celebration with tea, coffee, pastries and classroom craft activities.\n\nFather's Day celebration. Tea, coffee and pastries in the canteen at 8:30am. Classroom craft activity at 9:00am, ending at 9:30am.
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:532@bwa-calendar
 DTSTART;VALUE=DATE:20260216
 DTEND;VALUE=DATE:20260221
 SUMMARY:BWA: Spring Half Term
 DESCRIPTION:School closed for half term holiday.\n\nSchool closed for half term holiday.
 CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:523@bwa-calendar
+DTSTART;VALUE=DATE:20260626
+DTEND;VALUE=DATE:20260627
+SUMMARY:BWA Rb: Father's Day Celebration
+DESCRIPTION:Father's Day event for specified classes.\n\nFather’s Day Event for Year 5, 6, RB, 4B and 5B.
+CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:529@bwa-calendar
@@ -270,8 +270,8 @@ BEGIN:VEVENT
 UID:543@bwa-calendar
 DTSTART;VALUE=DATE:20260709
 DTEND;VALUE=DATE:20260710
-SUMMARY:BWA: Summer Art Exhibition
-DESCRIPTION:PTA's Summer Art Exhibition and drinks, celebrate our children’s creativity while raising vital funds.\n\nPTA's Summer Art Exhibition and drinks, celebrate our children’s creativity while raising vital funds.
+SUMMARY:BWA: PTA Art Exhibition
+DESCRIPTION:School-wide PTA Art Exhibition.\n\nPTA Art Exhibition.
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
