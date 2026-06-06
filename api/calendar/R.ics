@@ -67,20 +67,20 @@ DESCRIPTION:Week 6 of the Parent Gym programme: Together.\n\nWeekly session of t
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
-UID:449@bwa-calendar
-DTSTART;VALUE=DATE:20260525
-DTEND;VALUE=DATE:20260530
-SUMMARY:BWA: Summer half term
-DESCRIPTION:School closed for Summer half term.\n\nSchool closed for Summer half term.
-CATEGORIES:HOLIDAY
-END:VEVENT
-BEGIN:VEVENT
 UID:452@bwa-calendar
 DTSTART;VALUE=DATE:20260717
 DTEND;VALUE=DATE:20260718
 SUMMARY:BWA R: Last day of Summer Term 2 for English Stream
 DESCRIPTION:Last day of term for English Stream.\n\nLast day of Summer Term 2 for English Stream.
 CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:449@bwa-calendar
+DTSTART;VALUE=DATE:20260525
+DTEND;VALUE=DATE:20260530
+SUMMARY:BWA: Summer Half Term
+DESCRIPTION:Summer half term holiday.\n\nSummer half term holiday.
+CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
 UID:485@bwa-calendar
@@ -139,20 +139,20 @@ DESCRIPTION:Professional bike health checks available for BWA families as part o
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:448@bwa-calendar
-DTSTART;VALUE=DATE:20260504
-DTEND;VALUE=DATE:20260505
-SUMMARY:BWA: Bank Holiday
-DESCRIPTION:School closed for Bank Holiday.\n\nSchool closed for Bank Holiday.
-CATEGORIES:HOLIDAY
-END:VEVENT
-BEGIN:VEVENT
 UID:493@bwa-calendar
 DTSTART;VALUE=DATE:20260515
 DTEND;VALUE=DATE:20260516
 SUMMARY:BWA: International Families Day Buffet
 DESCRIPTION:International Families Day buffet in the lower hall.\n\nInternational Families Day buffet starting at 3:30pm. Food donations to be brought to the office from 2:30pm.
 CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:448@bwa-calendar
+DTSTART;VALUE=DATE:20260504
+DTEND;VALUE=DATE:20260505
+SUMMARY:BWA: Bank Holiday
+DESCRIPTION:School closed for Bank Holiday.\n\nSchool closed for Bank Holiday.
+CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
 UID:484@bwa-calendar
@@ -227,22 +227,6 @@ DESCRIPTION:School closed to children for staff training.\n\nSchool closed to ch
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:530@bwa-calendar
-DTSTART;VALUE=DATE:20251103
-DTEND;VALUE=DATE:20251104
-SUMMARY:BWA R: INSET Day
-DESCRIPTION:School closed to children for staff training.\n\nSchool closed to children for staff training.
-CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
-UID:532@bwa-calendar
-DTSTART;VALUE=DATE:20260216
-DTEND;VALUE=DATE:20260221
-SUMMARY:BWA: Spring Half Term
-DESCRIPTION:School closed for half term holiday.\n\nSchool closed for half term holiday.
-CATEGORIES:HOLIDAY
-END:VEVENT
-BEGIN:VEVENT
 UID:522@bwa-calendar
 DTSTART;VALUE=DATE:20260617
 DTEND;VALUE=DATE:20260618
@@ -251,36 +235,28 @@ DESCRIPTION:Father's Day event for specified classes.\n\nFather’s Day Event fo
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:527@bwa-calendar
-DTSTART;VALUE=DATE:20250901
-DTEND;VALUE=DATE:20250902
+UID:530@bwa-calendar
+DTSTART;VALUE=DATE:20251103
+DTEND;VALUE=DATE:20251104
 SUMMARY:BWA R: INSET Day
-DESCRIPTION:School closed to children for staff training.\n\nSchool closed to children for staff training.
+DESCRIPTION:School closed to children for INSET training.\n\nSchool closed to children for INSET training.
 CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:532@bwa-calendar
+DTSTART;VALUE=DATE:20260216
+DTEND;VALUE=DATE:20260221
+SUMMARY:BWA: Spring Half Term
+DESCRIPTION:Spring half term holiday.\n\nSpring half term holiday.
+CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
 UID:529@bwa-calendar
 DTSTART;VALUE=DATE:20251027
 DTEND;VALUE=DATE:20251101
 SUMMARY:BWA: Autumn Half Term
-DESCRIPTION:School closed for half term holiday.\n\nSchool closed for half term holiday.
+DESCRIPTION:Autumn half term holiday.\n\nAutumn half term holiday.
 CATEGORIES:HOLIDAY
-END:VEVENT
-BEGIN:VEVENT
-UID:531@bwa-calendar
-DTSTART;VALUE=DATE:20260105
-DTEND;VALUE=DATE:20260106
-SUMMARY:BWA R: INSET Day
-DESCRIPTION:School closed to children for staff training.\n\nSchool closed to children for staff training.
-CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
-UID:533@bwa-calendar
-DTSTART;VALUE=DATE:20260413
-DTEND;VALUE=DATE:20260414
-SUMMARY:BWA R: INSET Day
-DESCRIPTION:School closed to children for staff training.\n\nSchool closed to children for staff training.
-CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:539@bwa-calendar
@@ -299,12 +275,36 @@ DESCRIPTION:Join us for our very own take on the world's most famous tournament.
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
+UID:531@bwa-calendar
+DTSTART;VALUE=DATE:20260105
+DTEND;VALUE=DATE:20260106
+SUMMARY:BWA R: INSET Day
+DESCRIPTION:School closed to children for INSET training.\n\nSchool closed to children for INSET training.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:533@bwa-calendar
+DTSTART;VALUE=DATE:20260413
+DTEND;VALUE=DATE:20260414
+SUMMARY:BWA R: INSET Day
+DESCRIPTION:School closed to children for INSET training.\n\nSchool closed to children for INSET training.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
 UID:543@bwa-calendar
 DTSTART;VALUE=DATE:20260709
 DTEND;VALUE=DATE:20260710
 SUMMARY:BWA: PTA Art Exhibition
 DESCRIPTION:School-wide PTA Art Exhibition.\n\nPTA Art Exhibition.
 CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:527@bwa-calendar
+DTSTART;VALUE=DATE:20250901
+DTEND;VALUE=DATE:20250903
+SUMMARY:BWA R: INSET Day
+DESCRIPTION:School closed to children for INSET training.\n\nSchool closed to children for INSET training.
+CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:560@bwa-calendar
