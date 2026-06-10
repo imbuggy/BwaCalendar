@@ -331,20 +331,20 @@ DESCRIPTION:Summer reports for English stream.\n\nSummer reports for English str
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:553@bwa-calendar
-DTSTART;VALUE=DATE:20260713
-DTEND;VALUE=DATE:20260715
-SUMMARY:BWA Y6: English Stream Parent Teacher meetings
-DESCRIPTION:Parent Teacher meetings for English stream.\n\nEnglish Stream Parent Teacher meetings.
-CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
 UID:578@bwa-calendar
 DTSTART;VALUE=DATE:20260703
 DTEND;VALUE=DATE:20260705
 SUMMARY:BWA: Hair Day
 DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
 CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
+UID:553@bwa-calendar
+DTSTART;VALUE=DATE:20260713
+DTEND;VALUE=DATE:20260715
+SUMMARY:BWA Y6: English Stream Parent Teacher meetings
+DESCRIPTION:Parent Teacher meetings for English stream.\n\nEnglish Stream Parent Teacher meetings.
+CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:565@bwa-calendar
