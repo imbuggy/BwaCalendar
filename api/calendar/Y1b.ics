@@ -323,6 +323,14 @@ DESCRIPTION:Parents are invited to visit classrooms to share languages other tha
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
+UID:549@bwa-calendar
+DTSTART;VALUE=DATE:20260619
+DTEND;VALUE=DATE:20260620
+SUMMARY:BWA Y1b: Sports Day -  Reception & Year 1
+DESCRIPTION:Sports Day for Reception and Year 1 students.\n\nSports Day for Rec./Year 1 (am).
+CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
 UID:578@bwa-calendar
 DTSTART;VALUE=DATE:20260703
 DTEND;VALUE=DATE:20260705
@@ -413,7 +421,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:598@bwa-calendar
 DTSTART;VALUE=DATE:20260621
-DTEND;VALUE=DATE:20260623
+DTEND;VALUE=DATE:20260622
 SUMMARY:BWA: APL Summer Kermesse
 DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. \nMore details to come!
 CATEGORIES:PTA
