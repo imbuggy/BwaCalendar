@@ -71,7 +71,7 @@ UID:452@bwa-calendar
 DTSTART;VALUE=DATE:20260717
 DTEND;VALUE=DATE:20260718
 SUMMARY:BWA Y6: Last day of Summer Term 2 for English Stream
-DESCRIPTION:Last day of term for English Stream.\n\nLast day of Summer Term 2 for English Stream.
+DESCRIPTION:Last day of Summer Term 2 for English Stream.\n\nLast day of Summer Term 2 for English Stream - Friday 17 July.
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
@@ -211,14 +211,6 @@ DESCRIPTION:School closed to children for staff training.\n\nSchool closed to ch
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:523@bwa-calendar
-DTSTART;VALUE=DATE:20260626
-DTEND;VALUE=DATE:20260627
-SUMMARY:BWA Y6: Father's Day Celebration
-DESCRIPTION:Father's Day event for specified classes.\n\nFather’s Day Event for Year 5, 6, RB, 4B and 5B.
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:530@bwa-calendar
 DTSTART;VALUE=DATE:20251103
 DTEND;VALUE=DATE:20251104
@@ -233,6 +225,14 @@ DTEND;VALUE=DATE:20260221
 SUMMARY:BWA: Spring Half Term
 DESCRIPTION:Spring half term holiday.\n\nSpring half term holiday.
 CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:523@bwa-calendar
+DTSTART;VALUE=DATE:20260626
+DTEND;VALUE=DATE:20260627
+SUMMARY:BWA Y6: Father's Day Celebration
+DESCRIPTION:Father's Day celebration event for specified classes.\n\nFather's Day Event for Year 5, 6, RB, 4B and 5B.
+CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:529@bwa-calendar
@@ -287,7 +287,7 @@ UID:543@bwa-calendar
 DTSTART;VALUE=DATE:20260709
 DTEND;VALUE=DATE:20260710
 SUMMARY:BWA: PTA Art Exhibition
-DESCRIPTION:School-wide PTA Art Exhibition.\n\nPTA Art Exhibition.
+DESCRIPTION:PTA Art Exhibition.\n\nPTA Art Exhibition.
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
@@ -327,7 +327,7 @@ UID:552@bwa-calendar
 DTSTART;VALUE=DATE:20260710
 DTEND;VALUE=DATE:20260711
 SUMMARY:BWA Y6: Summer reports due (English Stream)
-DESCRIPTION:Summer reports for English stream.\n\nSummer reports for English stream.
+DESCRIPTION:Summer reports for English stream are due.\n\nSummer reports for English stream - due Friday 10 July.
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
@@ -335,7 +335,7 @@ UID:553@bwa-calendar
 DTSTART;VALUE=DATE:20260713
 DTEND;VALUE=DATE:20260715
 SUMMARY:BWA Y6: English Stream Parent Teacher meetings
-DESCRIPTION:Parent Teacher meetings for English stream.\n\nEnglish Stream Parent Teacher meetings.
+DESCRIPTION:Parent Teacher meetings for English Stream.\n\nEnglish Stream Parent Teacher meetings – Monday 13 & Tuesday 14 July.
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
@@ -385,14 +385,6 @@ DTEND;VALUE=DATE:20260902
 SUMMARY:BWA: Wandsworth Music -  Instrumental Lessons Sign-up
 DESCRIPTION:Information regarding instrumental and vocal music lessons for the upcoming Autumn 2026 term.\n\nWandsworth Music is offering small group and individual lessons for the next school year. Parents can sign up via the Wandsworth Music website. The Music Academy also offers various ensembles on Saturdays, Wednesdays, and Tuesdays at Burntwood School and West Hill Primary School.
 CATEGORIES:ARTS
-END:VEVENT
-BEGIN:VEVENT
-UID:597@bwa-calendar
-DTSTART;VALUE=DATE:20260625
-DTEND;VALUE=DATE:20260626
-SUMMARY:BWA Y6: Sports Day -  Years 4, 5 and 6
-DESCRIPTION:Sports Day for Years 4, 5 and 6.\n\nSports Day for Years 4, 5 and 6.
-CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
 UID:600@bwa-calendar

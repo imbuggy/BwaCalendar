@@ -87,7 +87,7 @@ UID:451@bwa-calendar
 DTSTART;VALUE=DATE:20260715
 DTEND;VALUE=DATE:20260716
 SUMMARY:BWA Y2b: Last day of Summer Term 2 for Bilingual Stream
-DESCRIPTION:Last day of term for Bilingual Stream.\n\nLast day of Summer Term 2 for Bilingual Stream.
+DESCRIPTION:Last day of Summer Term 2 for Bilingual Stream.\n\nLast day of Summer Term 2 for Bilingual Stream - Wednesday 15 July.
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
@@ -219,20 +219,20 @@ DESCRIPTION:Basketball club is cancelled today due to staff sickness.\n\nBasketb
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
-UID:522@bwa-calendar
-DTSTART;VALUE=DATE:20260617
-DTEND;VALUE=DATE:20260618
-SUMMARY:BWA Y2b: Father's Day Celebration
-DESCRIPTION:Father's Day event for specified classes.\n\nFather’s Day Event for N, R, Yrs 1-4, 1B, 2B, 3B & 6B.
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:532@bwa-calendar
 DTSTART;VALUE=DATE:20260216
 DTEND;VALUE=DATE:20260221
 SUMMARY:BWA: Spring Half Term
 DESCRIPTION:Spring half term holiday.\n\nSpring half term holiday.
 CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:522@bwa-calendar
+DTSTART;VALUE=DATE:20260617
+DTEND;VALUE=DATE:20260618
+SUMMARY:BWA Y2b: Father's Day Celebration
+DESCRIPTION:Father's Day celebration event for specified classes.\n\nFather's Day celebration event for N, R, Yrs. 1-4, 1B, 2B, 3B & 6B.
+CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:529@bwa-calendar
@@ -271,7 +271,7 @@ UID:543@bwa-calendar
 DTSTART;VALUE=DATE:20260709
 DTEND;VALUE=DATE:20260710
 SUMMARY:BWA: PTA Art Exhibition
-DESCRIPTION:School-wide PTA Art Exhibition.\n\nPTA Art Exhibition.
+DESCRIPTION:PTA Art Exhibition.\n\nPTA Art Exhibition.
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
