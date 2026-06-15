@@ -251,14 +251,6 @@ DESCRIPTION:Autumn half term holiday.\n\nAutumn half term holiday.
 CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
-UID:537@bwa-calendar
-DTSTART;VALUE=DATE:20260713
-DTEND;VALUE=DATE:20260714
-SUMMARY:BWA Y4: Music Performance -  Year 3 & 4
-DESCRIPTION:Summer music performance for Year 3 and Year 4.\n\nSummer music performance for Year 3 and Year 4 starting at 2:15pm.
-CATEGORIES:ARTS
-END:VEVENT
-BEGIN:VEVENT
 UID:539@bwa-calendar
 DTSTART;VALUE=DATE:20260508
 DTEND;VALUE=DATE:20260509
@@ -289,6 +281,14 @@ DTEND;VALUE=DATE:20260414
 SUMMARY:BWA Y4: INSET Day
 DESCRIPTION:School closed to children for INSET training.\n\nSchool closed to children for INSET training.
 CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:537@bwa-calendar
+DTSTART;VALUE=DATE:20260713
+DTEND;VALUE=DATE:20260714
+SUMMARY:BWA Y4: Music Performance -  Year 3 & 4
+DESCRIPTION:Music performance for Year 3 and 4 students.\n\nMusic performance for Year 3 and 4 students at 2:15pm.
+CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
 UID:543@bwa-calendar
@@ -393,6 +393,22 @@ DTEND;VALUE=DATE:20260609
 SUMMARY:BWA: Cancellation of Booster Sessions
 DESCRIPTION:Booster sessions for the remainder of the term are cancelled due to staff work commitments.\n\nBooster sessions for the rest of the term will not be running due to other work commitments. We apologize for the inconvenience.
 CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:614@bwa-calendar
+DTSTART;VALUE=DATE:20260629
+DTEND;VALUE=DATE:20260630
+SUMMARY:BWA: Toy Swap Shop -  Donation Window
+DESCRIPTION:Bring in your gently used toys for the Toy Swap Shop.\n\nChildren are invited to donate up to 1 good-quality toy. Please ensure toys are clean, complete, and working. No soft toys or puzzles with missing pieces.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:615@bwa-calendar
+DTSTART;VALUE=DATE:20260707
+DTEND;VALUE=DATE:20260708
+SUMMARY:BWA: Toy Swap Shop Event
+DESCRIPTION:Toy Swap Shop event in the lower hall.\n\nToy Swap Shop event taking place after school in the lower hall. Children can use tokens received for toy donations.
+CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:609@bwa-calendar
