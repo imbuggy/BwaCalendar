@@ -12,6 +12,8 @@ import time
 import io
 import requests
 from bs4 import BeautifulSoup
+import subprocess
+import tempfile
 
 # New dependencies for attachment parsing (User must install pypdf and python-docx)
 try:
@@ -276,7 +278,7 @@ Logic:
 - SOURCES: Events can have multiple sources in the 'sources' array. When updating an event, retain all existing sources and append the new source.
 - PRIORITY EVENTS: Always mark Parent-Teacher Meetings, Consultations, and Individual Appointments as "is_deadline": true.
 - "X Stream finishes at..." -> Split into separate events per stream.
-- MAX DURATION: Events MUST NOT stretch more than 7 days. If an event in the source material covers a longer period (e.g. 'Summer Term', 'Extra-curricular clubs start April-July'), you MUST only extract the START DATE and set 'event_date_end' to null.
+- CLUBS/TERM EVENTS EXTRACTION: Events MUST NOT stretch more than 7 days. If the source text specifies a long recurring term or multi-week club range (e.g., 'Extra-curricular clubs start 20 April - 10 July 2026'), you MUST split it into TWO separate single-day events: a 'Start' event on the start date (20 April 2026), and an 'End' event on the end date (10 July 2026), both with 'event_date_end': null. NEVER let term/club duration events stretch across multiple weeks.
 - SPECIAL EVENT: 'International families day' is a special event. You MUST:
   * Append ' (Dress up required)' to the title if not already present.
   * Mention 'Dress up is required' in the summary and full_details.
@@ -296,6 +298,29 @@ def extract_docx_text(payload):
         return " ".join([para.text for para in doc.paragraphs])
     except Exception as e:
         return f"[DOCX Error: {e}]"
+
+def try_convert_docx_to_pdf(docx_payload):
+    """Attempts to convert a .docx payload to a PDF payload using headlessly running LibreOffice."""
+    try:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            docx_path = os.path.join(temp_dir, "temp.docx")
+            with open(docx_path, "wb") as f_in:
+                f_in.write(docx_payload)
+            
+            # Execute headless LibreOffice conversion
+            result = subprocess.run([
+                "libreoffice", "--headless", "--convert-to", "pdf",
+                "--outdir", temp_dir, docx_path
+            ], stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=20)
+            
+            if result.returncode == 0:
+                pdf_path = os.path.join(temp_dir, "temp.pdf")
+                if os.path.exists(pdf_path):
+                    with open(pdf_path, "rb") as f_out:
+                        return f_out.read()
+    except Exception as e:
+        print(f"try_convert_docx_to_pdf encountered/not found: {e}")
+    return None
 
 def fetch_emails():
     """Returns a list of email IDs to process."""
@@ -340,7 +365,8 @@ def parse_single_email(mail, e_id):
             date_str = msg['Date']
             
             body = ""
-            attachments_text = ""
+            attachments = []  # List of dicts for processed attachments
+            attachments_text_for_trust = ""
             
             if msg.is_multipart():
                 for part in msg.walk():
@@ -351,10 +377,40 @@ def parse_single_email(mail, e_id):
                         filename = part.get_filename()
                         if filename:
                             payload = part.get_payload(decode=True)
-                            if filename.lower().endswith(".pdf"):
-                                attachments_text += f"\n[ATTACHMENT: {filename}]\n" + extract_pdf_text(payload)
-                            elif filename.lower().endswith(".docx"):
-                                attachments_text += f"\n[ATTACHMENT: {filename}]\n" + extract_docx_text(payload)
+                            if not payload:
+                                continue
+                            
+                            filename_lower = filename.lower()
+                            attachments_text_for_trust += f" [ATTACHMENT: {filename}]"
+                            
+                            if filename_lower.endswith(".pdf"):
+                                # Native PDF data for Gemini Multimodal (Path B)
+                                attachments.append({
+                                    "filename": filename,
+                                    "data": payload,
+                                    "mime_type": "application/pdf"
+                                })
+                            elif filename_lower.endswith(".docx"):
+                                # Modernized conversion block (Path B)
+                                # First, try converting to PDF headlessly using LibreOffice
+                                pdf_payload = try_convert_docx_to_pdf(payload)
+                                if pdf_payload:
+                                    print(f"Successfully converted docx attachment '{filename}' to PDF using LibreOffice!")
+                                    attachments.append({
+                                        "filename": filename.replace(".docx", ".pdf"),
+                                        "data": pdf_payload,
+                                        "mime_type": "application/pdf"
+                                    })
+                                else:
+                                    # Fallback: extract text using python-docx
+                                    print(f"LibreOffice not available/failed. Falling back to python-docx text extraction for '{filename}'")
+                                    text_extracted = extract_docx_text(payload)
+                                    attachments_text_for_trust += f"\n{text_extracted}"
+                                    attachments.append({
+                                        "filename": filename,
+                                        "text_fallback": text_extracted,
+                                        "mime_type": "text/plain"
+                                    })
                     elif content_type == "text/plain":
                         try:
                             body += part.get_payload(decode=True).decode()
@@ -374,7 +430,7 @@ def parse_single_email(mail, e_id):
             
             from_header_str = msg.get('From', '').lower()
             reply_to_str = msg.get('Reply-To', '').lower()
-            content_lower = (subject + " " + body + " " + attachments_text).lower()
+            content_lower = (subject + " " + body + " " + attachments_text_for_trust).lower()
             
             admin_id_1 = "".join([chr(x) for x in [97, 100, 109, 105, 110, 64, 119, 105, 120, 46, 119, 97, 110, 100, 115, 119, 111, 114, 116, 104, 46, 115, 99, 104, 46, 117, 107]])
             admin_id_2 = "".join([chr(x) for x in [97, 100, 109, 105, 110, 64, 98, 101, 108, 108, 101, 118, 105, 108, 108, 101, 119, 105, 120, 46, 113, 49, 101, 46, 111, 114, 103, 46, 117, 107]])
@@ -394,7 +450,8 @@ def parse_single_email(mail, e_id):
                 "subject": subject,
                 "from": from_header_str,
                 "date": date_str,
-                "content": body + "\n" + attachments_text
+                "content": body,
+                "attachments": attachments
             }
     return None
 
@@ -536,33 +593,79 @@ def get_existing_events():
     return response.data
 
 def process_batch(items, existing_db):
-    """Processes multiple items in a single Gemini call to save credits."""
+    """Processes multiple items in a single Gemini call to save credits, 
+    natively utilizing PDF attachments as multimodal inputs where possible.
+    """
     if not items: return []
     
-    print(f"Batch processing {len(items)} items to save AI credits...")
+    print(f"Batch processing {len(items)} items to save AI credits with direct PDF processing...")
     
-    # Construct a single prompt for all items
-    # Provide upcoming events for context (up to 200) to help AI identify matches
+    # 1. Fetch upcoming database state for deduplication/update checks
     now_str = datetime.now().strftime("%Y-%m-%d")
     upcoming = [e for e in existing_db if e.get('event_date', '') >= now_str]
     db_summary = [{"t": e['title'], "d": e['event_date'], "id": e['id']} for e in upcoming[:200]]
     
-    batch_prompt = f"Existing Database Snippet (Upcoming Events): {json.dumps(db_summary)}\n\n"
-    batch_prompt += "INSTRUCTIONS: If a new item matches an existing entry (same date and same/similar title), use action='update' and provide the match_id.\n"
-    batch_prompt += "Note: Holidays like 'Summer Half Term' are often week-long; if you find a match starting on the same date, MERGE them.\n\n"
+    # 2. Build the contents array
+    contents = []
+    
+    # 2a. Add system and database instructions
+    instructions = f"Existing Database Snippet (Upcoming Events): {json.dumps(db_summary)}\n\n"
+    instructions += (
+        "INSTRUCTIONS: For each item listed below, extract its school calendar events.\n"
+        "If a new event matches an existing entry (same date and same/similar title), "
+        "use action='update' and provide the match_id. Otherwise, use action='insert'.\n"
+        "Note: Holidays like 'Summer Half Term' are often week-long; if you find a match starting on the same date, MERGE them.\n"
+        "For items that have a PDF attachment, the event details are inside the native PDF block following that item.\n\n"
+    )
+    contents.append(instructions)
+    
+    # 2b. Add each item's text details and reference to inline parts
     for i, item in enumerate(items):
-        batch_prompt += f"--- ITEM {i+1} ---\n"
-        batch_prompt += f"Source: {item.get('subject')}\n"
-        batch_prompt += f"Date: {item.get('date')}\n"
-        batch_prompt += f"Content: {item.get('content')[:6000]}\n\n"
-
+        item_intro = f"--- ITEM {i+1} ---\n"
+        item_intro += f"Source Subject: {item.get('subject')}\n"
+        item_intro += f"Email Date: {item.get('date')}\n"
+        
+        # Determine if there are any binary PDF attachments in this item
+        attachments = item.get('attachments', [])
+        pdf_attachments = [att for att in attachments if att.get('mime_type') == 'application/pdf']
+        plain_attachments = [att for att in attachments if att.get('mime_type') != 'application/pdf']
+        
+        # Include plain text body
+        item_intro += f"Email Body:\n{item.get('content')[:5000]}\n"
+        
+        # If there are manual fallback plain text attachments, append them here
+        for patt in plain_attachments:
+            item_intro += f"\n[Attachment Text Fallback: {patt.get('filename')}]:\n{patt.get('text_fallback', '')[:5000]}\n"
+            
+        if pdf_attachments:
+            # We instruct the model that the PDF(s) following immediately correspond to this item
+            item_intro += "\nATTACHMENTS: The key calendar events and dates are located in the following attached PDF document(s). Please read them natively:\n"
+            contents.append(item_intro)
+            
+            # Append each PDF natively as a bytes Part
+            for att in pdf_attachments:
+                try:
+                    pdf_part = types.Part.from_bytes(
+                        data=att['data'],
+                        mime_type="application/pdf"
+                    )
+                    contents.append(pdf_part)
+                except Exception as e:
+                    print(f"Error creating PDF Part for attachment: {e}")
+            
+            # Append closing marker for this item
+            contents.append(f"\n--- END OF ITEM {i+1} ---\n\n")
+        else:
+            item_intro += f"\n--- END OF ITEM {i+1} ---\n\n"
+            contents.append(item_intro)
+            
     try:
-        response = safe_generate_content(contents=batch_prompt)
+        response = safe_generate_content(contents=contents)
         text = response.text.strip().replace('```json', '').replace('```', '')
         results = json.loads(text)
         return results if isinstance(results, list) else [results]
     except Exception as e:
-        print(f"Batch processing failed: {e}")
+        print(f"Batch processing failed under Path B: {e}")
         return None
 
 def sync_database(results):
@@ -857,6 +960,95 @@ def generate_static_ical_files():
     except Exception as e:
         print(f"Error generating static iCal files: {e}")
 
+def split_multi_week_events():
+    """Fetches all events from the database. For any event spanning > 7 days that is a term or clubs event,
+    splits it into a 'Start' event and an 'End' event to prevent calendar pollution on a single-view calendar.
+    """
+    print("Running multi-week event splitting pass...")
+    try:
+        res = supabase.table("events").select("*").execute()
+        events = res.data or []
+        for e in events:
+            if e.get('type') == 'SYSTEM_META':
+                continue
+            
+            start_str = e.get('event_date')
+            end_str = e.get('event_date_end')
+            if not start_str or not end_str:
+                continue
+            
+            try:
+                start_dt = datetime.strptime(start_str, "%Y-%m-%d")
+                end_dt = datetime.strptime(end_str, "%Y-%m-%d")
+                diff = (end_dt - start_dt).days
+                
+                if diff > 7:
+                    title = e.get('title', '')
+                    title_lower = title.lower()
+                    
+                    is_candidate = any(kw in title_lower for kw in ["club", "extracurricular", "extra-curricular", "after-school", "after school", "term"])
+                    
+                    if is_candidate:
+                        print(f"Splitting multi-week candidate: '{title}' ({start_str} to {end_str})")
+                        
+                        # Define End Event title
+                        end_title = title
+                        if "start" in title_lower:
+                            end_title = re.sub(r'start', 'End', title, flags=re.I)
+                        elif "starts" in title_lower:
+                            end_title = re.sub(r'starts', 'Ends', title, flags=re.I)
+                        else:
+                            end_title = f"{title} (End)"
+                        
+                        # Generate display dates
+                        formatted_start = generate_formatted_date(start_str)
+                        formatted_end = generate_formatted_date(end_str)
+                        
+                        # Create end event copy
+                        end_event = {
+                            "title": end_title,
+                            "event_date": end_str,
+                            "event_date_end": None,
+                            "formatted_date_display": formatted_end,
+                            "time_value": e.get('time_value'),
+                            "time_type": e.get('time_type', 'all-day'),
+                            "summary": end_title,
+                            "full_details": f"End of the term/club period: {title}. Original range: {start_str} to {end_str}",
+                            "type": e.get('type', 'OTHER'),
+                            "status": "approved",
+                            "classes": e.get('classes', ["All"]),
+                            "source_title": e.get('source_title', 'Database Auto-Splitter'),
+                            "source_date": datetime.now().strftime("%Y-%m-%d"),
+                            "is_deadline": e.get('is_deadline', False),
+                            "deadline_desc": e.get('deadline_desc'),
+                            "links": e.get('links', '[]'),
+                            "sources": e.get('sources', '[]')
+                        }
+                        
+                        # Update original event's end date to None
+                        orig_updates = {
+                            "event_date_end": None,
+                            "formatted_date_display": formatted_start
+                        }
+                        supabase.table("events").update(orig_updates).eq("id", e['id']).execute()
+                        print(f"Updated original event ID {e['id']} end date to Null.")
+                        
+                        # Check first if an identical end event exists to be idempotent
+                        match_id = find_match(end_title, end_str, events)
+                        if not match_id:
+                            supabase.table("events").insert(end_event).execute()
+                            print(f"Created end event: '{end_title}' on {end_str}")
+                        else:
+                            print(f"End event already exists (ID: {match_id}), skipping insertion.")
+                    else:
+                        print(f"Event '{title}' spans > 7 days but is not a club/term candidate. Removing end date to prevent pollution.")
+                        supabase.table("events").update({"event_date_end": None}).eq("id", e['id']).execute()
+            except Exception as ex:
+                print(f"Error processing event ID {e.get('id')}: {ex}")
+                continue
+    except Exception as ex:
+        print(f"Error in split_multi_week_events: {ex}")
+
 if __name__ == "__main__":
     if not all([EMAIL_USER, EMAIL_PASS, GEMINI_API_KEY, SUPABASE_URL, SUPABASE_KEY]):
         print("Missing environment variables.")
@@ -934,6 +1126,9 @@ if __name__ == "__main__":
             update_system_meta({"last_term_check": now.strftime("%Y-%m-%d")})
     else:
         print("Skipping term dates check (already done this month).")
+
+    # Run splitting pass to split multi-week clubs or term ranges
+    split_multi_week_events()
 
     # Run Deduplication Pass
     deduplicate_database()
