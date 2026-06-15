@@ -339,14 +339,6 @@ DESCRIPTION:Parents are invited to a welcome reception and classroom activities.
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:550@bwa-calendar
-DTSTART;VALUE=DATE:20260619
-DTEND;VALUE=DATE:20260620
-SUMMARY:BWA Y3b: Sports Day -  Year 2 & 3
-DESCRIPTION:Sports Day for Year 2 and Year 3 students.\n\nSports Day for Years 2/3 (pm).
-CATEGORIES:SPORTS
-END:VEVENT
-BEGIN:VEVENT
 UID:592@bwa-calendar
 DTSTART;VALUE=DATE:20260901
 DTEND;VALUE=DATE:20260902
@@ -376,6 +368,14 @@ DTSTART;VALUE=DATE:20260710
 DTEND;VALUE=DATE:20260711
 SUMMARY:BWA: Summer Term Extra-Curricular Clubs End
 DESCRIPTION:Summer Term Extra-Curricular Clubs End\n\nEnd of the term/club period: Summer Term Extra-Curricular Clubs Start. Original range: 2026-04-20 to 2026-07-10
+CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
+UID:613@bwa-calendar
+DTSTART;VALUE=DATE:20260625
+DTEND;VALUE=DATE:20260626
+SUMMARY:BWA Y3b: Sports Day -  Year 4, 5, 6 & Bilingual Classes
+DESCRIPTION:Sports Day for Year 4, 5, 6 and Bilingual classes on Clapham Common.\n\nSports Day for Year 4, 5, 6 and Bilingual classes. Pupils to be dropped off at school at usual time. Parents to wait outside school at 9:00am to walk with classes to the common. Pupils should wear trainers, navy shorts/jogging bottoms/leggings, and house colour T-shirt. No jewellery, long hair tied back. Bring water bottle, hat, and sun cream.
 CATEGORIES:SPORTS
 END:VEVENT
 END:VCALENDAR

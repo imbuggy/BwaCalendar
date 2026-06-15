@@ -291,14 +291,6 @@ DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time 
 CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
-UID:549@bwa-calendar
-DTSTART;VALUE=DATE:20260619
-DTEND;VALUE=DATE:20260620
-SUMMARY:BWA Rb: Sports Day -  Reception & Year 1
-DESCRIPTION:Sports Day for Reception and Year 1 students.\n\nSports Day for Reception and Year 1 (am).
-CATEGORIES:SPORTS
-END:VEVENT
-BEGIN:VEVENT
 UID:565@bwa-calendar
 DTSTART;VALUE=DATE:20260521
 DTEND;VALUE=DATE:20260522
