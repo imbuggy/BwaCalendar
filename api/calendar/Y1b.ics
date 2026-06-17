@@ -331,6 +331,14 @@ DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time 
 CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
+UID:549@bwa-calendar
+DTSTART;VALUE=DATE:20260619
+DTEND;VALUE=DATE:20260620
+SUMMARY:BWA Y1b: Sports Day -  Reception & Year 1 (including Y1b)
+DESCRIPTION:Sports Day for Reception and Year 1 classes on Clapham Common.\n\nSports Day for Reception and Year 1. Pupils to be dropped off at school at usual time. Parents to wait outside school at 9:00am to walk with classes to the common. Pupils should wear trainers, navy shorts/jogging bottoms/leggings, and house colour T-shirt. No jewellery, long hair tied back. Bring water bottle, hat, and sun cream. Sports Day for Y1b students. Please refer to the class list for team colours.
+CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
 UID:565@bwa-calendar
 DTSTART;VALUE=DATE:20260521
 DTEND;VALUE=DATE:20260522
@@ -440,14 +448,6 @@ DTSTART;VALUE=DATE:20260710
 DTEND;VALUE=DATE:20260711
 SUMMARY:BWA: Summer Term Extra-Curricular Clubs End
 DESCRIPTION:Summer Term Extra-Curricular Clubs End\n\nEnd of the term/club period: Summer Term Extra-Curricular Clubs Start. Original range: 2026-04-20 to 2026-07-10
-CATEGORIES:SPORTS
-END:VEVENT
-BEGIN:VEVENT
-UID:613@bwa-calendar
-DTSTART;VALUE=DATE:20260625
-DTEND;VALUE=DATE:20260626
-SUMMARY:BWA Y1b: Sports Day -  Year 4, 5, 6 & Bilingual Classes
-DESCRIPTION:Sports Day for Year 4, 5, 6 and Bilingual classes on Clapham Common.\n\nSports Day for Year 4, 5, 6 and Bilingual classes. Pupils to be dropped off at school at usual time. Parents to wait outside school at 9:00am to walk with classes to the common. Pupils should wear trainers, navy shorts/jogging bottoms/leggings, and house colour T-shirt. No jewellery, long hair tied back. Bring water bottle, hat, and sun cream.
 CATEGORIES:SPORTS
 END:VEVENT
 END:VCALENDAR

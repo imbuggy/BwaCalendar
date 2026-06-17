@@ -382,7 +382,7 @@ BEGIN:VEVENT
 UID:613@bwa-calendar
 DTSTART;VALUE=DATE:20260625
 DTEND;VALUE=DATE:20260626
-SUMMARY:BWA Y4b: Sports Day -  Year 4, 5, 6 & Bilingual Classes
+SUMMARY:BWA Y4b: Sports Day -  Year 4, 5 & 6
 DESCRIPTION:Sports Day for Year 4, 5, 6 and Bilingual classes on Clapham Common.\n\nSports Day for Year 4, 5, 6 and Bilingual classes. Pupils to be dropped off at school at usual time. Parents to wait outside school at 9:00am to walk with classes to the common. Pupils should wear trainers, navy shorts/jogging bottoms/leggings, and house colour T-shirt. No jewellery, long hair tied back. Bring water bottle, hat, and sun cream.
 CATEGORIES:SPORTS
 END:VEVENT
