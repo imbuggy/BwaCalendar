@@ -315,14 +315,6 @@ DESCRIPTION:Parent Gym will not take place this Thursday due to SATs exams.\n\nP
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
-UID:578@bwa-calendar
-DTSTART;VALUE=DATE:20260703
-DTEND;VALUE=DATE:20260705
-SUMMARY:BWA: Hair Day
-DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
 UID:552@bwa-calendar
 DTSTART;VALUE=DATE:20260710
 DTEND;VALUE=DATE:20260711
@@ -345,6 +337,14 @@ DTEND;VALUE=DATE:20260620
 SUMMARY:BWA R: Sports Day -  Reception & Year 1 (including Y1b)
 DESCRIPTION:Sports Day for Reception and Year 1 classes on Clapham Common.\n\nSports Day for Reception and Year 1. Pupils to be dropped off at school at usual time. Parents to wait outside school at 9:00am to walk with classes to the common. Pupils should wear trainers, navy shorts/jogging bottoms/leggings, and house colour T-shirt. No jewellery, long hair tied back. Bring water bottle, hat, and sun cream. Sports Day for Y1b students. Please refer to the class list for team colours.
 CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
+UID:578@bwa-calendar
+DTSTART;VALUE=DATE:20260703
+DTEND;VALUE=DATE:20260705
+SUMMARY:BWA: Hair Day
+DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
+CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
 UID:565@bwa-calendar
@@ -411,19 +411,19 @@ DESCRIPTION:Toy Swap Shop event in the lower hall.\n\nToy Swap Shop event taking
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:609@bwa-calendar
-DTSTART;VALUE=DATE:20260621
-DTEND;VALUE=DATE:20260623
-SUMMARY:BWA: APL Summer Kermesse
-DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. \nMore details to come!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
 UID:612@bwa-calendar
 DTSTART;VALUE=DATE:20260710
 DTEND;VALUE=DATE:20260711
 SUMMARY:BWA: Summer Term Extra-Curricular Clubs End
 DESCRIPTION:Summer Term Extra-Curricular Clubs End\n\nEnd of the term/club period: Summer Term Extra-Curricular Clubs Start. Original range: 2026-04-20 to 2026-07-10
 CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
+UID:609@bwa-calendar
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260623
+SUMMARY:BWA: APL Summer Kermesse
+DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. \nMore details to come!
+CATEGORIES:PTA
 END:VEVENT
 END:VCALENDAR
