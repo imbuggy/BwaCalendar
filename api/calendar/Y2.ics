@@ -379,14 +379,6 @@ DESCRIPTION:Parents are invited to a welcome reception and classroom activities.
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:550@bwa-calendar
-DTSTART;VALUE=DATE:20260619
-DTEND;VALUE=DATE:20260620
-SUMMARY:BWA Y2: Sports Day -  Year 2 & 3
-DESCRIPTION:Sports Day for Year 2 and Year 3 students.\n\nSports Day for Year 2 and Year 3 students. Reminder: Students are assigned to colour teams (Yellow, Red, Blue, Green).
-CATEGORIES:SPORTS
-END:VEVENT
-BEGIN:VEVENT
 UID:592@bwa-calendar
 DTSTART;VALUE=DATE:20260901
 DTEND;VALUE=DATE:20260902

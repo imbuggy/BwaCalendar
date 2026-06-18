@@ -639,15 +639,15 @@ UID:586@bwa-calendar
 DTSTART;VALUE=DATE:20260625
 DTEND;VALUE=DATE:20260626
 SUMMARY:BWA Y1b: End-of-year show
-DESCRIPTION:End-of-year show featuring circus workshop skills, folk dances, and songs.\n\nEnd-of-year show: the pupils will show you what they’ve learnt to do this year in the circus workshop with Geneviève and will perform some folk dances and songs.
+DESCRIPTION:End-of-year circus skills performance for Y1b (GSB).\n\nThe performance will take place in the hall on the second floor. Children should wear a brightly coloured T-shirt and blue or black trousers or shorts. No skirts or dresses.
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
 UID:550@bwa-calendar
 DTSTART;VALUE=DATE:20260619
 DTEND;VALUE=DATE:20260620
-SUMMARY:BWA Y2: Sports Day -  Year 2 & 3
-DESCRIPTION:Sports Day for Year 2 and Year 3 students.\n\nSports Day for Year 2 and Year 3 students. Reminder: Students are assigned to colour teams (Yellow, Red, Blue, Green).
+SUMMARY:BWA Y3: Sports Day -  Year 2 & 3
+DESCRIPTION:Sports Day for Year 3 and 3B. Volunteers needed to walk with classes to the common.\n\nParents and carers are requested to meet at the school at 12:30pm to help supervise the journey to the common. Please confirm availability by email by the end of the school day today.
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
