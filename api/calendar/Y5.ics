@@ -71,7 +71,7 @@ UID:452@bwa-calendar
 DTSTART;VALUE=DATE:20260717
 DTEND;VALUE=DATE:20260718
 SUMMARY:BWA Y5: Last day of Summer Term 2 for English Stream
-DESCRIPTION:Last day of Summer Term 2 for English Stream.\n\nLast day of Summer Term 2 for English Stream - Friday 17 July.
+DESCRIPTION:Last day of Summer Term 2 for English Stream.\n\nLast day of Summer Term 2 for English Stream.
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
@@ -238,8 +238,8 @@ BEGIN:VEVENT
 UID:523@bwa-calendar
 DTSTART;VALUE=DATE:20260626
 DTEND;VALUE=DATE:20260627
-SUMMARY:BWA Y5: Father's Day Celebration
-DESCRIPTION:Father's Day celebration event for specified classes.\n\nFather's Day Event for Year 5, 6, RB, 4B and 5B.
+SUMMARY:BWA Y5: Father’s Day Event for Year 5, 6, RB, 4B and 5B
+DESCRIPTION:Father’s Day Event for Year 5, 6, RB, 4B and 5B.\n\nFather’s Day Event for Year 5, 6, RB, 4B and 5B.
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
@@ -291,20 +291,20 @@ DESCRIPTION:Music performance for Year 5 and 6 students.\n\nMusic performance fo
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
-UID:543@bwa-calendar
-DTSTART;VALUE=DATE:20260709
-DTEND;VALUE=DATE:20260710
-SUMMARY:BWA: PTA Art Exhibition
-DESCRIPTION:PTA Art Exhibition.\n\nPTA Art Exhibition.
-CATEGORIES:ARTS
-END:VEVENT
-BEGIN:VEVENT
 UID:527@bwa-calendar
 DTSTART;VALUE=DATE:20250901
 DTEND;VALUE=DATE:20250903
 SUMMARY:BWA Y5: INSET Day
 DESCRIPTION:School closed to children for INSET training.\n\nSchool closed to children for INSET training.
 CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:543@bwa-calendar
+DTSTART;VALUE=DATE:20260709
+DTEND;VALUE=DATE:20260710
+SUMMARY:BWA: PTA Art Exhibition
+DESCRIPTION:PTA Art Exhibition.\n\nPTA Art Exhibition.
+CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
 UID:560@bwa-calendar
@@ -331,19 +331,11 @@ DESCRIPTION:Secondary transfer information event for Year 5 parents.\n\nYear 5 S
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:552@bwa-calendar
-DTSTART;VALUE=DATE:20260710
-DTEND;VALUE=DATE:20260711
-SUMMARY:BWA Y5: Summer reports due (English Stream)
-DESCRIPTION:Summer reports for English stream are due.\n\nSummer reports for English stream - due Friday 10 July.
-CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
 UID:553@bwa-calendar
 DTSTART;VALUE=DATE:20260713
 DTEND;VALUE=DATE:20260715
 SUMMARY:BWA Y5: English Stream Parent Teacher meetings
-DESCRIPTION:Parent Teacher meetings for English Stream.\n\nEnglish Stream Parent Teacher meetings – Monday 13 & Tuesday 14 July.
+DESCRIPTION:English Stream Parent Teacher meetings.\n\nEnglish Stream Parent Teacher meetings.
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
@@ -353,6 +345,14 @@ DTEND;VALUE=DATE:20260705
 SUMMARY:BWA: Hair Day
 DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
 CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
+UID:552@bwa-calendar
+DTSTART;VALUE=DATE:20260710
+DTEND;VALUE=DATE:20260711
+SUMMARY:BWA Y5: Summer reports for English stream
+DESCRIPTION:Summer reports for English stream due.\n\nSummer reports for English stream due.
+CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:565@bwa-calendar
@@ -427,14 +427,6 @@ DESCRIPTION:Summer Term Extra-Curricular Clubs End\n\nEnd of the term/club perio
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
-UID:613@bwa-calendar
-DTSTART;VALUE=DATE:20260625
-DTEND;VALUE=DATE:20260626
-SUMMARY:BWA Y5: Sports Day -  Year 4, 5 & 6
-DESCRIPTION:Sports Day for Year 4, 5, 6 and Bilingual classes on Clapham Common.\n\nSports Day for Year 4, 5, 6 and Bilingual classes. Pupils to be dropped off at school at usual time. Parents to wait outside school at 9:00am to walk with classes to the common. Pupils should wear trainers, navy shorts/jogging bottoms/leggings, and house colour T-shirt. No jewellery, long hair tied back. Bring water bottle, hat, and sun cream.
-CATEGORIES:SPORTS
-END:VEVENT
-BEGIN:VEVENT
 UID:619@bwa-calendar
 DTSTART;VALUE=DATE:20260621
 DTEND;VALUE=DATE:20260623
@@ -449,5 +441,13 @@ DTEND;VALUE=DATE:20260716
 SUMMARY:BWA: Library Book Return Deadline
 DESCRIPTION:Deadline for students to return all borrowed library books before the end of the school year.\n\nAs the end of the school year approaches, please remind your children to return all borrowed books to the library. Thank you for your help and cooperation.
 CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:613@bwa-calendar
+DTSTART;VALUE=DATE:20260625
+DTEND;VALUE=DATE:20260626
+SUMMARY:BWA Y5: Sports Day for Years 4, 5 and 6
+DESCRIPTION:Sports Day for Years 4, 5 and 6.\n\nSports Day for Years 4, 5 and 6.
+CATEGORIES:SPORTS
 END:VEVENT
 END:VCALENDAR

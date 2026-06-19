@@ -71,7 +71,7 @@ UID:452@bwa-calendar
 DTSTART;VALUE=DATE:20260717
 DTEND;VALUE=DATE:20260718
 SUMMARY:BWA Y2: Last day of Summer Term 2 for English Stream
-DESCRIPTION:Last day of Summer Term 2 for English Stream.\n\nLast day of Summer Term 2 for English Stream - Friday 17 July.
+DESCRIPTION:Last day of Summer Term 2 for English Stream.\n\nLast day of Summer Term 2 for English Stream.
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
@@ -299,20 +299,20 @@ DESCRIPTION:Music performance for Year 1 and 2 students.\n\nMusic performance fo
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
-UID:543@bwa-calendar
-DTSTART;VALUE=DATE:20260709
-DTEND;VALUE=DATE:20260710
-SUMMARY:BWA: PTA Art Exhibition
-DESCRIPTION:PTA Art Exhibition.\n\nPTA Art Exhibition.
-CATEGORIES:ARTS
-END:VEVENT
-BEGIN:VEVENT
 UID:527@bwa-calendar
 DTSTART;VALUE=DATE:20250901
 DTEND;VALUE=DATE:20250903
 SUMMARY:BWA Y2: INSET Day
 DESCRIPTION:School closed to children for INSET training.\n\nSchool closed to children for INSET training.
 CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:543@bwa-calendar
+DTSTART;VALUE=DATE:20260709
+DTEND;VALUE=DATE:20260710
+SUMMARY:BWA: PTA Art Exhibition
+DESCRIPTION:PTA Art Exhibition.\n\nPTA Art Exhibition.
+CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
 UID:560@bwa-calendar
@@ -323,19 +323,11 @@ DESCRIPTION:Parent Gym will not take place this Thursday due to SATs exams.\n\nP
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
-UID:552@bwa-calendar
-DTSTART;VALUE=DATE:20260710
-DTEND;VALUE=DATE:20260711
-SUMMARY:BWA Y2: Summer reports due (English Stream)
-DESCRIPTION:Summer reports for English stream are due.\n\nSummer reports for English stream - due Friday 10 July.
-CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
 UID:553@bwa-calendar
 DTSTART;VALUE=DATE:20260713
 DTEND;VALUE=DATE:20260715
 SUMMARY:BWA Y2: English Stream Parent Teacher meetings
-DESCRIPTION:Parent Teacher meetings for English Stream.\n\nEnglish Stream Parent Teacher meetings – Monday 13 & Tuesday 14 July.
+DESCRIPTION:English Stream Parent Teacher meetings.\n\nEnglish Stream Parent Teacher meetings.
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
@@ -345,6 +337,14 @@ DTEND;VALUE=DATE:20260705
 SUMMARY:BWA: Hair Day
 DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
 CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
+UID:552@bwa-calendar
+DTSTART;VALUE=DATE:20260710
+DTEND;VALUE=DATE:20260711
+SUMMARY:BWA Y2: Summer reports for English stream
+DESCRIPTION:Summer reports for English stream due.\n\nSummer reports for English stream due.
+CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:565@bwa-calendar
