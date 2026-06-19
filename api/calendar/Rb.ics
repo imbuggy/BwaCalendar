@@ -370,4 +370,12 @@ SUMMARY:BWA: APL Summer Kermesse
 DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. \nMore details to come!
 CATEGORIES:PTA
 END:VEVENT
+BEGIN:VEVENT
+UID:621@bwa-calendar
+DTSTART;VALUE=DATE:20260715
+DTEND;VALUE=DATE:20260716
+SUMMARY:BWA: Library Book Return Deadline
+DESCRIPTION:Deadline for students to return all borrowed library books before the end of the school year.\n\nAs the end of the school year approaches, please remind your children to return all borrowed books to the library. Thank you for your help and cooperation.
+CATEGORIES:ADMIN
+END:VEVENT
 END:VCALENDAR
