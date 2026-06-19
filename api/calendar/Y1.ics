@@ -435,7 +435,7 @@ DESCRIPTION:Summer Term Extra-Curricular Clubs End\n\nEnd of the term/club perio
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
-UID:609@bwa-calendar
+UID:619@bwa-calendar
 DTSTART;VALUE=DATE:20260621
 DTEND;VALUE=DATE:20260623
 SUMMARY:BWA: APL Summer Kermesse
