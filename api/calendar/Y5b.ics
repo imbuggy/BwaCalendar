@@ -267,6 +267,14 @@ DESCRIPTION:PTA Art Exhibition.\n\nPTA Art Exhibition.
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
+UID:578@bwa-calendar
+DTSTART;VALUE=DATE:20260703
+DTEND;VALUE=DATE:20260705
+SUMMARY:BWA: Hair Day
+DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
+CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
 UID:560@bwa-calendar
 DTSTART;VALUE=DATE:20260514
 DTEND;VALUE=DATE:20260515
@@ -289,14 +297,6 @@ DTEND;VALUE=DATE:20260609
 SUMMARY:BWA Y5b: Year 5 Secondary Transfer Event
 DESCRIPTION:Secondary transfer information event for Year 5 parents.\n\nYear 5 Secondary Transfer Event (both streams) taking place at Belleville Primary School, Webb’s Road site.
 CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
-UID:578@bwa-calendar
-DTSTART;VALUE=DATE:20260703
-DTEND;VALUE=DATE:20260705
-SUMMARY:BWA: Hair Day
-DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
-CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
 UID:565@bwa-calendar
@@ -371,7 +371,7 @@ DESCRIPTION:Summer Term Extra-Curricular Clubs End\n\nEnd of the term/club perio
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
-UID:619@bwa-calendar
+UID:622@bwa-calendar
 DTSTART;VALUE=DATE:20260621
 DTEND;VALUE=DATE:20260623
 SUMMARY:BWA: APL Summer Kermesse
