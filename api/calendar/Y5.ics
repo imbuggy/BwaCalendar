@@ -131,6 +131,14 @@ DESCRIPTION:Summer term extra-curricular clubs begin for all pupils.\n\nAll club
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
+UID:624@bwa-calendar
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260623
+SUMMARY:BWA: APL Summer Kermesse
+DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. \nMore details to come!
+CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
 UID:493@bwa-calendar
 DTSTART;VALUE=DATE:20260515
 DTEND;VALUE=DATE:20260516
@@ -425,14 +433,6 @@ DTEND;VALUE=DATE:20260711
 SUMMARY:BWA: Summer Term Extra-Curricular Clubs End
 DESCRIPTION:Summer Term Extra-Curricular Clubs End\n\nEnd of the term/club period: Summer Term Extra-Curricular Clubs Start. Original range: 2026-04-20 to 2026-07-10
 CATEGORIES:SPORTS
-END:VEVENT
-BEGIN:VEVENT
-UID:622@bwa-calendar
-DTSTART;VALUE=DATE:20260621
-DTEND;VALUE=DATE:20260623
-SUMMARY:BWA: APL Summer Kermesse
-DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. \nMore details to come!
-CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
 UID:621@bwa-calendar
