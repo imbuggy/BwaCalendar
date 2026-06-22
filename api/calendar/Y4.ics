@@ -267,6 +267,14 @@ DESCRIPTION:Deadline to volunteer for International Families Day activities or b
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
+UID:629@bwa-calendar
+DTSTART;VALUE=DATE:20260622
+DTEND;VALUE=DATE:20260623
+SUMMARY:BWA: Hot Weather Arrangements
+DESCRIPTION:Important safety guidance regarding the Amber Heat Health Alert for London.\n\nThe Met Office has issued an Amber Heat Health Alert for London. Parents are asked to ensure children arrive with named water bottles, sun hats, and sunscreen applied. Pupils should wear lightweight summer uniform and avoid wearing coats, jumpers, cardigans, or fleeces unless medically necessary.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
 UID:540@bwa-calendar
 DTSTART;VALUE=DATE:20260517
 DTEND;VALUE=DATE:20260518
