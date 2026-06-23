@@ -347,6 +347,14 @@ DESCRIPTION:School remains open during the heatwave. Please ensure children have
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
+UID:634@bwa-calendar
+DTSTART;VALUE=DATE:20260731
+DTEND;VALUE=DATE:20260801
+SUMMARY:BWA: Tesco Stronger Starts Voting Deadline
+DESCRIPTION:Deadline to vote for the BWA PTA Healthy Food Project at participating Tesco stores using blue tokens.\n\nThe BWA PTA’s Healthy Food Project has been shortlisted for the Tesco Stronger Starts community grant. Voting is open until 31 July 2026. Please shop at participating Tesco stores, receive a blue token, and place it in the BWA PTA slot to support the school's healthy eating and wellbeing hub project.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
 UID:592@bwa-calendar
 DTSTART;VALUE=DATE:20260901
 DTEND;VALUE=DATE:20260902
