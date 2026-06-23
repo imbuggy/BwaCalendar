@@ -331,6 +331,14 @@ DESCRIPTION:Parents are invited to a welcome reception and classroom activities.
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
+UID:633@bwa-calendar
+DTSTART;VALUE=DATE:20260623
+DTEND;VALUE=DATE:20260624
+SUMMARY:BWA: Heatwave Safety Measures
+DESCRIPTION:School remains open during the heatwave. Please ensure children have water bottles, sun hats, and sunscreen.\n\nSchool remains open as normal during the heatwave. Parents are asked to ensure children arrive with at least one, ideally two, named water bottles (frozen recommended), wear a sun hat, have sunscreen applied before school, and wear appropriate lightweight summer uniform. Coats, jumpers, cardigans, and fleeces should not be worn unless there is a specific medical reason.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
 UID:592@bwa-calendar
 DTSTART;VALUE=DATE:20260901
 DTEND;VALUE=DATE:20260902
