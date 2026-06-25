@@ -219,14 +219,6 @@ DESCRIPTION:School closed to children for staff training.\n\nSchool closed to ch
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:626@bwa-calendar
-DTSTART;VALUE=DATE:20260621
-DTEND;VALUE=DATE:20260623
-SUMMARY:BWA: APL Summer Kermesse
-DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. \nMore details to come!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
 UID:530@bwa-calendar
 DTSTART;VALUE=DATE:20251103
 DTEND;VALUE=DATE:20251104
@@ -241,6 +233,14 @@ DTEND;VALUE=DATE:20260221
 SUMMARY:BWA: Spring Half Term
 DESCRIPTION:Spring half term holiday.\n\nSpring half term holiday.
 CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:637@bwa-calendar
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260623
+SUMMARY:BWA: APL Summer Kermesse
+DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. \nMore details to come!
+CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
 UID:523@bwa-calendar
