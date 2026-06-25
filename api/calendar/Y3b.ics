@@ -275,6 +275,14 @@ DESCRIPTION:Join us for our very own take on the world's most famous tournament.
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
+UID:639@bwa-calendar
+DTSTART;VALUE=DATE:20260626
+DTEND;VALUE=DATE:20260627
+SUMMARY:BWA: Lost & Found -  Wet Items Collection Deadline
+DESCRIPTION:Deadline to collect wet items from Lost & Found bins before they are recycled.\n\nPlease check the bins and retrieve your child's lost items before tomorrow, 26 June, after drop off. Sadly, we will have to recycle any remaining wet clothing after that to prevent mold.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
 UID:543@bwa-calendar
 DTSTART;VALUE=DATE:20260709
 DTEND;VALUE=DATE:20260710
@@ -289,6 +297,14 @@ DTEND;VALUE=DATE:20260701
 SUMMARY:BWA Y3b: Music Performance -  1B, 2B, 3B, 6B
 DESCRIPTION:Music performance for classes 1B, 2B, 3B, and 6B.\n\nMusic performance for classes 1B, 2B, 3B, and 6B at 2:00pm.
 CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:640@bwa-calendar
+DTSTART;VALUE=DATE:20260701
+DTEND;VALUE=DATE:20260702
+SUMMARY:BWA: Lost & Found -  Dry Items Collection Deadline
+DESCRIPTION:Deadline to collect dry items from Lost & Found before they are donated or recycled.\n\nDry clothes and other belongings can still be picked up until next Wednesday, July 1st, at which point all remaining items will be cleared out and donated/recycled.
+CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:578@bwa-calendar

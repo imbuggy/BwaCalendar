@@ -323,12 +323,28 @@ DESCRIPTION:School closed to children for INSET training.\n\nSchool closed to ch
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
+UID:639@bwa-calendar
+DTSTART;VALUE=DATE:20260626
+DTEND;VALUE=DATE:20260627
+SUMMARY:BWA: Lost & Found -  Wet Items Collection Deadline
+DESCRIPTION:Deadline to collect wet items from Lost & Found bins before they are recycled.\n\nPlease check the bins and retrieve your child's lost items before tomorrow, 26 June, after drop off. Sadly, we will have to recycle any remaining wet clothing after that to prevent mold.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
 UID:543@bwa-calendar
 DTSTART;VALUE=DATE:20260709
 DTEND;VALUE=DATE:20260710
 SUMMARY:BWA: PTA Art Exhibition
 DESCRIPTION:PTA Art Exhibition.\n\nPTA Art Exhibition.
 CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:640@bwa-calendar
+DTSTART;VALUE=DATE:20260701
+DTEND;VALUE=DATE:20260702
+SUMMARY:BWA: Lost & Found -  Dry Items Collection Deadline
+DESCRIPTION:Deadline to collect dry items from Lost & Found before they are donated or recycled.\n\nDry clothes and other belongings can still be picked up until next Wednesday, July 1st, at which point all remaining items will be cleared out and donated/recycled.
+CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:578@bwa-calendar
