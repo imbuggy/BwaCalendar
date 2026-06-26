@@ -331,14 +331,6 @@ DESCRIPTION:Deadline to collect dry items from Lost & Found before they are dona
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:578@bwa-calendar
-DTSTART;VALUE=DATE:20260703
-DTEND;VALUE=DATE:20260705
-SUMMARY:BWA: Hair Day
-DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
 UID:547@bwa-calendar
 DTSTART;VALUE=DATE:20260606
 DTEND;VALUE=DATE:20260609
@@ -433,6 +425,14 @@ DTEND;VALUE=DATE:20260902
 SUMMARY:BWA: Wandsworth Music -  Instrumental Lessons Sign-up
 DESCRIPTION:Information regarding instrumental and vocal music lessons for the upcoming Autumn 2026 term.\n\nWandsworth Music is offering small group and individual lessons for the next school year. Parents can sign up via the Wandsworth Music website. The Music Academy also offers various ensembles on Saturdays, Wednesdays, and Tuesdays at Burntwood School and West Hill Primary School.
 CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:578@bwa-calendar
+DTSTART;VALUE=DATE:20260703
+DTEND;VALUE=DATE:20260705
+SUMMARY:BWA: Hair Day
+DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
+CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
 UID:600@bwa-calendar
