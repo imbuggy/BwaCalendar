@@ -123,6 +123,14 @@ DESCRIPTION:Last day of Summer Term 2 for English Stream.\n\nLast day of Summer 
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
+UID:642@bwa-calendar
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+SUMMARY:BWA: Basketball Cancelled
+DESCRIPTION:Basketball club is cancelled on Tuesday 30 June as Mr Hennessy will be at a cricket tournament.\n\nBasketball club is cancelled on Tuesday 30 June as Mr Hennessy will be at a cricket tournament.
+CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
 UID:449@bwa-calendar
 DTSTART;VALUE=DATE:20260525
 DTEND;VALUE=DATE:20260530
