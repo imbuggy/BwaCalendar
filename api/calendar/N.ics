@@ -67,14 +67,6 @@ DESCRIPTION:Week 6 of the Parent Gym programme: Together.\n\nWeekly session of t
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
-UID:452@bwa-calendar
-DTSTART;VALUE=DATE:20260717
-DTEND;VALUE=DATE:20260718
-SUMMARY:BWA N: Last day of Summer Term 2 for English Stream
-DESCRIPTION:Last day of Summer Term 2 for English Stream.\n\nLast day of Summer Term 2 for English Stream.
-CATEGORIES:ACADEMIC
-END:VEVENT
-BEGIN:VEVENT
 UID:642@bwa-calendar
 DTSTART;VALUE=DATE:20260630
 DTEND;VALUE=DATE:20260701
@@ -88,6 +80,14 @@ DTSTART;VALUE=DATE:20260525
 DTEND;VALUE=DATE:20260530
 SUMMARY:BWA: Summer Half Term
 DESCRIPTION:Summer half term holiday.\n\nSummer half term holiday.
+CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:452@bwa-calendar
+DTSTART;VALUE=DATE:20260717
+DTEND;VALUE=DATE:20260718
+SUMMARY:BWA N: Last day of Summer Term 2 for English Stream
+DESCRIPTION:Last day of Summer Term 2 for English Stream\n\nLast day of Summer Term 2 for English Stream - Friday 17 July
 CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
@@ -283,6 +283,14 @@ DESCRIPTION:Deadline to volunteer for International Families Day activities or b
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
+UID:543@bwa-calendar
+DTSTART;VALUE=DATE:20260709
+DTEND;VALUE=DATE:20260710
+SUMMARY:BWA: PTA Art Exhibition
+DESCRIPTION:PTA Art Exhibition\n\nPTA Art Exhibition
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
 UID:629@bwa-calendar
 DTSTART;VALUE=DATE:20260622
 DTEND;VALUE=DATE:20260623
@@ -331,14 +339,6 @@ DESCRIPTION:Deadline to collect wet items from Lost & Found bins before they are
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:543@bwa-calendar
-DTSTART;VALUE=DATE:20260709
-DTEND;VALUE=DATE:20260710
-SUMMARY:BWA: PTA Art Exhibition
-DESCRIPTION:PTA Art Exhibition.\n\nPTA Art Exhibition.
-CATEGORIES:ARTS
-END:VEVENT
-BEGIN:VEVENT
 UID:640@bwa-calendar
 DTSTART;VALUE=DATE:20260701
 DTEND;VALUE=DATE:20260702
@@ -347,28 +347,28 @@ DESCRIPTION:Deadline to collect dry items from Lost & Found before they are dona
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:560@bwa-calendar
-DTSTART;VALUE=DATE:20260514
-DTEND;VALUE=DATE:20260515
-SUMMARY:BWA: Parent Gym Cancellation
-DESCRIPTION:Parent Gym will not take place this Thursday due to SATs exams.\n\nParent Gym will not be on this Thursday (14th May) due to the SAT's exams, but will resume as normal from next week (Thursday 21st May).
-CATEGORIES:WELLBEING
+UID:552@bwa-calendar
+DTSTART;VALUE=DATE:20260710
+DTEND;VALUE=DATE:20260711
+SUMMARY:BWA N: Summer reports for English stream
+DESCRIPTION:Summer reports for English stream - due Friday 10 July\n\nSummer reports for English stream - due Friday 10 July
+CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:553@bwa-calendar
 DTSTART;VALUE=DATE:20260713
 DTEND;VALUE=DATE:20260715
 SUMMARY:BWA N: English Stream Parent Teacher meetings
-DESCRIPTION:English Stream Parent Teacher meetings.\n\nEnglish Stream Parent Teacher meetings.
+DESCRIPTION:English Stream Parent Teacher meetings\n\nEnglish Stream Parent Teacher meetings – Monday 13 & Tuesday 14 July
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:552@bwa-calendar
-DTSTART;VALUE=DATE:20260710
-DTEND;VALUE=DATE:20260711
-SUMMARY:BWA N: Summer reports for English stream
-DESCRIPTION:Summer reports for English stream due.\n\nSummer reports for English stream due.
-CATEGORIES:ADMIN
+UID:560@bwa-calendar
+DTSTART;VALUE=DATE:20260514
+DTEND;VALUE=DATE:20260515
+SUMMARY:BWA: Parent Gym Cancellation
+DESCRIPTION:Parent Gym will not take place this Thursday due to SATs exams.\n\nParent Gym will not be on this Thursday (14th May) due to the SAT's exams, but will resume as normal from next week (Thursday 21st May).
+CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
 UID:565@bwa-calendar
