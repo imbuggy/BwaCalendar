@@ -259,6 +259,14 @@ DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and ce
 CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
+UID:578@bwa-calendar
+DTSTART;VALUE=DATE:20260703
+DTEND;VALUE=DATE:20260705
+SUMMARY:BWA: Hair Day
+DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
+CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
 UID:529@bwa-calendar
 DTSTART;VALUE=DATE:20251027
 DTEND;VALUE=DATE:20251101
@@ -457,14 +465,6 @@ DTEND;VALUE=DATE:20260609
 SUMMARY:BWA Y3: Year 3 RSE Lessons
 DESCRIPTION:Information regarding the upcoming PSHCE and RSE lessons focusing on 'Changes'.\n\nNext half term, Year 3 will be exploring the theme 'Changes' in PSCHE lessons, covering relationships, friendships, and online safety. Please contact the class teacher via the school admin email for questions.
 CATEGORIES:ACADEMIC
-END:VEVENT
-BEGIN:VEVENT
-UID:578@bwa-calendar
-DTSTART;VALUE=DATE:20260703
-DTEND;VALUE=DATE:20260705
-SUMMARY:BWA: Hair Day
-DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
-CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
 UID:600@bwa-calendar
