@@ -651,14 +651,6 @@ DESCRIPTION:The Education Wellbeing Service hosts a coffee morning at BWA to dis
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
-UID:569@bwa-calendar
-DTSTART;VALUE=DATE:20260629
-DTEND;VALUE=DATE:20260630
-SUMMARY:BWA Y1b: 1B Trip to Natural History Museum
-DESCRIPTION:1B class trip to the Natural History Museum to explore the Dinosaur Exhibitions.\n\nAs part of the 'Dinosaurs' topic, 1B will visit the Natural History Museum to see real fossils. The class will leave school at 9am and return around 14:30pm. Children should dress appropriately for the weather and bring a small rucksack. Packed lunches will be provided for those on school dinners; others should bring their own.
-CATEGORIES:TRIP
-END:VEVENT
-BEGIN:VEVENT
 UID:570@bwa-calendar
 DTSTART;VALUE=DATE:20260601
 DTEND;VALUE=DATE:20260602
@@ -673,6 +665,14 @@ DTEND;VALUE=DATE:20260624
 SUMMARY:BWA: Heatwave Safety Measures
 DESCRIPTION:School remains open during the heatwave. Please ensure children have water bottles, sun hats, and sunscreen.\n\nSchool remains open as normal during the heatwave. Parents are asked to ensure children arrive with at least one, ideally two, named water bottles (frozen recommended), wear a sun hat, have sunscreen applied before school, and wear appropriate lightweight summer uniform. Coats, jumpers, cardigans, and fleeces should not be worn unless there is a specific medical reason.
 CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:569@bwa-calendar
+DTSTART;VALUE=DATE:20260629
+DTEND;VALUE=DATE:20260630
+SUMMARY:BWA Y1b: 1B Trip to Natural History Museum
+DESCRIPTION:Thank you to the parent volunteers who supported the 1B trip to the Natural History Museum.\n\nMiss Walker expresses gratitude to the parent volunteers who assisted with the 1B trip to the Natural History Museum. The experience was enjoyed by both the children and the volunteers.
+CATEGORIES:TRIP
 END:VEVENT
 BEGIN:VEVENT
 UID:585@bwa-calendar
