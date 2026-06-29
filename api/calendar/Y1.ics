@@ -271,8 +271,8 @@ UID:578@bwa-calendar
 DTSTART;VALUE=DATE:20260703
 DTEND;VALUE=DATE:20260705
 SUMMARY:BWA: Hair Day
-DESCRIPTION:BWA Crazy Hair Day: PTA/APL's Crazy Hair Day for both schools, time to get creative!\n\nChildren can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! \nWe encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone! PTA/APL's Crazy Hair Day for both schools, time to get creative!
-CATEGORIES:PTA
+DESCRIPTION:Time to get creative! We can’t wait to see all the amazing hairstyles this Friday!\n\nTime to get creative! We can’t wait to see all the amazing hairstyles this Friday!
+CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:529@bwa-calendar
@@ -289,14 +289,6 @@ DTEND;VALUE=DATE:20260509
 SUMMARY:BWA: Volunteer Deadline -  International Families Day
 DESCRIPTION:Deadline to volunteer for International Families Day activities or buffet.\n\nDeadline to volunteer to visit school or contribute to the International Families Day buffet.
 CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
-UID:543@bwa-calendar
-DTSTART;VALUE=DATE:20260709
-DTEND;VALUE=DATE:20260710
-SUMMARY:BWA: PTA Art Exhibition
-DESCRIPTION:PTA Art Exhibition\n\nPTA Art Exhibition
-CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
 UID:629@bwa-calendar
@@ -336,6 +328,14 @@ DTSTART;VALUE=DATE:20260714
 DTEND;VALUE=DATE:20260715
 SUMMARY:BWA Y1: Music Performance -  Year 1 & 2
 DESCRIPTION:Music performance for Year 1 and 2 students.\n\nMusic performance for Year 1 and 2 students at 2:30pm.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:543@bwa-calendar
+DTSTART;VALUE=DATE:20260709
+DTEND;VALUE=DATE:20260710
+SUMMARY:BWA: PTA Art Exhibition
+DESCRIPTION:Come and admire the incredible artwork created by our talented children.\n\nOne of the highlights of the school year is almost here! Come and admire the incredible artwork created by our talented children, enjoy a lovely evening with our school community, and celebrate their creativity. Tickets are on sale now, with Early Bird prices available until Friday. You will also have the opportunity to purchase your child’s artwork to take home as a wonderful keepsake.
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
@@ -459,19 +459,11 @@ DESCRIPTION:Information regarding the upcoming PSHCE and RSE lessons focusing on
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
-UID:600@bwa-calendar
-DTSTART;VALUE=DATE:20260608
-DTEND;VALUE=DATE:20260609
-SUMMARY:BWA: Cancellation of Booster Sessions
-DESCRIPTION:Booster sessions for the remainder of the term are cancelled due to staff work commitments.\n\nBooster sessions for the rest of the term will not be running due to other work commitments. We apologize for the inconvenience.
-CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
 UID:614@bwa-calendar
 DTSTART;VALUE=DATE:20260629
 DTEND;VALUE=DATE:20260630
 SUMMARY:BWA: Toy Swap Shop -  Donation Window
-DESCRIPTION:Bring in your gently used toys for the Toy Swap Shop.\n\nChildren are invited to donate up to 1 good-quality toy. Please ensure toys are clean, complete, and working. No soft toys or puzzles with missing pieces.
+DESCRIPTION:Please bring one toy per child to the PTA table at morning drop-off.\n\nPlease bring one toy per child (suitable for their age and in good condition) to the PTA table at morning drop-off this week between 8:15am and 8:45am. In exchange, your child will receive a token to use at the Toy Swap after school on Tuesday 7th July.
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
@@ -479,8 +471,16 @@ UID:615@bwa-calendar
 DTSTART;VALUE=DATE:20260707
 DTEND;VALUE=DATE:20260708
 SUMMARY:BWA: Toy Swap Shop Event
-DESCRIPTION:Toy Swap Shop event in the lower hall.\n\nToy Swap Shop event taking place after school in the lower hall. Children can use tokens received for toy donations.
+DESCRIPTION:Toy Swap event for children who received a token.\n\nToy Swap event for children who received a token from the donation window.
 CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:600@bwa-calendar
+DTSTART;VALUE=DATE:20260608
+DTEND;VALUE=DATE:20260609
+SUMMARY:BWA: Cancellation of Booster Sessions
+DESCRIPTION:Booster sessions for the remainder of the term are cancelled due to staff work commitments.\n\nBooster sessions for the rest of the term will not be running due to other work commitments. We apologize for the inconvenience.
+CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:612@bwa-calendar
