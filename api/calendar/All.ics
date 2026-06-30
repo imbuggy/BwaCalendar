@@ -243,6 +243,14 @@ DESCRIPTION:Last day of Summer Term 2 for Bilingual Stream\n\nLast day of Summer
 CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
+UID:646@bwa-calendar
+DTSTART;VALUE=DATE:20260703
+DTEND;VALUE=DATE:20260704
+SUMMARY:BWA Rb: Bilingual Stream Summer Reports
+DESCRIPTION:Distribution of the final academic year reports for the Bilingual stream.\n\nThe final reports for the academic year for the Bilingual stream will be sent home. These reports cover expectations of both national education systems and assess children's skills in both languages.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
 UID:482@bwa-calendar
 DTSTART;VALUE=DATE:20260505
 DTEND;VALUE=DATE:20260506
