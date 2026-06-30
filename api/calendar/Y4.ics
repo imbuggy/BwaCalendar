@@ -230,8 +230,8 @@ BEGIN:VEVENT
 UID:578@bwa-calendar
 DTSTART;VALUE=DATE:20260703
 DTEND;VALUE=DATE:20260705
-SUMMARY:BWA: Hair Day
-DESCRIPTION:Time to get creative! We can’t wait to see all the amazing hairstyles this Friday! Children can come to school with their craziest hair styles!\n\nTime to get creative! We can’t wait to see all the amazing hairstyles this Friday! Children can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! We encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone!
+SUMMARY:BWA Y4: Hair Day
+DESCRIPTION:Crazy Hair Day for all students across all streams.\n\nWe encourage all children (All Streams All Schools) to come to school with their craziest hairstyles. It's going to be a fun-filled day!
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
