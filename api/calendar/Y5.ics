@@ -323,6 +323,14 @@ DESCRIPTION:Music performance for Year 5 and 6 students.\n\nMusic performance fo
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
+UID:649@bwa-calendar
+DTSTART;VALUE=DATE:20260707
+DTEND;VALUE=DATE:20260708
+SUMMARY:BWA Y5: Booking Deadline -  Parent Teacher Meetings
+DESCRIPTION:Deadline to book Parent Teacher meetings online.\n\nPlease complete the online booking links for Parent Teacher meetings by Tuesday 7th July.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
 UID:543@bwa-calendar
 DTSTART;VALUE=DATE:20260709
 DTEND;VALUE=DATE:20260710
@@ -367,8 +375,8 @@ UID:553@bwa-calendar
 DTSTART;VALUE=DATE:20260713
 DTEND;VALUE=DATE:20260715
 SUMMARY:BWA Y5: English Stream Parent Teacher meetings
-DESCRIPTION:English Stream Parent Teacher meetings\n\nEnglish Stream Parent Teacher meetings – Monday 13 & Tuesday 14 July
-CATEGORIES:ADMIN
+DESCRIPTION:Parent Teacher Consultations for English Stream students.\n\nParent Teacher Consultations for English Stream. Meetings are 10 minutes long. Please book by Tuesday 7th July. Note: Year 5 meetings are only on Monday 13th July.
+CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
 UID:560@bwa-calendar
