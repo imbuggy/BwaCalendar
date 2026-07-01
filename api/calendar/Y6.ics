@@ -219,14 +219,6 @@ DESCRIPTION:School closed to children for staff training.\n\nSchool closed to ch
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:578@bwa-calendar
-DTSTART;VALUE=DATE:20260703
-DTEND;VALUE=DATE:20260705
-SUMMARY:BWA Y6: Hair Day
-DESCRIPTION:Crazy Hair Day for all students across all streams.\n\nWe encourage all children (All Streams All Schools) to come to school with their craziest hairstyles. It's going to be a fun-filled day!
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:530@bwa-calendar
 DTSTART;VALUE=DATE:20251103
 DTEND;VALUE=DATE:20251104
@@ -256,6 +248,14 @@ DTSTART;VALUE=DATE:20260626
 DTEND;VALUE=DATE:20260627
 SUMMARY:BWA Y6: Father’s Day Event for Year 5, 6, RB, 4B and 5B
 DESCRIPTION:Father’s Day Event for Year 5, 6, RB, 4B and 5B.\n\nFather’s Day Event for Year 5, 6, RB, 4B and 5B.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:578@bwa-calendar
+DTSTART;VALUE=DATE:20260703
+DTEND;VALUE=DATE:20260705
+SUMMARY:BWA Y6: Hair Day
+DESCRIPTION:Crazy Hair Day for all students across all streams.\n\nWe encourage all children (All Streams All Schools) to come to school with their craziest hairstyles. It's going to be a fun-filled day! Children can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! We encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone!
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
