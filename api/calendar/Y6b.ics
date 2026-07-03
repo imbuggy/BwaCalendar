@@ -163,14 +163,6 @@ DESCRIPTION:School closed for Bank Holiday.\n\nSchool closed for Bank Holiday.
 CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
-UID:451@bwa-calendar
-DTSTART;VALUE=DATE:20260715
-DTEND;VALUE=DATE:20260716
-SUMMARY:BWA Y6b: Last day of Summer Term 2 for Bilingual Stream
-DESCRIPTION:Last day of Summer Term 2 for Bilingual Stream\n\nLast day of Summer Term 2 for Bilingual Stream - Wednesday 15 July
-CATEGORIES:HOLIDAY
-END:VEVENT
-BEGIN:VEVENT
 UID:646@bwa-calendar
 DTSTART;VALUE=DATE:20260703
 DTEND;VALUE=DATE:20260704
@@ -267,6 +259,22 @@ DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and ce
 CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
+UID:543@bwa-calendar
+DTSTART;VALUE=DATE:20260709
+DTEND;VALUE=DATE:20260710
+SUMMARY:BWA: PTA Art Exhibition
+DESCRIPTION:PTA Art Exhibition\n\nPTA Art Exhibition
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:451@bwa-calendar
+DTSTART;VALUE=DATE:20260715
+DTEND;VALUE=DATE:20260716
+SUMMARY:BWA Y6b: Last day of Summer Term 2 for Bilingual Stream
+DESCRIPTION:Last day of Summer Term 2 for Bilingual Stream\n\nLast day of Summer Term 2 for Bilingual Stream
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
 UID:529@bwa-calendar
 DTSTART;VALUE=DATE:20251027
 DTEND;VALUE=DATE:20251101
@@ -297,14 +305,6 @@ DTEND;VALUE=DATE:20260518
 SUMMARY:BWA: APL's Wixbledon Tennis Tournament
 DESCRIPTION:Join us for our very own take on the world's most famous tournament. It’ll be an afternoon filled with sports, family fun.\n\nJoin us at APL's Wixbledon Tennis Tournament, fun for the whole family! Details at bwapta.co.uk/wixbledon
 CATEGORIES:SPORTS
-END:VEVENT
-BEGIN:VEVENT
-UID:543@bwa-calendar
-DTSTART;VALUE=DATE:20260709
-DTEND;VALUE=DATE:20260710
-SUMMARY:BWA: PTA Art Exhibition
-DESCRIPTION:Come and admire the incredible artwork created by our talented children.\n\nOne of the highlights of the school year is almost here! Come and admire the incredible artwork created by our talented children, enjoy a lovely evening with our school community, and celebrate their creativity. Tickets are on sale now, with Early Bird prices available until Friday. You will also have the opportunity to purchase your child’s artwork to take home as a wonderful keepsake.
-CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
 UID:639@bwa-calendar
