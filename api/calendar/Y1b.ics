@@ -243,14 +243,6 @@ DESCRIPTION:Reminder regarding PE kit for Y1b gymnastics lesson.\n\nThe Y1b gymn
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
-UID:578@bwa-calendar
-DTSTART;VALUE=DATE:20260703
-DTEND;VALUE=DATE:20260705
-SUMMARY:BWA: Hair Day
-DESCRIPTION:Crazy Hair Day for all students across all streams.\n\nWe encourage all children (All Streams All Schools) to come to school with their craziest hairstyles. It's going to be a fun-filled day! Children can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! We encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone!
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:652@bwa-calendar
 DTSTART;VALUE=DATE:20260709
 DTEND;VALUE=DATE:20260710
@@ -521,5 +513,13 @@ DTEND;VALUE=DATE:20260716
 SUMMARY:BWA: Library Book Return Deadline
 DESCRIPTION:Deadline for students to return all borrowed library books before the end of the school year.\n\nAs the end of the school year approaches, please remind your children to return all borrowed books to the library. Thank you for your help and cooperation.
 CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:578@bwa-calendar
+DTSTART;VALUE=DATE:20260703
+DTEND;VALUE=DATE:20260705
+SUMMARY:BWA: Hair Day
+DESCRIPTION:Crazy Hair Day for all students across all streams.\n\nWe encourage all children (All Streams All Schools) to come to school with their craziest hairstyles. It's going to be a fun-filled day! Children can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! We encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone!
+CATEGORIES:COMMUNITY
 END:VEVENT
 END:VCALENDAR
