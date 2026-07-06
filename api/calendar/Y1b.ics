@@ -491,6 +491,14 @@ DESCRIPTION:Toy Swap event for children who received a token.\n\nToy Swap event 
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
+UID:656@bwa-calendar
+DTSTART;VALUE=DATE:20260714
+DTEND;VALUE=DATE:20260715
+SUMMARY:BWA Y1b: Bilingual Stream Parent Meeting
+DESCRIPTION:Meeting for families in the bilingual stream regarding plans for September 2027.\n\nMeeting for families in the bilingual stream who are registered to Belleville Wix Academy to hear about plans for September 2027 and provide feedback. Families registered with the English stream are also welcome to attend.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
 UID:600@bwa-calendar
 DTSTART;VALUE=DATE:20260608
 DTEND;VALUE=DATE:20260609
