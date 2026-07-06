@@ -91,6 +91,22 @@ DESCRIPTION:Basketball club is cancelled on Tuesday 30 June as Mr Hennessy will 
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
+UID:657@bwa-calendar
+DTSTART;VALUE=DATE:20260710
+DTEND;VALUE=DATE:20260711
+SUMMARY:BWA: Autumn Term Clubs Booking Opens
+DESCRIPTION:Booking for Autumn term extra-curricular clubs opens.\n\nBooking for Autumn term extra-curricular clubs opens at 12:00pm. Clubs are available for both English and Bilingual streams.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:658@bwa-calendar
+DTSTART;VALUE=DATE:20260914
+DTEND;VALUE=DATE:20260915
+SUMMARY:BWA: Autumn Term Clubs Start
+DESCRIPTION:Autumn term extra-curricular clubs start.\n\nAutumn term extra-curricular clubs start for the week commencing Monday 14th September.
+CATEGORIES:OTHER
+END:VEVENT
+BEGIN:VEVENT
 UID:487@bwa-calendar
 DTSTART;VALUE=DATE:20260511
 DTEND;VALUE=DATE:20260512
@@ -145,6 +161,14 @@ DTEND;VALUE=DATE:20260516
 SUMMARY:BWA: International Families Day Buffet
 DESCRIPTION:International Families Day buffet in the lower hall.\n\nInternational Families Day buffet starting at 3:30pm. Food donations to be brought to the office from 2:30pm.
 CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:659@bwa-calendar
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261212
+SUMMARY:BWA: Autumn Term Clubs End
+DESCRIPTION:Autumn term extra-curricular clubs end.\n\nAutumn term extra-curricular clubs end on Friday 11th December.
+CATEGORIES:OTHER
 END:VEVENT
 BEGIN:VEVENT
 UID:646@bwa-calendar
@@ -403,14 +427,6 @@ DESCRIPTION:Please bring one toy per child to the PTA table at morning drop-off.
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:615@bwa-calendar
-DTSTART;VALUE=DATE:20260707
-DTEND;VALUE=DATE:20260708
-SUMMARY:BWA: Toy Swap Shop Event
-DESCRIPTION:Toy Swap event for children who received a token.\n\nToy Swap event for children who received a token from the donation window.
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:656@bwa-calendar
 DTSTART;VALUE=DATE:20260714
 DTEND;VALUE=DATE:20260715
@@ -425,6 +441,14 @@ DTEND;VALUE=DATE:20260609
 SUMMARY:BWA: Cancellation of Booster Sessions
 DESCRIPTION:Booster sessions for the remainder of the term are cancelled due to staff work commitments.\n\nBooster sessions for the rest of the term will not be running due to other work commitments. We apologize for the inconvenience.
 CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:615@bwa-calendar
+DTSTART;VALUE=DATE:20260707
+DTEND;VALUE=DATE:20260708
+SUMMARY:BWA: Toy Swap Shop Event
+DESCRIPTION:Toy Swap Event taking place after school at BWA in the Lower Hall.\n\nThe Toy Swap Event will take place after school at BWA. Children must bring their tokens to 'buy' a new-to-them toy. Children must attend with a parent or other responsible adult. The event is run by the Eco Council and PTA to promote sustainability.
+CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:612@bwa-calendar
