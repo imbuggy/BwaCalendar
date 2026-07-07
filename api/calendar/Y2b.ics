@@ -291,6 +291,14 @@ DESCRIPTION:School holiday.\n\nSpring half term holiday.
 CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
+UID:660@bwa-calendar
+DTSTART;VALUE=DATE:20260708
+DTEND;VALUE=DATE:20260709
+SUMMARY:BWA Y2b: Meet the Teacher Day
+DESCRIPTION:Children will have the opportunity to meet their new class teachers before the end of term.\n\nAs part of the transition process for the 2026-2027 school year, children will have the opportunity to meet their new class teachers before the end of term to help them feel confident and prepared.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
 UID:539@bwa-calendar
 DTSTART;VALUE=DATE:20260508
 DTEND;VALUE=DATE:20260509
