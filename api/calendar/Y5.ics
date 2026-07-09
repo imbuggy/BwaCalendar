@@ -235,6 +235,14 @@ DESCRIPTION:Basketball club is cancelled today due to staff sickness.\n\nBasketb
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
+UID:543@bwa-calendar
+DTSTART;VALUE=DATE:20260709
+DTEND;VALUE=DATE:20260710
+SUMMARY:BWA: PTA Art Exhibition
+DESCRIPTION:BWA Children's Art Exhibition tonight from 6pm-8pm. Tickets £7.50 including a drink.\n\nTONIGHT BWA Children's Art Exhibition! 6pm-8pm: Come see our children's amazing art, catch up with teachers, and enjoy a cold drink! Online entry £7.5 (inc. drink) + buy art online for discount: bwapta.co.uk/artexpo
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
 UID:637@bwa-calendar
 DTSTART;VALUE=DATE:20260621
 DTEND;VALUE=DATE:20260623
@@ -249,14 +257,6 @@ DTEND;VALUE=DATE:20260627
 SUMMARY:BWA Y5: Father’s Day Event for Year 5, 6, RB, 4B and 5B
 DESCRIPTION:Father’s Day Event for Year 5, 6, RB, 4B and 5B.\n\nFather’s Day Event for Year 5, 6, RB, 4B and 5B.
 CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
-UID:543@bwa-calendar
-DTSTART;VALUE=DATE:20260709
-DTEND;VALUE=DATE:20260710
-SUMMARY:BWA: PTA Art Exhibition
-DESCRIPTION:PTA Art Exhibition\n\nPTA Art Exhibition
-CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
 UID:528@bwa-calendar

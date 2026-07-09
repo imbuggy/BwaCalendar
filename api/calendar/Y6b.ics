@@ -251,6 +251,14 @@ DESCRIPTION:Basketball club is cancelled today due to staff sickness.\n\nBasketb
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
+UID:543@bwa-calendar
+DTSTART;VALUE=DATE:20260709
+DTEND;VALUE=DATE:20260710
+SUMMARY:BWA: PTA Art Exhibition
+DESCRIPTION:BWA Children's Art Exhibition tonight from 6pm-8pm. Tickets £7.50 including a drink.\n\nTONIGHT BWA Children's Art Exhibition! 6pm-8pm: Come see our children's amazing art, catch up with teachers, and enjoy a cold drink! Online entry £7.5 (inc. drink) + buy art online for discount: bwapta.co.uk/artexpo
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
 UID:522@bwa-calendar
 DTSTART;VALUE=DATE:20260617
 DTEND;VALUE=DATE:20260618
@@ -265,14 +273,6 @@ DTEND;VALUE=DATE:20260623
 SUMMARY:BWA: APL Summer Kermesse
 DESCRIPTION:APL's annual Summer Kermesse at school featuring games, food, and celebrations. The big one! More details to come!\n\nThe big one! Let’s celebrate the height of summer and the end of the school year together at our annual Kermesse. Expect games, food, and plenty of sunshine as we bring the whole school family together. \nMore details to come!
 CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
-UID:543@bwa-calendar
-DTSTART;VALUE=DATE:20260709
-DTEND;VALUE=DATE:20260710
-SUMMARY:BWA: PTA Art Exhibition
-DESCRIPTION:PTA Art Exhibition\n\nPTA Art Exhibition
-CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
 UID:451@bwa-calendar
