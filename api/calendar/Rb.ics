@@ -91,20 +91,12 @@ DESCRIPTION:Basketball club is cancelled on Tuesday 30 June as Mr Hennessy will 
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
-UID:657@bwa-calendar
-DTSTART;VALUE=DATE:20260710
-DTEND;VALUE=DATE:20260711
-SUMMARY:BWA: Autumn Term Clubs Booking Opens
-DESCRIPTION:Booking for Autumn term extra-curricular clubs opens.\n\nBooking for Autumn term extra-curricular clubs opens at 12:00pm. Clubs are available for both English and Bilingual streams.
-CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
 UID:658@bwa-calendar
 DTSTART;VALUE=DATE:20260914
 DTEND;VALUE=DATE:20260915
 SUMMARY:BWA: Autumn Term Clubs Start
-DESCRIPTION:Autumn term extra-curricular clubs start.\n\nAutumn term extra-curricular clubs start for the week commencing Monday 14th September.
-CATEGORIES:OTHER
+DESCRIPTION:All clubs will start on the week commencing Monday 14th September.\n\nAll clubs will start on the week commencing Monday 14th September and end on Friday 11th December (12 School weeks in total). If your club is on a Monday it will be 11 weeks as there is an inset day on Monday 2nd November.
+CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:481@bwa-calendar
@@ -171,14 +163,6 @@ DESCRIPTION:International Families Day buffet in the lower hall.\n\nInternationa
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:659@bwa-calendar
-DTSTART;VALUE=DATE:20261211
-DTEND;VALUE=DATE:20261212
-SUMMARY:BWA: Autumn Term Clubs End
-DESCRIPTION:Autumn term extra-curricular clubs end.\n\nAutumn term extra-curricular clubs end on Friday 11th December.
-CATEGORIES:OTHER
-END:VEVENT
-BEGIN:VEVENT
 UID:646@bwa-calendar
 DTSTART;VALUE=DATE:20260703
 DTEND;VALUE=DATE:20260704
@@ -193,6 +177,14 @@ DTEND;VALUE=DATE:20260505
 SUMMARY:BWA: Bank Holiday
 DESCRIPTION:School closed for Bank Holiday.\n\nBank Holiday - school closed.
 CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:659@bwa-calendar
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261212
+SUMMARY:BWA: Autumn Term Clubs End
+DESCRIPTION:All clubs will end on Friday 11th December.\n\nAll clubs will start on the week commencing Monday 14th September and end on Friday 11th December (12 School weeks in total).
+CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:486@bwa-calendar
@@ -329,6 +321,14 @@ DTEND;VALUE=DATE:20260518
 SUMMARY:BWA: APL's Wixbledon Tennis Tournament
 DESCRIPTION:Join us for our very own take on the world's most famous tournament. It’ll be an afternoon filled with sports, family fun.\n\nJoin us at APL's Wixbledon Tennis Tournament, fun for the whole family! Details at bwapta.co.uk/wixbledon
 CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
+UID:657@bwa-calendar
+DTSTART;VALUE=DATE:20260710
+DTEND;VALUE=DATE:20260711
+SUMMARY:BWA: Autumn Term Clubs Booking Opens
+DESCRIPTION:Autumn term extra-curricular clubs booking opens at 12pm.\n\nWe are pleased to offer the following before and after school clubs for our pupils during the 2026 Autumn term. You will be able to book clubs on Friday 10th July at 12pm.
+CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:529@bwa-calendar
