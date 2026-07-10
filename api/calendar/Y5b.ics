@@ -251,6 +251,14 @@ DESCRIPTION:BWA Children's Art Exhibition tonight from 6pm-8pm. Tickets £7.50 i
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
+UID:661@bwa-calendar
+DTSTART;VALUE=DATE:20260714
+DTEND;VALUE=DATE:20260715
+SUMMARY:BWA: DT Day
+DESCRIPTION:DT day where children will be designing and making castles.\n\nOn Tuesday, we are going to be having a DT day where the children will be designing and making castles, in light of our recent English unit on fairy tales and our shared curriculum topic of Houses. If possible, please could your child bring in any clean recycled materials such as cardboard boxes, shoe boxes, or toilet roll tubes to use for their models.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
 UID:637@bwa-calendar
 DTSTART;VALUE=DATE:20260621
 DTEND;VALUE=DATE:20260623
@@ -265,14 +273,6 @@ DTEND;VALUE=DATE:20260627
 SUMMARY:BWA Y5b: Father’s Day Event for Year 5, 6, RB, 4B and 5B
 DESCRIPTION:Father’s Day Event for Year 5, 6, RB, 4B and 5B.\n\nFather’s Day Event for Year 5, 6, RB, 4B and 5B.
 CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
-UID:451@bwa-calendar
-DTSTART;VALUE=DATE:20260715
-DTEND;VALUE=DATE:20260716
-SUMMARY:BWA Y5b: Last day of Summer Term 2 for Bilingual Stream
-DESCRIPTION:Last day of Summer Term 2 for Bilingual Stream\n\nLast day of Summer Term 2 for Bilingual Stream
-CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
 UID:532@bwa-calendar
@@ -489,5 +489,21 @@ DTEND;VALUE=DATE:20260705
 SUMMARY:BWA: Hair Day
 DESCRIPTION:Crazy Hair Day for all students across all streams.\n\nWe encourage all children (All Streams All Schools) to come to school with their craziest hairstyles. It's going to be a fun-filled day! Children can come to school with their craziest hair styles! Whether it’s rainbow mohawks, glittery spikes, animal-shaped hair, or colorful braids, we want to see it all! We encourage you to get involved and help your child create their wild hairstyle. Let’s make this a memorable day for everyone!
 CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:451@bwa-calendar
+DTSTART;VALUE=DATE:20260715
+DTEND;VALUE=DATE:20260716
+SUMMARY:BWA Y5b: Last day of Summer Term 2 for Bilingual Stream
+DESCRIPTION:Final day of the Summer Term 2 for the Bilingual Stream.\n\nLast day of Summer Term 2 for Bilingual Stream - Wednesday 15 July
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:662@bwa-calendar
+DTSTART;VALUE=DATE:20260715
+DTEND;VALUE=DATE:20260716
+SUMMARY:BWA: Application Deadline -  After-School Club Manager/Assistants
+DESCRIPTION:Closing date for applications for After-School Club roles.\n\nWe are recruiting an After-School Club Manager and After-School Club Assistants for WixKidz, the After-School provision run by the Quality First Education Trust on site at BWA. The closing date for applications is noon on Wednesday 15 July 2026.
+CATEGORIES:ADMIN
 END:VEVENT
 END:VCALENDAR
