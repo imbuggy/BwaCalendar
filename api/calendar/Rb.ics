@@ -490,4 +490,12 @@ SUMMARY:BWA: Application Deadline -  After-School Club Manager/Assistants
 DESCRIPTION:Closing date for applications for After-School Club roles.\n\nWe are recruiting an After-School Club Manager and After-School Club Assistants for WixKidz, the After-School provision run by the Quality First Education Trust on site at BWA. The closing date for applications is noon on Wednesday 15 July 2026.
 CATEGORIES:ADMIN
 END:VEVENT
+BEGIN:VEVENT
+UID:663@bwa-calendar
+DTSTART;VALUE=DATE:20260714
+DTEND;VALUE=DATE:20260715
+SUMMARY:BWA: Breakfast Club Safety Reminder
+DESCRIPTION:Reminder for parents to escort children to the canteen for Breakfast Club.\n\nDear Parents/ Carers, Just a reminder to say if you are bringing your child/children to breakfast club in the morning, please make sure you walk them around to the canteen and not let walk round by themselves ( unless they come to school alone). Kind regards, BWA
+CATEGORIES:ADMIN
+END:VEVENT
 END:VCALENDAR

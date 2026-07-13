@@ -546,4 +546,12 @@ SUMMARY:BWA Y6: English Stream Parent Teacher meetings
 DESCRIPTION:Parent Teacher meetings for English Stream families.\n\nNext week, we look forward to welcoming our English Stream families to our Parent Teacher Meeting. Please do make an appointment if you have missed the deadline as it is an important opportunity to meet the class teacher and talk through the parent partnership that is so essential for every pupil. English Stream Parent Teacher meetings.
 CATEGORIES:ADMIN
 END:VEVENT
+BEGIN:VEVENT
+UID:663@bwa-calendar
+DTSTART;VALUE=DATE:20260714
+DTEND;VALUE=DATE:20260715
+SUMMARY:BWA: Breakfast Club Safety Reminder
+DESCRIPTION:Reminder for parents to escort children to the canteen for Breakfast Club.\n\nDear Parents/ Carers, Just a reminder to say if you are bringing your child/children to breakfast club in the morning, please make sure you walk them around to the canteen and not let walk round by themselves ( unless they come to school alone). Kind regards, BWA
+CATEGORIES:ADMIN
+END:VEVENT
 END:VCALENDAR
