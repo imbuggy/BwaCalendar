@@ -491,14 +491,6 @@ DESCRIPTION:Crazy Hair Day for all students across all streams.\n\nWe encourage 
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:451@bwa-calendar
-DTSTART;VALUE=DATE:20260715
-DTEND;VALUE=DATE:20260716
-SUMMARY:BWA Y5b: Last day of Summer Term 2 for Bilingual Stream
-DESCRIPTION:Final day of the Summer Term 2 for the Bilingual Stream.\n\nLast day of Summer Term 2 for Bilingual Stream - Wednesday 15 July
-CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
 UID:662@bwa-calendar
 DTSTART;VALUE=DATE:20260715
 DTEND;VALUE=DATE:20260716
@@ -512,6 +504,14 @@ DTSTART;VALUE=DATE:20260714
 DTEND;VALUE=DATE:20260715
 SUMMARY:BWA: Breakfast Club Safety Reminder
 DESCRIPTION:Reminder for parents to escort children to the canteen for Breakfast Club.\n\nDear Parents/ Carers, Just a reminder to say if you are bringing your child/children to breakfast club in the morning, please make sure you walk them around to the canteen and not let walk round by themselves ( unless they come to school alone). Kind regards, BWA
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:451@bwa-calendar
+DTSTART;VALUE=DATE:20260715
+DTEND;VALUE=DATE:20260716
+SUMMARY:BWA Y5b: Last day of Summer Term 2 for Bilingual Stream
+DESCRIPTION:Final day of the Summer Term 2 for the Bilingual Stream. Last day of the term for Y1b students. Please send children with an extra bag for their books.\n\nLast day of Summer Term 2 for Bilingual Stream - Wednesday 15 July. It is the last day of school for 1B. Children will be bringing home their books, so please ensure they have an extra bag. Additionally, please check for missing guided reading books: Kind Emma, Eggs on Toast, So You Want A Pet, Rory Lost His Voice, The Pot of Gold, 1st Day, Viking Adventures, and StarBoy.
 CATEGORIES:ADMIN
 END:VEVENT
 END:VCALENDAR
