@@ -890,4 +890,12 @@ SUMMARY:BWA: Annual Parent/Carer Survey Deadline
 DESCRIPTION:Deadline for the annual Quality First Education Trust parent/carer survey.\n\nThe annual parent/carer survey is open for feedback. Please complete one survey per family by Monday 20 July 2026. The survey is anonymous and takes approximately 7 minutes to complete. Link: https://www.surveymonkey.com/r/Q1EParentCarerSurvey26
 CATEGORIES:ADMIN
 END:VEVENT
+BEGIN:VEVENT
+UID:666@bwa-calendar
+DTSTART;VALUE=DATE:20260901
+DTEND;VALUE=DATE:20260902
+SUMMARY:BWA N: Curriculum Evening - English Stream
+DESCRIPTION:Curriculum evening for the English Stream to meet teachers and see classrooms.\n\nCurriculum evenings for the English Stream. These are face to face events where teachers will share the overview for the year ahead and you can see your child’s classroom and meet the class teacher.
+CATEGORIES:ACADEMIC
+END:VEVENT
 END:VCALENDAR
