@@ -307,28 +307,12 @@ DESCRIPTION:School closed to children for INSET day.\n\nSchool closed to childre
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:675@bwa-calendar
-DTSTART;VALUE=DATE:20270503
-DTEND;VALUE=DATE:20270504
-SUMMARY:BWA: Bank Holiday
-DESCRIPTION:Bank holiday, school closed.\n\nBank holiday, school closed.
-CATEGORIES:HOLIDAY
-END:VEVENT
-BEGIN:VEVENT
 UID:676@bwa-calendar
 DTSTART;VALUE=DATE:20270531
 DTEND;VALUE=DATE:20270605
 SUMMARY:BWA: Summer Half Term
-DESCRIPTION:Summer half term holiday.\n\nSummer half term holiday.
+DESCRIPTION:School holiday.\n\nSummer half term holiday.
 CATEGORIES:HOLIDAY
-END:VEVENT
-BEGIN:VEVENT
-UID:677@bwa-calendar
-DTSTART;VALUE=DATE:20270721
-DTEND;VALUE=DATE:20270722
-SUMMARY:BWA Y6: Last Day of Term (English Stream)
-DESCRIPTION:School closes at 1:45pm for the English Stream.\n\nSchool closes at 1:45pm for the English Stream.
-CATEGORIES:OTHER
 END:VEVENT
 BEGIN:VEVENT
 UID:531@bwa-calendar
@@ -419,12 +403,28 @@ DESCRIPTION:Information regarding Breakfast Club.\n\nInformation regarding Break
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
+UID:675@bwa-calendar
+DTSTART;VALUE=DATE:20270503
+DTEND;VALUE=DATE:20270504
+SUMMARY:BWA: Bank Holiday
+DESCRIPTION:School closed for Bank Holiday.\n\nBank Holiday - school closed.
+CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
 UID:639@bwa-calendar
 DTSTART;VALUE=DATE:20260626
 DTEND;VALUE=DATE:20260627
 SUMMARY:BWA: Lost & Found -  Wet Items Collection Deadline
 DESCRIPTION:Deadline to collect wet items from Lost & Found bins before they are recycled.\n\nPlease check the bins and retrieve your child's lost items before tomorrow, 26 June, after drop off. Sadly, we will have to recycle any remaining wet clothing after that to prevent mold.
 CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:677@bwa-calendar
+DTSTART;VALUE=DATE:20270721
+DTEND;VALUE=DATE:20270722
+SUMMARY:BWA Y6: Last day of term (English Stream)
+DESCRIPTION:School closes at 1:45pm.\n\nLast day of term, school closes at 1:45pm for the English Stream.
+CATEGORIES:OTHER
 END:VEVENT
 BEGIN:VEVENT
 UID:640@bwa-calendar
