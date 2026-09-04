@@ -323,6 +323,14 @@ DESCRIPTION:School holiday.\n\nSummer half term holiday.
 CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
+UID:678@bwa-calendar
+DTSTART;VALUE=DATE:20270721
+DTEND;VALUE=DATE:20270722
+SUMMARY:BWA Y5: Last day of term (Bilingual and English Streams)
+DESCRIPTION:School closes at 3:15pm for the Bilingual Stream and 1:45pm for the English Stream.\n\nLast day of term, school closes at 3:15pm for the Bilingual Stream. Last day of term, school closes at 1:45pm for the English Stream.
+CATEGORIES:OTHER
+END:VEVENT
+BEGIN:VEVENT
 UID:531@bwa-calendar
 DTSTART;VALUE=DATE:20260105
 DTEND;VALUE=DATE:20260106
@@ -664,6 +672,14 @@ DTSTART;VALUE=DATE:20260901
 DTEND;VALUE=DATE:20260902
 SUMMARY:BWA Y5: Curriculum Evening - English Stream
 DESCRIPTION:Curriculum evening for the English Stream to meet teachers and see classrooms.\n\nCurriculum evenings for the English Stream. These are face to face events where teachers will share the overview for the year ahead and you can see your child’s classroom and meet the class teacher.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:679@bwa-calendar
+DTSTART;VALUE=DATE:20260904
+DTEND;VALUE=DATE:20260905
+SUMMARY:BWA Y5: Curriculum Evening
+DESCRIPTION:Curriculum Evening for English Stream parents to meet teachers and hear about the year ahead.\n\nCurriculum Evening for English Stream parents. This is a face-to-face event for adults only. Childcare will be offered by school staff.
 CATEGORIES:ACADEMIC
 END:VEVENT
 END:VCALENDAR

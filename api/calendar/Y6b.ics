@@ -310,8 +310,8 @@ BEGIN:VEVENT
 UID:678@bwa-calendar
 DTSTART;VALUE=DATE:20270721
 DTEND;VALUE=DATE:20270722
-SUMMARY:BWA Y6b: Last day of term (Bilingual Stream)
-DESCRIPTION:School closes at 3:15pm.\n\nLast day of term, school closes at 3:15pm for the Bilingual Stream.
+SUMMARY:BWA Y6b: Last day of term (Bilingual and English Streams)
+DESCRIPTION:School closes at 3:15pm for the Bilingual Stream and 1:45pm for the English Stream.\n\nLast day of term, school closes at 3:15pm for the Bilingual Stream. Last day of term, school closes at 1:45pm for the English Stream.
 CATEGORIES:OTHER
 END:VEVENT
 BEGIN:VEVENT
