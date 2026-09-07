@@ -658,4 +658,12 @@ SUMMARY:BWA Y2: Last day of term (Bilingual and English Streams)
 DESCRIPTION:School closes at 3:15pm for the Bilingual Stream and 1:45pm for the English Stream.\n\nLast day of term, school closes at 3:15pm for the Bilingual Stream. Last day of term, school closes at 1:45pm for the English Stream.
 CATEGORIES:OTHER
 END:VEVENT
+BEGIN:VEVENT
+UID:680@bwa-calendar
+DTSTART;VALUE=DATE:20260909
+DTEND;VALUE=DATE:20260910
+SUMMARY:BWA: Second-Hand Uniform Sale
+DESCRIPTION:The PTA and APL are holding a second-hand uniform sale in front of the school gates.\n\nThe PTA and APL are holding a second-hand uniform sale in front of the school gates between 8.00 and 9.00am. Good quality pre-loved uniform items will be available. Cash or card payments accepted (card preferred). No donations are being accepted at this time.
+CATEGORIES:COMMUNITY
+END:VEVENT
 END:VCALENDAR
