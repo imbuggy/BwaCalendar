@@ -187,14 +187,6 @@ DESCRIPTION:All clubs will end on Friday 11th December.\n\nAll clubs will start 
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:673@bwa-calendar
-DTSTART;VALUE=DATE:20270215
-DTEND;VALUE=DATE:20270220
-SUMMARY:BWA: Spring Half Term
-DESCRIPTION:Spring half term holiday.\n\nSpring half term holiday.
-CATEGORIES:HOLIDAY
-END:VEVENT
-BEGIN:VEVENT
 UID:486@bwa-calendar
 DTSTART;VALUE=DATE:20260429
 DTEND;VALUE=DATE:20260430
@@ -307,6 +299,14 @@ DESCRIPTION:Children will have the opportunity to meet their new class teachers 
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
+UID:673@bwa-calendar
+DTSTART;VALUE=DATE:20270215
+DTEND;VALUE=DATE:20270220
+SUMMARY:BWA: Spring Half Term
+DESCRIPTION:School holiday.\n\nSpring half term holiday.
+CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
 UID:676@bwa-calendar
 DTSTART;VALUE=DATE:20270531
 DTEND;VALUE=DATE:20270605
@@ -363,14 +363,6 @@ DESCRIPTION:Information regarding Breakfast Club.\n\nInformation regarding Break
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:675@bwa-calendar
-DTSTART;VALUE=DATE:20270503
-DTEND;VALUE=DATE:20270504
-SUMMARY:BWA: Bank Holiday
-DESCRIPTION:School closed for Bank Holiday.\n\nBank Holiday - school closed.
-CATEGORIES:HOLIDAY
-END:VEVENT
-BEGIN:VEVENT
 UID:639@bwa-calendar
 DTSTART;VALUE=DATE:20260626
 DTEND;VALUE=DATE:20260627
@@ -403,20 +395,20 @@ DESCRIPTION:Parent Gym will not take place this Thursday due to SATs exams.\n\nP
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
-UID:670@bwa-calendar
-DTSTART;VALUE=DATE:20261026
-DTEND;VALUE=DATE:20261031
-SUMMARY:BWA: Autumn Half Term
-DESCRIPTION:Autumn half term holiday.\n\nAutumn half term holiday.
-CATEGORIES:HOLIDAY
-END:VEVENT
-BEGIN:VEVENT
 UID:563@bwa-calendar
 DTSTART;VALUE=DATE:20260618
 DTEND;VALUE=DATE:20260619
 SUMMARY:BWA Y3b: Careers Fair (KS2)
 DESCRIPTION:BWA is hosting an annual careers fair for KS2 students and is seeking parent volunteers to talk about their professions.\n\nBWA is hosting an annual careers fair for KS2 students on Thursday 18th June. Volunteers are requested to man a stall from 12:30pm to 3:00pm to discuss their roles and career pathways with pupils. Interested parents should email admin@bellevillewix.q1e.org.uk by Friday 22nd May with their name, job, and availability.
 CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:670@bwa-calendar
+DTSTART;VALUE=DATE:20261026
+DTEND;VALUE=DATE:20261031
+SUMMARY:BWA: Autumn Half Term
+DESCRIPTION:School holiday.\n\nAutumn half term holiday.
+CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
 UID:565@bwa-calendar
@@ -457,6 +449,14 @@ DTEND;VALUE=DATE:20260624
 SUMMARY:BWA: Heatwave Safety Measures
 DESCRIPTION:School remains open during the heatwave. Please ensure children have water bottles, sun hats, and sunscreen.\n\nSchool remains open as normal during the heatwave. Parents are asked to ensure children arrive with at least one, ideally two, named water bottles (frozen recommended), wear a sun hat, have sunscreen applied before school, and wear appropriate lightweight summer uniform. Coats, jumpers, cardigans, and fleeces should not be worn unless there is a specific medical reason.
 CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:675@bwa-calendar
+DTSTART;VALUE=DATE:20270503
+DTEND;VALUE=DATE:20270504
+SUMMARY:BWA: Bank Holiday
+DESCRIPTION:School closed for Bank Holiday.\n\nBank Holiday - school closed.
+CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
 UID:550@bwa-calendar
@@ -571,19 +571,19 @@ DESCRIPTION:Deadline for the annual Quality First Education Trust parent/carer s
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:678@bwa-calendar
-DTSTART;VALUE=DATE:20270721
-DTEND;VALUE=DATE:20270722
-SUMMARY:BWA Y3b: Last day of term (Bilingual and English Streams)
-DESCRIPTION:School closes at 3:15pm for the Bilingual Stream and 1:45pm for the English Stream.\n\nLast day of term, school closes at 3:15pm for the Bilingual Stream. Last day of term, school closes at 1:45pm for the English Stream.
-CATEGORIES:OTHER
-END:VEVENT
-BEGIN:VEVENT
 UID:680@bwa-calendar
 DTSTART;VALUE=DATE:20260909
 DTEND;VALUE=DATE:20260910
 SUMMARY:BWA: Second-Hand Uniform Sale
 DESCRIPTION:The PTA and APL are holding a second-hand uniform sale in front of the school gates.\n\nThe PTA and APL are holding a second-hand uniform sale in front of the school gates between 8.00 and 9.00am. Good quality pre-loved uniform items will be available. Cash or card payments accepted (card preferred). No donations are being accepted at this time.
 CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:678@bwa-calendar
+DTSTART;VALUE=DATE:20270721
+DTEND;VALUE=DATE:20270722
+SUMMARY:BWA Y3b: Last day of term (Bilingual and English Streams)
+DESCRIPTION:School closes at 3:15pm for the Bilingual Stream and 1:45pm for the English Stream.\n\nLast day of term, school closes at 3:15pm for the Bilingual Stream. Last day of term, school closes at 1:45pm for the English Stream.
+CATEGORIES:OTHER
 END:VEVENT
 END:VCALENDAR

@@ -163,14 +163,6 @@ DESCRIPTION:All clubs will end on Friday 11th December.\n\nAll clubs will start 
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:673@bwa-calendar
-DTSTART;VALUE=DATE:20270215
-DTEND;VALUE=DATE:20270220
-SUMMARY:BWA: Spring Half Term
-DESCRIPTION:Spring half term holiday.\n\nSpring half term holiday.
-CATEGORIES:HOLIDAY
-END:VEVENT
-BEGIN:VEVENT
 UID:486@bwa-calendar
 DTSTART;VALUE=DATE:20260429
 DTEND;VALUE=DATE:20260430
@@ -299,12 +291,28 @@ DESCRIPTION:Final day of the Summer Term 2 for the English Stream.\n\nLast day o
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:674@bwa-calendar
-DTSTART;VALUE=DATE:20270412
-DTEND;VALUE=DATE:20270413
+UID:668@bwa-calendar
+DTSTART;VALUE=DATE:20260901
+DTEND;VALUE=DATE:20260902
 SUMMARY:BWA Y6: INSET Day
-DESCRIPTION:School closed to children for INSET day.\n\nSchool closed to children for INSET day.
+DESCRIPTION:School closed to children for staff training.\n\nINSET Day - school closed to children.
 CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:672@bwa-calendar
+DTSTART;VALUE=DATE:20270104
+DTEND;VALUE=DATE:20270105
+SUMMARY:BWA Y6: INSET Day
+DESCRIPTION:School closed to children for staff training.\n\nINSET Day - school closed to children.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:673@bwa-calendar
+DTSTART;VALUE=DATE:20270215
+DTEND;VALUE=DATE:20270220
+SUMMARY:BWA: Spring Half Term
+DESCRIPTION:School holiday.\n\nSpring half term holiday.
+CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
 UID:676@bwa-calendar
@@ -403,20 +411,20 @@ DESCRIPTION:Information regarding Breakfast Club.\n\nInformation regarding Break
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:675@bwa-calendar
-DTSTART;VALUE=DATE:20270503
-DTEND;VALUE=DATE:20270504
-SUMMARY:BWA: Bank Holiday
-DESCRIPTION:School closed for Bank Holiday.\n\nBank Holiday - school closed.
-CATEGORIES:HOLIDAY
-END:VEVENT
-BEGIN:VEVENT
 UID:639@bwa-calendar
 DTSTART;VALUE=DATE:20260626
 DTEND;VALUE=DATE:20260627
 SUMMARY:BWA: Lost & Found -  Wet Items Collection Deadline
 DESCRIPTION:Deadline to collect wet items from Lost & Found bins before they are recycled.\n\nPlease check the bins and retrieve your child's lost items before tomorrow, 26 June, after drop off. Sadly, we will have to recycle any remaining wet clothing after that to prevent mold.
 CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:674@bwa-calendar
+DTSTART;VALUE=DATE:20270412
+DTEND;VALUE=DATE:20270413
+SUMMARY:BWA Y6: INSET Day
+DESCRIPTION:School closed to children for staff training.\n\nINSET Day - school closed to children.
+CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:640@bwa-calendar
@@ -427,28 +435,12 @@ DESCRIPTION:Deadline to collect dry items from Lost & Found before they are dona
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:668@bwa-calendar
-DTSTART;VALUE=DATE:20260901
-DTEND;VALUE=DATE:20260902
-SUMMARY:BWA Y6: INSET Day
-DESCRIPTION:School closed to children for INSET day.\n\nSchool closed to children for INSET day.
-CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
 UID:547@bwa-calendar
 DTSTART;VALUE=DATE:20260606
 DTEND;VALUE=DATE:20260609
 SUMMARY:BWA Y6: Y6 English Stream Residential
 DESCRIPTION:Residential trip for the Y6 English Stream.\n\nResidential trip for the Y6 English Stream.
 CATEGORIES:TRIP
-END:VEVENT
-BEGIN:VEVENT
-UID:669@bwa-calendar
-DTSTART;VALUE=DATE:20260902
-DTEND;VALUE=DATE:20260903
-SUMMARY:BWA Y6: INSET Day
-DESCRIPTION:School closed to children for INSET day.\n\nSchool closed to children for INSET day.
-CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:560@bwa-calendar
@@ -467,14 +459,6 @@ DESCRIPTION:Summer reports for English stream\n\nSummer reports for English stre
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:670@bwa-calendar
-DTSTART;VALUE=DATE:20261026
-DTEND;VALUE=DATE:20261031
-SUMMARY:BWA: Autumn Half Term
-DESCRIPTION:Autumn half term holiday.\n\nAutumn half term holiday.
-CATEGORIES:HOLIDAY
-END:VEVENT
-BEGIN:VEVENT
 UID:563@bwa-calendar
 DTSTART;VALUE=DATE:20260618
 DTEND;VALUE=DATE:20260619
@@ -483,11 +467,27 @@ DESCRIPTION:BWA is hosting an annual careers fair for KS2 students and is seekin
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
+UID:669@bwa-calendar
+DTSTART;VALUE=DATE:20260902
+DTEND;VALUE=DATE:20260903
+SUMMARY:BWA Y6: INSET Day
+DESCRIPTION:School closed to children for staff training.\n\nINSET Day - school closed to children.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:670@bwa-calendar
+DTSTART;VALUE=DATE:20261026
+DTEND;VALUE=DATE:20261031
+SUMMARY:BWA: Autumn Half Term
+DESCRIPTION:School holiday.\n\nAutumn half term holiday.
+CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
 UID:671@bwa-calendar
 DTSTART;VALUE=DATE:20261102
 DTEND;VALUE=DATE:20261103
 SUMMARY:BWA Y6: INSET Day
-DESCRIPTION:School closed to children for INSET day.\n\nSchool closed to children for INSET day.
+DESCRIPTION:School closed to children for staff training.\n\nINSET Day - school closed to children.
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
@@ -531,6 +531,14 @@ DESCRIPTION:School remains open during the heatwave. Please ensure children have
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
+UID:675@bwa-calendar
+DTSTART;VALUE=DATE:20270503
+DTEND;VALUE=DATE:20270504
+SUMMARY:BWA: Bank Holiday
+DESCRIPTION:School closed for Bank Holiday.\n\nBank Holiday - school closed.
+CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
 UID:634@bwa-calendar
 DTSTART;VALUE=DATE:20260731
 DTEND;VALUE=DATE:20260801
@@ -553,14 +561,6 @@ DTEND;VALUE=DATE:20260630
 SUMMARY:BWA: Toy Swap Shop -  Donation Window
 DESCRIPTION:Please bring one toy per child to the PTA table at morning drop-off.\n\nPlease bring one toy per child (suitable for their age and in good condition) to the PTA table at morning drop-off this week between 8:15am and 8:45am. In exchange, your child will receive a token to use at the Toy Swap after school on Tuesday 7th July.
 CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
-UID:672@bwa-calendar
-DTSTART;VALUE=DATE:20270104
-DTEND;VALUE=DATE:20270105
-SUMMARY:BWA Y6: INSET Day
-DESCRIPTION:School closed to children for INSET day.\n\nSchool closed to children for INSET day.
-CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:600@bwa-calendar
@@ -659,19 +659,19 @@ DESCRIPTION:Curriculum Evening for English Stream parents to meet teachers and h
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
-UID:678@bwa-calendar
-DTSTART;VALUE=DATE:20270721
-DTEND;VALUE=DATE:20270722
-SUMMARY:BWA Y6: Last day of term (Bilingual and English Streams)
-DESCRIPTION:School closes at 3:15pm for the Bilingual Stream and 1:45pm for the English Stream.\n\nLast day of term, school closes at 3:15pm for the Bilingual Stream. Last day of term, school closes at 1:45pm for the English Stream.
-CATEGORIES:OTHER
-END:VEVENT
-BEGIN:VEVENT
 UID:680@bwa-calendar
 DTSTART;VALUE=DATE:20260909
 DTEND;VALUE=DATE:20260910
 SUMMARY:BWA: Second-Hand Uniform Sale
 DESCRIPTION:The PTA and APL are holding a second-hand uniform sale in front of the school gates.\n\nThe PTA and APL are holding a second-hand uniform sale in front of the school gates between 8.00 and 9.00am. Good quality pre-loved uniform items will be available. Cash or card payments accepted (card preferred). No donations are being accepted at this time.
 CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:678@bwa-calendar
+DTSTART;VALUE=DATE:20270721
+DTEND;VALUE=DATE:20270722
+SUMMARY:BWA Y6: Last day of term (Bilingual and English Streams)
+DESCRIPTION:School closes at 3:15pm for the Bilingual Stream and 1:45pm for the English Stream.\n\nLast day of term, school closes at 3:15pm for the Bilingual Stream. Last day of term, school closes at 1:45pm for the English Stream.
+CATEGORIES:OTHER
 END:VEVENT
 END:VCALENDAR
