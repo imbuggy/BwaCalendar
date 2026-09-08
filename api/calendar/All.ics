@@ -1002,4 +1002,12 @@ SUMMARY:BWA: Second-Hand Uniform Sale
 DESCRIPTION:BWA PTA and APL Second-Hand Uniform Sale.\n\nBWA PTA and APL Second-Hand Uniform Sale.
 CATEGORIES:COMMUNITY
 END:VEVENT
+BEGIN:VEVENT
+UID:683@bwa-calendar
+DTSTART;VALUE=DATE:20260908
+DTEND;VALUE=DATE:20260909
+SUMMARY:BWA Rb: Bilingual Welcome and Curriculum Evenings
+DESCRIPTION:Welcome and curriculum meetings for Bilingual stream parents to meet teachers and learn about the year ahead.\n\nParents and carers are invited to meet their children’s teachers and learn about the year ahead. Meetings will be held in the child's classroom. Please do not bring children to this meeting as there is limited space.
+CATEGORIES:ACADEMIC
+END:VEVENT
 END:VCALENDAR
