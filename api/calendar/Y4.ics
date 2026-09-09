@@ -674,4 +674,12 @@ SUMMARY:BWA: Second-Hand Uniform Sale
 DESCRIPTION:BWA PTA and APL Second-Hand Uniform Sale.\n\nBWA PTA and APL Second-Hand Uniform Sale.
 CATEGORIES:COMMUNITY
 END:VEVENT
+BEGIN:VEVENT
+UID:684@bwa-calendar
+DTSTART;VALUE=DATE:20260909
+DTEND;VALUE=DATE:20260910
+SUMMARY:BWA: Autumn Term Music Project Practice
+DESCRIPTION:Students are participating in a music project with Wandsworth Music Service this Autumn term and are encouraged to practice their assigned parts at home.\n\nStudents are participating in a music project with Wandsworth Music Service this Autumn term. Each child will be assigned either a Blue Part or a Red Part and should practice regularly. Resources for the song and lyrics have been provided to parents to support home practice.
+CATEGORIES:ARTS
+END:VEVENT
 END:VCALENDAR

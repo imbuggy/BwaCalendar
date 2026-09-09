@@ -570,4 +570,12 @@ SUMMARY:BWA Y2b: Bilingual Welcome and Curriculum Evenings
 DESCRIPTION:Welcome and curriculum meetings for Bilingual stream parents to meet teachers and learn about the year ahead.\n\nParents and carers are invited to meet their children’s teachers and learn about the year ahead. Meetings will be held in the child's classroom. Please do not bring children to this meeting as there is limited space.
 CATEGORIES:ACADEMIC
 END:VEVENT
+BEGIN:VEVENT
+UID:684@bwa-calendar
+DTSTART;VALUE=DATE:20260909
+DTEND;VALUE=DATE:20260910
+SUMMARY:BWA: Autumn Term Music Project Practice
+DESCRIPTION:Students are participating in a music project with Wandsworth Music Service this Autumn term and are encouraged to practice their assigned parts at home.\n\nStudents are participating in a music project with Wandsworth Music Service this Autumn term. Each child will be assigned either a Blue Part or a Red Part and should practice regularly. Resources for the song and lyrics have been provided to parents to support home practice.
+CATEGORIES:ARTS
+END:VEVENT
 END:VCALENDAR
