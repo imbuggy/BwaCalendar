@@ -1018,4 +1018,20 @@ SUMMARY:BWA: Autumn Term Music Project Practice
 DESCRIPTION:Students are participating in a music project with Wandsworth Music Service this Autumn term and are encouraged to practice their assigned parts at home.\n\nStudents are participating in a music project with Wandsworth Music Service this Autumn term. Each child will be assigned either a Blue Part or a Red Part and should practice regularly. Resources for the song and lyrics have been provided to parents to support home practice.
 CATEGORIES:ARTS
 END:VEVENT
+BEGIN:VEVENT
+UID:685@bwa-calendar
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261002
+SUMMARY:BWA Y4: Year 4 Swimming Course Start
+DESCRIPTION:Year 4 weekly swimming lessons start at Clapham Leisure Centre.\n\nYear 4 pupils will attend a weekly swimming course at Clapham Leisure Centre every Thursday from 1st October until 17th December. Lessons are 9:30am – 10:15am. Pupils must be at school by 8:35am to leave at 8:45am. Required: swimming shorts/costume, towel, swimming hat, goggles, and a coat.
+CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
+UID:686@bwa-calendar
+DTSTART;VALUE=DATE:20261217
+DTEND;VALUE=DATE:20261218
+SUMMARY:BWA Y4: Year 4 Swimming Course End
+DESCRIPTION:Final session of the Year 4 weekly swimming course.\n\nFinal session of the Year 4 swimming course at Clapham Leisure Centre. Lessons are 9:30am – 10:15am. Pupils must be at school by 8:35am to leave at 8:45am.
+CATEGORIES:SPORTS
+END:VEVENT
 END:VCALENDAR
