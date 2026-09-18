@@ -399,7 +399,7 @@ UID:670@bwa-calendar
 DTSTART;VALUE=DATE:20261026
 DTEND;VALUE=DATE:20261031
 SUMMARY:BWA: Autumn Half Term
-DESCRIPTION:School holiday.\n\nAutumn half term holiday.
+DESCRIPTION:School closed for Autumn Half Term.\n\nAutumn Half Term: Monday 26 October to Friday 30 October
 CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
@@ -585,5 +585,29 @@ DTEND;VALUE=DATE:20260910
 SUMMARY:BWA: Autumn Term Music Project Practice
 DESCRIPTION:Students are participating in a music project with Wandsworth Music Service this Autumn term and are encouraged to practice their assigned parts at home.\n\nStudents are participating in a music project with Wandsworth Music Service this Autumn term. Each child will be assigned either a Blue Part or a Red Part and should practice regularly. Resources for the song and lyrics have been provided to parents to support home practice.
 CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:687@bwa-calendar
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:BWA: Last day of Autumn Term 1
+DESCRIPTION:Last day of the first half of the Autumn term.\n\nLast day of Autumn Term 1: Friday 23 October
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:688@bwa-calendar
+DTSTART;VALUE=DATE:20261102
+DTEND;VALUE=DATE:20261103
+SUMMARY:BWA Y4b: First day of Autumn Term 2 (Bilingual Stream)
+DESCRIPTION:First day of Autumn Term 2 for Bilingual Stream.\n\nFirst day of Autumn Term 2: Monday 2 November for Bilingual Stream
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:690@bwa-calendar
+DTSTART;VALUE=DATE:20261218
+DTEND;VALUE=DATE:20261219
+SUMMARY:BWA: Last day of Autumn Term 2
+DESCRIPTION:Last day of the second half of the Autumn term.\n\nLast day of Autumn Term 2: Friday 18 December
+CATEGORIES:ACADEMIC
 END:VEVENT
 END:VCALENDAR

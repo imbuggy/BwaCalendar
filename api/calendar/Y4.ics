@@ -479,16 +479,16 @@ UID:670@bwa-calendar
 DTSTART;VALUE=DATE:20261026
 DTEND;VALUE=DATE:20261031
 SUMMARY:BWA: Autumn Half Term
-DESCRIPTION:School holiday.\n\nAutumn half term holiday.
+DESCRIPTION:School closed for Autumn Half Term.\n\nAutumn Half Term: Monday 26 October to Friday 30 October
 CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
 UID:671@bwa-calendar
 DTSTART;VALUE=DATE:20261102
 DTEND;VALUE=DATE:20261103
-SUMMARY:BWA Y4: INSET Day
-DESCRIPTION:School closed to children for staff training.\n\nINSET Day - school closed to children.
-CATEGORIES:ADMIN
+SUMMARY:BWA Y4: Inset Day for English Stream
+DESCRIPTION:Inset Day for English Stream.\n\nInset Day for English Stream: Monday 2 November
+CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
 UID:565@bwa-calendar
@@ -697,5 +697,29 @@ DTEND;VALUE=DATE:20261218
 SUMMARY:BWA Y4: Year 4 Swimming Course End
 DESCRIPTION:Final session of the Year 4 weekly swimming course.\n\nFinal session of the Year 4 swimming course at Clapham Leisure Centre. Lessons are 9:30am – 10:15am. Pupils must be at school by 8:35am to leave at 8:45am.
 CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
+UID:687@bwa-calendar
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:BWA: Last day of Autumn Term 1
+DESCRIPTION:Last day of the first half of the Autumn term.\n\nLast day of Autumn Term 1: Friday 23 October
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:689@bwa-calendar
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:BWA Y4: First day of Autumn Term 2 (English Stream)
+DESCRIPTION:First day of Autumn Term 2 for English Stream.\n\nFirst day of Autumn Term 2: Tuesday 3 November for English Stream
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:690@bwa-calendar
+DTSTART;VALUE=DATE:20261218
+DTEND;VALUE=DATE:20261219
+SUMMARY:BWA: Last day of Autumn Term 2
+DESCRIPTION:Last day of the second half of the Autumn term.\n\nLast day of Autumn Term 2: Friday 18 December
+CATEGORIES:ACADEMIC
 END:VEVENT
 END:VCALENDAR
