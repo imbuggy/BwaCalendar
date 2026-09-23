@@ -1019,14 +1019,6 @@ DESCRIPTION:Students are participating in a music project with Wandsworth Music 
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
-UID:685@bwa-calendar
-DTSTART;VALUE=DATE:20261001
-DTEND;VALUE=DATE:20261002
-SUMMARY:BWA Y4: Year 4 Swimming Course Start
-DESCRIPTION:Year 4 weekly swimming lessons start at Clapham Leisure Centre.\n\nYear 4 pupils will attend a weekly swimming course at Clapham Leisure Centre every Thursday from 1st October until 17th December. Lessons are 9:30am – 10:15am. Pupils must be at school by 8:35am to leave at 8:45am. Required: swimming shorts/costume, towel, swimming hat, goggles, and a coat.
-CATEGORIES:SPORTS
-END:VEVENT
-BEGIN:VEVENT
 UID:686@bwa-calendar
 DTSTART;VALUE=DATE:20261217
 DTEND;VALUE=DATE:20261218
@@ -1065,5 +1057,13 @@ DTEND;VALUE=DATE:20261219
 SUMMARY:BWA: Last day of Autumn Term 2
 DESCRIPTION:Last day of the second half of the Autumn term.\n\nLast day of Autumn Term 2: Friday 18 December
 CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:685@bwa-calendar
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261002
+SUMMARY:BWA Y4: Year 4 Swimming Course Start
+DESCRIPTION:Year 4 swimming lessons start. Parent helpers are invited to join on a rotation basis.\n\nYear 4 swimming lessons start. We will leave at 8.45am and return by 11.30am at the latest. Please contact Miss Malinowski if you are available to assist as a parent helper.
+CATEGORIES:SPORTS
 END:VEVENT
 END:VCALENDAR
