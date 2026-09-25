@@ -475,20 +475,20 @@ DESCRIPTION:School closed to children for staff training.\n\nINSET Day - school 
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:670@bwa-calendar
-DTSTART;VALUE=DATE:20261026
-DTEND;VALUE=DATE:20261031
-SUMMARY:BWA: Autumn Half Term
-DESCRIPTION:School closed for Autumn Half Term.\n\nAutumn Half Term: Monday 26 October to Friday 30 October
-CATEGORIES:HOLIDAY
-END:VEVENT
-BEGIN:VEVENT
 UID:671@bwa-calendar
 DTSTART;VALUE=DATE:20261102
 DTEND;VALUE=DATE:20261103
 SUMMARY:BWA Y4: Inset Day for English Stream
-DESCRIPTION:Inset Day for English Stream.\n\nInset Day for English Stream: Monday 2 November
-CATEGORIES:ACADEMIC
+DESCRIPTION:Inset Day for English Stream.\n\nInset Day for English Stream.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:670@bwa-calendar
+DTSTART;VALUE=DATE:20261026
+DTEND;VALUE=DATE:20261031
+SUMMARY:BWA: Autumn Half Term
+DESCRIPTION:Autumn Half Term holiday.\n\nAutumn Half Term holiday.
+CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
 UID:565@bwa-calendar
@@ -695,15 +695,39 @@ UID:687@bwa-calendar
 DTSTART;VALUE=DATE:20261023
 DTEND;VALUE=DATE:20261024
 SUMMARY:BWA: Last day of Autumn Term 1
-DESCRIPTION:Last day of the first half of the Autumn term.\n\nLast day of Autumn Term 1: Friday 23 October
+DESCRIPTION:Last day of Autumn Term 1.\n\nLast day of Autumn Term 1.
 CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:691@bwa-calendar
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261002
+SUMMARY:BWA: Black History Month
+DESCRIPTION:Launch of Black History Month activities.\n\nBlack History Month activities begin at the school.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:685@bwa-calendar
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261002
+SUMMARY:BWA Y4: Year 4 English Stream Swimming Lessons start
+DESCRIPTION:Year 4 English Stream Swimming Lessons start.\n\nYear 4 English Stream Swimming Lessons start.
+CATEGORIES:SPORTS
+END:VEVENT
+BEGIN:VEVENT
+UID:693@bwa-calendar
+DTSTART;VALUE=DATE:20261005
+DTEND;VALUE=DATE:20261006
+SUMMARY:BWA Y4: Through the school gates webinar
+DESCRIPTION:Free parent webinar on overcoming daily challenges getting into school.\n\nFree parent webinar provided by SWLSTG Education Wellbeing Service.
+CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
 UID:689@bwa-calendar
 DTSTART;VALUE=DATE:20261103
 DTEND;VALUE=DATE:20261104
 SUMMARY:BWA Y4: First day of Autumn Term 2 (English Stream)
-DESCRIPTION:First day of Autumn Term 2 for English Stream.\n\nFirst day of Autumn Term 2: Tuesday 3 November for English Stream
+DESCRIPTION:First day of Autumn Term 2 for English Stream.\n\nFirst day of Autumn Term 2 for English Stream.
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
@@ -711,15 +735,39 @@ UID:690@bwa-calendar
 DTSTART;VALUE=DATE:20261218
 DTEND;VALUE=DATE:20261219
 SUMMARY:BWA: Last day of Autumn Term 2
-DESCRIPTION:Last day of the second half of the Autumn term.\n\nLast day of Autumn Term 2: Friday 18 December
+DESCRIPTION:Last day of Autumn Term 2.\n\nLast day of Autumn Term 2.
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
-UID:685@bwa-calendar
-DTSTART;VALUE=DATE:20261001
-DTEND;VALUE=DATE:20261002
-SUMMARY:BWA Y4: Year 4 Swimming Course Start
-DESCRIPTION:Year 4 swimming lessons start. Parent helpers are invited to join on a rotation basis.\n\nYear 4 swimming lessons start. We will leave at 8.45am and return by 11.30am at the latest. Please contact Miss Malinowski if you are available to assist as a parent helper.
-CATEGORIES:SPORTS
+UID:695@bwa-calendar
+DTSTART;VALUE=DATE:20261009
+DTEND;VALUE=DATE:20261010
+SUMMARY:BWA Y4: Through the school gates webinar
+DESCRIPTION:Free parent webinar on overcoming daily challenges getting into school.\n\nFree parent webinar provided by SWLSTG Education Wellbeing Service.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:697@bwa-calendar
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261017
+SUMMARY:BWA: PTA Reps Breakfast with Miss Henry
+DESCRIPTION:PTA Reps Breakfast with Miss Henry.\n\nPTA Reps Breakfast with Miss Henry.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:698@bwa-calendar
+DTSTART;VALUE=DATE:20261020
+DTEND;VALUE=DATE:20261022
+SUMMARY:BWA Y4: Parents/Carers’ Evening for English stream
+DESCRIPTION:Parents/Carers’ Evening for English stream.\n\nParents/Carers’ Evening for English stream.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:699@bwa-calendar
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:BWA: Parent Gym Starts
+DESCRIPTION:Parent Gym sessions start.\n\nParent Gym sessions start.
+CATEGORIES:WELLBEING
 END:VEVENT
 END:VCALENDAR

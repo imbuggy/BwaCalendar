@@ -467,20 +467,20 @@ DESCRIPTION:School closed to children for staff training.\n\nINSET Day - school 
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:670@bwa-calendar
-DTSTART;VALUE=DATE:20261026
-DTEND;VALUE=DATE:20261031
-SUMMARY:BWA: Autumn Half Term
-DESCRIPTION:School closed for Autumn Half Term.\n\nAutumn Half Term: Monday 26 October to Friday 30 October
-CATEGORIES:HOLIDAY
-END:VEVENT
-BEGIN:VEVENT
 UID:671@bwa-calendar
 DTSTART;VALUE=DATE:20261102
 DTEND;VALUE=DATE:20261103
 SUMMARY:BWA N: Inset Day for English Stream
-DESCRIPTION:Inset Day for English Stream.\n\nInset Day for English Stream: Monday 2 November
-CATEGORIES:ACADEMIC
+DESCRIPTION:Inset Day for English Stream.\n\nInset Day for English Stream.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:670@bwa-calendar
+DTSTART;VALUE=DATE:20261026
+DTEND;VALUE=DATE:20261031
+SUMMARY:BWA: Autumn Half Term
+DESCRIPTION:Autumn Half Term holiday.\n\nAutumn Half Term holiday.
+CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
 UID:565@bwa-calendar
@@ -671,15 +671,39 @@ UID:687@bwa-calendar
 DTSTART;VALUE=DATE:20261023
 DTEND;VALUE=DATE:20261024
 SUMMARY:BWA: Last day of Autumn Term 1
-DESCRIPTION:Last day of the first half of the Autumn term.\n\nLast day of Autumn Term 1: Friday 23 October
+DESCRIPTION:Last day of Autumn Term 1.\n\nLast day of Autumn Term 1.
 CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:691@bwa-calendar
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261002
+SUMMARY:BWA: Black History Month
+DESCRIPTION:Launch of Black History Month activities.\n\nBlack History Month activities begin at the school.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:692@bwa-calendar
+DTSTART;VALUE=DATE:20261005
+DTEND;VALUE=DATE:20261006
+SUMMARY:BWA N: Feeding and its difficulties in the Early Years webinar
+DESCRIPTION:Free parent webinar on feeding difficulties in the Early Years.\n\nFree parent webinar provided by SWLSTG Education Wellbeing Service.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:694@bwa-calendar
+DTSTART;VALUE=DATE:20261008
+DTEND;VALUE=DATE:20261009
+SUMMARY:BWA N: Building Strong Bonds webinar
+DESCRIPTION:Free parent webinar on building healthy and secure attachment relationships.\n\nFree parent webinar provided by SWLSTG Education Wellbeing Service.
+CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
 UID:689@bwa-calendar
 DTSTART;VALUE=DATE:20261103
 DTEND;VALUE=DATE:20261104
 SUMMARY:BWA N: First day of Autumn Term 2 (English Stream)
-DESCRIPTION:First day of Autumn Term 2 for English Stream.\n\nFirst day of Autumn Term 2: Tuesday 3 November for English Stream
+DESCRIPTION:First day of Autumn Term 2 for English Stream.\n\nFirst day of Autumn Term 2 for English Stream.
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
@@ -687,7 +711,47 @@ UID:690@bwa-calendar
 DTSTART;VALUE=DATE:20261218
 DTEND;VALUE=DATE:20261219
 SUMMARY:BWA: Last day of Autumn Term 2
-DESCRIPTION:Last day of the second half of the Autumn term.\n\nLast day of Autumn Term 2: Friday 18 December
+DESCRIPTION:Last day of Autumn Term 2.\n\nLast day of Autumn Term 2.
 CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:696@bwa-calendar
+DTSTART;VALUE=DATE:20261014
+DTEND;VALUE=DATE:20261015
+SUMMARY:BWA N: Building Strong Bonds webinar
+DESCRIPTION:Free parent webinar on building healthy and secure attachment relationships.\n\nFree parent webinar provided by SWLSTG Education Wellbeing Service.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:697@bwa-calendar
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261017
+SUMMARY:BWA: PTA Reps Breakfast with Miss Henry
+DESCRIPTION:PTA Reps Breakfast with Miss Henry.\n\nPTA Reps Breakfast with Miss Henry.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:698@bwa-calendar
+DTSTART;VALUE=DATE:20261020
+DTEND;VALUE=DATE:20261022
+SUMMARY:BWA N: Parents/Carers’ Evening for English stream
+DESCRIPTION:Parents/Carers’ Evening for English stream.\n\nParents/Carers’ Evening for English stream.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:699@bwa-calendar
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:BWA: Parent Gym Starts
+DESCRIPTION:Parent Gym sessions start.\n\nParent Gym sessions start.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:700@bwa-calendar
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261114
+SUMMARY:BWA N: PTA EYFS Disco
+DESCRIPTION:PTA EYFS Disco.\n\nPTA EYFS Disco.
+CATEGORIES:COMMUNITY
 END:VEVENT
 END:VCALENDAR
