@@ -699,14 +699,6 @@ DESCRIPTION:Last day of Autumn Term 1.\n\nLast day of Autumn Term 1.
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
-UID:691@bwa-calendar
-DTSTART;VALUE=DATE:20261001
-DTEND;VALUE=DATE:20261002
-SUMMARY:BWA: Black History Month
-DESCRIPTION:Launch of Black History Month activities.\n\nBlack History Month activities begin at the school.
-CATEGORIES:ACADEMIC
-END:VEVENT
-BEGIN:VEVENT
 UID:693@bwa-calendar
 DTSTART;VALUE=DATE:20261005
 DTEND;VALUE=DATE:20261006
@@ -731,12 +723,36 @@ DESCRIPTION:Last day of Autumn Term 2.\n\nLast day of Autumn Term 2.
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
+UID:691@bwa-calendar
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261002
+SUMMARY:BWA: Black History Month
+DESCRIPTION:Celebration of Black History Month throughout October.\n\nThroughout October, pupils will learn about the lives, achievements and contributions of Black people in Britain and around the world.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
 UID:695@bwa-calendar
 DTSTART;VALUE=DATE:20261009
 DTEND;VALUE=DATE:20261010
 SUMMARY:BWA Y1: Through the school gates webinar
 DESCRIPTION:Free parent webinar on overcoming daily challenges getting into school.\n\nFree parent webinar provided by SWLSTG Education Wellbeing Service.
 CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:699@bwa-calendar
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:BWA: Parent Gym Starts
+DESCRIPTION:Parent Gym sessions start.\n\nParent Gym sessions start.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:701@bwa-calendar
+DTSTART;VALUE=DATE:20261014
+DTEND;VALUE=DATE:20261016
+SUMMARY:BWA: School Photographs (BWA)
+DESCRIPTION:School photographs for BWA students.\n\nSchool photographs for BWA students taking place on 14th and 15th October.
+CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:697@bwa-calendar
@@ -755,11 +771,11 @@ DESCRIPTION:Parents/Carers’ Evening for English stream.\n\nParents/Carers’ E
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:699@bwa-calendar
-DTSTART;VALUE=DATE:20261103
-DTEND;VALUE=DATE:20261104
-SUMMARY:BWA: Parent Gym Starts
-DESCRIPTION:Parent Gym sessions start.\n\nParent Gym sessions start.
+UID:704@bwa-calendar
+DTSTART;VALUE=DATE:20261009
+DTEND;VALUE=DATE:20261011
+SUMMARY:BWA: Supporting AuDHD children at school and home webinar
+DESCRIPTION:Two-day webinar on Supporting AuDHD children at school and home.\n\nAutism Learns is offering a new online learning series on Supporting AuDHD children at school and home. This two-day webinar will be live streamed on Zoom on Friday 9 and Saturday 10 October.
 CATEGORIES:WELLBEING
 END:VEVENT
 END:VCALENDAR
