@@ -763,19 +763,27 @@ DESCRIPTION:PTA Reps Breakfast with Miss Henry.\n\nPTA Reps Breakfast with Miss 
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:698@bwa-calendar
-DTSTART;VALUE=DATE:20261020
-DTEND;VALUE=DATE:20261022
-SUMMARY:BWA R: Parents/Carers’ Evening for English stream
-DESCRIPTION:Parents/Carers’ Evening for English stream.\n\nParents/Carers’ Evening for English stream.
-CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
 UID:704@bwa-calendar
 DTSTART;VALUE=DATE:20261009
 DTEND;VALUE=DATE:20261011
 SUMMARY:BWA: Supporting AuDHD children at school and home webinar
 DESCRIPTION:Two-day webinar on Supporting AuDHD children at school and home.\n\nAutism Learns is offering a new online learning series on Supporting AuDHD children at school and home. This two-day webinar will be live streamed on Zoom on Friday 9 and Saturday 10 October.
 CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:698@bwa-calendar
+DTSTART;VALUE=DATE:20261020
+DTEND;VALUE=DATE:20261022
+SUMMARY:BWA R: Parents/Carers’ Evening for English stream
+DESCRIPTION:Parent Teacher Meetings for English Stream Nursery to Year 6.\n\nParent Teacher meetings for Nursery to Year 6 English Stream. Meetings are 10 minutes long and in person. Please book an appointment slot via the school link. Arrive 10 minutes early to look at your child's books.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:705@bwa-calendar
+DTSTART;VALUE=DATE:20261021
+DTEND;VALUE=DATE:20261022
+SUMMARY:BWA R: Parents/Carers’ Evening for English stream
+DESCRIPTION:Parent Teacher Meetings for English Stream Nursery to Year 6.\n\nParent Teacher meetings for Nursery to Year 6 English Stream. Meetings are 10 minutes long and in person. Please book an appointment slot via the school link. Arrive 10 minutes early to look at your child's books.
+CATEGORIES:ACADEMIC
 END:VEVENT
 END:VCALENDAR
