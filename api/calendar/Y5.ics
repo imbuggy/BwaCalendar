@@ -763,6 +763,14 @@ DESCRIPTION:PTA Reps Breakfast with Miss Henry.\n\nPTA Reps Breakfast with Miss 
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
+UID:709@bwa-calendar
+DTSTART;VALUE=DATE:20261008
+DTEND;VALUE=DATE:20261009
+SUMMARY:BWA Y5: Black History Month Workshop -  Hidden Figures
+DESCRIPTION:Pupils in Years 1-6 will attend a workshop led by Bigfoot Arts Education titled 'Hidden Figures'.\n\nPupils in Years 1-6 in both English and Bilingual streams will attend a workshop led by Bigfoot Arts Education titled, ‘Hidden Figures’. The cost of this workshop is £3.50 per pupil. Please complete payment on the school gateway.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
 UID:704@bwa-calendar
 DTSTART;VALUE=DATE:20261009
 DTEND;VALUE=DATE:20261011
@@ -793,5 +801,21 @@ DTEND;VALUE=DATE:20261018
 SUMMARY:BWA: Halloween Outfit Day - Min 1£ donation
 DESCRIPTION:BWA PTA Halloween Outfit Day - Min 1£ donation\n\nLet your little ones dress up in their favourite Halloween costumes in exchange for a minimum donation of £1 on Friday morning. (Please avoid weapons/knives, fake blood, masks, or anything too scary for our younger children) 👻 \nBoth card and cash will be accepted. Please note, a 20p surcharge will be added to card payments to cover machine fees. \nThank you so much in advance for your support!
 CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
+UID:710@bwa-calendar
+DTSTART;VALUE=DATE:20261022
+DTEND;VALUE=DATE:20261023
+SUMMARY:BWA: Black History Month Homework Project Deadline
+DESCRIPTION:Deadline for pupils to bring in their Black History Month homework projects.\n\nPupils should bring their homework project into school by Thursday 22nd October. Pupils will be given the opportunity to share their work in class and we will showcase the projects in school.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:711@bwa-calendar
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261110
+SUMMARY:BWA: Flu Immunisation
+DESCRIPTION:The Wandsworth Immunisation Team will visit the school to provide flu vaccinations.\n\nThe Wandsworth Immunisation Team will visit your child’s school on Monday, 9th November 2026. Please complete the electronic consent form provided by the NHS.
+CATEGORIES:WELLBEING
 END:VEVENT
 END:VCALENDAR
