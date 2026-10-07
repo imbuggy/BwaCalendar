@@ -795,14 +795,6 @@ DESCRIPTION:Parent Teacher Meetings for English Stream Nursery to Year 6.\n\nPar
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
-UID:706@bwa-calendar
-DTSTART;VALUE=DATE:20261016
-DTEND;VALUE=DATE:20261018
-SUMMARY:BWA: Halloween Outfit Day - Min 1£ donation
-DESCRIPTION:BWA PTA Halloween Outfit Day - Min 1£ donation\n\nLet your little ones dress up in their favourite Halloween costumes in exchange for a minimum donation of £1 on Friday morning. (Please avoid weapons/knives, fake blood, masks, or anything too scary for our younger children) 👻 \nBoth card and cash will be accepted. Please note, a 20p surcharge will be added to card payments to cover machine fees. \nThank you so much in advance for your support!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
 UID:710@bwa-calendar
 DTSTART;VALUE=DATE:20261022
 DTEND;VALUE=DATE:20261023
@@ -817,5 +809,13 @@ DTEND;VALUE=DATE:20261110
 SUMMARY:BWA: Flu Immunisation
 DESCRIPTION:The Wandsworth Immunisation Team will visit the school to provide flu vaccinations.\n\nThe Wandsworth Immunisation Team will visit your child’s school on Monday, 9th November 2026. Please complete the electronic consent form provided by the NHS.
 CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:706@bwa-calendar
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261018
+SUMMARY:BWA: Halloween Outfit Day - Min 1£ donation
+DESCRIPTION:BWA PTA Halloween Outfit Day - Min 1£ donation\n\nLet your little ones dress up in their favourite Halloween costumes in exchange for a minimum donation of £1 on Friday morning. (Please avoid weapons/knives, fake blood, masks, or anything too scary for our younger children) 👻 \nBoth card and cash will be accepted. Please note, a 20p surcharge will be added to card payments to cover machine fees. \nThank you so much in advance for your support!
+CATEGORIES:PTA
 END:VEVENT
 END:VCALENDAR
