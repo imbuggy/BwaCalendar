@@ -295,7 +295,7 @@ UID:673@bwa-calendar
 DTSTART;VALUE=DATE:20270215
 DTEND;VALUE=DATE:20270220
 SUMMARY:BWA: Spring Half Term
-DESCRIPTION:School holiday.\n\nSpring half term holiday.
+DESCRIPTION:Spring half term holiday.\n\nSpring half term holiday.
 CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
@@ -303,7 +303,7 @@ UID:676@bwa-calendar
 DTSTART;VALUE=DATE:20270531
 DTEND;VALUE=DATE:20270605
 SUMMARY:BWA: Summer Half Term
-DESCRIPTION:School holiday.\n\nSummer half term holiday.
+DESCRIPTION:Summer half term holiday.\n\nSummer half term holiday.
 CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
@@ -407,7 +407,7 @@ UID:670@bwa-calendar
 DTSTART;VALUE=DATE:20261026
 DTEND;VALUE=DATE:20261031
 SUMMARY:BWA: Autumn Half Term
-DESCRIPTION:Autumn Half Term holiday.\n\nAutumn Half Term holiday.
+DESCRIPTION:Autumn half term holiday.\n\nAutumn half term holiday.
 CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
@@ -455,7 +455,7 @@ UID:675@bwa-calendar
 DTSTART;VALUE=DATE:20270503
 DTEND;VALUE=DATE:20270504
 SUMMARY:BWA: Bank Holiday
-DESCRIPTION:School closed for Bank Holiday.\n\nBank Holiday - school closed.
+DESCRIPTION:School closed for Bank Holiday.\n\nSchool closed for Bank Holiday.
 CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
@@ -563,20 +563,20 @@ DESCRIPTION:Deadline for the annual Quality First Education Trust parent/carer s
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:678@bwa-calendar
-DTSTART;VALUE=DATE:20270721
-DTEND;VALUE=DATE:20270722
-SUMMARY:BWA Y6b: Last day of term (Bilingual and English Streams)
-DESCRIPTION:School closes at 3:15pm for the Bilingual Stream and 1:45pm for the English Stream.\n\nLast day of term, school closes at 3:15pm for the Bilingual Stream. Last day of term, school closes at 1:45pm for the English Stream.
-CATEGORIES:OTHER
-END:VEVENT
-BEGIN:VEVENT
 UID:680@bwa-calendar
 DTSTART;VALUE=DATE:20260909
 DTEND;VALUE=DATE:20260910
 SUMMARY:BWA: Second-Hand Uniform Sale
 DESCRIPTION:BWA PTA and APL Second-Hand Uniform Sale.\n\nBWA PTA and APL Second-Hand Uniform Sale.
 CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:678@bwa-calendar
+DTSTART;VALUE=DATE:20270721
+DTEND;VALUE=DATE:20270722
+SUMMARY:BWA Y6b: Last day of term (Bilingual and English Streams)
+DESCRIPTION:School closes at 3:15pm for the Bilingual Stream and 1:45pm for the English Stream.\n\nLast day of term, school closes at 3:15pm for the Bilingual Stream. Last day of term, school closes at 1:45pm for the English Stream.
+CATEGORIES:OTHER
 END:VEVENT
 BEGIN:VEVENT
 UID:683@bwa-calendar
