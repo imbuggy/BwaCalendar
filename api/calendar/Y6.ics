@@ -471,15 +471,15 @@ UID:670@bwa-calendar
 DTSTART;VALUE=DATE:20261026
 DTEND;VALUE=DATE:20261031
 SUMMARY:BWA: Autumn Half Term
-DESCRIPTION:Autumn half term holiday.\n\nAutumn half term holiday.
+DESCRIPTION:School closed for Autumn Half Term.\n\nAutumn Half Term: Monday 26 October to Friday 30 October.
 CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
 UID:671@bwa-calendar
 DTSTART;VALUE=DATE:20261102
 DTEND;VALUE=DATE:20261103
-SUMMARY:BWA Y6: INSET Day
-DESCRIPTION:School closed to children for staff training.\n\nINSET Day - school closed to children.
+SUMMARY:BWA Y6: Inset Day for English Stream
+DESCRIPTION:Inset Day for English Stream.\n\nInset Day for English Stream: Monday 2 November.
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
@@ -675,11 +675,11 @@ DESCRIPTION:Students are participating in a music project with Wandsworth Music 
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
-UID:687@bwa-calendar
-DTSTART;VALUE=DATE:20261023
-DTEND;VALUE=DATE:20261024
-SUMMARY:BWA: Last day of Autumn Term 1
-DESCRIPTION:Last day of Autumn Term 1.\n\nLast day of Autumn Term 1.
+UID:689@bwa-calendar
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:BWA Y6: First day of Autumn Term 2 (English Stream)
+DESCRIPTION:First day of Autumn Term 2 for English Stream.\n\nFirst day of Autumn Term 2: Tuesday 3 November (English).
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
@@ -691,20 +691,12 @@ DESCRIPTION:Free parent webinar on overcoming daily challenges getting into scho
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
-UID:689@bwa-calendar
-DTSTART;VALUE=DATE:20261103
-DTEND;VALUE=DATE:20261104
-SUMMARY:BWA Y6: First day of Autumn Term 2 (English Stream)
-DESCRIPTION:First day of Autumn Term 2 for English Stream.\n\nFirst day of Autumn Term 2 for English Stream.
-CATEGORIES:ACADEMIC
-END:VEVENT
-BEGIN:VEVENT
 UID:690@bwa-calendar
 DTSTART;VALUE=DATE:20261218
 DTEND;VALUE=DATE:20261219
 SUMMARY:BWA: Last day of Autumn Term 2
-DESCRIPTION:Last day of Autumn Term 2.\n\nLast day of Autumn Term 2.
-CATEGORIES:ACADEMIC
+DESCRIPTION:Last day of the Autumn term.\n\nLast day of Autumn Term 2 - Friday 18 December.
+CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:691@bwa-calendar
@@ -715,6 +707,14 @@ DESCRIPTION:Celebration of Black History Month throughout October.\n\nThroughout
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
+UID:687@bwa-calendar
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:BWA: Last day of Autumn Term 1
+DESCRIPTION:Last day of the first half of the Autumn term.\n\nLast day of Autumn Term 1 - Friday 23 October.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
 UID:695@bwa-calendar
 DTSTART;VALUE=DATE:20261009
 DTEND;VALUE=DATE:20261010
@@ -723,52 +723,12 @@ DESCRIPTION:Free parent webinar on overcoming daily challenges getting into scho
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
-UID:699@bwa-calendar
-DTSTART;VALUE=DATE:20261103
-DTEND;VALUE=DATE:20261104
-SUMMARY:BWA: Parent Gym Starts
-DESCRIPTION:Parent Gym sessions start.\n\nParent Gym sessions start.
-CATEGORIES:WELLBEING
-END:VEVENT
-BEGIN:VEVENT
-UID:701@bwa-calendar
-DTSTART;VALUE=DATE:20261014
-DTEND;VALUE=DATE:20261016
-SUMMARY:BWA: School Photographs (BWA)
-DESCRIPTION:School photographs for BWA students.\n\nSchool photographs for BWA students taking place on 14th and 15th October.
-CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
-UID:697@bwa-calendar
-DTSTART;VALUE=DATE:20261016
-DTEND;VALUE=DATE:20261017
-SUMMARY:BWA: PTA Reps Breakfast with Miss Henry
-DESCRIPTION:PTA Reps Breakfast with Miss Henry.\n\nPTA Reps Breakfast with Miss Henry.
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:709@bwa-calendar
 DTSTART;VALUE=DATE:20261008
 DTEND;VALUE=DATE:20261009
 SUMMARY:BWA Y6: Black History Month Workshop -  Hidden Figures
 DESCRIPTION:Pupils in Years 1-6 will attend a workshop led by Bigfoot Arts Education titled 'Hidden Figures'.\n\nPupils in Years 1-6 in both English and Bilingual streams will attend a workshop led by Bigfoot Arts Education titled, ‘Hidden Figures’. The cost of this workshop is £3.50 per pupil. Please complete payment on the school gateway.
 CATEGORIES:ARTS
-END:VEVENT
-BEGIN:VEVENT
-UID:704@bwa-calendar
-DTSTART;VALUE=DATE:20261009
-DTEND;VALUE=DATE:20261011
-SUMMARY:BWA: Supporting AuDHD children at school and home webinar
-DESCRIPTION:Two-day webinar on Supporting AuDHD children at school and home.\n\nAutism Learns is offering a new online learning series on Supporting AuDHD children at school and home. This two-day webinar will be live streamed on Zoom on Friday 9 and Saturday 10 October.
-CATEGORIES:WELLBEING
-END:VEVENT
-BEGIN:VEVENT
-UID:698@bwa-calendar
-DTSTART;VALUE=DATE:20261020
-DTEND;VALUE=DATE:20261022
-SUMMARY:BWA Y6: Parents/Carers’ Evening for English stream
-DESCRIPTION:Parent Teacher Meetings for English Stream Nursery to Year 6.\n\nParent Teacher meetings for Nursery to Year 6 English Stream. Meetings are 10 minutes long and in person. Please book an appointment slot via the school link. Arrive 10 minutes early to look at your child's books.
-CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
 UID:705@bwa-calendar
@@ -785,6 +745,38 @@ DTEND;VALUE=DATE:20261023
 SUMMARY:BWA: Black History Month Homework Project Deadline
 DESCRIPTION:Deadline for pupils to bring in their Black History Month homework projects.\n\nPupils should bring their homework project into school by Thursday 22nd October. Pupils will be given the opportunity to share their work in class and we will showcase the projects in school.
 CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:701@bwa-calendar
+DTSTART;VALUE=DATE:20261014
+DTEND;VALUE=DATE:20261016
+SUMMARY:BWA: School Photographs (BWA)
+DESCRIPTION:School photographs for all pupils.\n\nSchool photographs for all pupils taking place on Wednesday 14th and Thursday 15th October.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:697@bwa-calendar
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261017
+SUMMARY:BWA: PTA Reps Breakfast with Miss Henry
+DESCRIPTION:PTA Reps breakfast meeting with the Headteacher.\n\nPTA Reps Breakfast with Miss Henry on Friday 16 October.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:698@bwa-calendar
+DTSTART;VALUE=DATE:20261020
+DTEND;VALUE=DATE:20261022
+SUMMARY:BWA Y6: Parents/Carers’ Evening for English stream
+DESCRIPTION:Parent Teacher meetings for the English stream.\n\nParents/Carers’ Evening for English stream on Wednesday 20 & Thursday 21 October. PE teacher will also be available.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:699@bwa-calendar
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:BWA: Parent Gym Starts
+DESCRIPTION:Parent Gym sessions start.\n\nParent Gym Starts – Tuesday 3 November.
+CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:711@bwa-calendar
@@ -817,5 +809,13 @@ DTEND;VALUE=DATE:20261018
 SUMMARY:BWA: Halloween Outfit Day - Min £1 donation
 DESCRIPTION:BWA PTA Halloween Outfit Day - Min £1 donation\n\nLet your little ones dress up in their favourite Halloween costumes in exchange for a minimum donation of £1 on Friday morning. (Please avoid weapons/knives, fake blood, masks, or anything too scary for our younger children) 👻 \nBoth card and cash will be accepted. Please note, a 20p surcharge will be added to card payments to cover machine fees. \nThank you so much in advance for your support!
 CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
+UID:718@bwa-calendar
+DTSTART;VALUE=DATE:20261009
+DTEND;VALUE=DATE:20261011
+SUMMARY:BWA: Autism Learns Webinar -  Supporting AuDHD children at school and home
+DESCRIPTION:Two-day online webinar series on supporting AuDHD children.\n\nAutism Learns is offering a new online learning series on Supporting AuDHD children at school and home. This two-day webinar will be live streamed on Zoom on Friday 9 and Saturday 10 October. The series costs £59.99 for parents/carers.
+CATEGORIES:WELLBEING
 END:VEVENT
 END:VCALENDAR
