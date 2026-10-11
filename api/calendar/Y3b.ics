@@ -691,7 +691,7 @@ DESCRIPTION:Two-day online webinar series on supporting AuDHD children.\n\nAutis
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
-UID:716@bwa-calendar
+UID:721@bwa-calendar
 DTSTART;VALUE=DATE:20261016
 DTEND;VALUE=DATE:20261018
 SUMMARY:BWA: Halloween Outfit Day
@@ -699,7 +699,7 @@ DESCRIPTION:BWA PTA Halloween Outfit Day - Min £1 donation\n\nLet your little o
 CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
-UID:720@bwa-calendar
+UID:722@bwa-calendar
 DTSTART;VALUE=DATE:20261102
 DTEND;VALUE=DATE:20261104
 SUMMARY:BWA: PTA Christmas Card -  Online Submission Deadline
