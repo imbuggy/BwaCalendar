@@ -675,14 +675,6 @@ DESCRIPTION:The Wandsworth Immunisation Team will visit the school to provide fl
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
-UID:724@bwa-calendar
-DTSTART;VALUE=DATE:20261102
-DTEND;VALUE=DATE:20261104
-SUMMARY:BWA: PTA Christmas Card  -  Online Submission Deadline
-DESCRIPTION:PTA Christmas Card : Online Submission Deadline\n\nStay tuned. We will soon be sending out an email with the detail and update this page.
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
 UID:718@bwa-calendar
 DTSTART;VALUE=DATE:20261009
 DTEND;VALUE=DATE:20261011
@@ -694,9 +686,17 @@ BEGIN:VEVENT
 UID:721@bwa-calendar
 DTSTART;VALUE=DATE:20261016
 DTEND;VALUE=DATE:20261018
-SUMMARY:BWA: Halloween Outfit Day
-DESCRIPTION:BWA PTA Halloween Outfit Day - Min £1 donation\n\nLet your little ones dress up in their favourite Halloween costumes in exchange for a minimum donation of £1 on Friday morning. (Please avoid weapons/knives, fake blood, masks, or anything too scary for our younger children) 👻 \nBoth card and cash will be accepted. Please note, a 20p surcharge will be added to card payments to cover machine fees. \nThank you so much in advance for your support!
-CATEGORIES:PTA
+SUMMARY:BWA: PTA Halloween Outfit Day & Bake Sale
+DESCRIPTION:Fancy dress for pupils and Bake Sale at the school gates.\n\nFancy dress for pupils. Bake Sale at the school gates: 3:00 PM - 4:00 PM.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:724@bwa-calendar
+DTSTART;VALUE=DATE:20261102
+DTEND;VALUE=DATE:20261104
+SUMMARY:BWA: Christmas Card Design Online Submission Deadline
+DESCRIPTION:Final date to upload artwork and order holiday cards online.\n\nFinal date to upload artwork and order holiday cards online (details to follow).
+CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:722@bwa-calendar
@@ -713,5 +713,45 @@ DTEND;VALUE=DATE:20261018
 SUMMARY:BWA: Halloween Outfit Day
 DESCRIPTION:BWA PTA Halloween Outfit Day\n\nLet your little ones dress up in their favourite Halloween costumes. (Please avoid weapons/knives, fake blood, masks, or anything too scary for our younger children) 👻 \nThank you so much in advance for your support!
 CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
+UID:725@bwa-calendar
+DTSTART;VALUE=DATE:20261105
+DTEND;VALUE=DATE:20261106
+SUMMARY:BWA: PTA Annual General Meeting (AGM)
+DESCRIPTION:Open to all parents and carers to hear updates, share ideas, and help shape plans for the year.\n\nTime: 7:00 PM. Open to all parents and carers. Please join us to hear updates, share ideas, and help shape our plans for the year.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:726@bwa-calendar
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261114
+SUMMARY:BWA: BBC Children in Need
+DESCRIPTION:Morning collection at the school gates (wear yellow, spots, or bright colours).\n\nMorning collection at the school gates (wear yellow, spots, or bright colours).
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:728@bwa-calendar
+DTSTART;VALUE=DATE:20261119
+DTEND;VALUE=DATE:20261120
+SUMMARY:BWA: Christmas Tree Order Deadline
+DESCRIPTION:Deadline for Christmas tree orders. Collection at the school: 27-30 November.\n\nChristmas Tree Order Deadline. Collection at the school: 27-30 November.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:729@bwa-calendar
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261212
+SUMMARY:BWA: Winter Fair
+DESCRIPTION:BWA PTA Winter Fair.\n\nTime: 3:30 PM - 6:00 PM.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:732@bwa-calendar
+DTSTART;VALUE=DATE:20270312
+DTEND;VALUE=DATE:20270313
+SUMMARY:BWA Y6b: School Disco (Year 5 / CM1 & Year 6 / CM2)
+DESCRIPTION:School disco for Year 5 and Year 6.\n\nTimings and ticket details to follow.
+CATEGORIES:ARTS
 END:VEVENT
 END:VCALENDAR
