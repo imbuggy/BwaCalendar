@@ -874,4 +874,12 @@ SUMMARY:BWA: Winter Fair
 DESCRIPTION:BWA PTA Winter Fair.\n\nTime: 3:30 PM - 6:00 PM.
 CATEGORIES:COMMUNITY
 END:VEVENT
+BEGIN:VEVENT
+UID:735@bwa-calendar
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+SUMMARY:BWA R: Open Morning (English Stream)
+DESCRIPTION:Open morning for prospective families focusing on the English stream.\n\nOpen morning for prospective families focusing on the English stream. Parents are invited to volunteer to help showcase the school, speak with prospective parents, or lead tours.
+CATEGORIES:COMMUNITY
+END:VEVENT
 END:VCALENDAR

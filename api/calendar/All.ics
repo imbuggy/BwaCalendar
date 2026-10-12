@@ -1306,4 +1306,20 @@ SUMMARY:BWA Y5: School Disco (Year 5 / CM1 & Year 6 / CM2)
 DESCRIPTION:School disco for Year 5 and Year 6.\n\nTimings and ticket details to follow.
 CATEGORIES:ARTS
 END:VEVENT
+BEGIN:VEVENT
+UID:735@bwa-calendar
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+SUMMARY:BWA N: Open Morning (English Stream)
+DESCRIPTION:Open morning for prospective families focusing on the English stream.\n\nOpen morning for prospective families focusing on the English stream. Parents are invited to volunteer to help showcase the school, speak with prospective parents, or lead tours.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:736@bwa-calendar
+DTSTART;VALUE=DATE:20261126
+DTEND;VALUE=DATE:20261127
+SUMMARY:BWA Rb: Open Morning (Bilingual Stream)
+DESCRIPTION:Open morning for prospective families focusing on the bilingual stream.\n\nOpen morning for prospective families focusing on the bilingual stream. Parents are invited to volunteer to help showcase the school, speak with prospective parents, or lead tours.
+CATEGORIES:COMMUNITY
+END:VEVENT
 END:VCALENDAR
