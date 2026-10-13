@@ -835,14 +835,6 @@ DESCRIPTION:Two-day online webinar series on supporting AuDHD children.\n\nAutis
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
-UID:721@bwa-calendar
-DTSTART;VALUE=DATE:20261016
-DTEND;VALUE=DATE:20261018
-SUMMARY:BWA: PTA Halloween Outfit Day & Bake Sale
-DESCRIPTION:Students can wear costumes (no weapons/masks). Bake sale at 3:00 PM outside school gates. Nut-free treat drop-off 8:00 AM - 8:45 AM.\n\nStudents can swap their uniforms for costumes. Please note that there should be no weapons, knives, fake blood, masks, or anything too scary for the younger students. Bake sale at 3:00 PM outside the school gates. Please drop off nut-free treats at the Reception Office between 8:00 AM and 8:45 AM.
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:725@bwa-calendar
 DTSTART;VALUE=DATE:20261105
 DTEND;VALUE=DATE:20261106
