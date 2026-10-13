@@ -659,36 +659,20 @@ DESCRIPTION:Two-day online webinar series on supporting AuDHD children.\n\nAutis
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
+UID:727@bwa-calendar
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261114
+SUMMARY:BWA Rb: PTA EYFS School Disco
+DESCRIPTION:PTA Disco for EYFS pupils in the school hall.\n\nPTA EYFS Disco – Friday 13 November. Time: 5:00 PM - 6:00 PM in the school hall.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
 UID:721@bwa-calendar
 DTSTART;VALUE=DATE:20261016
 DTEND;VALUE=DATE:20261018
 SUMMARY:BWA: PTA Halloween Outfit Day & Bake Sale
-DESCRIPTION:Fancy dress for pupils and Bake Sale at the school gates.\n\nFancy dress for pupils. Bake Sale at the school gates: 3:00 PM - 4:00 PM.
+DESCRIPTION:BWA PTA Halloween Outfit Day. Fancy dress for pupils and Bake Sale at the school gates.\n\nFancy dress for pupils. Bake Sale at the school gates: 3:00 PM - 4:00 PM. Let your little ones dress up in their favourite Halloween costumes. (Please avoid weapons/knives, fake blood, masks, or anything too scary for our younger children) 👻 Thank you so much in advance for your support!
 CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
-UID:724@bwa-calendar
-DTSTART;VALUE=DATE:20261102
-DTEND;VALUE=DATE:20261104
-SUMMARY:BWA: Christmas Card Design Online Submission Deadline
-DESCRIPTION:Final date to upload artwork and order holiday cards online.\n\nFinal date to upload artwork and order holiday cards online (details to follow).
-CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
-UID:722@bwa-calendar
-DTSTART;VALUE=DATE:20261102
-DTEND;VALUE=DATE:20261104
-SUMMARY:BWA: PTA Christmas Card -  Online Submission Deadline
-DESCRIPTION:PTA Christmas Card: Online Submission Deadline\n\nStay tuned. We will soon be sending out an email with the detail and update this page.
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
-UID:723@bwa-calendar
-DTSTART;VALUE=DATE:20261016
-DTEND;VALUE=DATE:20261018
-SUMMARY:BWA: Halloween Outfit Day
-DESCRIPTION:BWA PTA Halloween Outfit Day\n\nLet your little ones dress up in their favourite Halloween costumes. (Please avoid weapons/knives, fake blood, masks, or anything too scary for our younger children) 👻 \nThank you so much in advance for your support!
-CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
 UID:725@bwa-calendar
@@ -705,14 +689,6 @@ DTEND;VALUE=DATE:20261114
 SUMMARY:BWA: BBC Children in Need
 DESCRIPTION:Morning collection at the school gates (wear yellow, spots, or bright colours).\n\nMorning collection at the school gates (wear yellow, spots, or bright colours).
 CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
-UID:727@bwa-calendar
-DTSTART;VALUE=DATE:20261113
-DTEND;VALUE=DATE:20261114
-SUMMARY:BWA Rb: School Disco (Nursery & Reception / MS)
-DESCRIPTION:School disco in the school hall.\n\nTime: 5:00 PM - 6:00 PM in the school hall.
-CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
 UID:728@bwa-calendar
@@ -737,5 +713,13 @@ DTEND;VALUE=DATE:20261127
 SUMMARY:BWA Rb: Open Morning (Bilingual Stream)
 DESCRIPTION:Open morning for prospective families focusing on the bilingual stream.\n\nOpen morning for prospective families focusing on the bilingual stream. Parents are invited to volunteer to help showcase the school, speak with prospective parents, or lead tours.
 CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:724@bwa-calendar
+DTSTART;VALUE=DATE:20261102
+DTEND;VALUE=DATE:20261104
+SUMMARY:BWA: Christmas Card Design Online Submission Deadline
+DESCRIPTION:Final date to upload artwork and order holiday cards online.\n\nFinal date to upload artwork and order holiday cards online (details to follow). Stay tuned. We will soon be sending out an email with the detail and update this page.
+CATEGORIES:ADMIN
 END:VEVENT
 END:VCALENDAR
