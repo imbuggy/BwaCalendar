@@ -755,14 +755,6 @@ DESCRIPTION:Deadline for pupils to bring in their Black History Month homework p
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
-UID:701@bwa-calendar
-DTSTART;VALUE=DATE:20261014
-DTEND;VALUE=DATE:20261016
-SUMMARY:BWA: School Photographs (BWA)
-DESCRIPTION:School photographs for all pupils.\n\nSchool photographs for all pupils taking place on Wednesday 14th and Thursday 15th October.
-CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
 UID:697@bwa-calendar
 DTSTART;VALUE=DATE:20261016
 DTEND;VALUE=DATE:20261017
@@ -785,6 +777,14 @@ DTEND;VALUE=DATE:20261104
 SUMMARY:BWA: Parent Gym Starts
 DESCRIPTION:Parent Gym sessions start.\n\nParent Gym Starts – Tuesday 3 November.
 CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:701@bwa-calendar
+DTSTART;VALUE=DATE:20261014
+DTEND;VALUE=DATE:20261016
+SUMMARY:BWA: School Photographs (Group)
+DESCRIPTION:Group school photographs taking place.\n\nGroup school photographs taking place. If your child has PE or dance, please send them in with their full school uniform on and pack a pair of trainers in their bag.
+CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:711@bwa-calendar
@@ -815,7 +815,7 @@ UID:721@bwa-calendar
 DTSTART;VALUE=DATE:20261016
 DTEND;VALUE=DATE:20261018
 SUMMARY:BWA: PTA Halloween Outfit Day & Bake Sale
-DESCRIPTION:BWA PTA Halloween Outfit Day. Fancy dress for pupils and Bake Sale at the school gates.\n\nFancy dress for pupils. Bake Sale at the school gates: 3:00 PM - 4:00 PM. Let your little ones dress up in their favourite Halloween costumes. (Please avoid weapons/knives, fake blood, masks, or anything too scary for our younger children) 👻 Thank you so much in advance for your support!
+DESCRIPTION:Students can wear costumes (no weapons/masks). Bake sale at 3:00 PM outside school gates. Nut-free treat drop-off 8:00 AM - 8:45 AM.\n\nStudents can swap their uniforms for costumes. Please note that there should be no weapons, knives, fake blood, masks, or anything too scary for the younger students. Bake sale at 3:00 PM outside the school gates. Please drop off nut-free treats at the Reception Office between 8:00 AM and 8:45 AM.
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
@@ -872,6 +872,14 @@ DTSTART;VALUE=DATE:20261102
 DTEND;VALUE=DATE:20261104
 SUMMARY:BWA: Christmas Card Design Online Submission Deadline
 DESCRIPTION:Final date to upload artwork and order holiday cards online.\n\nFinal date to upload artwork and order holiday cards online (details to follow). Stay tuned. We will soon be sending out an email with the detail and update this page.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:739@bwa-calendar
+DTSTART;VALUE=DATE:20261015
+DTEND;VALUE=DATE:20261016
+SUMMARY:BWA: School Photographs (Individual and Sibling)
+DESCRIPTION:Individual and sibling school photographs taking place.\n\nIndividual and sibling school photographs taking place. If your child has PE or dance, please send them in with their full school uniform on and pack a pair of trainers in their bag.
 CATEGORIES:ADMIN
 END:VEVENT
 END:VCALENDAR
