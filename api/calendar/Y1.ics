@@ -755,6 +755,14 @@ DESCRIPTION:Deadline for pupils to bring in their Black History Month homework p
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
+UID:699@bwa-calendar
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:BWA: Parent Gym - Week 1 -  Chat
+DESCRIPTION:Parent Gym programme Week 1: Chat session.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 1 session: Chat.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
 UID:697@bwa-calendar
 DTSTART;VALUE=DATE:20261016
 DTEND;VALUE=DATE:20261017
@@ -769,14 +777,6 @@ DTEND;VALUE=DATE:20261022
 SUMMARY:BWA Y1: Parents/Carers’ Evening for English stream
 DESCRIPTION:Parent Teacher meetings for the English stream.\n\nParents/Carers’ Evening for English stream on Wednesday 20 & Thursday 21 October. PE teacher will also be available.
 CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
-UID:699@bwa-calendar
-DTSTART;VALUE=DATE:20261103
-DTEND;VALUE=DATE:20261104
-SUMMARY:BWA: Parent Gym Starts
-DESCRIPTION:Parent Gym sessions start.\n\nParent Gym Starts – Tuesday 3 November.
-CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:701@bwa-calendar
@@ -887,7 +887,47 @@ UID:741@bwa-calendar
 DTSTART;VALUE=DATE:20261109
 DTEND;VALUE=DATE:20261111
 SUMMARY:BWA: PTA Christmas Card Fundraiser -  Online Submission Deadline
-DESCRIPTION:PTA Christmas Card Fundraiser: Online Submission Deadline\n\nTurn your creativity into something special! Our PTA is raising funds by creating personalized Christmas cards, and we need your help. \nHow the Project Works\nTemplates for your artwork will be received before half term. Once you have your template, please follow these four simple steps: \n\nCreate: Draw and create a Christmas artwork. You also have the option to choose a picture that you love.\nScan and Upload: Scan your artwork onto the new app. You will upload the picture from your phone by using the QR code provided on the template you received on Wednesday.\nChoose: Turn your image into a beautiful Christmas card, a gift tag, or more.\nDelivered: Your personalized Christmas gift cards will be delivered back to the school.\n\nImportant Dates and Information \n\nOrder Deadline: All orders must be submitted by the 2nd 9th of November. (Deadline extended!)\nWhere the Money Goes: Funds raised will go to the PTA.\n\nThank you for supporting our school!
-CATEGORIES:PTA
+DESCRIPTION:Deadline for submitting Christmas card designs for the PTA fundraiser.\n\nThe deadline for families to scan and upload their child's Christmas artwork via the APFS app or website is 9th November. Every order helps support the school PTA.
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:742@bwa-calendar
+DTSTART;VALUE=DATE:20261110
+DTEND;VALUE=DATE:20261111
+SUMMARY:BWA: Parent Gym - Week 2 -  Love
+DESCRIPTION:Parent Gym programme Week 2: Love session.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 2 session: Love.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:743@bwa-calendar
+DTSTART;VALUE=DATE:20261117
+DTEND;VALUE=DATE:20261118
+SUMMARY:BWA: Parent Gym - Week 3 -  Behave
+DESCRIPTION:Parent Gym programme Week 3: Behave session.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 3 session: Behave.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:744@bwa-calendar
+DTSTART;VALUE=DATE:20261124
+DTEND;VALUE=DATE:20261125
+SUMMARY:BWA: Parent Gym - Week 4 -  Care
+DESCRIPTION:Parent Gym programme Week 4: Care session.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 4 session: Care.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:745@bwa-calendar
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261202
+SUMMARY:BWA: Parent Gym - Week 5 -  Discover
+DESCRIPTION:Parent Gym programme Week 5: Discover session.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 5 session: Discover.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:746@bwa-calendar
+DTSTART;VALUE=DATE:20261208
+DTEND;VALUE=DATE:20261209
+SUMMARY:BWA: Parent Gym - Week 6 -  Together
+DESCRIPTION:Parent Gym programme Week 6: Together session.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 6 session: Together.
+CATEGORIES:WELLBEING
 END:VEVENT
 END:VCALENDAR
