@@ -930,4 +930,12 @@ SUMMARY:BWA: Parent Gym - Week 6 -  Together
 DESCRIPTION:Parent Gym programme Week 6: Together session.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 6 session: Together.
 CATEGORIES:WELLBEING
 END:VEVENT
+BEGIN:VEVENT
+UID:747@bwa-calendar
+DTSTART;VALUE=DATE:20261015
+DTEND;VALUE=DATE:20261016
+SUMMARY:BWA Y5: Provision 2027 Information
+DESCRIPTION:Information regarding the BWA bilingual provision from September 2027, including curriculum details, assessment, and admissions.\n\nBWA will offer a 60:40 English:French bilingual provision from Reception to Year 6 starting September 2027. The curriculum follows both English and French National Curricula. The provision is free, though there are costs for CNED materials. Further details on secondary school transitions and class structures are provided in the communication.
+CATEGORIES:ADMIN
+END:VEVENT
 END:VCALENDAR
