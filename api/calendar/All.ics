@@ -699,20 +699,20 @@ DESCRIPTION:School closed to children for staff training.\n\nINSET Day - school 
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:670@bwa-calendar
-DTSTART;VALUE=DATE:20261026
-DTEND;VALUE=DATE:20261031
-SUMMARY:BWA: Autumn Half Term
-DESCRIPTION:School closed for Autumn Half Term.\n\nAutumn Half Term: Monday 26 October to Friday 30 October.
-CATEGORIES:HOLIDAY
-END:VEVENT
-BEGIN:VEVENT
 UID:671@bwa-calendar
 DTSTART;VALUE=DATE:20261102
 DTEND;VALUE=DATE:20261103
 SUMMARY:BWA N: Inset Day for English Stream
-DESCRIPTION:Inset Day for English Stream.\n\nInset Day for English Stream: Monday 2 November.
-CATEGORIES:ADMIN
+DESCRIPTION:Inset Day for English Stream.\n\nInset Day for English Stream.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:670@bwa-calendar
+DTSTART;VALUE=DATE:20261026
+DTEND;VALUE=DATE:20261031
+SUMMARY:BWA: Autumn Half Term
+DESCRIPTION:Autumn Half Term break.\n\nAutumn Half Term break.
+CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
 UID:564@bwa-calendar
@@ -1019,14 +1019,6 @@ DESCRIPTION:Final session of the Year 4 weekly swimming course.\n\nFinal session
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
-UID:689@bwa-calendar
-DTSTART;VALUE=DATE:20261103
-DTEND;VALUE=DATE:20261104
-SUMMARY:BWA N: First day of Autumn Term 2 (English Stream)
-DESCRIPTION:First day of Autumn Term 2 for English Stream.\n\nFirst day of Autumn Term 2: Tuesday 3 November (English).
-CATEGORIES:ACADEMIC
-END:VEVENT
-BEGIN:VEVENT
 UID:685@bwa-calendar
 DTSTART;VALUE=DATE:20261001
 DTEND;VALUE=DATE:20261002
@@ -1059,12 +1051,20 @@ DESCRIPTION:Free parent webinar on building healthy and secure attachment relati
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
-UID:690@bwa-calendar
-DTSTART;VALUE=DATE:20261218
-DTEND;VALUE=DATE:20261219
-SUMMARY:BWA: Last day of Autumn Term 2
-DESCRIPTION:Last day of the Autumn term.\n\nLast day of Autumn Term 2 - Friday 18 December.
-CATEGORIES:ADMIN
+UID:688@bwa-calendar
+DTSTART;VALUE=DATE:20261102
+DTEND;VALUE=DATE:20261103
+SUMMARY:BWA Rb: First day of Autumn Term 2 (Bilingual Stream)
+DESCRIPTION:First day of Autumn Term 2 for Bilingual Stream.\n\nFirst day of Autumn Term 2 for Bilingual Stream.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:689@bwa-calendar
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:BWA N: First day of Autumn Term 2 (English Stream)
+DESCRIPTION:First day of Autumn Term 2 for English Stream.\n\nFirst day of Autumn Term 2 for English Stream.
+CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
 UID:691@bwa-calendar
@@ -1075,19 +1075,19 @@ DESCRIPTION:Celebration of Black History Month throughout October.\n\nThroughout
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
+UID:690@bwa-calendar
+DTSTART;VALUE=DATE:20261218
+DTEND;VALUE=DATE:20261219
+SUMMARY:BWA: Last day of Autumn Term 2
+DESCRIPTION:Last day of Autumn Term 2.\n\nLast day of Autumn Term 2.
+CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
 UID:687@bwa-calendar
 DTSTART;VALUE=DATE:20261023
 DTEND;VALUE=DATE:20261024
 SUMMARY:BWA: Last day of Autumn Term 1
-DESCRIPTION:Last day of the first half of the Autumn term.\n\nLast day of Autumn Term 1 - Friday 23 October.
-CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
-UID:688@bwa-calendar
-DTSTART;VALUE=DATE:20261102
-DTEND;VALUE=DATE:20261103
-SUMMARY:BWA Rb: First day of Autumn Term 2 (Bilingual Stream)
-DESCRIPTION:First day of Autumn Term 2 for Bilingual Stream.\n\nFirst day of Autumn Term 2: Monday 2 November (Bilingual).
+DESCRIPTION:Last day of Autumn Term 1.\n\nLast day of Autumn Term 1.
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
@@ -1123,20 +1123,12 @@ DESCRIPTION:Pupils in Years 1-6 will attend a workshop led by Bigfoot Arts Educa
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
-UID:703@bwa-calendar
-DTSTART;VALUE=DATE:20261022
-DTEND;VALUE=DATE:20261023
-SUMMARY:BWA Y2: Y2 Trip to St Paul’s Cathedral
-DESCRIPTION:Year 2 trip to St Paul's Cathedral.\n\nY2 Trip to St Paul’s Cathedral on Thursday 22 October.
-CATEGORIES:TRIP
-END:VEVENT
-BEGIN:VEVENT
-UID:705@bwa-calendar
-DTSTART;VALUE=DATE:20261021
-DTEND;VALUE=DATE:20261022
-SUMMARY:BWA N: Parents/Carers’ Evening for English stream
-DESCRIPTION:Parent Teacher Meetings for English Stream Nursery to Year 6.\n\nParent Teacher meetings for Nursery to Year 6 English Stream. Meetings are 10 minutes long and in person. Please book an appointment slot via the school link. Arrive 10 minutes early to look at your child's books.
-CATEGORIES:ACADEMIC
+UID:699@bwa-calendar
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:BWA: Parent Gym - Week 1 -  Chat
+DESCRIPTION:Parent Gym programme Week 1: Chat session. Parent Gym sessions start.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 1 session: Chat. Parent Gym sessions start.
+CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
 UID:710@bwa-calendar
@@ -1147,14 +1139,6 @@ DESCRIPTION:Deadline for pupils to bring in their Black History Month homework p
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
-UID:699@bwa-calendar
-DTSTART;VALUE=DATE:20261103
-DTEND;VALUE=DATE:20261104
-SUMMARY:BWA: Parent Gym - Week 1 -  Chat
-DESCRIPTION:Parent Gym programme Week 1: Chat session.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 1 session: Chat.
-CATEGORIES:WELLBEING
-END:VEVENT
-BEGIN:VEVENT
 UID:697@bwa-calendar
 DTSTART;VALUE=DATE:20261016
 DTEND;VALUE=DATE:20261017
@@ -1163,19 +1147,27 @@ DESCRIPTION:PTA Reps breakfast meeting with the Headteacher.\n\nPTA Reps Breakfa
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
-UID:698@bwa-calendar
-DTSTART;VALUE=DATE:20261020
-DTEND;VALUE=DATE:20261022
-SUMMARY:BWA N: Parents/Carers’ Evening for English stream
-DESCRIPTION:Parent Teacher meetings for the English stream.\n\nParents/Carers’ Evening for English stream on Wednesday 20 & Thursday 21 October. PE teacher will also be available.
-CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
 UID:701@bwa-calendar
 DTSTART;VALUE=DATE:20261014
 DTEND;VALUE=DATE:20261016
 SUMMARY:BWA: School Photographs (Group)
 DESCRIPTION:Group school photographs taking place.\n\nGroup school photographs taking place. If your child has PE or dance, please send them in with their full school uniform on and pack a pair of trainers in their bag.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:703@bwa-calendar
+DTSTART;VALUE=DATE:20261022
+DTEND;VALUE=DATE:20261023
+SUMMARY:BWA Y2: Y2 Trip to St Paul’s Cathedral
+DESCRIPTION:Year 2 trip to St Paul’s Cathedral.\n\nYear 2 trip to St Paul’s Cathedral.
+CATEGORIES:TRIP
+END:VEVENT
+BEGIN:VEVENT
+UID:698@bwa-calendar
+DTSTART;VALUE=DATE:20261020
+DTEND;VALUE=DATE:20261022
+SUMMARY:BWA N: Parents/Carers’ Evening for English stream
+DESCRIPTION:Parent Teacher meetings for the English stream.\n\nParents/Carers’ Evening for English stream on Wednesday 20 & Thursday 21 October. PE teacher will also be available.
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
@@ -1203,19 +1195,11 @@ DESCRIPTION:Two-day online webinar series on supporting AuDHD children.\n\nAutis
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
-UID:727@bwa-calendar
-DTSTART;VALUE=DATE:20261113
-DTEND;VALUE=DATE:20261114
-SUMMARY:BWA N: PTA EYFS School Disco
-DESCRIPTION:PTA Disco for EYFS pupils in the school hall.\n\nPTA EYFS Disco – Friday 13 November. Time: 5:00 PM - 6:00 PM in the school hall.
-CATEGORIES:ARTS
-END:VEVENT
-BEGIN:VEVENT
 UID:725@bwa-calendar
 DTSTART;VALUE=DATE:20261105
 DTEND;VALUE=DATE:20261106
-SUMMARY:BWA: PTA Annual General Meeting (AGM)
-DESCRIPTION:Open to all parents and carers to hear updates, share ideas, and help shape plans for the year.\n\nTime: 7:00 PM. Open to all parents and carers. Please join us to hear updates, share ideas, and help shape our plans for the year.
+SUMMARY:BWA: PTA AGM
+DESCRIPTION:PTA Annual General Meeting.\n\nPTA Annual General Meeting at 7pm.
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
@@ -1224,6 +1208,14 @@ DTSTART;VALUE=DATE:20261113
 DTEND;VALUE=DATE:20261114
 SUMMARY:BWA: BBC Children in Need
 DESCRIPTION:Morning collection at the school gates (wear yellow, spots, or bright colours).\n\nMorning collection at the school gates (wear yellow, spots, or bright colours).
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
+UID:727@bwa-calendar
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261114
+SUMMARY:BWA N: PTA EYFS Disco
+DESCRIPTION:PTA EYFS School Disco.\n\nPTA EYFS School Disco.
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
