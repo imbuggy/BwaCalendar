@@ -883,22 +883,6 @@ DESCRIPTION:Individual and sibling school photographs taking place.\n\nIndividua
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:740@bwa-calendar
-DTSTART;VALUE=DATE:20261016
-DTEND;VALUE=DATE:20261018
-SUMMARY:BWA: Halloween Outfit Day
-DESCRIPTION:BWA PTA Halloween Outfit Day\n\nLet your little ones dress up in their favourite Halloween costumes. (Please avoid weapons/knives, fake blood, masks, or anything too scary for our younger children) 👻 \nThank you so much in advance for your support!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
-UID:741@bwa-calendar
-DTSTART;VALUE=DATE:20261109
-DTEND;VALUE=DATE:20261111
-SUMMARY:BWA: PTA Christmas Card Fundraiser -  Online Submission Deadline
-DESCRIPTION:Deadline for submitting Christmas card designs for the PTA fundraiser.\n\nThe deadline for families to scan and upload their child's Christmas artwork via the APFS app or website is 9th November. Every order helps support the school PTA.
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:742@bwa-calendar
 DTSTART;VALUE=DATE:20261110
 DTEND;VALUE=DATE:20261111
@@ -945,5 +929,21 @@ DTEND;VALUE=DATE:20261016
 SUMMARY:BWA Y4: Provision 2027 Information
 DESCRIPTION:Information regarding the BWA bilingual provision from September 2027, including curriculum details, assessment, and admissions.\n\nBWA will offer a 60:40 English:French bilingual provision from Reception to Year 6 starting September 2027. The curriculum follows both English and French National Curricula. The provision is free, though there are costs for CNED materials. Further details on secondary school transitions and class structures are provided in the communication.
 CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:748@bwa-calendar
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261018
+SUMMARY:BWA: Halloween Outfit Day
+DESCRIPTION:BWA PTA Halloween Outfit Day\n\nLet your little ones dress up in their favourite Halloween costumes. (Please avoid weapons/knives, fake blood, masks, or anything too scary for our younger children) 👻 \nThank you so much in advance for your support!
+CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
+UID:741@bwa-calendar
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261111
+SUMMARY:BWA: PTA Christmas Card Fundraiser -  Online Submission Deadline
+DESCRIPTION:Deadline for submitting Christmas card designs for the PTA fundraiser. Turn your creativity into something special! Our PTA is raising funds by creating personalized Christmas cards.\n\nThe deadline for families to scan and upload their child's Christmas artwork via the APFS app or website is 9th November. Every order helps support the school PTA. Turn your creativity into something special! Our PTA is raising funds by creating personalized Christmas cards, and we need your help. How the Project Works: Templates for your artwork will be received before half term. Once you have your template, please follow these four simple steps: Create: Draw and create a Christmas artwork. You also have the option to choose a picture that you love. Scan and Upload: Scan your artwork onto the new app. You will upload the picture from your phone by using the QR code provided on the template you received on Wednesday. Choose: Turn your image into a beautiful Christmas card, a gift tag, or more. Delivered: Your personalized Christmas gift cards will be delivered back to the school. Important Dates and Information: Order Deadline: All orders must be submitted by the 9th of November. (Deadline extended!) Where the Money Goes: Funds raised will go to the PTA. Thank you for supporting our school!
+CATEGORIES:COMMUNITY
 END:VEVENT
 END:VCALENDAR
