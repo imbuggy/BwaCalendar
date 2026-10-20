@@ -587,6 +587,14 @@ DESCRIPTION:Crazy Hair Day for all students across all streams.\n\nWe encourage 
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
+UID:757@bwa-calendar
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261018
+SUMMARY:BWA: Halloween Outfit Day
+DESCRIPTION:BWA PTA Halloween Outfit Day\n\nLet your little ones dress up in their favourite Halloween costumes. (Please avoid weapons/knives, fake blood, masks, or anything too scary for our younger children) 👻 \nThank you so much in advance for your support!
+CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
 UID:662@bwa-calendar
 DTSTART;VALUE=DATE:20260715
 DTEND;VALUE=DATE:20260716
@@ -889,14 +897,6 @@ DTEND;VALUE=DATE:20261016
 SUMMARY:BWA N: Provision 2027 Information
 DESCRIPTION:Information regarding the BWA bilingual provision from September 2027, including curriculum details, assessment, and admissions.\n\nBWA will offer a 60:40 English:French bilingual provision from Reception to Year 6 starting September 2027. The curriculum follows both English and French National Curricula. The provision is free, though there are costs for CNED materials. Further details on secondary school transitions and class structures are provided in the communication.
 CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
-UID:748@bwa-calendar
-DTSTART;VALUE=DATE:20261016
-DTEND;VALUE=DATE:20261018
-SUMMARY:BWA: Halloween Outfit Day
-DESCRIPTION:BWA PTA Halloween Outfit Day\n\nLet your little ones dress up in their favourite Halloween costumes. (Please avoid weapons/knives, fake blood, masks, or anything too scary for our younger children) 👻 \nThank you so much in advance for your support!
-CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
 UID:752@bwa-calendar
