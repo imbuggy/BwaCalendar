@@ -555,6 +555,14 @@ DESCRIPTION:Reminder for parents to escort children to the canteen for Breakfast
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
+UID:759@bwa-calendar
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261018
+SUMMARY:BWA: Halloween Outfit Day
+DESCRIPTION:BWA PTA Halloween Outfit Day\n\nLet your little ones dress up in their favourite Halloween costumes. (Please avoid weapons/knives, fake blood, masks, or anything too scary for our younger children) 👻 \nThank you so much in advance for your support!
+CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
 UID:451@bwa-calendar
 DTSTART;VALUE=DATE:20260715
 DTEND;VALUE=DATE:20260716
@@ -585,6 +593,14 @@ DTEND;VALUE=DATE:20270722
 SUMMARY:BWA Y5b: Last day of term (Bilingual and English Streams)
 DESCRIPTION:School closes at 3:15pm for the Bilingual Stream and 1:45pm for the English Stream.\n\nLast day of term, school closes at 3:15pm for the Bilingual Stream. Last day of term, school closes at 1:45pm for the English Stream.
 CATEGORIES:OTHER
+END:VEVENT
+BEGIN:VEVENT
+UID:760@bwa-calendar
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261111
+SUMMARY:BWA: PTA Christmas Card Fundraiser -  Online Submission Deadline
+DESCRIPTION:PTA Christmas Card Fundraiser: Online Submission Deadline\n\nTurn your creativity into something special! Our PTA is raising funds by creating personalized Christmas cards, and we need your help. \nHow the Project Works\nTemplates for your artwork will be received before half term. Once you have your template, please follow these four simple steps: \n\nCreate: Draw and create a Christmas artwork. You also have the option to choose a picture that you love.\nScan and Upload: Scan your artwork onto the new app. You will upload the picture from your phone by using the QR code provided on the template you received on Wednesday.\nChoose: Turn your image into a beautiful Christmas card, a gift tag, or more.\nDelivered: Your personalized Christmas gift cards will be delivered back to the school.\n\nImportant Dates and Information \n\nOrder Deadline: All orders must be submitted by the 2nd 9th of November. (Deadline extended!)\nWhere the Money Goes: Funds raised will go to the PTA.\n\nThank you for supporting our school!
+CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
 UID:683@bwa-calendar
