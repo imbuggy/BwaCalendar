@@ -955,14 +955,6 @@ DESCRIPTION:Reminder for parents to escort children to the canteen for Breakfast
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:759@bwa-calendar
-DTSTART;VALUE=DATE:20261016
-DTEND;VALUE=DATE:20261018
-SUMMARY:BWA: Halloween Outfit Day
-DESCRIPTION:BWA PTA Halloween Outfit Day\n\nLet your little ones dress up in their favourite Halloween costumes. (Please avoid weapons/knives, fake blood, masks, or anything too scary for our younger children) 👻 \nThank you so much in advance for your support!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
 UID:451@bwa-calendar
 DTSTART;VALUE=DATE:20260715
 DTEND;VALUE=DATE:20260716
@@ -1129,6 +1121,14 @@ DTEND;VALUE=DATE:20261015
 SUMMARY:BWA N: Building Strong Bonds webinar
 DESCRIPTION:Free parent webinar on building healthy and secure attachment relationships.\n\nFree parent webinar provided by SWLSTG Education Wellbeing Service.
 CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:761@bwa-calendar
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261121
+SUMMARY:BWA: CEO Listening Event with Daniel Terry
+DESCRIPTION:An opportunity for parents and carers to meet the new CEO of Quality First Education Trust, Daniel Terry, to discuss school feedback and improvements.\n\nAs the new CEO of Quality First Education Trust, Daniel Terry invites parents and carers to a listening event at Belleville Wix Academy. This is an opportunity to discuss feedback from the summer term questionnaire and share thoughts on school improvements. All parents are welcome to drop in.
+CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:702@bwa-calendar
