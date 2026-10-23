@@ -835,6 +835,14 @@ DESCRIPTION:Individual and sibling school photographs taking place.\n\nIndividua
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
+UID:764@bwa-calendar
+DTSTART;VALUE=DATE:20261104
+DTEND;VALUE=DATE:20261105
+SUMMARY:BWA: Bilingual Stream Registration of Interest Deadline
+DESCRIPTION:Deadline for families to complete the registration of interest form for the bilingual stream from September 2027.\n\nAll families currently registered with BWA and in the bilingual stream, or those interested in transferring into the bilingual stream, must complete the registration of interest form by Wednesday 4th November.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
 UID:742@bwa-calendar
 DTSTART;VALUE=DATE:20261110
 DTEND;VALUE=DATE:20261111
