@@ -403,6 +403,14 @@ DESCRIPTION:Deadline to collect dry items from Lost & Found before they are dona
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
+UID:670@bwa-calendar
+DTSTART;VALUE=DATE:20261026
+DTEND;VALUE=DATE:20261031
+SUMMARY:BWA: Autumn Half Term
+DESCRIPTION:Autumn Half Term holiday.\n\nAutumn Half Term: Monday 26 October to Friday 30 October
+CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
 UID:560@bwa-calendar
 DTSTART;VALUE=DATE:20260514
 DTEND;VALUE=DATE:20260515
@@ -441,14 +449,6 @@ DTEND;VALUE=DATE:20260620
 SUMMARY:BWA Y1b: Sports Day -  Reception & Year 1 (including Y1b)
 DESCRIPTION:Sports day for Reception and Year 1 classes. Parents are requested to meet at school at 9:00am to assist with walking the children to the common.\n\nSports day for Reception and Year 1 classes. Parents are requested to meet at school at 9:00am to assist with walking the children to the common. Please notify the school by 8:00am if you are able to volunteer.
 CATEGORIES:SPORTS
-END:VEVENT
-BEGIN:VEVENT
-UID:670@bwa-calendar
-DTSTART;VALUE=DATE:20261026
-DTEND;VALUE=DATE:20261031
-SUMMARY:BWA: Autumn Half Term
-DESCRIPTION:Autumn Half Term break.\n\nAutumn Half Term break.
-CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
 UID:565@bwa-calendar
@@ -679,7 +679,7 @@ UID:688@bwa-calendar
 DTSTART;VALUE=DATE:20261102
 DTEND;VALUE=DATE:20261103
 SUMMARY:BWA Y1b: First day of Autumn Term 2 (Bilingual Stream)
-DESCRIPTION:First day of Autumn Term 2 for Bilingual Stream.\n\nFirst day of Autumn Term 2 for Bilingual Stream.
+DESCRIPTION:First day of Autumn Term 2 for Bilingual Stream.\n\nFirst day of Autumn Term 2: Monday 2 November (Bilingual)
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
@@ -695,7 +695,7 @@ UID:690@bwa-calendar
 DTSTART;VALUE=DATE:20261218
 DTEND;VALUE=DATE:20261219
 SUMMARY:BWA: Last day of Autumn Term 2
-DESCRIPTION:Last day of Autumn Term 2.\n\nLast day of Autumn Term 2.
+DESCRIPTION:Last day of Autumn Term 2.\n\nLast day of Autumn Term 2 - Friday 18 December
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
@@ -727,7 +727,7 @@ UID:699@bwa-calendar
 DTSTART;VALUE=DATE:20261103
 DTEND;VALUE=DATE:20261104
 SUMMARY:BWA: Parent Gym - Week 1 -  Chat
-DESCRIPTION:Parent Gym programme Week 1: Chat session. Parent Gym sessions start.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 1 session: Chat. Parent Gym sessions start.
+DESCRIPTION:Parent Gym programme Week 1: Chat session. Parent Gym sessions start.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 1 session: Chat. Parent Gym sessions start. Parent Gym Starts – Tuesday 3 November
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
@@ -763,20 +763,20 @@ DESCRIPTION:The Wandsworth Immunisation Team will visit the school to provide fl
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
+UID:725@bwa-calendar
+DTSTART;VALUE=DATE:20261105
+DTEND;VALUE=DATE:20261106
+SUMMARY:BWA: PTA AGM
+DESCRIPTION:PTA Annual General Meeting.\n\nPTA AGM – 5th November at 7pm
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
 UID:718@bwa-calendar
 DTSTART;VALUE=DATE:20261009
 DTEND;VALUE=DATE:20261011
 SUMMARY:BWA: Autism Learns Webinar -  Supporting AuDHD children at school and home
 DESCRIPTION:Two-day online webinar series on supporting AuDHD children.\n\nAutism Learns is offering a new online learning series on Supporting AuDHD children at school and home. This two-day webinar will be live streamed on Zoom on Friday 9 and Saturday 10 October. The series costs £59.99 for parents/carers.
 CATEGORIES:WELLBEING
-END:VEVENT
-BEGIN:VEVENT
-UID:725@bwa-calendar
-DTSTART;VALUE=DATE:20261105
-DTEND;VALUE=DATE:20261106
-SUMMARY:BWA: PTA AGM
-DESCRIPTION:PTA Annual General Meeting.\n\nPTA Annual General Meeting at 7pm.
-CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:726@bwa-calendar
@@ -811,14 +811,6 @@ DESCRIPTION:School disco for Year 1 and Year 2.\n\nTimings and ticket details to
 CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
-UID:736@bwa-calendar
-DTSTART;VALUE=DATE:20261126
-DTEND;VALUE=DATE:20261127
-SUMMARY:BWA Y1b: Open Morning (Bilingual Stream)
-DESCRIPTION:Open morning for prospective families focusing on the bilingual stream.\n\nOpen morning for prospective families focusing on the bilingual stream. Parents are invited to volunteer to help showcase the school, speak with prospective parents, or lead tours.
-CATEGORIES:COMMUNITY
-END:VEVENT
-BEGIN:VEVENT
 UID:724@bwa-calendar
 DTSTART;VALUE=DATE:20261102
 DTEND;VALUE=DATE:20261104
@@ -833,6 +825,14 @@ DTEND;VALUE=DATE:20261016
 SUMMARY:BWA: School Photographs (Individual and Sibling)
 DESCRIPTION:Individual and sibling school photographs taking place.\n\nIndividual and sibling school photographs taking place. If your child has PE or dance, please send them in with their full school uniform on and pack a pair of trainers in their bag.
 CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:736@bwa-calendar
+DTSTART;VALUE=DATE:20261126
+DTEND;VALUE=DATE:20261127
+SUMMARY:BWA Y1b: Open Morning (Bilingual Stream)
+DESCRIPTION:Open morning for Bilingual Stream.\n\nOpen morning for families looking for a place at Belleville Wix Academy will take place on Thursday 26 November (Bilingual Stream Focus), from 9.15am.
+CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:764@bwa-calendar
@@ -881,6 +881,14 @@ DTEND;VALUE=DATE:20261209
 SUMMARY:BWA: Parent Gym - Week 6 -  Together
 DESCRIPTION:Parent Gym programme Week 6: Together session.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 6 session: Together.
 CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
+UID:767@bwa-calendar
+DTSTART;VALUE=DATE:20261026
+DTEND;VALUE=DATE:20261027
+SUMMARY:BWA: Road Closure -  Freke Road
+DESCRIPTION:Road closure on Freke Road for 4 weeks due to utility works.\n\nThere will be a road closure on Freke Road from Monday 26 October for 4 weeks due to utility works. This will make the roads surrounding the school even busier than usual. Please walk, cycle or take public transport to school if you can.
+CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
 UID:752@bwa-calendar

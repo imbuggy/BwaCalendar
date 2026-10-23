@@ -435,6 +435,22 @@ DESCRIPTION:Deadline to collect dry items from Lost & Found before they are dona
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
+UID:670@bwa-calendar
+DTSTART;VALUE=DATE:20261026
+DTEND;VALUE=DATE:20261031
+SUMMARY:BWA: Autumn Half Term
+DESCRIPTION:Autumn Half Term holiday.\n\nAutumn Half Term: Monday 26 October to Friday 30 October
+CATEGORIES:HOLIDAY
+END:VEVENT
+BEGIN:VEVENT
+UID:671@bwa-calendar
+DTSTART;VALUE=DATE:20261102
+DTEND;VALUE=DATE:20261103
+SUMMARY:BWA Y3: Inset Day for English Stream
+DESCRIPTION:Inset Day for English Stream.\n\nInset Day for English Stream: Monday 2 November
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
 UID:560@bwa-calendar
 DTSTART;VALUE=DATE:20260514
 DTEND;VALUE=DATE:20260515
@@ -465,22 +481,6 @@ DTEND;VALUE=DATE:20260903
 SUMMARY:BWA Y3: INSET Day
 DESCRIPTION:School closed to children for staff training.\n\nINSET Day - school closed to children.
 CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
-UID:671@bwa-calendar
-DTSTART;VALUE=DATE:20261102
-DTEND;VALUE=DATE:20261103
-SUMMARY:BWA Y3: Inset Day for English Stream
-DESCRIPTION:Inset Day for English Stream.\n\nInset Day for English Stream.
-CATEGORIES:ACADEMIC
-END:VEVENT
-BEGIN:VEVENT
-UID:670@bwa-calendar
-DTSTART;VALUE=DATE:20261026
-DTEND;VALUE=DATE:20261031
-SUMMARY:BWA: Autumn Half Term
-DESCRIPTION:Autumn Half Term break.\n\nAutumn Half Term break.
-CATEGORIES:HOLIDAY
 END:VEVENT
 BEGIN:VEVENT
 UID:564@bwa-calendar
@@ -727,7 +727,7 @@ UID:689@bwa-calendar
 DTSTART;VALUE=DATE:20261103
 DTEND;VALUE=DATE:20261104
 SUMMARY:BWA Y3: First day of Autumn Term 2 (English Stream)
-DESCRIPTION:First day of Autumn Term 2 for English Stream.\n\nFirst day of Autumn Term 2 for English Stream.
+DESCRIPTION:First day of Autumn Term 2 for English Stream.\n\nFirst day of Autumn Term 2: Tuesday 3 November (English)
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
@@ -743,7 +743,7 @@ UID:690@bwa-calendar
 DTSTART;VALUE=DATE:20261218
 DTEND;VALUE=DATE:20261219
 SUMMARY:BWA: Last day of Autumn Term 2
-DESCRIPTION:Last day of Autumn Term 2.\n\nLast day of Autumn Term 2.
+DESCRIPTION:Last day of Autumn Term 2.\n\nLast day of Autumn Term 2 - Friday 18 December
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
@@ -783,7 +783,7 @@ UID:699@bwa-calendar
 DTSTART;VALUE=DATE:20261103
 DTEND;VALUE=DATE:20261104
 SUMMARY:BWA: Parent Gym - Week 1 -  Chat
-DESCRIPTION:Parent Gym programme Week 1: Chat session. Parent Gym sessions start.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 1 session: Chat. Parent Gym sessions start.
+DESCRIPTION:Parent Gym programme Week 1: Chat session. Parent Gym sessions start.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 1 session: Chat. Parent Gym sessions start. Parent Gym Starts – Tuesday 3 November
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
@@ -827,6 +827,14 @@ DESCRIPTION:The Wandsworth Immunisation Team will visit the school to provide fl
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
+UID:725@bwa-calendar
+DTSTART;VALUE=DATE:20261105
+DTEND;VALUE=DATE:20261106
+SUMMARY:BWA: PTA AGM
+DESCRIPTION:PTA Annual General Meeting.\n\nPTA AGM – 5th November at 7pm
+CATEGORIES:COMMUNITY
+END:VEVENT
+BEGIN:VEVENT
 UID:674@bwa-calendar
 DTSTART;VALUE=DATE:20270412
 DTEND;VALUE=DATE:20270413
@@ -841,14 +849,6 @@ DTEND;VALUE=DATE:20261011
 SUMMARY:BWA: Autism Learns Webinar -  Supporting AuDHD children at school and home
 DESCRIPTION:Two-day online webinar series on supporting AuDHD children.\n\nAutism Learns is offering a new online learning series on Supporting AuDHD children at school and home. This two-day webinar will be live streamed on Zoom on Friday 9 and Saturday 10 October. The series costs £59.99 for parents/carers.
 CATEGORIES:WELLBEING
-END:VEVENT
-BEGIN:VEVENT
-UID:725@bwa-calendar
-DTSTART;VALUE=DATE:20261105
-DTEND;VALUE=DATE:20261106
-SUMMARY:BWA: PTA AGM
-DESCRIPTION:PTA Annual General Meeting.\n\nPTA Annual General Meeting at 7pm.
-CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
 UID:726@bwa-calendar
@@ -887,7 +887,7 @@ UID:735@bwa-calendar
 DTSTART;VALUE=DATE:20261111
 DTEND;VALUE=DATE:20261112
 SUMMARY:BWA Y3: Open Morning (English Stream)
-DESCRIPTION:Open morning for prospective families focusing on the English stream.\n\nOpen morning for prospective families focusing on the English stream. Parents are invited to volunteer to help showcase the school, speak with prospective parents, or lead tours.
+DESCRIPTION:Open morning for English Stream.\n\nOpen morning for families looking for a place at Belleville Wix Academy will take place on Wednesday 11 November (English Stream Focus), from 9.15am.
 CATEGORIES:COMMUNITY
 END:VEVENT
 BEGIN:VEVENT
@@ -960,6 +960,14 @@ DTSTART;VALUE=DATE:20261015
 DTEND;VALUE=DATE:20261016
 SUMMARY:BWA Y3: Provision 2027 Information
 DESCRIPTION:Information regarding the BWA bilingual provision from September 2027, including curriculum details, assessment, and admissions.\n\nBWA will offer a 60:40 English:French bilingual provision from Reception to Year 6 starting September 2027. The curriculum follows both English and French National Curricula. The provision is free, though there are costs for CNED materials. Further details on secondary school transitions and class structures are provided in the communication.
+CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:767@bwa-calendar
+DTSTART;VALUE=DATE:20261026
+DTEND;VALUE=DATE:20261027
+SUMMARY:BWA: Road Closure -  Freke Road
+DESCRIPTION:Road closure on Freke Road for 4 weeks due to utility works.\n\nThere will be a road closure on Freke Road from Monday 26 October for 4 weeks due to utility works. This will make the roads surrounding the school even busier than usual. Please walk, cycle or take public transport to school if you can.
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
