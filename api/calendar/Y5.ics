@@ -707,14 +707,6 @@ DESCRIPTION:First day of Autumn Term 2 for English Stream.\n\nFirst day of Autum
 CATEGORIES:ACADEMIC
 END:VEVENT
 BEGIN:VEVENT
-UID:770@bwa-calendar
-DTSTART;VALUE=DATE:20261109
-DTEND;VALUE=DATE:20261111
-SUMMARY:BWA: PTA Christmas Card Fundraiser -  Online Submission Deadline
-DESCRIPTION:PTA Christmas Card Fundraiser: Online Submission Deadline\n\nTurn your creativity into something special! Our PTA is raising funds by creating personalized Christmas cards, and we need your help. \nHow the Project Works\nTemplates for your artwork will be received before half term. Once you have your template, please follow these four simple steps: \n\nCreate: Draw and create a Christmas artwork. You also have the option to choose a picture that you love.\nScan and Upload: Scan your artwork onto the new app. You will upload the picture from your phone by using the QR code provided on the template you received on Wednesday.\nChoose: Turn your image into a beautiful Christmas card, a gift tag, or more.\nDelivered: Your personalized Christmas gift cards will be delivered back to the school.\n\nImportant Dates and Information \n\nOrder Deadline: All orders must be submitted by the 2nd 9th of November. (Deadline extended!)\nWhere the Money Goes: Funds raised will go to the PTA.\n\nThank you for supporting our school!
-CATEGORIES:PTA
-END:VEVENT
-BEGIN:VEVENT
 UID:691@bwa-calendar
 DTSTART;VALUE=DATE:20261001
 DTEND;VALUE=DATE:20261002
@@ -825,6 +817,14 @@ DTEND;VALUE=DATE:20270413
 SUMMARY:BWA Y5: INSET Day
 DESCRIPTION:School closed to children for staff training.\n\nINSET Day - school closed to children.
 CATEGORIES:ADMIN
+END:VEVENT
+BEGIN:VEVENT
+UID:752@bwa-calendar
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261111
+SUMMARY:BWA: PTA Christmas Card Fundraiser -  Online Submission Deadline
+DESCRIPTION:PTA Christmas Card Fundraiser: Online Submission Deadline. Deadline for submitting Christmas card designs for the PTA fundraiser. Turn your creativity into something special! Our PTA is raising funds by creating personalized Christmas cards.\n\nTurn your creativity into something special! Our PTA is raising funds by creating personalized Christmas cards, and we need your help. \nHow the Project Works\nTemplates for your artwork will be received before half term. Once you have your template, please follow these four simple steps: \n\nCreate: Draw and create a Christmas artwork. You also have the option to choose a picture that you love.\nScan and Upload: Scan your artwork onto the new app. You will upload the picture from your phone by using the QR code provided on the template you received on Wednesday.\nChoose: Turn your image into a beautiful Christmas card, a gift tag, or more.\nDelivered: Your personalized Christmas gift cards will be delivered back to the school.\n\nImportant Dates and Information \n\nOrder Deadline: All orders must be submitted by the 2nd 9th of November. (Deadline extended!)\nWhere the Money Goes: Funds raised will go to the PTA.\n\nThank you for supporting our school!\n\nThe deadline for families to scan and upload their child's Christmas artwork via the APFS app or website is 9th November. Every order helps support the school PTA.
+CATEGORIES:PTA
 END:VEVENT
 BEGIN:VEVENT
 UID:718@bwa-calendar
@@ -953,13 +953,5 @@ DTEND;VALUE=DATE:20261027
 SUMMARY:BWA: Road Closure -  Freke Road
 DESCRIPTION:Road closure on Freke Road for 4 weeks due to utility works.\n\nThere will be a road closure on Freke Road from Monday 26 October for 4 weeks due to utility works. This will make the roads surrounding the school even busier than usual. Please walk, cycle or take public transport to school if you can.
 CATEGORIES:ADMIN
-END:VEVENT
-BEGIN:VEVENT
-UID:752@bwa-calendar
-DTSTART;VALUE=DATE:20261109
-DTEND;VALUE=DATE:20261111
-SUMMARY:BWA: PTA Christmas Card Fundraiser -  Online Submission Deadline
-DESCRIPTION:PTA Christmas Card Fundraiser: Online Submission Deadline. Deadline for submitting Christmas card designs for the PTA fundraiser. Turn your creativity into something special! Our PTA is raising funds by creating personalized Christmas cards.\n\nTurn your creativity into something special! Our PTA is raising funds by creating personalized Christmas cards, and we need your help. \nHow the Project Works\nTemplates for your artwork will be received before half term. Once you have your template, please follow these four simple steps: \n\nCreate: Draw and create a Christmas artwork. You also have the option to choose a picture that you love.\nScan and Upload: Scan your artwork onto the new app. You will upload the picture from your phone by using the QR code provided on the template you received on Wednesday.\nChoose: Turn your image into a beautiful Christmas card, a gift tag, or more.\nDelivered: Your personalized Christmas gift cards will be delivered back to the school.\n\nImportant Dates and Information \n\nOrder Deadline: All orders must be submitted by the 2nd 9th of November. (Deadline extended!)\nWhere the Money Goes: Funds raised will go to the PTA.\n\nThank you for supporting our school!\n\nThe deadline for families to scan and upload their child's Christmas artwork via the APFS app or website is 9th November. Every order helps support the school PTA.
-CATEGORIES:PTA
 END:VEVENT
 END:VCALENDAR
