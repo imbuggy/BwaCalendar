@@ -647,7 +647,7 @@ UID:699@bwa-calendar
 DTSTART;VALUE=DATE:20261103
 DTEND;VALUE=DATE:20261104
 SUMMARY:BWA: Parent Gym - Week 1 -  Chat
-DESCRIPTION:Parent Gym programme Week 1: Chat session. Parent Gym sessions start.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 1 session: Chat. Parent Gym sessions start. Parent Gym Starts – Tuesday 3 November
+DESCRIPTION:Parent Gym is a six-week programme sharing practical tips and strategies for family life.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. All parents are welcome to apply.
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
@@ -763,11 +763,19 @@ DESCRIPTION:Deadline for families to complete the registration of interest form 
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
+UID:744@bwa-calendar
+DTSTART;VALUE=DATE:20261124
+DTEND;VALUE=DATE:20261125
+SUMMARY:BWA: Parent Gym - Week 4 -  Care
+DESCRIPTION:Parent Gym is a six-week programme sharing practical tips and strategies for family life.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. All parents are welcome to apply.
+CATEGORIES:WELLBEING
+END:VEVENT
+BEGIN:VEVENT
 UID:742@bwa-calendar
 DTSTART;VALUE=DATE:20261110
 DTEND;VALUE=DATE:20261111
 SUMMARY:BWA: Parent Gym - Week 2 -  Love
-DESCRIPTION:Parent Gym programme Week 2: Love session.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 2 session: Love.
+DESCRIPTION:Parent Gym is a six-week programme sharing practical tips and strategies for family life.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. All parents are welcome to apply.
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
@@ -775,15 +783,7 @@ UID:743@bwa-calendar
 DTSTART;VALUE=DATE:20261117
 DTEND;VALUE=DATE:20261118
 SUMMARY:BWA: Parent Gym - Week 3 -  Behave
-DESCRIPTION:Parent Gym programme Week 3: Behave session.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 3 session: Behave.
-CATEGORIES:WELLBEING
-END:VEVENT
-BEGIN:VEVENT
-UID:744@bwa-calendar
-DTSTART;VALUE=DATE:20261124
-DTEND;VALUE=DATE:20261125
-SUMMARY:BWA: Parent Gym - Week 4 -  Care
-DESCRIPTION:Parent Gym programme Week 4: Care session.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 4 session: Care.
+DESCRIPTION:Parent Gym is a six-week programme sharing practical tips and strategies for family life.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. All parents are welcome to apply.
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
@@ -791,7 +791,7 @@ UID:745@bwa-calendar
 DTSTART;VALUE=DATE:20261201
 DTEND;VALUE=DATE:20261202
 SUMMARY:BWA: Parent Gym - Week 5 -  Discover
-DESCRIPTION:Parent Gym programme Week 5: Discover session.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 5 session: Discover.
+DESCRIPTION:Parent Gym is a six-week programme sharing practical tips and strategies for family life.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. All parents are welcome to apply.
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
@@ -799,7 +799,7 @@ UID:746@bwa-calendar
 DTSTART;VALUE=DATE:20261208
 DTEND;VALUE=DATE:20261209
 SUMMARY:BWA: Parent Gym - Week 6 -  Together
-DESCRIPTION:Parent Gym programme Week 6: Together session.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. Week 6 session: Together.
+DESCRIPTION:Parent Gym is a six-week programme sharing practical tips and strategies for family life.\n\nParent Gym is a six-week programme sharing practical tips and strategies for family life. All parents are welcome to apply.
 CATEGORIES:WELLBEING
 END:VEVENT
 BEGIN:VEVENT
