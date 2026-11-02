@@ -3,6 +3,14 @@ VERSION:2.0
 PRODID:-//BWA-Calendar-Sync//EN
 CALSCALE:GREGORIAN
 BEGIN:VEVENT
+UID:778@bwa-calendar
+DTSTART;VALUE=DATE:20261207
+DTEND;VALUE=DATE:20261208
+SUMMARY:BWA Y5: Christmas Music Performance - Year 5/6
+DESCRIPTION:Christmas music performance for Year 5 and Year 6 students. Please arrive at 2:10pm.\n\nChristmas music performance for Year 5 and Year 6 students. Please arrive at 2:10pm for a 2:15pm start.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
 UID:450@bwa-calendar
 DTSTART;VALUE=DATE:20260601
 DTEND;VALUE=DATE:20260602

@@ -3,6 +3,14 @@ VERSION:2.0
 PRODID:-//BWA-Calendar-Sync//EN
 CALSCALE:GREGORIAN
 BEGIN:VEVENT
+UID:778@bwa-calendar
+DTSTART;VALUE=DATE:20261207
+DTEND;VALUE=DATE:20261208
+SUMMARY:BWA Y5: Christmas Music Performance - Year 5/6
+DESCRIPTION:Christmas music performance for Year 5 and Year 6 students. Please arrive at 2:10pm.\n\nChristmas music performance for Year 5 and Year 6 students. Please arrive at 2:10pm for a 2:15pm start.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
 UID:450@bwa-calendar
 DTSTART;VALUE=DATE:20260601
 DTEND;VALUE=DATE:20260602
@@ -353,6 +361,22 @@ DTEND;VALUE=DATE:20260501
 SUMMARY:BWA Y1b: Y1b Gymnastics Lesson Reminder
 DESCRIPTION:Reminder regarding PE kit for Y1b gymnastics lesson.\n\nThe Y1b gymnastic lesson has been moved to a Thursday. Students need to wear their P.E kit with shorts, leggings or trousers. No tights allowed.
 CATEGORIES:ACADEMIC
+END:VEVENT
+BEGIN:VEVENT
+UID:779@bwa-calendar
+DTSTART;VALUE=DATE:20261208
+DTEND;VALUE=DATE:20261209
+SUMMARY:BWA Y1: Christmas Music Performance - Year 1/2
+DESCRIPTION:Christmas music performance for Year 1 and Year 2 students. Please arrive at 2:10pm.\n\nChristmas music performance for Year 1 and Year 2 students. Please arrive at 2:10pm for a 2:15pm start.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
+UID:780@bwa-calendar
+DTSTART;VALUE=DATE:20261214
+DTEND;VALUE=DATE:20261215
+SUMMARY:BWA Y3: Christmas Music Performance - Year 3/4
+DESCRIPTION:Christmas music performance for Year 3 and Year 4 students. Please arrive at 2:10pm.\n\nChristmas music performance for Year 3 and Year 4 students. Please arrive at 2:10pm for a 2:15pm start.
+CATEGORIES:ARTS
 END:VEVENT
 BEGIN:VEVENT
 UID:652@bwa-calendar
@@ -1363,14 +1387,6 @@ DESCRIPTION:Information regarding the BWA bilingual provision from September 202
 CATEGORIES:ADMIN
 END:VEVENT
 BEGIN:VEVENT
-UID:766@bwa-calendar
-DTSTART;VALUE=DATE:20261215
-DTEND;VALUE=DATE:20261216
-SUMMARY:BWA R: Reception Nativity Play
-DESCRIPTION:Reception Nativity Play.\n\nReception Nativity Play – Tuesday 15 December, 2:30pm. Further details to follow.
-CATEGORIES:ARTS
-END:VEVENT
-BEGIN:VEVENT
 UID:767@bwa-calendar
 DTSTART;VALUE=DATE:20261026
 DTEND;VALUE=DATE:20261027
@@ -1385,5 +1401,13 @@ DTEND;VALUE=DATE:20261111
 SUMMARY:BWA: PTA Christmas Card Fundraiser -  Online Submission Deadline
 DESCRIPTION:PTA Christmas Card Fundraiser: Online Submission Deadline. Deadline for submitting Christmas card designs for the PTA fundraiser. Turn your creativity into something special! Our PTA is raising funds by creating personalized Christmas cards.\n\nTurn your creativity into something special! Our PTA is raising funds by creating personalized Christmas cards, and we need your help. \nHow the Project Works\nTemplates for your artwork will be received before half term. Once you have your template, please follow these four simple steps: \n\nCreate: Draw and create a Christmas artwork. You also have the option to choose a picture that you love.\nScan and Upload: Scan your artwork onto the new app. You will upload the picture from your phone by using the QR code provided on the template you received on Wednesday.\nChoose: Turn your image into a beautiful Christmas card, a gift tag, or more.\nDelivered: Your personalized Christmas gift cards will be delivered back to the school.\n\nImportant Dates and Information \n\nOrder Deadline: All orders must be submitted by the 2nd 9th of November. (Deadline extended!)\nWhere the Money Goes: Funds raised will go to the PTA.\n\nThank you for supporting our school!\n\nThe deadline for families to scan and upload their child's Christmas artwork via the APFS app or website is 9th November. Every order helps support the school PTA.
 CATEGORIES:PTA
+END:VEVENT
+BEGIN:VEVENT
+UID:766@bwa-calendar
+DTSTART;VALUE=DATE:20261215
+DTEND;VALUE=DATE:20261216
+SUMMARY:BWA R: Reception Nativity Play
+DESCRIPTION:Reception Nativity Play. Please arrive at 2:10pm.\n\nReception Nativity Play. Please arrive at 2:10pm for a 2:15pm start.
+CATEGORIES:ARTS
 END:VEVENT
 END:VCALENDAR

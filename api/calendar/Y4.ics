@@ -227,6 +227,14 @@ DESCRIPTION:Basketball club is cancelled today due to staff sickness.\n\nBasketb
 CATEGORIES:SPORTS
 END:VEVENT
 BEGIN:VEVENT
+UID:780@bwa-calendar
+DTSTART;VALUE=DATE:20261214
+DTEND;VALUE=DATE:20261215
+SUMMARY:BWA Y4: Christmas Music Performance - Year 3/4
+DESCRIPTION:Christmas music performance for Year 3 and Year 4 students. Please arrive at 2:10pm.\n\nChristmas music performance for Year 3 and Year 4 students. Please arrive at 2:10pm for a 2:15pm start.
+CATEGORIES:ARTS
+END:VEVENT
+BEGIN:VEVENT
 UID:543@bwa-calendar
 DTSTART;VALUE=DATE:20260709
 DTEND;VALUE=DATE:20260710
